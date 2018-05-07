@@ -7,6 +7,5 @@ import Registro from './Registro';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(<Registro />, document.getElementById('root'));
 
 registerServiceWorker();
