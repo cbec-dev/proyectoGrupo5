@@ -16,8 +16,8 @@ require('codemirror/mode/python/python');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
-	markdown: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-	python: 'var component = {\n\tname: "react-codemirror",\n\tauthor: "Jed Watson",\n\trepo: "https://github.com/JedWatson/react-codemirror"\n};'
+	C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
+	python: '#Python 3.5'
 };
 
 class Solucion extends Component {
@@ -95,7 +95,7 @@ class Solucion extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, nameSolution:"", text:""});
+            this.setState({isLoading: false, nameSolution:"", code:""});
             this.render();
         }
     }
