@@ -6,7 +6,6 @@ const debounce = require('lodash.debounce');
 const isEqual = require('lodash.isequal');
 const createReactClass = require('create-react-class');
 
-
 function normalizeLineEndings (str) {
 	if (!str) return str;
 	return str.replace(/\r\n|\r/g, '\n');
@@ -116,8 +115,8 @@ const CodeMirror = createReactClass({
 		const editorClassName = className(
 			'ReactCodeMirror',
 			this.state.isFocused ? 'ReactCodeMirror--focused' : null,
-            this.props.className
-        );
+			this.props.className
+		);
 		return (
 			<div className={editorClassName}>
 				<textarea
@@ -126,6 +125,7 @@ const CodeMirror = createReactClass({
 					defaultValue={this.props.value}
 					autoComplete="off"
 					autoFocus={this.props.autoFocus}
+					
 				/>
 			</div>
 		);

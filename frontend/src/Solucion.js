@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Enunciado.css';
+import './Solucion.css';
 import Registro from './Registro';
 import Login from './Login';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
@@ -12,34 +12,43 @@ var CodeMirror = require('../src/CodeMirror.js');
 const createReactClass = require('create-react-class');
 
 require('codemirror/lib/codemirror.css');
-require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/python/python');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
-	markdown: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-	javascript: 'var component = {\n\tname: "react-codemirror",\n\tauthor: "Jed Watson",\n\trepo: "https://github.com/JedWatson/react-codemirror"\n};'
+	C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
+	python: '#Python 3.5'
 };
 
 class Solucion extends Component {
     constructor(props) {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.updateCode = this.updateCode.bind(this); 
+        this.changeMode = this.changeMode.bind(this);
+        this.limpiarValores = this.limpiarValores.bind(this);
+        this.toggleReadOnly = this.toggleReadOnly.bind(this);
+        
         this.state = {
             isLoading: false,
             nameSolution:"",
             text:"",
-            code: "",
-            readOnly: false,
-            mode: 'markdown',
+            code: defaults.python,
+			readOnly: false,
+			mode: {name: "python",
+               version: 3,
+               singleLineStringErrors: false},
 
         };
     }
     
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.solution = {nameSolution: "", text: ""}
+        this.solution = {nameSolution: "", text: "", code: ""}
         this.solution.nameSolution = e.nameSolution;
-        this.solution.text = e.text; 
+        this.solution.text = e.text;
+        this.solution.code = e.code;
+        console.log(this.solution.code);
         if(this.solution.nameSolution==="" || this.solution.text ===""){
             alert("Debe llenar todas las casillas");
             return;
@@ -60,9 +69,11 @@ class Solucion extends Component {
         }
     	getInitialState () {
             return {
-                code: defaults.markdown,
+                code: defaults.python,
                 readOnly: false,
-                mode: 'markdown',
+                mode: {name: "python",
+               version: 3,
+               singleLineStringErrors: false},
             };
         }
         updateCode (newCode) {
@@ -84,7 +95,7 @@ class Solucion extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, nameSolution:"", text:""});
+            this.setState({isLoading: false, nameSolution:"", code:""});
             this.render();
         }
     }
@@ -97,7 +108,19 @@ class Solucion extends Component {
             });
         console.log(name, value, target);
         }
-
+    componentDidMount() {
+            this.setState({
+                isLoading: false,
+                nameSolution:"",
+                text:"",
+                code: defaults.python,
+                readOnly: false,
+                mode: {name: "python",
+                   version: 3,
+                   singleLineStringErrors: false},
+    
+            });
+            }
 
         render() {
             var options = {
@@ -106,35 +129,36 @@ class Solucion extends Component {
                 mode: this.state.mode
             };
                 return (
-                    
-                    <form>
-                    <div>
-                        <label> Nombre Solucion:  </label>
+                   <body className="body"> 
+                    <form className="form">
+                    <div className="div1">
+                    <label className="labels"> Nombre Solucion:  </label>
+                    </div>
+                    <div className="div1">
                         <input name= "nameSolution" type = "text" value={this.state.nameSolution}
                         onChange = {this.handleInputChange} />
                     </div>
-                    
-                    <div>
-                        <label> Solucion:  </label>
-                        <textarea name= "text" type = "text" value={this.state.text} 
-                        onChange = {this.handleInputChange} />
+                    <div className="div2">
+                    <label className="labels"> Solucion:  </label>
                     </div>
-                    <div>
-				<CodeMirror ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
-				<div style={{ marginTop: 10 }}>
+                   
+                    <div className="div3">
+				<CodeMirror className="codemirror" ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
+				<div style={{ marginTop: 10 }} className="div4">
 					<select onChange={this.changeMode} value={this.state.mode}>
-						<option value="markdown">Markdown</option>
-						<option value="javascript">JavaScript</option>
+						<option value="python">Python</option>
+						<option value="C">C</option>
+                        <option value="java">Java</option>
 					</select>
 					<button onClick={this.toggleReadOnly}>Toggle read-only mode (currently {this.state.readOnly ? 'on' : 'off'})</button>
 				</div>
 			</div>
-                    <div>
+                    <div className="div1">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
                     </div>
                   </form>
-    
+            </body>
                     
                 );
             }

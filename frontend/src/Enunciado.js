@@ -60,24 +60,30 @@ class Enunciado extends Component {
 
         render() {
                 return (
-                    <form>
-                    <div>
-                        <label> Nombre Enunciado:  </label>
-                        <input name= "nameStatement" type = "text" value={this.state.nameStatement}
+                <body className="body">
+                    <form className="form1">
+                    <div className="div1">
+                    <label className="label1"> Nombre Enunciado:  </label>
+                    </div>
+                    <div className="div1">
+                        <input className="input" name= "nameStatement" type = "text" value={this.state.nameStatement}
                         onChange = {this.handleInputChange} />
+                    </div>
+                    <div className="div1">
+                    <label className="label2"> Enunciado:  </label>
                     </div>
                     
-                    <div>
-                        <label> Texto:  </label>
-                        <textarea name= "text" type = "text" value={this.state.text} 
+                    <div className="div2">
+                        
+                        <textarea className="text" name= "text" type = "text" value={this.state.text} 
                         onChange = {this.handleInputChange} />
                     </div>
-                    <div>
+                    <div className="div3">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
                     </div>
                   </form>
-    
+                </body>
                     
                 );
             }
