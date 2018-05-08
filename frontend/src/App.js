@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import Enunciado from './Enunciado';
+import Solucion from './Solucion';
 
 class App extends Component {
 
@@ -30,6 +31,8 @@ class App extends Component {
         <Route path="/Registro" component={Registro} />
         <Route path="/Login" component={Login} />
         <Route path="/Enunciado" component={Enunciado} />
+        <Route path="/Solucion" component={Solucion} />
+
         <Route exact path="/" component={Home} />
 
       </Switch>
