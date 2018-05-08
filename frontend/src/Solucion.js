@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Enunciado.css';
+import './Solucion.css';
 import Registro from './Registro';
 import Login from './Login';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
@@ -129,35 +129,36 @@ class Solucion extends Component {
                 mode: this.state.mode
             };
                 return (
-                    
-                    <form>
-                    <div>
-                        <label> Nombre Solucion:  </label>
+                   <body className="body"> 
+                    <form className="form">
+                    <div className="div1">
+                    <label className="labels"> Nombre Solucion:  </label>
+                    </div>
+                    <div className="div1">
                         <input name= "nameSolution" type = "text" value={this.state.nameSolution}
                         onChange = {this.handleInputChange} />
                     </div>
-                    
-                    <div>
-                        <label> Solucion:  </label>
-                        <textarea name= "text" type = "text" value={this.state.text} 
-                        onChange = {this.handleInputChange} />
+                    <div className="div2">
+                    <label className="labels"> Solucion:  </label>
                     </div>
-                    <div>
-				<CodeMirror ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
-				<div style={{ marginTop: 10 }}>
+                   
+                    <div className="div3">
+				<CodeMirror className="codemirror" ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
+				<div style={{ marginTop: 10 }} className="div4">
 					<select onChange={this.changeMode} value={this.state.mode}>
 						<option value="python">Python</option>
-						<option value="markdown">Markdown</option>
+						<option value="C">C</option>
+                        <option value="java">Java</option>
 					</select>
 					<button onClick={this.toggleReadOnly}>Toggle read-only mode (currently {this.state.readOnly ? 'on' : 'off'})</button>
 				</div>
 			</div>
-                    <div>
+                    <div className="div1">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
                     </div>
                   </form>
-    
+            </body>
                     
                 );
             }

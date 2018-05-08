@@ -40,7 +40,7 @@ class Header extends Component {
             <NavItem eventKey={1} href="/Registro">
             <span className="navItem">Registro</span>
             </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" className="navItem">  <MenuItem eventKey={3.1}>Action</MenuItem>
+            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" className="dropdown">  <MenuItem eventKey={3.1}>Action</MenuItem>
               <MenuItem eventKey={3.2} href="/Solucion">Subir Solucion</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider />
@@ -69,11 +69,11 @@ class Header extends Component {
             <NavItem eventKey={1} href="/Registro">
             <span className="navItem">Registro</span>
             </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" className="navItem">
-            <MenuItem eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem eventKey={3.2}>Listar Enunciados</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
+            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" className="dropdown">
+            <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.2}>Listar Enunciados</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>

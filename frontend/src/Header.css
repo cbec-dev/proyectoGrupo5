@@ -5,7 +5,11 @@
 .navItem {
     color: white;
   }
-  .navDropdown{
 
-    color: white;
-  }
+.dropdown{
+  -webkit-text-fill-color: white;
+}
+.menuItem{
+  color: black;
+
+}

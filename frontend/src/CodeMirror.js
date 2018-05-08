@@ -125,6 +125,7 @@ const CodeMirror = createReactClass({
 					defaultValue={this.props.value}
 					autoComplete="off"
 					autoFocus={this.props.autoFocus}
+					
 				/>
 			</div>
 		);
