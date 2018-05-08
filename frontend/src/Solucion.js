@@ -12,34 +12,43 @@ var CodeMirror = require('../src/CodeMirror.js');
 const createReactClass = require('create-react-class');
 
 require('codemirror/lib/codemirror.css');
-require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/python/python');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
 	markdown: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-	javascript: 'var component = {\n\tname: "react-codemirror",\n\tauthor: "Jed Watson",\n\trepo: "https://github.com/JedWatson/react-codemirror"\n};'
+	python: 'var component = {\n\tname: "react-codemirror",\n\tauthor: "Jed Watson",\n\trepo: "https://github.com/JedWatson/react-codemirror"\n};'
 };
 
 class Solucion extends Component {
     constructor(props) {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.updateCode = this.updateCode.bind(this); 
+        this.changeMode = this.changeMode.bind(this);
+        this.limpiarValores = this.limpiarValores.bind(this);
+        this.toggleReadOnly = this.toggleReadOnly.bind(this);
+        
         this.state = {
             isLoading: false,
             nameSolution:"",
             text:"",
-            code: "",
-            readOnly: false,
-            mode: 'markdown',
+            code: defaults.python,
+			readOnly: false,
+			mode: {name: "python",
+               version: 3,
+               singleLineStringErrors: false},
 
         };
     }
     
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.solution = {nameSolution: "", text: ""}
+        this.solution = {nameSolution: "", text: "", code: ""}
         this.solution.nameSolution = e.nameSolution;
-        this.solution.text = e.text; 
+        this.solution.text = e.text;
+        this.solution.code = e.code;
+        console.log(this.solution.code);
         if(this.solution.nameSolution==="" || this.solution.text ===""){
             alert("Debe llenar todas las casillas");
             return;
@@ -60,9 +69,11 @@ class Solucion extends Component {
         }
     	getInitialState () {
             return {
-                code: defaults.markdown,
+                code: defaults.python,
                 readOnly: false,
-                mode: 'markdown',
+                mode: {name: "python",
+               version: 3,
+               singleLineStringErrors: false},
             };
         }
         updateCode (newCode) {
@@ -97,7 +108,19 @@ class Solucion extends Component {
             });
         console.log(name, value, target);
         }
-
+    componentDidMount() {
+            this.setState({
+                isLoading: false,
+                nameSolution:"",
+                text:"",
+                code: defaults.python,
+                readOnly: false,
+                mode: {name: "python",
+                   version: 3,
+                   singleLineStringErrors: false},
+    
+            });
+            }
 
         render() {
             var options = {
@@ -123,8 +146,8 @@ class Solucion extends Component {
 				<CodeMirror ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
 				<div style={{ marginTop: 10 }}>
 					<select onChange={this.changeMode} value={this.state.mode}>
+						<option value="python">Python</option>
 						<option value="markdown">Markdown</option>
-						<option value="javascript">JavaScript</option>
 					</select>
 					<button onClick={this.toggleReadOnly}>Toggle read-only mode (currently {this.state.readOnly ? 'on' : 'off'})</button>
 				</div>
