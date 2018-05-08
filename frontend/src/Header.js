@@ -71,7 +71,7 @@ class Header extends Component {
             </NavItem>
             <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" className="dropdown">
             <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.2}>Listar Enunciados</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.2} href='/ListaEnunciados'>Listar Enunciados</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
             <MenuItem divider />
