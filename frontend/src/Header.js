@@ -22,25 +22,25 @@ class Header extends Component {
     const {typeUser} = this.state.typeUser;
     console.log(this.state.typeUser);
     console.log(typeUser);
-    console.log("THE WORST");
     if(this.state.typeUser ===1){
       return (
           <body>
           <Navbar >
             <Navbar.Header>
-              <Navbar.Brand>
-                <a href="/">Home</a>
-              </Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-              <NavItem eventKey={1} href="/Login">
-                Login
-              </NavItem>
-              <NavItem eventKey={1} href="/Registro">
-                Registro
-              </NavItem>
-              <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
+            <Navbar.Brand>
+              <a href="/">     
+               <span className="navItem">Home</span>
+               </a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+          <NavItem eventKey={1} href="/Login">
+            <span className="navItem">Login</span>
+          </NavItem>
+            <NavItem eventKey={1} href="/Registro">
+            <span className="navItem">Registro</span>
+            </NavItem>
+            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" className="navItem">  <MenuItem eventKey={3.1}>Action</MenuItem>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider />
@@ -57,17 +57,19 @@ class Header extends Component {
         <Navbar >
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/">Home</a>
+              <a href="/">     
+               <span className="navItem">Home</span>
+               </a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="/Login">
-              Login
-            </NavItem>
+          <NavItem eventKey={1} href="/Login">
+            <span className="navItem">Login</span>
+          </NavItem>
             <NavItem eventKey={1} href="/Registro">
-              Registro
+            <span className="navItem">Registro</span>
             </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" className="navItem">
             <MenuItem eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
             <MenuItem eventKey={3.2}>Listar Enunciados</MenuItem>
             <MenuItem eventKey={3.3}>Something else here</MenuItem>

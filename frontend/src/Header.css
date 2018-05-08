@@ -1,4 +1,11 @@
 .navbar {
-    background-color: darkred;
+    background-color: rgb(0, 0, 0);
 
 }
+.navItem {
+    color: white;
+  }
+  .navDropdown{
+
+    color: white;
+  }
