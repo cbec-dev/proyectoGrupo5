@@ -7,7 +7,7 @@ class Login extends Component {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
-            products: [],
+            
             isLoading: false,
             email:"",
             password:"",

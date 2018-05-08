@@ -5,10 +5,8 @@ import Registro from './Registro';
 import Login from './Login';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
-import Home from './Home';
-import Enunciado from './Enunciado';
 
-class App extends Component {
+class Home extends Component {
 
   constructor(props) {
     super(props);
@@ -23,21 +21,11 @@ class App extends Component {
     
     return (
       <div>
-        <Header/>
-    
-  <Router>     
-      <Switch>
-        <Route path="/Registro" component={Registro} />
-        <Route path="/Login" component={Login} />
-        <Route path="/Enunciado" component={Enunciado} />
-        <Route exact path="/" component={Home} />
-
-      </Switch>
-  </Router>
+        <label> UWU </label>
       
       </div>
     );
   }
 }
 
-export default App;
+export default Home;
