@@ -46,5 +46,46 @@ public class solutionController {
 		
 		solutionRepository.save(n);
 		return "Producto guardado.";
-}
+	}
+	@GetMapping(path="/update") 
+	public @ResponseBody String updateSolution (
+			@RequestParam Integer IdSolution,
+            @RequestParam Integer idStament,
+            @RequestParam String solutionName,
+            @RequestParam String solutionText,
+            @RequestParam Integer idUser) {
+		
+
+		solution n = new solution();
+		n.setIdSolution(IdSolution);
+        n.setIdStatement(idStament);
+        n.setSolutionName(solutionName);
+        n.setSolutionText(solutionText);
+        n.setIdUser(idUser);
+		
+		solutionRepository.save(n);
+		return "Producto actualizado.";
+	}
+	
+	@GetMapping(path="/search")
+	public @ResponseBody solution findOne(Integer IdSolution) {
+		solution solucion = solutionRepository.findById(IdSolution).get();
+		if (solucion != null) {
+			return solucion;
+		}
+		else {
+			return null;
+		}
+		
+		
+	}
+	
+	@RequestMapping(value = "/delete/{IdSolution}")
+    public @ResponseBody String delete(@PathVariable("IdSolution") Integer IdSolution) {
+		
+        solutionRepository.deleteById(IdSolution);
+		return "Producto eliminado";
+	}
+	
+	
 }

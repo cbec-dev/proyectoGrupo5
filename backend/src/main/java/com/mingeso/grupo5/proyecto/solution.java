@@ -29,6 +29,10 @@ public class solution {
 		 return this.IdSolution;
 	 }
 	 
+	 public void setIdSolution(Integer id) {
+		 this.IdSolution = id;
+	 }
+	 
 	 public Integer getIdStatement() {
 		 return this.IdStatement;
 	 }
