@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Registro from './Registro';
 import Login from './Login';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import Header from './Header';
 
 class App extends Component {
 
@@ -19,34 +20,16 @@ class App extends Component {
   render() {
     
     return (
-      <div className="App">
-        <header className="App-header">
-        <Router>
-      <ul>
-       <label className="link-home">
-         <Link to = "/"> Home </Link>
-         </label>
-         <label className="link-login">
-         <Link to = "/Login"> Login </Link>
-         </label>
-        <label className="link-registro">
-          <Link to="/Registro">Registro</Link>
-        </label>
-       
-
+      <div>
+        <Header/>
+    
+  <Router>     
+      <Switch>
         <Route path="/Registro" component={Registro} />
         <Route path="/Login" component={Login} />
-
-      </ul>
-
+      </Switch>
   </Router>
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Plataforma FCyP.</h1>
-          
-        </header>
-        <p className="App-intro">
-        
-        </p>
+      
       </div>
     );
   }
