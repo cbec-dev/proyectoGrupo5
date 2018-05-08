@@ -21,29 +21,31 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Plataforma FCyP.</h1>
-        </header>
-        <p className="App-intro">
         <Router>
-    <div>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
+       <label className="link-home">
+         <Link to = "/"> Home </Link>
+         </label>
+         <label className="link-login">
+         <Link to = "/Login"> Login </Link>
+         </label>
+        <label className="link-registro">
           <Link to="/Registro">Registro</Link>
-        </li>
-        <Route exact path="/" component={App} />
-        <Route path="/Registro" component={Registro} />
+        </label>
        
+
+        <Route path="/Registro" component={Registro} />
+        <Route path="/Login" component={Login} />
+
       </ul>
 
-      <hr />
-
-      
-    </div>
   </Router>
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Plataforma FCyP.</h1>
+          
+        </header>
+        <p className="App-intro">
+        
         </p>
       </div>
     );

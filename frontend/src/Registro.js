@@ -14,32 +14,29 @@ class Registro extends Component {
             sectionName:"",
             email:"",
             password:"",
+            password2: "",
 
         };
         }
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.user = {id: "", idCareer: "", sectionName: "", email: "", password: "", password2: ""}
+        this.user = {id: "", idCareer: "", sectionName: "", email: "", password:"", password2:""}
         this.user.idCareer = e.idCareer;
         this.user.sectionName = e.sectionName;
         this.user.email = e.email+ "@usach.cl";
-        this.user.password = e.password; 
-        if(this.user.idCareer==="" || this.user.sectionName ==="" ||this.user.email ==="" ||this.user.password ==="" , this.user.password2 ===""){
+        this.password = e.password;
+        this.password2 = e.password2; 
+        if(this.user.idCareer==="" || this.user.sectionName ==="" ||this.user.email ==="" ||this.user.password === "" ||this.user.password2===""){
             console.log("Debe llenar todos las casillas");
             return;
         }
         else{
-            if(this.user.password != this.user.password2){
-                console.log("Contraseñas deben ser iguales Uwu");
-                return;
-            }
             this.limpiarValores(1);
             console.log("Usuario: "+ this.user);
             console.log("Datos: "+ this.user.sectionName);
             console.log("Datos: "+ this.user.idCareer);
             console.log("Datos: "+ this.user.email);
-            console.log("Datos: "+ this.user.password);
-            console.log("Datos: "+ this.user.password2);
+            
             fetch('http://104.236.68.75:8080/backendGrupo5/api/add?codigo='+this.user.codigo+'&nombre='+this.user.nombre+'&fecha='+this.user.fecha+'&categoria='+this.user.categoria+'&precio='+this.user.precio)
             .then(response => console.log("Producto Agregado"+response)) 
             }
@@ -48,7 +45,7 @@ class Registro extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", password: ""});
+            this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", password: "", password2:""});
             this.render();
         }
     }
@@ -69,7 +66,7 @@ class Registro extends Component {
                     <div>
                         <label> Categoria:  </label>
                         <select name="idCareer" component="select" onChange = {this.handleInputChange}>
-                        value={this.state.categoria}
+                        value={this.state.idCareer}
                             <option value={1}>Ing. Civil Informatica</option>
                             <option value={0}>Ing. Ejecucion Informatica</option>
                            
@@ -77,22 +74,22 @@ class Registro extends Component {
                     </div>
                     <div>
                         <label> Nombre:  </label>
-                        <input name= "sectionName" type = "text" value={this.state.codigo}
+                        <input name= "sectionName" type = "text" value={this.state.sectionName}
                         onChange = {this.handleInputChange} />
                     </div>
                     <div>
                         <label> Email:  </label>
-                        <input name= "email" type = "text" value={this.state.precio} 
+                        <input name= "email" type = "text" value={this.state.email} 
                         onChange = {this.handleInputChange} /><label> @usach.cl  </label>
                     </div>
                     <div>
-                        <label> Contraseña  </label>
-                        <input name= "password" type = "password" value={this.state.fecha}
+                        <label> Contraseña:  </label>
+                        <input name= "password" type = "password" value={this.state.password} 
                         onChange = {this.handleInputChange} />
                     </div>
                     <div>
-                        <label> Repetir Contraseña  </label>
-                        <input name= "password2" type = "password" value={this.state.fecha}
+                        <label> Repetir Contraseña:  </label>
+                        <input name= "password2" type = "password" value={this.state.password2} 
                         onChange = {this.handleInputChange} />
                     </div>
                     <div>
