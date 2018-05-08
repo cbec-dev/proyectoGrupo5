@@ -8,6 +8,8 @@ import Header from './Header';
 import Home from './Home';
 import Enunciado from './Enunciado';
 import Solucion from './Solucion';
+import CodeMirror from './CodeMirror';
+import Prueba from './Prueba';
 
 class App extends Component {
 
@@ -29,9 +31,11 @@ class App extends Component {
   <Router>     
       <Switch>
         <Route path="/Registro" component={Registro} />
+        <Route path="/Prueba" component={Prueba} />
         <Route path="/Login" component={Login} />
         <Route path="/Enunciado" component={Enunciado} />
         <Route path="/Solucion" component={Solucion} />
+        <Route path="/Code" component={CodeMirror} />
 
         <Route exact path="/" component={Home} />
 
