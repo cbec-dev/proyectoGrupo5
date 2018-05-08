@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Registro from './Registro';
+import Login from './Login';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 class App extends Component {
@@ -24,11 +25,25 @@ class App extends Component {
           <h1 className="App-title">Plataforma FCyP.</h1>
         </header>
         <p className="App-intro">
-          <Router>
-          <li>
-            <Link to = "./Registro">Registro </Link>
-            </li>
-            </Router>
+        <Router>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/Registro">Registro</Link>
+        </li>
+        <Route exact path="/" component={App} />
+        <Route path="/Registro" component={Registro} />
+       
+      </ul>
+
+      <hr />
+
+      
+    </div>
+  </Router>
         </p>
       </div>
     );
