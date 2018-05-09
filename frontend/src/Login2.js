@@ -78,11 +78,12 @@ export default class Login extends React.Component {
                 console.log("User signed in: ", JSON.stringify(user));
 
                 localStorage.removeItem(firebaseAuthKey);
-
+        
                 // here you could authenticate with you web server to get the
                 // application specific token so that you do not have to
                 // authenticate with firebase every time a user logs in
                 localStorage.setItem(appTokenKey, user.uid);
+                localStorage.setItem("user", JSON.stringify(user));                
                 var email = JSON.stringify(user.email);
                 var domain = email.split("@");
                 console.log(domain[1]);
@@ -95,11 +96,11 @@ export default class Login extends React.Component {
                 }
                 else{
                     console.log("EMAIL VALIDO C:");
+                    console.log("User email signed in: ", JSON.stringify(user.email));
+                    // store the token
+                    return this.props.history.push("/Home");
                 }
-                console.log("User email signed in: ", JSON.stringify(user.email));
-                localStorage.setItem("user", JSON.stringify(user));                
-                // store the token
-                this.props.history.push("/Home")
+               
             }
         });
     }

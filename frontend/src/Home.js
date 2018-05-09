@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './Home.css';
 import Registro from './Registro';
 import Login from './Login';
 import {BrowserRouter as Redirect, Router, Route, Link, Switch} from "react-router-dom";
@@ -29,10 +29,10 @@ export default class Home extends React.Component {
         super(props);
 
         this.state = {
-            firebaseUser: JSON.parse(localStorage.getItem("user")),
+            firebaseUser: JSON.parse(localStorage.getItem('user')),
         };
 
-        console.log("User:", this.state.firebaseUser);
+        console.log("User:", this.state.firebaseUser.displayName);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -49,25 +49,27 @@ export default class Home extends React.Component {
 
     
         console.log("USUARIO LOGUEADO");
-        console.log(JSON.parse(localStorage.getItem("firebaseUser")));
+        console.log(JSON.parse(localStorage.getItem("user")));
         console.log("USUARIO LOGUEADO");
         return (
-            <div>
-                <h1>Home</h1>
-                <div>
-                  </div>
-                  
-                <h3>Welcome</h3>
-        
-                <div>
-                    <RaisedButton
-                        backgroundColor="#a4c639"
-                        labelColor="#ffffff"
-                        label="Sign Out"
-                        onTouchTap={this.handleLogout}
-                    />
+            <body className="body">
+                <div className = "div1">
+                    <h1 className = "h">Home</h1>
+                    <div className = "div2">
+                    </div>
+                    
+                    <h3 className = "h">Bienvenido {this.state.firebaseUser.displayName}</h3>
+            
+                    <div className = "div3">
+                        <RaisedButton className = "button"
+                            backgroundColor="#a4c639"
+                            labelColor="#ffffff"
+                            label="Sign Out"
+                            onTouchTap={this.handleLogout}
+                        />
+                    </div>
                 </div>
-            </div>
+            </body>
         );
     }
 }
