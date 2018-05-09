@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 
 public class Compiler {
 
-    public void compilePython(String code) throws IOException
+    public String compilePython(String code) throws IOException
     {
         String fileName = "code";
         FileWriter fileWriter = new FileWriter(fileName);
@@ -23,6 +23,7 @@ public class Compiler {
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
         //String output = in.readLine();
         String output = in.toString();
-        System.out.println(output);
+        //System.out.println(output);
+        return output;
     }
 }
