@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.mingeso.grupo5.proyecto.section;
+import com.mingeso.grupo5.proyecto.Section;
 import com.mingeso.grupo5.proyecto.SectionsRepository;
 import org.springframework.http.HttpStatus;
 
@@ -24,9 +24,9 @@ public class SectionController {
 	private SectionsRepository sectionRepository;
 	
 	@GetMapping(path="/allSection")
-	public @ResponseBody Iterable<section> getAllsection() {
+	public @ResponseBody Iterable<Section> getAllsection() {
 		
-		Iterable<section> findAll = sectionRepository.findAll();
+		Iterable<Section> findAll = sectionRepository.findAll();
 		return findAll;
 	}
 	
@@ -37,7 +37,7 @@ public class SectionController {
             @RequestParam Integer idProfesor) {
 		
 
-		section n = new section();
+		Section n = new Section();
         n.setIdSection(idSection);
         n.setSectionName(sectionName);
         n.setIdProfesor(idProfesor);
