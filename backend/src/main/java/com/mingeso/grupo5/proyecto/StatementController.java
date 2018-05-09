@@ -26,14 +26,12 @@ public class StatementController {
 	
 	@GetMapping(path="/add") 
 	public @ResponseBody String addNewStatement (
-            @RequestParam Integer id,
             @RequestParam String statementName,
             @RequestParam String statementText) 
             {
 		
 
 		Statement n = new Statement();
-        n.setIdStatement(id);
         n.setStatementName(statementName);
         n.setStatementText(statementText);
 		
