@@ -48,9 +48,9 @@ export default class Home extends React.Component {
     render() {
 
     
-        console.log("THE WORO WORO");
+        console.log("USUARIO LOGUEADO");
         console.log(JSON.parse(localStorage.getItem("firebaseUser")));
-        console.log("THE WORO WORO");
+        console.log("USUARIO LOGUEADO");
         return (
             <div>
                 <h1>Home</h1>

@@ -1,7 +1,9 @@
 import React from "react";
 import {FontIcon, RaisedButton} from "material-ui";
-import {loginWithGoogle} from "./auth";
+import {loginWithGoogle, logout} from "./auth";
 import {firebaseAuth} from "./constants";
+import './Login.css';
+ 
 
 
 const firebaseAuthKey = "firebaseAuthInProgress";
@@ -16,6 +18,16 @@ export default class Login extends React.Component {
         };
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+
+    }
+    handleLogout() {
+        logout().then(function () {
+            localStorage.removeItem(appTokenKey);
+            this.props.history.push("/Login2");
+            console.log("user signed out from firebase");
+        }.bind(this));
+
     }
 
     handleGoogleLogin() {
@@ -71,6 +83,20 @@ export default class Login extends React.Component {
                 // application specific token so that you do not have to
                 // authenticate with firebase every time a user logs in
                 localStorage.setItem(appTokenKey, user.uid);
+                var email = JSON.stringify(user.email);
+                var domain = email.split("@");
+                console.log(domain[1]);
+                if(domain[1] != "usach.cl\""){
+                    console.log("EMAIL INVALIDOOOOOOOOO");
+                    alert("Solo se puede iniciar sesion con cuentas @usach.cl");
+                    localStorage.removeItem(appTokenKey);
+                    console.log("user signed out from firebase");
+                    return this.props.history.push("/Login2");
+                }
+                else{
+                    console.log("EMAIL VALIDO C:");
+                }
+                console.log("User email signed in: ", JSON.stringify(user.email));
                 localStorage.setItem("user", JSON.stringify(user));                
                 // store the token
                 this.props.history.push("/Home")
@@ -89,17 +115,19 @@ const iconStyles = {
     color: "#ffffff"
 };
 const LoginPage = ({handleGoogleLogin}) => (
-    <div>
-        <h1>Login</h1>
-        <div>
-            <RaisedButton
-                label="Sign in with Google"
-                labelColor={"#ffffff"}
-                backgroundColor="#dd4b39"
-                icon={<FontIcon className="fa fa-google-plus" style={iconStyles}/>}
-                onClick={handleGoogleLogin}
-            />
+    <body className="body">
+        <div className="div1">
+            <h1 className="Header1">Login</h1>
+            <div className="div1">
+                <RaisedButton
+                    label="Sign in with Google"
+                    labelColor={"#ffffff"}
+                    backgroundColor="#dd4b39"
+                    icon={<FontIcon className="fa fa-google-plus" style={iconStyles}/>}
+                    onClick={handleGoogleLogin}
+                />
+            </div>
         </div>
-    </div>
+    </body>
 );
 const SplashScreen = () => (<p>Loading...</p>)
