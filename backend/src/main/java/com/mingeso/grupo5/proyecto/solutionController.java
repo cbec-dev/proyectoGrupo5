@@ -18,7 +18,7 @@ import org.springframework.http.HttpStatus;
 
 @Controller   
 @CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
-@RequestMapping(path="/api/solution") 
+@RequestMapping(path="/solutions") 
 public class solutionController {
 	@Autowired 
 	private solutionRepository solutionRepository;
@@ -32,14 +32,14 @@ public class solutionController {
 	
 	@GetMapping(path="/add") 
 	public @ResponseBody String addNewSolution (
-            @RequestParam Integer idStament,
+            @RequestParam Integer idStatement,
             @RequestParam String solutionName,
             @RequestParam String solutionText,
             @RequestParam Integer idUser) {
 		
 
 		solution n = new solution();
-        n.setIdStatement(idStament);
+        n.setIdStatement(idStatement);
         n.setSolutionName(solutionName);
         n.setSolutionText(solutionText);
         n.setIdUser(idUser);
@@ -50,7 +50,7 @@ public class solutionController {
 	@GetMapping(path="/update") 
 	public @ResponseBody String updateSolution (
 			@RequestParam Integer IdSolution,
-            @RequestParam Integer idStament,
+            @RequestParam Integer idStatement,
             @RequestParam String solutionName,
             @RequestParam String solutionText,
             @RequestParam Integer idUser) {
@@ -58,7 +58,7 @@ public class solutionController {
 
 		solution n = new solution();
 		n.setIdSolution(IdSolution);
-        n.setIdStatement(idStament);
+        n.setIdStatement(idStatement);
         n.setSolutionName(solutionName);
         n.setSolutionText(solutionText);
         n.setIdUser(idUser);
@@ -67,8 +67,8 @@ public class solutionController {
 		return "Producto actualizado.";
 	}
 	
-	@GetMapping(path="/search")
-	public @ResponseBody solution findOne(Integer IdSolution) {
+	@GetMapping(path="/search/{IdSolution}")
+	public @ResponseBody solution findOne(@PathVariable("IdSolution") Integer IdSolution) {
 		solution solucion = solutionRepository.findById(IdSolution).get();
 		if (solucion != null) {
 			return solucion;
