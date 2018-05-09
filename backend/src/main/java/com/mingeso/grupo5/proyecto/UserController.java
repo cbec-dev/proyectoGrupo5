@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.mingeso.grupo5.proyecto.user;
-import com.mingeso.grupo5.proyecto.userRepository;
+import com.mingeso.grupo5.proyecto.User;
+import com.mingeso.grupo5.proyecto.UserRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   
 @CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
-@RequestMapping(path="/users") 
-public class userController {
+@RequestMapping(path="/Users") 
+public class UserController {
 	@Autowired 
-	private userRepository userRepository;
+	private UserRepository UserRepository;
 	
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<user> getAllUser() {
+	public @ResponseBody Iterable<User> getAllUser() {
 		
-		Iterable<user> findAll = userRepository.findAll();
+		Iterable<User> findAll = UserRepository.findAll();
 		return findAll;
 	}
 	
@@ -35,15 +35,15 @@ public class userController {
             @RequestParam Integer idCareer,
             @RequestParam String correo,
             @RequestParam String sectionName,
-            @RequestParam String userName) {
+            @RequestParam String UserName) {
 		
 
-        user n = new user();
-        n.setUserName(userName);
+        User n = new User();
+        n.setUserName(UserName);
         n.setCorreo(correo);		
         n.setIdCareer(idCareer);
         n.setSectionName(sectionName);
-		userRepository.save(n);
+		UserRepository.save(n);
 		return "Usuarix guardadx";
 	}
 	@GetMapping(path="/update") 
@@ -52,28 +52,28 @@ public class userController {
             @RequestParam Integer idCareer,
             @RequestParam String correo,
             @RequestParam String sectionName,
-            @RequestParam String userName) {
+            @RequestParam String UserName) {
 		
 
-		user n = new user();
-		n.setUserName(userName);
+		User n = new User();
+		n.setUserName(UserName);
         n.setCorreo(correo);		
         n.setIdCareer(idCareer);
         n.setSectionName(sectionName);
-		userRepository.save(n);
+		UserRepository.save(n);
 		return "Usuarix actualizadx";
 	}
 	
 	@GetMapping(path="/search/{IdUser}")
-	public @ResponseBody user findOne(@PathVariable("IdUser") Integer IdUser) {
-		user retorno = userRepository.findById(IdUser).get();
+	public @ResponseBody User findOne(@PathVariable("IdUser") Integer IdUser) {
+		User retorno = UserRepository.findById(IdUser).get();
 		return retorno;
 	}
 	
 	@RequestMapping(value = "/delete/{IdUser}")
     public @ResponseBody String delete(@PathVariable("IdUser") Integer IdUser) {
 		
-        userRepository.deleteById(IdUser);
+        UserRepository.deleteById(IdUser);
 		return "Usuarix eliminadx";
 	}
 	
