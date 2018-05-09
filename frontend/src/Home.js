@@ -29,17 +29,17 @@ export default class Home extends React.Component {
         super(props);
 
         this.state = {
-            firebaseUser: JSON.parse(localStorage.getItem("firebaseUser"))
+            firebaseUser: JSON.parse(localStorage.getItem("user")),
         };
 
-        //console.log("User:", this.state.firebaseUser);
+        console.log("User:", this.state.firebaseUser);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
     handleLogout() {
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
-            this.props.history.push("/login2");
+            this.props.history.push("/Login2");
             console.log("user signed out from firebase");
         }.bind(this));
 
@@ -49,13 +49,12 @@ export default class Home extends React.Component {
 
     
         console.log("THE WORO WORO");
-        console.log(this.state.firebaseUser);
+        console.log(JSON.parse(localStorage.getItem("firebaseUser")));
         console.log("THE WORO WORO");
         return (
             <div>
                 <h1>Home</h1>
                 <div>
-                  <label> {this.state.firebaseUser}</label>
                   </div>
                   
                 <h3>Welcome</h3>
