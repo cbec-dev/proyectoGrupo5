@@ -18,6 +18,8 @@ public class user {
 	private String correo;
 	@NotNull
     private String sectionName;
+    @NotNull
+    private String userName;
     
 
     public Integer getIdUser() {
@@ -37,14 +39,20 @@ public class user {
     public String getCorreo() {
         return this.correo;
     }
-    public void setCareerName(String name) {
-        this.correo = name;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
     public String getSectionName() {
         return this.sectionName;
     }
     public void setSectionName(String name) {
         this.sectionName = name;
+    }
+    public String getUserName() {
+        return this.userName;
+    }
+    public void setUserName(String name) {
+        this.userName = name;
     }
 
 }
