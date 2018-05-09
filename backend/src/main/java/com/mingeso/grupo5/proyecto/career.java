@@ -15,6 +15,28 @@ public class career{
     @NotNull
 	private Integer idUser;
 	@NotNull
-	private String careerName;
+    private String careerName;
+    
+    public Integer getIdCareer() {
+        return this.idCareer;
+    }
+    
+    public void setIdCareer(Integer id) {
+        this.idCareer = id;
+    }
+
+    public Integer getIdUser() {
+        return this.idUser;
+    }
+    
+    public void setIdUser(Integer id) {
+        this.idUser = id;
+    }
+    public String getCareerName() {
+        return this.careerName;
+    }
+    public void setCareerName(String name) {
+        this.careerName = name;
+    }
 	 
 }
