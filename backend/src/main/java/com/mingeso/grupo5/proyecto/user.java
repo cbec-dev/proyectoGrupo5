@@ -17,6 +17,34 @@ public class user {
     @NotNull
 	private String correo;
 	@NotNull
-	private String sectionName;
+    private String sectionName;
+    
+
+    public Integer getIdUser() {
+        return this.idUser;
+    }
+    
+    public void setIdUser(Integer id) {
+        this.idUser = id;
+    }
+    public Integer getIdCareer() {
+        return this.idCareer;
+    }
+    
+    public void setIdCareer(Integer id) {
+        this.idCareer = id;
+    }    
+    public String getCorreo() {
+        return this.correo;
+    }
+    public void setCareerName(String name) {
+        this.correo = name;
+    }
+    public String getSectionName() {
+        return this.sectionName;
+    }
+    public void setSectionName(String name) {
+        this.sectionName = name;
+    }
 
 }
