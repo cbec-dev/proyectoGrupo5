@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class career{
+public class Career{
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idCareer;
