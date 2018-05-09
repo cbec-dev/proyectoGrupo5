@@ -43,4 +43,3 @@ public class Statement {
         this.statementText = text;
     }
 }
-}
