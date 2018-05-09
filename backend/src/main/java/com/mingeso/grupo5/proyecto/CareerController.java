@@ -12,62 +12,62 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.mingeso.grupo5.proyecto.career;
-import com.mingeso.grupo5.proyecto.careerRepository;
+import com.mingeso.grupo5.proyecto.Career;
+import com.mingeso.grupo5.proyecto.CareerRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   
 @CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
-@RequestMapping(path="/careers") 
-public class careerController {
+@RequestMapping(path="/Careers") 
+public class CareerController {
 	@Autowired 
-	private careerRepository careerRepository;
+	private CareerRepository CareerRepository;
 	
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<career> getAllCareer() {
+	public @ResponseBody Iterable<Career> getAllCareer() {
 		
-		Iterable<career> findAll = careerRepository.findAll();
+		Iterable<Career> findAll = CareerRepository.findAll();
 		return findAll;
 	}
 	
 	@GetMapping(path="/add") 
 	public @ResponseBody String addNewCareer (
             @RequestParam Integer idUser,
-            @RequestParam String careerName) {
+            @RequestParam String CareerName) {
 		
 
-        career n = new career();
+        Career n = new Career();
         n.setIdUser(idUser);
-        n.setCareerName(careerName);		
-		careerRepository.save(n);
+        n.setCareerName(CareerName);		
+		CareerRepository.save(n);
 		return "Carrera guardada";
 	}
 	@GetMapping(path="/update") 
 	public @ResponseBody String updateCareer (
 			@RequestParam Integer IdCareer,
-            @RequestParam String careerName,
+            @RequestParam String CareerName,
             @RequestParam Integer idUser) {
 		
 
-		career n = new career();
+		Career n = new Career();
 		n.setIdCareer(IdCareer);
-        n.setCareerName(careerName);
+        n.setCareerName(CareerName);
         n.setIdUser(idUser);
 		
-		careerRepository.save(n);
+		CareerRepository.save(n);
 		return "Carrera actualizada";
 	}
 	
 	@GetMapping(path="/search/{IdCareer}")
-	public @ResponseBody career findOne(@PathVariable("IdCareer") Integer IdCareer) {
-		career retorno = careerRepository.findById(IdCareer).get();
+	public @ResponseBody Career findOne(@PathVariable("IdCareer") Integer IdCareer) {
+		Career retorno = CareerRepository.findById(IdCareer).get();
 		return retorno;
 	}
 	
 	@RequestMapping(value = "/delete/{IdCareer}")
     public @ResponseBody String delete(@PathVariable("IdCareer") Integer IdCareer) {
 		
-        careerRepository.deleteById(IdCareer);
+        CareerRepository.deleteById(IdCareer);
 		return "Carrera eliminada";
 	}
 	
