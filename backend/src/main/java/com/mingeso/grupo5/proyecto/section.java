@@ -25,14 +25,12 @@ public class section{
         this.idSection = id;
     }
     
-    
     public String getSectionName() {
         return this.sectionName;
     }
     public void setSectionName(String name) {
         this.sectionName = name;
     }
-
     
     public Integer getIdProfesor() {
         return this.idProfesor;
