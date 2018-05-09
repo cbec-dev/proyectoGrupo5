@@ -63,12 +63,13 @@ class Header extends Component {
           <NavItem eventKey={1} href="/Login2">
             <span className="navItem">Login</span>
           </NavItem>
-            <NavItem eventKey={1} href="/Registro">
-            <span className="navItem">Agregar Usuarios</span>
-            </NavItem>
+            <NavDropdown eventKey={3} title="Agregar Usuarios" id="basic-nav-dropdown" className="Profesor">
+            <MenuItem className= "menuItem" eventKey={3.7} href='/Registro'>Registrar Alumno</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.8} href='/RegistroProfesor'>Registrar Profesor</MenuItem>
+            </NavDropdown>
             <NavDropdown eventKey={3} title="Coordinador" id="basic-nav-dropdown" className="Profesor">
             <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.2} href='/ListaEnunciados'>Listar Enunciados</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Listar Enunciados</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.5} href="/CrearCurso">Crear Curso</MenuItem>
@@ -99,9 +100,9 @@ class Header extends Component {
             <NavItem eventKey={1} href="/Registro">
             <span className="navItem">Agregar Alumnos</span>
             </NavItem>
-            <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="dropdown">
+            <NavDropdown eventKey={3} title="Profesor" id="basic-nav-dropdown" className="dropdown">
             <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.2} href='/ListaEnunciados'>Listar Enunciados</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Ver Enunciados</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
             <MenuItem divider />

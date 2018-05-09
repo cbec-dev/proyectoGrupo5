@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Registro.css';
+import './RegistroProfesor.css';
 
-class Registro extends Component {
+class RegistroProfesor extends Component {
     constructor(props) {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -63,18 +63,10 @@ class Registro extends Component {
                 return (
                     <body className="body">
                     <h1 className="header1">
-                    <span className="texto"> Registrar Alumno </span>
+                    <span className="texto"> Registrar Profesor </span>
                     </h1>
                     <form className="formulario">
-                        <div className="div1"> <label className="label4"> Carrera:  </label></div>
-                    <div className="div2">
-                        <select name="idCareer" component="select" onChange = {this.handleInputChange}>
-                        value={this.state.idCareer}
-                            <option value={1}>Ing. Civil Informatica</option>
-                            <option value={0}>Ing. Ejecucion Informatica</option>
-                           
-                         </select>
-                    </div>
+                   
                     <div className="div3"><label className="label1"> Nombre:  </label> </div>
                     <div>
                         <input name= "userName" type = "text" value={this.state.sectionName}
@@ -108,5 +100,4 @@ class Registro extends Component {
           }
     
     
-    export default Registro;
-    
+    export default RegistroProfesor;
