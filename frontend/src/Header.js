@@ -34,7 +34,7 @@ class Header extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-          <NavItem eventKey={1} href="/Login">
+          <NavItem eventKey={1} href="/Login2">
             <span className="navItem">Login</span>
           </NavItem>
             <NavItem eventKey={1} href="/Registro">
@@ -63,7 +63,7 @@ class Header extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-          <NavItem eventKey={1} href="/Login">
+          <NavItem eventKey={1} href="/Login2">
             <span className="navItem">Login</span>
           </NavItem>
             <NavItem eventKey={1} href="/Registro">

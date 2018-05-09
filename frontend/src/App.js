@@ -3,13 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 import Registro from './Registro';
 import Login from './Login';
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import Enunciado from './Enunciado';
 import Solucion from './Solucion';
 import CodeMirror from './CodeMirror';
 import Prueba from './Prueba';
+import Login2 from './Login2';
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import createBrowserHistory from "history/createBrowserHistory";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import injectTapEventPlugin from "react-tap-event-plugin";
+
+const muiTheme = getMuiTheme({
+  appBar: {
+      color: "#37517E",
+      height: 50
+  },
+});
+
+injectTapEventPlugin();
+
+const customHistory = createBrowserHistory();
+
 
 class App extends Component {
 
@@ -27,8 +44,8 @@ class App extends Component {
     return (
       <div>
         <Header/>
-    
-  <Router>     
+        <MuiThemeProvider muiTheme={muiTheme}>
+  <Router history={customHistory}>     
       <Switch>
         <Route path="/Registro" component={Registro} />
         <Route path="/Prueba" component={Prueba} />
@@ -36,12 +53,14 @@ class App extends Component {
         <Route path="/Enunciado" component={Enunciado} />
         <Route path="/Solucion" component={Solucion} />
         <Route path="/Code" component={CodeMirror} />
-
-        <Route exact path="/" component={Home} />
+        <Route path="/Login2" component={Login2}/>
+        <Route path="/Home" component={Home}/>
+      
 
       </Switch>
   </Router>
-      
+  </MuiThemeProvider>
+
       </div>
     );
   }
