@@ -36,6 +36,8 @@ class ListarEnunciados extends React.Component {
                 <tr>
                   <th>ID</th>
                   <th>Nombre</th>
+                  <th>PLACEHOLDER</th>
+                  <th>Accion</th>
                   
             
                 </tr>
@@ -44,6 +46,8 @@ class ListarEnunciados extends React.Component {
                     <th>{product.id}</th>
                     <th>{product.codigo}</th>
                     <th>{product.precio}</th>
+                    <th> UWUWUWUUWUW</th>
+                    <th> <button href="/verEnunciado:id">Ver Enunciado</button></th>
                 </tr> 
                         )}
               </tbody>

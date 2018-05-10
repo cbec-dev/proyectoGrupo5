@@ -16,6 +16,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import ListarEnunciados from './ListarEnunciados';
 import RegistroProfesor from './RegistroProfesor';
+import CrearCurso from './CrearCurso';
+import verEnunciado from './verEnunciado';
 
 const muiTheme = getMuiTheme({
   appBar: {
@@ -56,7 +58,9 @@ class App extends Component {
         <Route path="/Code" component={CodeMirror} />
         <Route path="/Login2" component={Login2}/>
         <Route path="/Home" component={Home}/>
-        <Route path="/ListarEnunciados" component={ListarEnunciados}/>
+        <Route path="/CrearCurso" component={CrearCurso}/>
+        <Route path="/verEnunciado:id" component={verEnunciado}/>
+        <Route path="/ListarEnunciados:id" component={ListarEnunciados}/>
       
 
       </Switch>
