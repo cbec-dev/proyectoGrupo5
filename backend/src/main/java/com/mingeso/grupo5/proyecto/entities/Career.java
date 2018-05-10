@@ -12,8 +12,6 @@ public class Career{
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idCareer;
-    @NotNull
-	private Integer idUser;
 	@NotNull
     private String careerName;
     
@@ -23,14 +21,6 @@ public class Career{
     
     public void setIdCareer(Integer id) {
         this.idCareer = id;
-    }
-
-    public Integer getIdUser() {
-        return this.idUser;
-    }
-    
-    public void setIdUser(Integer id) {
-        this.idUser = id;
     }
     public String getCareerName() {
         return this.careerName;
