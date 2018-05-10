@@ -1,8 +1,8 @@
 import React from "react";
 import {FontIcon, RaisedButton} from "material-ui";
-import {loginWithGoogle, logout} from "./auth";
-import {firebaseAuth} from "./constants";
-import './Login.css';
+import {loginWithGoogle, logout} from "./firebase/auth";
+import {firebaseAuth} from "./firebase/constants";
+import './css/Login.css';
  
 
 

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Solucion.css';
+import './css/Solucion.css';
 import Registro from './Registro';
-import Login from './Login';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 var ReactDOM = require('react-dom');
-var CodeMirror = require('../src/CodeMirror.js');
+var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
 
 require('codemirror/lib/codemirror.css');

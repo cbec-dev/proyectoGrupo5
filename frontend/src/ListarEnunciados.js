@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import * as React from 'react';
-import './ListarEnunciados.css';
+import './css/ListarEnunciados.css';
 
 class ListarEnunciados extends React.Component {
 

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
 import Registro from './Registro';
-import Login from './Login';
 import {BrowserRouter as Router, Route, Redirect, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import Enunciado from './Enunciado';
 import Solucion from './Solucion';
-import CodeMirror from './CodeMirror';
+import CodeMirror from './codemirror/CodeMirror';
 import Prueba from './Prueba';
 import Login2 from './Login2';
 import getMuiTheme from "material-ui/styles/getMuiTheme";
@@ -52,7 +51,6 @@ class App extends Component {
         <Route path="/Registro" component={Registro} />
         <Route path="/RegistroProfesor" component={RegistroProfesor} />
         <Route path="/Prueba" component={Prueba} />
-        <Route path="/Login" component={Login} />
         <Route path="/Enunciado" component={Enunciado} />
         <Route path="/Solucion" component={Solucion} />
         <Route path="/Code" component={CodeMirror} />

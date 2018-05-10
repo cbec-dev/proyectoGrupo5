@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Home.css';
+import './css/Home.css';
 import Registro from './Registro';
-import Login from './Login';
 import {BrowserRouter as Redirect, Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import {Avatar, RaisedButton} from "material-ui";
-import {logout} from "./auth";
+import {logout} from "./firebase/auth";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import getMuiTheme from "material-ui/styles/getMuiTheme";

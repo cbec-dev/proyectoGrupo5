@@ -1,4 +1,4 @@
-import {firebaseAuth, googleProvider} from './constants.js';
+import {firebaseAuth, googleProvider} from "../firebase/constants";
 
 export function loginWithGoogle() {
     return firebaseAuth().signInWithRedirect(googleProvider);

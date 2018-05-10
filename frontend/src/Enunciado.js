@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Enunciado.css';
+import './css/Enunciado.css';
 import Registro from './Registro';
-import Login from './Login';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
