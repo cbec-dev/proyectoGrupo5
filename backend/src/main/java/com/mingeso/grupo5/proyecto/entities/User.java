@@ -13,7 +13,6 @@ public class User {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idUser;
-    @NotNull
     private Integer idCareer;
     @NotNull
 	private String correo;

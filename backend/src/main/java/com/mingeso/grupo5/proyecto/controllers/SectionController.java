@@ -33,8 +33,7 @@ public class SectionController {
 	@GetMapping(path="/addSection") 
 	public @ResponseBody String addNewSection (
             @RequestParam Integer idSection,
-            @RequestParam String sectionName,
-            @RequestParam User user) {
+            @RequestParam String sectionName) {
 		
 
 		Section n = new Section();
