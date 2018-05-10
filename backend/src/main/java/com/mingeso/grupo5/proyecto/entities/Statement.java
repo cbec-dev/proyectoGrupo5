@@ -4,13 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Statement {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Integer idStatement;
 
     @NotNull
     private String statementName;
@@ -18,13 +19,15 @@ public class Statement {
     @NotNull
     private String statementText;
 
+    @OneToOne
+    private Section section;
 
     public Integer getIdStatement() {
-        return this.id;
+        return this.idStatement;
     }
     
     public void setIdStatement(Integer id) {
-        this.id = id;
+        this.idStatement = id;
     }
 
     public String getStatementName() {
