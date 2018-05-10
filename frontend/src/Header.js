@@ -3,12 +3,14 @@ import Registro from './Registro';
 import './css/Header.css';
 import {Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 
+
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       typeUser:"",
-        
+      firebaseUser: "",
+      userLogged:"",
       };
     }
 
@@ -16,10 +18,10 @@ class Header extends Component {
       componentDidMount() {
           var user = JSON.parse(localStorage.getItem('user'));
           if(user===null){
-            this.setState({userLogged: True, typeUser: 2, firebaseUser: JSON.parse(localStorage.getItem('user'))});
+            this.setState({userLogged: true, typeUser: 2, firebaseUser: JSON.parse(localStorage.getItem('user'))});
           }
           else{
-            this.setState({userLogged: False, typeUser: 2, firebaseUser: null});
+            this.setState({userLogged: false, typeUser: 2, firebaseUser: null});
           }
           
           this.render();
@@ -28,10 +30,10 @@ class Header extends Component {
       componentWillMount(){
         var user = JSON.parse(localStorage.getItem('user'));
         if(user===null){
-          this.setState({userLogged: True, typeUser: 2, firebaseUser: JSON.parse(localStorage.getItem('user'))});
+          this.setState({userLogged: true, typeUser: 2, firebaseUser: JSON.parse(localStorage.getItem('user'))});
         }
         else{
-          this.setState({userLogged: False, typeUser: 2, firebaseUser: null});
+          this.setState({userLogged: false, typeUser: 2, firebaseUser: null});
         }
         
         this.render();
@@ -43,7 +45,8 @@ class Header extends Component {
     const {typeUser} = this.state.typeUser;
     console.log(this.state.typeUser);
     console.log(typeUser);
-    if(this.state.userLogged==False){
+    console.log(this.state.userLogged);
+    if(this.state.userLogged==false){
           if(this.state.typeUser ===1){
             return (
                 <body>
@@ -237,5 +240,5 @@ class Header extends Component {
     }
   }
 }
-
+}
 export default Header;

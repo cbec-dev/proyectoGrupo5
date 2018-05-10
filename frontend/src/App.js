@@ -25,7 +25,6 @@ const muiTheme = getMuiTheme({
       height: 50
   },
 });
-
 injectTapEventPlugin();
 
 const customHistory = createBrowserHistory();
@@ -37,16 +36,20 @@ class App extends Component {
     super(props);
 
     this.state = {
-        
+        userLogged: false,
       };
     }
-
+    myCallbackHeader = (dataFromHeader) => {
+      this.setState({ userLogged: dataFromHeader });
+      alert(this.state.userLogged);
+      
+    };
 
   render() {
     
     return (
       <div>
-        <Header/>
+        <Header callbackFromParent={this.myCallbackHeader}/>
         <MuiThemeProvider muiTheme={muiTheme}>
   <Router history={customHistory}>     
       <Switch>
