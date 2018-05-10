@@ -27,6 +27,9 @@ export default class Login extends React.Component {
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
         }.bind(this));
+        Header.render();
+        Header.forceUpdate();
+      
 
     }
 
@@ -36,6 +39,8 @@ export default class Login extends React.Component {
                 alert(error); // or show toast
                 localStorage.removeItem(firebaseAuthKey);
             });
+        Header.render();
+        Header.forceUpdate();
         localStorage.setItem(firebaseAuthKey, "1");
     }
 
