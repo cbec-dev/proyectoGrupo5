@@ -14,8 +14,6 @@ public class Section{
     private Integer idSection;
     @NotNull
 	private String sectionName;
-    @NotNull
-    private Integer idProfesor;
     
     public Integer getIdSection() {
         return this.idSection;
@@ -31,13 +29,6 @@ public class Section{
     public void setSectionName(String name) {
         this.sectionName = name;
     }
-    
-    public Integer getIdProfesor() {
-        return this.idProfesor;
-    }
-    public void setIdProfesor(Integer id) {
-        this.idProfesor = id;
-    }
-	
+    	
 	 
 }
