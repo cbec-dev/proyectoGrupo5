@@ -69,7 +69,7 @@ class RegistroProfesor extends Component {
                    
                     <div className="div3"><label className="label1"> Nombre:  </label> </div>
                     <div>
-                        <input name= "userName" type = "text" value={this.state.userName}
+                        <input name= "userName" type = "text" value={this.state.sectionName}
                         onChange = {this.handleInputChange} />
                     </div>
                     <div className="div4"><label className="label2"> Email:  </label> </div>
