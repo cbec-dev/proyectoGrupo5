@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.mingeso.grupo5.proyecto.solution;
-import com.mingeso.grupo5.proyecto.solutionRepository;
+import com.mingeso.grupo5.proyecto.Solution;
+import com.mingeso.grupo5.proyecto.SolutionRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   
 @CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
 @RequestMapping(path="/solutions") 
-public class solutionController {
+public class SolutionController {
 	@Autowired 
-	private solutionRepository solutionRepository;
+	private SolutionRepository SolutionRepository;
 	
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<solution> getAllsolution() {
+	public @ResponseBody Iterable<Solution> getAllsolution() {
 		
-		Iterable<solution> findAll = solutionRepository.findAll();
+		Iterable<Solution> findAll = SolutionRepository.findAll();
 		return findAll;
 	}
 	
@@ -38,13 +38,13 @@ public class solutionController {
             @RequestParam Integer idUser) {
 		
 
-		solution n = new solution();
+		Solution n = new Solution();
         n.setIdStatement(idStatement);
         n.setSolutionName(solutionName);
         n.setSolutionText(solutionText);
         n.setIdUser(idUser);
 		
-		solutionRepository.save(n);
+		SolutionRepository.save(n);
 		return "Producto guardado.";
 	}
 	@GetMapping(path="/update") 
@@ -56,20 +56,20 @@ public class solutionController {
             @RequestParam Integer idUser) {
 		
 
-		solution n = new solution();
+		Solution n = new Solution();
 		n.setIdSolution(IdSolution);
         n.setIdStatement(idStatement);
         n.setSolutionName(solutionName);
         n.setSolutionText(solutionText);
         n.setIdUser(idUser);
 		
-		solutionRepository.save(n);
+		SolutionRepository.save(n);
 		return "Producto actualizado.";
 	}
 	
 	@GetMapping(path="/search/{IdSolution}")
-	public @ResponseBody solution findOne(@PathVariable("IdSolution") Integer IdSolution) {
-		solution solucion = solutionRepository.findById(IdSolution).get();
+	public @ResponseBody Solution findOne(@PathVariable("IdSolution") Integer IdSolution) {
+		Solution solucion = SolutionRepository.findById(IdSolution).get();
 		if (solucion != null) {
 			return solucion;
 		}
@@ -83,7 +83,7 @@ public class solutionController {
 	@RequestMapping(value = "/delete/{IdSolution}")
     public @ResponseBody String delete(@PathVariable("IdSolution") Integer IdSolution) {
 		
-        solutionRepository.deleteById(IdSolution);
+        SolutionRepository.deleteById(IdSolution);
 		return "Producto eliminado";
 	}
 	
