@@ -150,7 +150,6 @@ class Solucion extends Component {
 						<option value="C">C</option>
                         <option value="java">Java</option>
 					</select>
-					<button onClick={this.toggleReadOnly}>Toggle read-only mode (currently {this.state.readOnly ? 'on' : 'off'})</button>
 				</div>
 			</div>
                     <div className="div1">
