@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,8 +17,8 @@ public class User {
     private Integer idCareer;
     @NotNull
 	private String correo;
-	@NotNull
-    private String sectionName;
+	@ManyToOne
+    private Section section;
     @NotNull
     private String userName;
     
@@ -42,11 +43,11 @@ public class User {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    public String getSectionName() {
-        return this.sectionName;
+    public Section getSection() {
+        return this.section;
     }
-    public void setSectionName(String name) {
-        this.sectionName = name;
+    public void setSection(Section section) {
+        this.section = section;
     }
     public String getUserName() {
         return this.userName;

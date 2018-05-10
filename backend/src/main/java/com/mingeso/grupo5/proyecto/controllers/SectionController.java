@@ -34,13 +34,12 @@ public class SectionController {
 	public @ResponseBody String addNewSection (
             @RequestParam Integer idSection,
             @RequestParam String sectionName,
-            @RequestParam Integer idProfesor) {
+            @RequestParam User user) {
 		
 
 		Section n = new Section();
         n.setIdSection(idSection);
         n.setSectionName(sectionName);
-        n.setIdProfesor(idProfesor);
 		
 		sectionRepository.save(n);
 		return "Seccion agregada.";
