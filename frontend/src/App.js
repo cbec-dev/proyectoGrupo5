@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
 import Registro from './Registro';
-import Login from './Login';
 import {BrowserRouter as Router, Route, Redirect, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import Enunciado from './Enunciado';
 import Solucion from './Solucion';
-import CodeMirror from './CodeMirror';
+import CodeMirror from './codemirror/CodeMirror';
 import Prueba from './Prueba';
 import Login2 from './Login2';
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import createBrowserHistory from "history/createBrowserHistory";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
+import ListarEnunciados from './ListarEnunciados';
+import RegistroProfesor from './RegistroProfesor';
+import CrearCurso from './CrearCurso';
+import verEnunciado from './verEnunciado';
 
 const muiTheme = getMuiTheme({
   appBar: {
@@ -48,13 +51,16 @@ class App extends Component {
   <Router history={customHistory}>     
       <Switch>
         <Route path="/Registro" component={Registro} />
+        <Route path="/RegistroProfesor" component={RegistroProfesor} />
         <Route path="/Prueba" component={Prueba} />
-        <Route path="/Login" component={Login} />
         <Route path="/Enunciado" component={Enunciado} />
         <Route path="/Solucion" component={Solucion} />
         <Route path="/Code" component={CodeMirror} />
         <Route path="/Login2" component={Login2}/>
         <Route path="/Home" component={Home}/>
+        <Route path="/CrearCurso" component={CrearCurso}/>
+        <Route path="/verEnunciado:id" component={verEnunciado}/>
+        <Route path="/ListarEnunciados:id" component={ListarEnunciados}/>
       
 
       </Switch>

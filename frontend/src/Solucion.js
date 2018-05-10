@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Solucion.css';
+import './css/Solucion.css';
 import Registro from './Registro';
-import Login from './Login';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 var ReactDOM = require('react-dom');
-var CodeMirror = require('../src/CodeMirror.js');
+var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
 
 require('codemirror/lib/codemirror.css');
@@ -17,7 +16,7 @@ require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
 	C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-	python: '#Python 3.5'
+	python: '#Python 2.7'
 };
 
 class Solucion extends Component {
@@ -28,6 +27,7 @@ class Solucion extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
+        this.ejecutarSolucion = this.ejecutarSolucion.bind(this);
         
         this.state = {
             isLoading: false,
@@ -36,12 +36,26 @@ class Solucion extends Component {
             code: defaults.python,
 			readOnly: false,
 			mode: {name: "python",
-               version: 3,
-               singleLineStringErrors: false},
+            version: 2.7,
+            singleLineStringErrors: false},
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true
 
         };
     }
-    
+    ejecutarSolucion(e) {
+        console.log("formulario enviado c:");
+        this.solution = {nameSolution: "", text: "", code: ""}
+        this.solution.nameSolution = e.nameSolution;
+        this.solution.text = e.text;
+        this.solution.code = e.code;
+        console.log(this.solution.code);
+        if(this.solution.nameSolution==="" || this.solution.text ===""){
+            alert("Debe llenar todas las casillas");
+            return;
+        }
+    }
     subirFormulario(e) {
         console.log("formulario enviado c:");
         this.solution = {nameSolution: "", text: "", code: ""}
@@ -53,6 +67,7 @@ class Solucion extends Component {
             alert("Debe llenar todas las casillas");
             return;
         }
+    
         else{
             this.limpiarValores(1);
             console.log("Usuario: "+ this.solution);
@@ -67,6 +82,7 @@ class Solucion extends Component {
        
         return;
         }
+    
     	getInitialState () {
             return {
                 code: defaults.python,
@@ -150,12 +166,13 @@ class Solucion extends Component {
 						<option value="C">C</option>
                         <option value="java">Java</option>
 					</select>
-					<button onClick={this.toggleReadOnly}>Toggle read-only mode (currently {this.state.readOnly ? 'on' : 'off'})</button>
 				</div>
 			</div>
                     <div className="div1">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
+                      <button type="button" onClick={(e) => this.ejecutarSolucion(this.state)}>Ejecutar Solucion</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
+
                     </div>
                   </form>
             </body>

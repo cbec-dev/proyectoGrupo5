@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './Registro.css';
+import './css/Registro.css';
 
 class Registro extends Component {
     constructor(props) {
@@ -13,20 +13,19 @@ class Registro extends Component {
             idCareer:"",
             sectionName:"",
             email:"",
-            password:"",
-            password2: "",
+            userName:"",
 
         };
         }
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.user = {id: "", idCareer: "", sectionName: "", email: "", password:"", password2:""}
+        this.user = {id: "", idCareer: "", userName:"", sectionName: "", email: ""}
         this.user.idCareer = e.idCareer;
         this.user.sectionName = e.sectionName;
+        this.user.userName = e.userName;
         this.user.email = e.email+ "@usach.cl";
-        this.password = e.password;
-        this.password2 = e.password2; 
-        if(this.user.idCareer==="" || this.user.sectionName ==="" ||this.user.email ==="" ||this.user.password === "" ||this.user.password2===""){
+
+        if(this.user.idCareer==="" || this.user.sectionName ==="" ||this.user.email ===""){
             console.log("Debe llenar todos las casillas");
             return;
         }
@@ -45,7 +44,7 @@ class Registro extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", password: "", password2:""});
+            this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", userName:""});
             this.render();
         }
     }
@@ -62,9 +61,13 @@ class Registro extends Component {
 
         render() {
                 return (
-                    <form>
-                    <div>
-                        <label> Categoria:  </label>
+                    <body className="body">
+                    <h1 className="header1">
+                    <span className="texto"> Registrar Alumno </span>
+                    </h1>
+                    <form className="formulario">
+                        <div className="div1"> <label className="label4"> Carrera:  </label></div>
+                    <div className="div2">
                         <select name="idCareer" component="select" onChange = {this.handleInputChange}>
                         value={this.state.idCareer}
                             <option value={1}>Ing. Civil Informatica</option>
@@ -72,32 +75,33 @@ class Registro extends Component {
                            
                          </select>
                     </div>
+                    <div className="div3"><label className="label1"> Nombre:  </label> </div>
                     <div>
-                        <label> Nombre:  </label>
-                        <input name= "sectionName" type = "text" value={this.state.sectionName}
+                        <input name= "userName" type = "text" value={this.state.sectionName}
                         onChange = {this.handleInputChange} />
                     </div>
-                    <div>
-                        <label> Email:  </label>
+                    <div className="div4"><label className="label2"> Email:  </label> </div>
+
+                    <div className="div5">
                         <input name= "email" type = "text" value={this.state.email} 
                         onChange = {this.handleInputChange} /><label> @usach.cl  </label>
                     </div>
-                    <div>
-                        <label> Contraseña:  </label>
-                        <input name= "password" type = "password" value={this.state.password} 
-                        onChange = {this.handleInputChange} />
+                    <div className="div6"> <label className="label3"> Seccion:  </label></div>
+
+                    <div className="div6">
+                        <select name="sectionName" component="select" onChange = {this.handleInputChange}>
+                        value={this.state.sectionName}
+                            <option value={"A-1"}>A-1</option>
+                            <option value={"B-2"}>B-2</option>
+                           
+                         </select>
                     </div>
-                    <div>
-                        <label> Repetir Contraseña:  </label>
-                        <input name= "password2" type = "password" value={this.state.password2} 
-                        onChange = {this.handleInputChange} />
-                    </div>
-                    <div>
+                    <div className="div7">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
                     </div>
                   </form>
-    
+                    </body>
                     
                 );
             }
