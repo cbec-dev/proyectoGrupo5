@@ -32,10 +32,12 @@ public class CareerController {
 	
 	@GetMapping(path="/add") 
 	public @ResponseBody String addNewCareer (
+            @RequestParam Integer idUser,
             @RequestParam String CareerName) {
 		
 
         Career n = new Career();
+        n.setIdUser(idUser);
         n.setCareerName(CareerName);		
 		CareerRepository.save(n);
 		return "Carrera guardada";
@@ -43,12 +45,14 @@ public class CareerController {
 	@GetMapping(path="/update") 
 	public @ResponseBody String updateCareer (
 			@RequestParam Integer IdCareer,
-            @RequestParam String CareerName) {
+            @RequestParam String CareerName,
+            @RequestParam Integer idUser) {
 		
 
 		Career n = new Career();
 		n.setIdCareer(IdCareer);
         n.setCareerName(CareerName);
+        n.setIdUser(idUser);
 		
 		CareerRepository.save(n);
 		return "Carrera actualizada";
