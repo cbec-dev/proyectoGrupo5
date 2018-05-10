@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -24,6 +25,9 @@ public class Solution {
 	 
 	 @NotNull
 	 private Integer idUser;
+
+	 @OneToOne
+	 private Statement statement;
 	 
 	 public Integer getIdSolution() {
 		 return this.IdSolution;
