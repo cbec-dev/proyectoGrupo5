@@ -10,7 +10,7 @@ public class Compiler {
 
     public String compilePython(String code) throws IOException
     {
-        String fileName = "code";
+        String fileName = "code.py";
         FileWriter fileWriter = new FileWriter(fileName);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.print(code);

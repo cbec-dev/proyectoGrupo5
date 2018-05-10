@@ -1,4 +1,4 @@
-package com.mingeso.grupo5.proyecto;
+package com.mingeso.grupo5.proyecto.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.mingeso.grupo5.proyecto.entities.Statement;
+import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 
 @Controller
 @CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")

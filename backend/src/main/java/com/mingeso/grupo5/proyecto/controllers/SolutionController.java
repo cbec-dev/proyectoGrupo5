@@ -1,4 +1,4 @@
-package com.mingeso.grupo5.proyecto;
+package com.mingeso.grupo5.proyecto.controllers;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.sql.Date;
@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.mingeso.grupo5.proyecto.solution;
-import com.mingeso.grupo5.proyecto.solutionRepository;
+import com.mingeso.grupo5.proyecto.entities.Solution;
+import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   
 @CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
 @RequestMapping(path="/solutions") 
-public class solutionController {
+public class SolutionController {
 	@Autowired 
-	private solutionRepository solutionRepository;
+	private SolutionRepository solutionRepository;
 	
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<solution> getAllsolution() {
+	public @ResponseBody Iterable<Solution> getAllsolution() {
 		
-		Iterable<solution> findAll = solutionRepository.findAll();
+		Iterable<Solution> findAll = solutionRepository.findAll();
 		return findAll;
 	}
 	
@@ -38,7 +38,7 @@ public class solutionController {
             @RequestParam Integer idUser) {
 		
 
-		solution n = new solution();
+		Solution n = new Solution();
         n.setIdStatement(idStatement);
         n.setSolutionName(solutionName);
         n.setSolutionText(solutionText);
@@ -56,7 +56,7 @@ public class solutionController {
             @RequestParam Integer idUser) {
 		
 
-		solution n = new solution();
+		Solution n = new Solution();
 		n.setIdSolution(IdSolution);
         n.setIdStatement(idStatement);
         n.setSolutionName(solutionName);
@@ -68,10 +68,10 @@ public class solutionController {
 	}
 	
 	@GetMapping(path="/search/{IdSolution}")
-	public @ResponseBody solution findOne(@PathVariable("IdSolution") Integer IdSolution) {
-		solution solucion = solutionRepository.findById(IdSolution).get();
-		if (solucion != null) {
-			return solucion;
+	public @ResponseBody Solution findOne(@PathVariable("IdSolution") Integer IdSolution) {
+		Solution solution = solutionRepository.findById(IdSolution).get();
+		if (solution != null) {
+			return solution;
 		}
 		else {
 			return null;

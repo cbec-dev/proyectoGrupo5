@@ -1,4 +1,4 @@
-package com.mingeso.grupo5.proyecto;
+package com.mingeso.grupo5.proyecto.controllers;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.sql.Date;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.mingeso.grupo5.proyecto.Career;
-import com.mingeso.grupo5.proyecto.CareerRepository;
+import com.mingeso.grupo5.proyecto.entities.Career;
+import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   

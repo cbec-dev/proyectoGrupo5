@@ -1,32 +1,27 @@
-package com.mingeso.grupo5.proyecto;
+package com.mingeso.grupo5.proyecto.controllers;
 
-import org.springframework.web.bind.annotation.ResponseStatus;
-import java.sql.Date;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import com.mingeso.grupo5.proyecto.user;
-import com.mingeso.grupo5.proyecto.userRepository;
-import org.springframework.http.HttpStatus;
+import com.mingeso.grupo5.proyecto.entities.User;
+import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller   
 @CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
 @RequestMapping(path="/users") 
-public class userController {
+public class UserController {
 	@Autowired 
-	private userRepository userRepository;
+	private UserRepository userRepository;
 	
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<user> getAllUser() {
+	public @ResponseBody Iterable<User> getAllUser() {
 		
-		Iterable<user> findAll = userRepository.findAll();
+		Iterable<User> findAll = userRepository.findAll();
 		return findAll;
 	}
 	
@@ -38,7 +33,7 @@ public class userController {
             @RequestParam String userName) {
 		
 
-        user n = new user();
+        User n = new User();
         n.setUserName(userName);
         n.setCorreo(correo);		
         n.setIdCareer(idCareer);
@@ -55,7 +50,7 @@ public class userController {
             @RequestParam String userName) {
 		
 
-		user n = new user();
+		User n = new User();
 		n.setUserName(userName);
         n.setCorreo(correo);		
         n.setIdCareer(idCareer);
@@ -65,8 +60,8 @@ public class userController {
 	}
 	
 	@GetMapping(path="/search/{IdUser}")
-	public @ResponseBody user findOne(@PathVariable("IdUser") Integer IdUser) {
-		user retorno = userRepository.findById(IdUser).get();
+	public @ResponseBody User findOne(@PathVariable("IdUser") Integer IdUser) {
+		User retorno = userRepository.findById(IdUser).get();
 		return retorno;
 	}
 	
