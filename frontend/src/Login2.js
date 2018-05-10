@@ -3,6 +3,7 @@ import {FontIcon, RaisedButton} from "material-ui";
 import {loginWithGoogle, logout} from "./firebase/auth";
 import {firebaseAuth} from "./firebase/constants";
 import './css/Login.css';
+import Header from './Header';
  
 
 
@@ -27,6 +28,7 @@ export default class Login extends React.Component {
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
         }.bind(this));
+        Header.render();
 
     }
 
@@ -36,6 +38,7 @@ export default class Login extends React.Component {
                 alert(error); // or show toast
                 localStorage.removeItem(firebaseAuthKey);
             });
+        Header.render();
         localStorage.setItem(firebaseAuthKey, "1");
     }
 

@@ -23,6 +23,7 @@ const muiTheme = getMuiTheme({
 });
 
 const appTokenKey = "appToken"; // also duplicated in Login.js
+const user = JSON.parse(localStorage.getItem('user'));
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -38,15 +39,17 @@ export default class Home extends React.Component {
     handleLogout() {
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
+            localStorage.removeItem(user);
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
+            this.render();
         }.bind(this));
 
     }
 
     render() {
 
-    
+        console.log("User:", this.state.firebaseUser.photoURL);
         console.log("USUARIO LOGUEADO");
         console.log(JSON.parse(localStorage.getItem("user")));
         console.log("USUARIO LOGUEADO");
@@ -58,7 +61,7 @@ export default class Home extends React.Component {
                     </div>
                     
                     <h3 className = "h">Bienvenido {this.state.firebaseUser.displayName}</h3>
-            
+                
                     <div className = "div3">
                         <RaisedButton className = "button"
                             backgroundColor="#a4c639"

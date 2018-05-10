@@ -53,5 +53,7 @@ function loginWithFirebase(provider) {
 }
 
 export function logout() {
+    localStorage.removeItem("firebaseUser");
+    localStorage.removeItem("user");
     return firebaseAuth().signOut();
 }
