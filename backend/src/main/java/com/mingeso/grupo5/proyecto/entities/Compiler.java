@@ -1,4 +1,4 @@
-package com.mingeso.grupo5.proyecto;
+package com.mingeso.grupo5.proyecto.entities;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
