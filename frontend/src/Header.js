@@ -9,44 +9,39 @@ class Header extends Component {
     super(props);
     this.state = {
       typeUser:"",
-      firebaseUser: "",
+      firebaseUser: JSON.parse(localStorage.getItem('user')),
       userLogged:"",
       };
     }
 
     
-      componentDidMount() {
-          var user = JSON.parse(localStorage.getItem('user'));
-          if(user===null){
-            this.setState({userLogged: true, typeUser: 2, firebaseUser: JSON.parse(localStorage.getItem('user'))});
-          }
-          else{
-            this.setState({userLogged: false, typeUser: 2, firebaseUser: null});
-          }
-          
-          this.render();
-          this.forceUpdate();
-      }
-      componentWillMount(){
-        var user = JSON.parse(localStorage.getItem('user'));
-        if(user===null){
-          this.setState({userLogged: true, typeUser: 2, firebaseUser: JSON.parse(localStorage.getItem('user'))});
-        }
+      componentDidMount() { 
+        if(this.state.firebaseUser!=null){
+          this.setState({typeUser: 2, userLogged: true,firebaseUser: JSON.parse(localStorage.getItem('user'))}); 
+          console.log("HEADER IF TRUE")
+          return;
+        }  
         else{
-          this.setState({userLogged: false, typeUser: 2, firebaseUser: null});
+          this.setState({typeUser: 2, userLogged: false,firebaseUser: JSON.parse(localStorage.getItem('user'))}); 
+          console.log("HEADER ELSE FALSE")
+          return;
         }
-        
+        console.log("HEADER estado user logged EN COMPONENT DID MOUNT: ", this.state.userLogged);
         this.render();
-        this.forceUpdate();
       }
+ 
 
 
   render() {
+    console.log("HEADER OWO");
     const {typeUser} = this.state.typeUser;
     console.log(this.state.typeUser);
-    console.log(typeUser);
-    console.log(this.state.userLogged);
+    console.log("HEADER UWU");
+    console.log(this.state.firebaseUser);
+    console.log("HEADER estado user logged: ", this.state.userLogged);
+    console.log("HEADER UWU");
     if(this.state.userLogged==false){
+      console.log("HEADER RENDER IF USER LOGGER FALSE");
           if(this.state.typeUser ===1){
             return (
                 <body>
@@ -147,6 +142,7 @@ class Header extends Component {
     
   }
   else{
+    console.log("HEADER RENDER ELSE USER LOGGER TRUE");
     if(this.state.typeUser ===1){
       return (
           <body>
@@ -202,6 +198,7 @@ class Header extends Component {
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
+            <img className="image" src={this.state.firebaseUser.photoURL} />
           </Nav>
           </Navbar>
           </body>

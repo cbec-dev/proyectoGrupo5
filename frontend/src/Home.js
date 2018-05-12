@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/Home.css';
 import Registro from './Registro';
-import {BrowserRouter as Redirect, Router, Route, Link, Switch} from "react-router-dom";
+import {Router as Redirect, Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import {Avatar, RaisedButton} from "material-ui";
 import {logout} from "./firebase/auth";
@@ -13,6 +13,7 @@ import createBrowserHistory from "history/createBrowserHistory";
 import Login2 from './Login2';
 import Solucion from './Solucion';
 import App from './App';
+import { PropTypes } from 'react'
 
 const customHistory = createBrowserHistory();
 const muiTheme = getMuiTheme({
@@ -29,24 +30,33 @@ export default class Home extends React.Component {
 
         this.state = {
             firebaseUser: JSON.parse(localStorage.getItem('user')),
+            userLogged: false,
+            name:"",
         };
-
-        console.log("User:", this.state.firebaseUser.displayName);
+        if(this.state.firebaseUser!=null){
+            console.log("User:", this.state.firebaseUser.displayName);
+        }
         this.handleLogout = this.handleLogout.bind(this);
     }
 
     handleLogout() {
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
+            localStorage.removeItem("user");
+            this.setState({userLogged: false, firebaseUser: ""});
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
+            
         }.bind(this));
-
+        this.props.callbackFromParentHome(this.state.userLogged);
+    }
+    componentDidMount(){
+        if(this.state.firebaseUser!=null){
+            this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
+        }
     }
 
     render() {
-
-    
         console.log("USUARIO LOGUEADO");
         console.log(JSON.parse(localStorage.getItem("user")));
         console.log("USUARIO LOGUEADO");
@@ -57,7 +67,7 @@ export default class Home extends React.Component {
                     <div className = "div2">
                     </div>
                     
-                    <h3 className = "h">Bienvenido {this.state.firebaseUser.displayName}</h3>
+                    <h3 className = "h">Bienvenido {this.state.name}</h3>
             
                     <div className = "div3">
                         <RaisedButton className = "button"

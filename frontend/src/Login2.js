@@ -17,6 +17,7 @@ export default class Login extends React.Component {
         this.state = {
             splashScreen: false,
             userLogged: false,
+            firebaseUser: "",
         };
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
@@ -29,10 +30,8 @@ export default class Login extends React.Component {
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
         }.bind(this));
-        this.setState({userLogged: false});
-        Header.render();
-        Header.forceUpdate();
-        this.props.callbackFromParent(this.state.userLogged);
+        this.setState({userLogged: false, firebaseUser: ""});
+        this.props.callbackFromParent(this.state.userLogged, this.firebaseUser);
 
 
     }
@@ -42,12 +41,12 @@ export default class Login extends React.Component {
             .catch(function (error) {
                 alert(error); // or show toast
                 localStorage.removeItem(firebaseAuthKey);
+
             });
-        Header.render();
-        Header.forceUpdate();
-        this.setState({userLogged: true});
         localStorage.setItem(firebaseAuthKey, "1");
-        this.props.callbackFromParent(this.state.userLogged);
+
+
+
     }
 
     componentWillMount() {
@@ -109,6 +108,9 @@ export default class Login extends React.Component {
                     console.log("EMAIL VALIDO C:");
                     console.log("User email signed in: ", JSON.stringify(user.email));
                     // store the token
+                    this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
+                    console.log("LOGIN, ESTADO USERLOGGED: ", this.userLogged);
+                    this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
                     return this.props.history.push("/Home");
                 }
                
