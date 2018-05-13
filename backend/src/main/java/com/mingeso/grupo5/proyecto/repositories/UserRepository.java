@@ -7,4 +7,5 @@ import com.mingeso.grupo5.proyecto.entities.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
     Iterable<User> findByuserType(Integer userType);
+    User findBycorreo(String correo);
 }

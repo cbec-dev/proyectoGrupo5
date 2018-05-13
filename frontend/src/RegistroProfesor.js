@@ -7,7 +7,7 @@ class RegistroProfesor extends Component {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
-            products: [],
+            sections: [],
             isLoading: false,
             id:"",
             idCareer:"",
@@ -17,31 +17,62 @@ class RegistroProfesor extends Component {
 
         };
         }
-    subirFormulario(e) {
-        console.log("formulario enviado c:");
-        this.user = {id: "", idCareer: "", userName:"", sectionName: "", email: ""}
-        this.user.idCareer = e.idCareer;
-        this.user.sectionName = e.sectionName;
-        this.user.userName = e.userName;
-        this.user.email = e.email+ "@usach.cl";
 
-        if(this.user.idCareer==="" || this.user.sectionName ==="" ||this.user.email ===""){
-            console.log("Debe llenar todos las casillas");
-            return;
-        }
-        else{
-            this.limpiarValores(1);
-            console.log("Usuario: "+ this.user);
-            console.log("Datos: "+ this.user.sectionName);
-            console.log("Datos: "+ this.user.idCareer);
-            console.log("Datos: "+ this.user.email);
-            
-            fetch('http://104.236.68.75:8080/backendGrupo5/api/add?codigo='+this.user.codigo+'&nombre='+this.user.nombre+'&fecha='+this.user.fecha+'&categoria='+this.user.categoria+'&precio='+this.user.precio)
-            .then(response => console.log("Producto Agregado"+response)) 
+        createSelectItems() {
+            let sections = [];         
+            for (let i = 0; i <= this.state.sections.length; i++) {             
+                 sections.push(<option key={this.state.sections[i].idSection} value={this.state.sections[i].idSection}>{this.state.sections[i].sectionName}</option>);   
+                 //here I will be creating my options dynamically based on
+                 //what props are currently passed to the parent component
             }
-       
-        return;
-        }
+            return sections;
+        }  
+        subirFormulario(e) {
+            console.log("formulario enviado c:");
+            var user = {userName:"", section: "", email: "", userType: ""}
+            user.userType= 3;
+            user.section = e.sectionName;
+            user.userName = e.userName;
+            user.email = e.email+ "@usach.cl";
+    
+            if(user.section ==="" ||user.email ===""||user.userName===""){
+                alert("Debe llenar todos las casillas");
+                return;
+            }
+            else{
+                this.limpiarValores(1);
+                console.log("Usuario: "+ user);
+                console.log("Datos: "+ user.section);
+                console.log("Datos: "+ user.email);
+                console.log("Datos: "+ user.userName);
+                console.log("Datos: "+ user.userType);
+    
+                let axiosConfig = {
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8',
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
+                    }
+                  };
+                alert("formulario enviado");
+                //fetch('http://localhost:8081/users/add?career='+user.career+'&email='+user.email+'&section='+user.section+'&userName='+user.userName+'&userType='+user.userType)
+                //.then(response => alert("Usuario Agregado"+response))
+                fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
+                .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
+                .then(response => alert("Seccion actualizada"+response)))
+
+            
+                
+                //axios.post('http://localhost:8081/users/add', user)
+                //.then(res => {
+                //alert(res);
+               // alert(res.data);
+               // alert("USUARIO REGISTRADO C:")
+              
+                }
+           
+            return;
+            } 
     limpiarValores(i){
         if(i===1){
             this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", userName:""});
@@ -57,9 +88,16 @@ class RegistroProfesor extends Component {
             });
         console.log(name, value, target);
         }
+        componentDidMount(){
+                fetch('http://localhost:8081/sections/allSection')
+                .then(response => response.json())
+                .then(data => this.setState({sections: data, isLoading: false}));
+                console.log("SECCIONES: ", this.state.sections);
+        }
 
-
+    
         render() {
+            const sections = this.state.sections;
                 return (
                     <body className="body">
                     <h1 className="header1">
@@ -69,7 +107,7 @@ class RegistroProfesor extends Component {
                    
                     <div className="div3"><label className="label1"> Nombre:  </label> </div>
                     <div>
-                        <input name= "userName" type = "text" value={this.state.sectionName}
+                        <input name= "userName" type = "text" value={this.state.userName}
                         onChange = {this.handleInputChange} />
                     </div>
                     <div className="div4"><label className="label2"> Email:  </label> </div>
@@ -82,9 +120,18 @@ class RegistroProfesor extends Component {
 
                     <div className="div6">
                         <select name="sectionName" component="select" onChange = {this.handleInputChange}>
-                        value={this.state.sectionName}
-                            <option value={"A-1"}>A-1</option>
-                            <option value={"B-2"}>B-2</option>
+                        <option > </option>
+                        {sections.map((section =>
+                        {
+                            if(section.profesor===null){
+                                return <option key={section.idSection} value={section.idSection}>{section.sectionName}</option>
+
+                            }
+                            else{
+                                <option > </option>
+                            }
+                        }
+                        ))}
                            
                          </select>
                     </div>
