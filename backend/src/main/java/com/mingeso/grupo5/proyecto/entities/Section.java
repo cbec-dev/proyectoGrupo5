@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,7 +15,9 @@ public class Section{
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idSection;
     @NotNull
-	private String sectionName;
+    private String sectionName;
+    @OneToMany
+    private Statement statement;
     
     public Integer getIdSection() {
         return this.idSection;
@@ -22,7 +26,13 @@ public class Section{
     public void setIdSection(Integer id) {
         this.idSection = id;
     }
+    public Statement getStatement() {
+        return this.statement;
+    }
     
+    public void setStatement(Statement statement) {
+        this.statement =statement;
+    }
     public String getSectionName() {
         return this.sectionName;
     }

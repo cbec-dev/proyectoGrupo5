@@ -96,18 +96,21 @@ export default class Login extends React.Component {
                 localStorage.setItem("user", JSON.stringify(user));                
                 var email = JSON.stringify(user.email);
                 var domain = email.split("@");
+                var userLogged = true;
                 console.log(domain[1]);
                 if(domain[1] != "usach.cl\""){
-                    console.log("EMAIL INVALIDOOOOOOOOO");
+                    alert("EMAIL INVALIDOOOOOOOOO");
                     alert("Solo se puede iniciar sesion con cuentas @usach.cl");
                     localStorage.removeItem(appTokenKey);
+                    localStorage.removeItem("user");
                     console.log("user signed out from firebase");
                     return this.props.history.push("/Login2");
                 }
                 else{
-                    console.log("EMAIL VALIDO C:");
+                    alert("EMAIL VALIDO C:");
                     console.log("User email signed in: ", JSON.stringify(user.email));
                     // store the token
+                    localStorage.setItem("userLogged", JSON.stringify(userLogged));
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
                     console.log("LOGIN, ESTADO USERLOGGED: ", this.userLogged);
                     this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);

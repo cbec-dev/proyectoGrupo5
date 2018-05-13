@@ -65,6 +65,12 @@ public class UserController {
 		User retorno = userRepository.findById(IdUser).get();
 		return retorno;
 	}
+	@GetMapping(path="/searchtype/{typeUser}")
+	public @ResponseBody Iterable<User> findByType(@PathVariable("typeUser") Integer typeUser) {
+		Iterable<User> retorno = userRepository.findByuserType(typeUser);
+		return retorno;
+	}
+
 	
 	@RequestMapping(value = "/delete/{IdUser}")
     public @ResponseBody String delete(@PathVariable("IdUser") Integer IdUser) {

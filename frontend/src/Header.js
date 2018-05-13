@@ -10,7 +10,7 @@ class Header extends Component {
     this.state = {
       typeUser:"",
       firebaseUser: JSON.parse(localStorage.getItem('user')),
-      userLogged:"",
+      userLogged:JSON.parse(localStorage.getItem('userLogged')),
       };
     }
 
@@ -27,7 +27,6 @@ class Header extends Component {
           return;
         }
         console.log("HEADER estado user logged EN COMPONENT DID MOUNT: ", this.state.userLogged);
-        this.render();
       }
  
 

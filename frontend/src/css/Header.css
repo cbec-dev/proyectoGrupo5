@@ -10,7 +10,10 @@
   -webkit-text-fill-color: white;
 }
 .menuItem{
-  color: black;
+  color: white;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
   background-color: rgb(24, 24, 43);
 
 

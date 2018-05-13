@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,6 +21,10 @@ public class User {
     private Section section;
     @NotNull
     private String userName;
+    @NotNull
+    private Integer userType;
+
+
     
 
     public Integer getIdUser() {
@@ -28,6 +33,15 @@ public class User {
     
     public void setIdUser(Integer id) {
         this.idUser = id;
+    }
+   
+
+    public Integer getUserType() {
+        return this.userType;
+    }
+    
+    public void setUserType(Integer type) {
+        this.userType = type;
     }
     public Integer getIdCareer() {
         return this.idCareer;
