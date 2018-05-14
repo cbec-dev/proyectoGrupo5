@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.mingeso.grupo5.proyecto.entities.Section;
 
 
-public interface SectionsRepository extends CrudRepository<Section, Integer> {
+public interface SectionRepository extends CrudRepository<Section, Integer> {
 
 }

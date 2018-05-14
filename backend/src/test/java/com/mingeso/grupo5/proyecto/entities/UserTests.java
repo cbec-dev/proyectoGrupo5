@@ -22,6 +22,7 @@ public class UserTests {
         Section section = new Section();
 
         User testUser = new User();
+        testUser.setIdUser(1);
         testUser.setCorreo(correo);
         testUser.setUserName(username);
         testUser.setCareer(career);
