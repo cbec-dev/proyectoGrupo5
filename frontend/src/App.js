@@ -64,8 +64,9 @@ class App extends Component {
 
     }
   render() {
-    if(this.stateUWU!=null){
-      const {userLogged, firebaseUser} = JSON.parse(localStorage.getItem('state'));
+    if(this.state.firebaseUser!=null){
+      const userLogged = this.state.userLogged;
+      const firebaseUser = this.state.firebaseUser;
       return (
       <body>
       <div>

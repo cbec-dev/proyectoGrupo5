@@ -197,7 +197,7 @@ class Header extends Component {
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
-            <img className="image" src={this.state.firebaseUser.photoURL} />
+            <img className="image" src={this.state.firebaseUser.providerData[0].photoURL} />
           </Nav>
           </Navbar>
           </body>

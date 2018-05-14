@@ -18,6 +18,7 @@ export default class Login extends React.Component {
             splashScreen: false,
             userLogged: false,
             firebaseUser: "",
+            userPlaceHolder:"",
         };
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
@@ -98,8 +99,8 @@ export default class Login extends React.Component {
                 var domain = email.split("@");
                 var userLogged = true;
                 console.log(domain[1]);
+                var correo = email.split("\"");
                 if(email=="\"espinoza.isaac.18@gmail.com\""){
-                    alert("EMAIL VALIDO ADMINISTRADOR C:");
                     console.log("User email signed in: ", JSON.stringify(user.email));
                     // store the token
                     localStorage.setItem("userType", JSON.stringify("administrator"));
@@ -111,15 +112,18 @@ export default class Login extends React.Component {
 
                 }
                 else if(domain[1] != "usach.cl\""){
-                    alert("EMAIL INVALIDOOOOOOOOO");
                     alert("Solo se puede iniciar sesion con cuentas @usach.cl");
                     localStorage.removeItem(appTokenKey);
                     localStorage.removeItem("user");
+                    localStorage.removeItem(firebaseAuthKey);
+                    this.setState({userLogged: false, firebaseUser: ""});
+                    this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
                     console.log("user signed out from firebase");
                     return this.props.history.push("/Login2");
                 }
                 else{
-                    alert("EMAIL VALIDO C:");
+
+                    console.log("USER PLACEHOLDERRRRRRRRR", this.state.userPlaceHolder);
                     console.log("User email signed in: ", JSON.stringify(user.email));
                     // store the token
                     localStorage.setItem("userLogged", JSON.stringify(userLogged));

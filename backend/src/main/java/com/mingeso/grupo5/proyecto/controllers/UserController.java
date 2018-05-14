@@ -129,6 +129,14 @@ public class UserController {
 		User retorno = userRepository.findById(IdUser).get();
 		return retorno;
 	}
+	@GetMapping(path="/searchbyEmail/{email}")
+	public @ResponseBody User findOneEmail(@PathVariable("email") String email) {
+		User retorno = userRepository.findBycorreo(email);
+		System.out.println("USUARIO ENCONTRADO: " + retorno.getUserName());
+		return retorno;
+	}
+	
+
 	@GetMapping(path="/searchtype/{typeUser}")
 	public @ResponseBody Iterable<User> findByType(@PathVariable("typeUser") Integer typeUser) {
 		Iterable<User> retorno = userRepository.findByuserType(typeUser);

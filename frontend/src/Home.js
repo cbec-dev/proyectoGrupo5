@@ -32,6 +32,7 @@ export default class Home extends React.Component {
             firebaseUser: JSON.parse(localStorage.getItem('user')),
             userLogged: false,
             name:"",
+            userPlaceHolder: null,
         };
         if(this.state.firebaseUser!=null){
             console.log("User:", this.state.firebaseUser.displayName);
@@ -54,6 +55,9 @@ export default class Home extends React.Component {
         if(this.state.firebaseUser!=null){
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
         }
+        fetch('http://localhost:8081/users/searchbyEmail/'+this.state.firebaseUser.email)
+                .then(data => this.setState({userPlaceHolder: data}));
+        
     }
 
     render() {
