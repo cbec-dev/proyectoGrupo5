@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mingeso.grupo5.proyecto.entities.Section;
-import com.mingeso.grupo5.proyecto.repositories.SectionsRepository;
+import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   
@@ -21,7 +21,7 @@ import org.springframework.http.HttpStatus;
 @RequestMapping(path="/sections") 
 public class SectionController {
 	@Autowired 
-	private SectionsRepository sectionRepository;
+	private SectionRepository sectionRepository;
 	
 	@GetMapping(path="/allSection")
 	public @ResponseBody Iterable<Section> getAllsection() {

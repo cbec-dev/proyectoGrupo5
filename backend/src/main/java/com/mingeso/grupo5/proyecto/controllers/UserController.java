@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.mingeso.grupo5.proyecto.entities.User;
+import com.mingeso.grupo5.proyecto.entities.Career;
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
@@ -28,7 +29,7 @@ public class UserController {
 	
 	@GetMapping(path="/add") 
 	public @ResponseBody String addNewUser (
-            @RequestParam Integer idCareer,
+            @RequestParam Career career,
             @RequestParam String correo,
             @RequestParam Section section,
             @RequestParam String userName) {
@@ -37,7 +38,7 @@ public class UserController {
         User n = new User();
         n.setUserName(userName);
         n.setCorreo(correo);		
-        n.setIdCareer(idCareer);
+        n.setCareer(career);
         n.setSection(section);
 		userRepository.save(n);
 		return "Usuarix guardadx";
@@ -45,7 +46,7 @@ public class UserController {
 	@GetMapping(path="/update") 
 	public @ResponseBody String updateUser (
 			@RequestParam Integer IdUser,
-            @RequestParam Integer idCareer,
+            @RequestParam Career career,
             @RequestParam String correo,
             @RequestParam Section section,
             @RequestParam String userName) {
@@ -54,7 +55,7 @@ public class UserController {
 		User n = new User();
 		n.setUserName(userName);
         n.setCorreo(correo);		
-        n.setIdCareer(idCareer);
+        n.setCareer(career);
         n.setSection(section);
 		userRepository.save(n);
 		return "Usuarix actualizadx";
