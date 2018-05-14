@@ -143,6 +143,12 @@ public class UserController {
 		return retorno;
 	}
 
+	@RequestMapping(value = "/searchby/{email}", method = RequestMethod.GET)
+	@ResponseBody
+	public  User findByE(@PathVariable("email") String email) {
+		return userRepository.findBycorreo(email);
+	}
+
 	
 	@RequestMapping(value = "/delete/{IdUser}")
     public @ResponseBody String delete(@PathVariable("IdUser") Integer IdUser) {

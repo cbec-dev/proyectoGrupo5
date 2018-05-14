@@ -4,7 +4,8 @@ import {loginWithGoogle, logout} from "./firebase/auth";
 import {firebaseAuth} from "./firebase/constants";
 import './css/Login.css';
 import Header from './Header';
- 
+import axios from 'axios';
+
 
 
 const firebaseAuthKey = "firebaseAuthInProgress";
@@ -19,10 +20,17 @@ export default class Login extends React.Component {
             userLogged: false,
             firebaseUser: "",
             userPlaceHolder:"",
+            users: [],
+            userEmail: "",
+            persons:[],
+            a: [],
+            activeUser: {userName: "", career: "", section:"", correo:"", idUser: "", userType: ""},
         };
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        this.componentWillMount = this.componentWillMount.bind(this);
+
 
     }
     handleLogout() {
@@ -101,6 +109,35 @@ export default class Login extends React.Component {
                 var userLogged = true;
                 console.log("DOMAIN: ", domain[1]);
                 var correo = email.split("\"");
+                this.setState({userEmail: correo[1]});
+                console.log("CORREO USUARIO: ", correo[1]);
+                const algo = [];
+                /*fetch('http://localhost:8081/users/searchbyEmail/'+correo[1])
+                .then(response => response.json())
+                .then(console.log('algo' + this.state.a)
+                .then(data => this.setState({a: data})));
+                
+               /*const request = async () => {
+                const response = await fetch('http://localhost:8081/users/searchbyEmail/'+correo[1]);
+                const json = await response.json();
+                console.log(json);
+                }
+            
+                request();
+                */
+                let axiosConfig = {
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8',
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "GET",
+                    }
+                  };
+                
+                axios.get(`http://localhost:8081/users/searchbyEmail/`+ correo[1], axiosConfig)
+                .then(res => {
+                const persons = res.data;
+                this.setState({ persons });
+                }).then(console.log("THE WOROWORO"+this.state.persons.userName));
                 if(email=="\"espinoza.isaac.18@gmail.com\""){
                     alert("ADMINISTRADOR")
                     console.log("User email signed in: ", JSON.stringify(user.email));
@@ -119,6 +156,11 @@ export default class Login extends React.Component {
                     localStorage.removeItem("user");
                     localStorage.removeItem(firebaseAuthKey);
                     this.setState({userLogged: false, firebaseUser: ""});
+                    if(this.state.a===null){
+                        alert("nULL")
+
+
+                    }
                     //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
                     console.log("user signed out from firebase");
                     localStorage.clear();
@@ -140,6 +182,16 @@ export default class Login extends React.Component {
             }
         });
     }
+    /*componentDidMount(){
+        fetch('http://localhost:8081/users/all')
+          .then(response => response.json())
+           .then(data => this.setState({users: data, isLoading: false}));
+           let filteredUsers = this.state.users.filter(user => user.email !== this.state.userEmail)
+           this.setState({people: filteredUsers});
+           console.log(this.state.users);
+           console.log("usuarios filtrados: ", filteredUsers);
+        
+}*/
 
     render() {
         console.log(firebaseAuthKey + "=" + localStorage.getItem(firebaseAuthKey));
@@ -163,6 +215,7 @@ const LoginPage = ({handleGoogleLogin}) => (
                     icon={<FontIcon className="fa fa-google-plus" style={iconStyles}/>}
                     onClick={handleGoogleLogin}
                 />
+                
             </div>
         </div>
     </body>

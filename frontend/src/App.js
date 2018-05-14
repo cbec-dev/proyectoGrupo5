@@ -48,7 +48,6 @@ class App extends Component {
     myCallbackLogin = (dataFromLogin1, dataFromLogin2) => {
       this.setState({ userLogged: dataFromLogin1, firebaseUser:dataFromLogin2});
       localStorage.setItem('state', JSON.stringify(this.state));
-      alert(this.state.userLogged);
       console.log(this.state.dataFromLogin2.displayName);
       console.log("CALLBACK FROM LOGIN IN APP :C");
       
@@ -56,7 +55,6 @@ class App extends Component {
     };
     myCallbackHome = (dataFromHome) => {
       this.setState({userLogged: dataFromHome, firebaseUser: null});
-      alert(this.state.userLogged);
       localStorage.removeItem("state");
       localStorage.removeItem("userLogged");
       console.log("CALLBACK FROM HOME IN APP :C");
