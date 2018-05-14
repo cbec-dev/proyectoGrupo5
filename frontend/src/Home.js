@@ -15,7 +15,6 @@ import Solucion from './Solucion';
 import App from './App';
 import { PropTypes } from 'react'
 
-const customHistory = createBrowserHistory();
 const muiTheme = getMuiTheme({
   appBar: {
       color: "#37517E",
@@ -38,6 +37,7 @@ export default class Home extends React.Component {
             console.log("User:", this.state.firebaseUser.displayName);
         }
         this.handleLogout = this.handleLogout.bind(this);
+
     }
 
     handleLogout() {
@@ -47,7 +47,9 @@ export default class Home extends React.Component {
             this.setState({userLogged: false, firebaseUser: ""});
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
-            
+            localStorage.clear();
+            window.localStorage.clear(); 
+
         }.bind(this));
         this.props.callbackFromParentHome(this.state.userLogged);
     }
@@ -55,15 +57,13 @@ export default class Home extends React.Component {
         if(this.state.firebaseUser!=null){
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
         }
-        fetch('http://localhost:8081/users/searchbyEmail/'+this.state.firebaseUser.email)
-                .then(data => this.setState({userPlaceHolder: data}));
-        
     }
 
     render() {
         console.log("USUARIO LOGUEADO");
         console.log(JSON.parse(localStorage.getItem("user")));
         console.log("USUARIO LOGUEADO");
+        
         return (
             <body className="body">
                 <div className = "div1">

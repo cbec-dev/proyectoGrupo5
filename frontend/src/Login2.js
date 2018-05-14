@@ -83,6 +83,7 @@ export default class Login extends React.Component {
             this.props.history.push("/Home");
             return;
         }
+        
 
         firebaseAuth().onAuthStateChanged(user => {
             if (user) {
@@ -98,9 +99,10 @@ export default class Login extends React.Component {
                 var email = JSON.stringify(user.email);
                 var domain = email.split("@");
                 var userLogged = true;
-                console.log(domain[1]);
+                console.log("DOMAIN: ", domain[1]);
                 var correo = email.split("\"");
                 if(email=="\"espinoza.isaac.18@gmail.com\""){
+                    alert("ADMINISTRADOR")
                     console.log("User email signed in: ", JSON.stringify(user.email));
                     // store the token
                     localStorage.setItem("userType", JSON.stringify("administrator"));
@@ -111,14 +113,16 @@ export default class Login extends React.Component {
                     return this.props.history.push("/Home");
 
                 }
-                else if(domain[1] != "usach.cl\""){
+                else if(domain[1] != "usach.cl\"" && domain[1]!=""){
                     alert("Solo se puede iniciar sesion con cuentas @usach.cl");
                     localStorage.removeItem(appTokenKey);
                     localStorage.removeItem("user");
                     localStorage.removeItem(firebaseAuthKey);
                     this.setState({userLogged: false, firebaseUser: ""});
-                    this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
+                    //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
                     console.log("user signed out from firebase");
+                    localStorage.clear();
+                    window.localStorage.clear();
                     return this.props.history.push("/Login2");
                 }
                 else{

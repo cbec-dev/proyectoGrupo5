@@ -21,6 +21,7 @@ import verEnunciado from './verEnunciado';
 import {loginWithGoogle, logout} from "./firebase/auth";
 import {firebaseAuth} from "./firebase/constants";
 
+
 const muiTheme = getMuiTheme({
   appBar: {
       color: "#37517E",
@@ -50,6 +51,7 @@ class App extends Component {
       alert(this.state.userLogged);
       console.log(this.state.dataFromLogin2.displayName);
       console.log("CALLBACK FROM LOGIN IN APP :C");
+      
       
     };
     myCallbackHome = (dataFromHome) => {
