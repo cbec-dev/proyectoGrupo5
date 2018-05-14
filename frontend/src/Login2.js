@@ -24,12 +24,12 @@ export default class Login extends React.Component {
             userEmail: "",
             persons:[],
             a: [],
-            activeUser: {userName: "", career: "", section:"", correo:"", idUser: "", userType: ""},
+            activeUser: [],
+            state: "",
         };
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-        this.componentWillMount = this.componentWillMount.bind(this);
 
 
     }
@@ -111,33 +111,33 @@ export default class Login extends React.Component {
                 var correo = email.split("\"");
                 this.setState({userEmail: correo[1]});
                 console.log("CORREO USUARIO: ", correo[1]);
-                const algo = [];
+                
                 /*fetch('http://localhost:8081/users/searchbyEmail/'+correo[1])
                 .then(response => response.json())
                 .then(console.log('algo' + this.state.a)
                 .then(data => this.setState({a: data})));
                 
-               /*const request = async () => {
-                const response = await fetch('http://localhost:8081/users/searchbyEmail/'+correo[1]);
-                const json = await response.json();
-                console.log(json);
+              */
+             let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET",
                 }
+              };
             
-                request();
-                */
-                let axiosConfig = {
-                    headers: {
-                        'Content-Type': 'application/json;charset=UTF-8',
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "GET",
-                    }
-                  };
+              var self = this;
+              axios.get('http://localhost:8081/users/searchbyEmail/'+correo[1], axiosConfig)
+              .then((response) => {
+                this.setState({state: response});
+                console.log(response);
+              }).catch((error) => {
+                console.log(error);
+              });
+              alert("email UWU: " +this.state.state);
+
                 
-                axios.get(`http://localhost:8081/users/searchbyEmail/`+ correo[1], axiosConfig)
-                .then(res => {
-                const persons = res.data;
-                this.setState({ persons });
-                }).then(console.log("THE WOROWORO"+this.state.persons.userName));
+                
                 if(email=="\"espinoza.isaac.18@gmail.com\""){
                     alert("ADMINISTRADOR")
                     console.log("User email signed in: ", JSON.stringify(user.email));
@@ -156,11 +156,6 @@ export default class Login extends React.Component {
                     localStorage.removeItem("user");
                     localStorage.removeItem(firebaseAuthKey);
                     this.setState({userLogged: false, firebaseUser: ""});
-                    if(this.state.a===null){
-                        alert("nULL")
-
-
-                    }
                     //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
                     console.log("user signed out from firebase");
                     localStorage.clear();
@@ -168,7 +163,6 @@ export default class Login extends React.Component {
                     return this.props.history.push("/Login2");
                 }
                 else{
-
                     console.log("USER PLACEHOLDERRRRRRRRR", this.state.userPlaceHolder);
                     console.log("User email signed in: ", JSON.stringify(user.email));
                     // store the token
@@ -182,16 +176,45 @@ export default class Login extends React.Component {
             }
         });
     }
-    /*componentDidMount(){
-        fetch('http://localhost:8081/users/all')
-          .then(response => response.json())
-           .then(data => this.setState({users: data, isLoading: false}));
-           let filteredUsers = this.state.users.filter(user => user.email !== this.state.userEmail)
-           this.setState({people: filteredUsers});
-           console.log(this.state.users);
-           console.log("usuarios filtrados: ", filteredUsers);
-        
-}*/
+    componentDidMount(){
+
+        /*if(this.state.state===null){
+            alert("usuario no registrado")
+            localStorage.removeItem(appTokenKey);
+            localStorage.removeItem("user");
+            localStorage.removeItem(firebaseAuthKey);
+            this.setState({userLogged: false, firebaseUser: ""});
+            //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
+            console.log("user signed out from firebase");
+            localStorage.clear();
+            window.localStorage.clear();
+            return this.props.history.push("/Login2");
+
+
+        }
+        else{
+            alert("usuario valido c:")
+        }*/
+       /*let axiosConfig = {
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8',
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "GET",
+                    }
+                  };
+                
+                  var self = this;
+                  axios.get('http://localhost:8081/users/searchbyEmail/'+correo[1], axiosConfig)
+                   .then(function (response) {
+                     console.log(response);
+                     self.setState({activeUser: response.data})
+                   })
+                  .catch(function (error) {
+                     console.log(error);
+                     self.setState({state: true})
+                  });
+ */       
+}
 
     render() {
         console.log(firebaseAuthKey + "=" + localStorage.getItem(firebaseAuthKey));
