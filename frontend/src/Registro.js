@@ -1,47 +1,72 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/Registro.css';
+import axios from 'axios';
+
 
 class Registro extends Component {
     constructor(props) {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
-            products: [],
+            careers: [],
+            sections: [],
             isLoading: false,
             id:"",
             idCareer:"",
             sectionName:"",
             email:"",
             userName:"",
+            userType: "",
 
         };
         }
+        
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.user = {id: "", idCareer: "", userName:"", sectionName: "", email: ""}
-        this.user.idCareer = e.idCareer;
-        this.user.sectionName = e.sectionName;
-        this.user.userName = e.userName;
-        this.user.email = e.email+ "@usach.cl";
+        var user = {career: "", userName:"", section: "", email: "", userType: ""}
+        user.career = e.idCareer;
+        user.userType= 1;
+        user.section = e.sectionName;
+        user.userName = e.userName;
+        user.email = e.email+ "@usach.cl";
 
-        if(this.user.idCareer==="" || this.user.sectionName ==="" ||this.user.email ===""){
-            console.log("Debe llenar todos las casillas");
+        if(user.career==="" || user.section ==="" ||user.email ===""||user.userName===""){
+            alert("Debe llenar todos las casillas");
             return;
         }
         else{
             this.limpiarValores(1);
-            console.log("Usuario: "+ this.user);
-            console.log("Datos: "+ this.user.sectionName);
-            console.log("Datos: "+ this.user.idCareer);
-            console.log("Datos: "+ this.user.email);
+            console.log("Usuario: "+ user);
+            console.log("Datos: "+ user.section);
+            console.log("Datos: "+ user.career);
+            console.log("Datos: "+ user.email);
+            console.log("Datos: "+ user.userName);
+            console.log("Datos: "+ user.userType);
+
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
+                }
+              };
+            alert("formulario enviado");
+            //fetch('http://localhost:8081/users/add?career='+user.career+'&email='+user.email+'&section='+user.section+'&userName='+user.userName+'&userType='+user.userType)
+            //.then(response => alert("Usuario Agregado"+response))
+            fetch('http://localhost:8081/users/add/'+user.career+'/'+user.section+'/'+user.userName+'/'+user.userType+'/'+user.email)
+            .then(response => alert("Usuario Agregado"+response))
             
-            fetch('http://104.236.68.75:8080/backendGrupo5/api/add?codigo='+this.user.codigo+'&nombre='+this.user.nombre+'&fecha='+this.user.fecha+'&categoria='+this.user.categoria+'&precio='+this.user.precio)
-            .then(response => console.log("Producto Agregado"+response)) 
+            //axios.post('http://localhost:8081/users/add', user)
+            //.then(res => {
+            //alert(res);
+           // alert(res.data);
+           // alert("USUARIO REGISTRADO C:")
+          
             }
        
         return;
-        }
+        } 
     limpiarValores(i){
         if(i===1){
             this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", userName:""});
@@ -57,9 +82,25 @@ class Registro extends Component {
             });
         console.log(name, value, target);
         }
+    componentDidMount(){
+        fetch('http://localhost:8081/Careers/all')
+            .then(response => response.json())
+           .then(data => this.setState({careers: data, isLoading: false}));
+            fetch('http://localhost:8081/sections/allSection')
+            .then(response => response.json())
+            .then(data => this.setState({sections: data, isLoading: false}));
+            console.log("SECCIONES: ", this.state.sections);
 
+    }
 
         render() {
+            const careers = this.state.careers;
+            const sections = this.state.sections;
+            const isLoading = this.state.isLoading;
+            if(isLoading){
+                return <p> Loading...</p>
+
+            }
                 return (
                     <body className="body">
                     <h1 className="header1">
@@ -69,15 +110,17 @@ class Registro extends Component {
                         <div className="div1"> <label className="label4"> Carrera:  </label></div>
                     <div className="div2">
                         <select name="idCareer" component="select" onChange = {this.handleInputChange}>
-                        value={this.state.idCareer}
-                            <option value={1}>Ing. Civil Informatica</option>
-                            <option value={0}>Ing. Ejecucion Informatica</option>
+                        <option > </option>
+
+                        {careers.map((career) =>
+                <option key={career.idCareer} value={career.idCareer}>{career.careerName}</option>
+                        )}
                            
                          </select>
                     </div>
                     <div className="div3"><label className="label1"> Nombre:  </label> </div>
                     <div>
-                        <input name= "userName" type = "text" value={this.state.sectionName}
+                        <input name= "userName" type = "text" value={this.state.userName}
                         onChange = {this.handleInputChange} />
                     </div>
                     <div className="div4"><label className="label2"> Email:  </label> </div>
@@ -90,9 +133,10 @@ class Registro extends Component {
 
                     <div className="div6">
                         <select name="sectionName" component="select" onChange = {this.handleInputChange}>
-                        value={this.state.sectionName}
-                            <option value={"A-1"}>A-1</option>
-                            <option value={"B-2"}>B-2</option>
+                        <option > </option>
+                        {sections.map((section) =>
+                <option key={section.idSection} value={section.idSection}>{section.sectionName}</option>
+                        )}
                            
                          </select>
                     </div>
