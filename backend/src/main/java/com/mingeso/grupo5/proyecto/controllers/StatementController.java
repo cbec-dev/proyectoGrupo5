@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 
-@Controller
 @CrossOrigin(origins = "http://localhost:3000")
+@Controller
 @RequestMapping(path="/api/statements")
 
 public class StatementController {

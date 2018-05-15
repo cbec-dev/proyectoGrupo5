@@ -22,9 +22,8 @@ import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 
 
 
-
-@Controller   
 @CrossOrigin(origins = "http://localhost:3000")
+@Controller   
 @RequestMapping(path="/users") 
 public class UserController {
 	@Autowired 
