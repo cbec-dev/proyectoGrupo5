@@ -22,6 +22,8 @@ public class Statement {
     private String statementText;
     @ManyToOne
     private Section section;
+    @NotNull
+    private String header;
 
     public Integer getIdStatement() {
         return this.idStatement;
@@ -52,12 +54,12 @@ public class Statement {
     public void setStatementText(String text) {
         this.statementText = text;
     }
-
-    public Section getStatementSection() {
-        return this.section;
+    public String getHeader() {
+        return this.header;
+    }
+    
+    public void setHeader(String header) {
+        this.header = header;
     }
 
-    public void setStatementSection (Section section) {
-        this.section = section;
-    }
 }
