@@ -84,17 +84,36 @@ public class StatementTests {
 
     @Test
     public void setStatementName() {
+
+        String name = "Tarea1";
+
+        Statement testStatement = new Statement();
+        testStatement.setStatementName(name);
+        
+        Assert.assertEquals(name, testStatement.getStatementName());
         
     }
 
     @Test
     public void setStatementText() {
         
+        String text = "Instrucciones";
+
+        Statement testStatement = new Statement();
+        testStatement.setStatementName(text);
+        
+        Assert.assertEquals(text, testStatement.getStatementText());
     }
 
     @Test
     public void setStatementSection() {
-        
+
+        Section section = new Section();
+
+        Statement testStatement = new Statement();
+        testStatement.setStatementSection(section);
+
+        Assert.assertEquals(section, testStatement.getStatementSection());
     }
     
 }
