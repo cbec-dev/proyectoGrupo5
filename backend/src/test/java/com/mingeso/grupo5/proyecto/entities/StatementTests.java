@@ -100,7 +100,7 @@ public class StatementTests {
         String text = "Instrucciones";
 
         Statement testStatement = new Statement();
-        testStatement.setStatementName(text);
+        testStatement.setStatementText(text);
         
         Assert.assertEquals(text, testStatement.getStatementText());
     }
