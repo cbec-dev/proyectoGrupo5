@@ -118,8 +118,26 @@ class Enunciado extends Component {
             this.statement.testCases.forEach(element => {
                 console.log("uguu" + element);
             });
-            //fetch('http://104.236.68.75:8080/backendGrupo5/api/add?codigo='+this.user.codigo+'&nombre='+this.user.nombre+'&fecha='+this.user.fecha+'&categoria='+this.user.categoria+'&precio='+this.user.precio)
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                }
+              };
+            //fetch('http://localhost:8081/api/statements/add/'+this.statement.nameStatement+'/'+this.statement.section+'/'+this.statement.text+'/'+this.statement.header)
             //.then(response => console.log("Producto Agregado"+response)) 
+            axios.post("http://localhost:8081/api/statements/add", {
+            statementName: this.statement.nameStatement,
+            statementText: this.statement.text,
+            section: this.statement.section,
+            header: this.statement.header
+            }, axiosConfig)
+            .then(function(response) {
+            console.log(response);
+            }) .catch(function (error) {
+            console.log(error);
+            });
             }
        
         return;

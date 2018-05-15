@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.mingeso.grupo5.proyecto.entities.Statement;
+import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:3000")
@@ -18,7 +23,9 @@ import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 public class StatementController {
 	@Autowired 
 	private StatementRepository statementRepository;
-	
+	@Autowired
+	private SectionRepository sectionRepository;
+
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<Statement> gettAllstatements() {
 		
@@ -29,17 +36,33 @@ public class StatementController {
 	@GetMapping(path="/add") 
 	public @ResponseBody String addNewStatement (
             @RequestParam String statementName,
-            @RequestParam String statementText) 
+			@RequestParam String statementText,
+			@RequestParam Section section,
+			@RequestParam String header) 
             {
-		
-
 		Statement n = new Statement();
         n.setStatementName(statementName);
         n.setStatementText(statementText);
-		
+		n.setSection(section);
+		n.setHeader(header);
 		statementRepository.save(n);
 		return "Enunciado guardado.";
 	}
+	@RequestMapping(value = "/add/{statementName}/{section}/{statementText}/{header}", method = { RequestMethod.GET, RequestMethod.POST })
+		@ResponseStatus(HttpStatus.CREATED)
+		@ResponseBody
+		public Statement addStatement(@PathVariable("statementName") String statementName, @PathVariable("section") Integer section, @PathVariable("statementText") String statementText, @PathVariable("header") String header) {
+			Section s = new Section();
+			System.out.println("Datos: " + s);
+			s = sectionRepository.findById(section).orElse(null);
+			System.out.println("Datos: " + s);
+			Statement resource = new Statement();
+			resource.setStatementName(statementName);
+			resource.setSection(s);
+			resource.setHeader(header);
+			resource.setStatementText(statementText);
+			return statementRepository.save(resource);
+		}
 	@GetMapping(path="/update") 
 	public @ResponseBody String updateStatement (
 			@RequestParam Integer id,
