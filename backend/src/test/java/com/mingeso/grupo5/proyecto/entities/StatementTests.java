@@ -12,4 +12,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class StatementTests {
 
 
+    @Test
+    public void getIdStatement() {
+        String name = "Tarea 1";
+        String text = "Instrucciones";
+        Section section = new Section();
+
+        Statement testStatement = new Statement();
+        testStatement.setIdStatement(1);
+        testStatement.setStatementName(name);
+        testStatement.setStatementText(text);
+        testStatement.setStatementSection(section);
+
+        Assert.assertNotNull(testStatement.getIdStatement());
+    }
 }
