@@ -26,15 +26,9 @@ public class User {
     private String userName;
     @NotNull
     private Integer userType;
-
-
-    
-
     @ManyToOne
     private Section section;
 
-    @ManyToOne
-    private Career career;
 
     public Integer getIdUser() {
         return this.idUser;
@@ -80,11 +74,6 @@ public class User {
         this.section = section;
     }
 
-    public Career getCareer() {
-        return this.career;
-    }
-    public void setCareer(Career career) {
-        this.career = career;
-    }
+   
 
 }

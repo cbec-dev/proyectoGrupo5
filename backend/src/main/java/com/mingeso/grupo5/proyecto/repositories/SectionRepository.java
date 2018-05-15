@@ -6,5 +6,6 @@ import com.mingeso.grupo5.proyecto.entities.Section;
 
 
 public interface SectionRepository extends CrudRepository<Section, Integer> {
+    void delete(Section section);
 
 }

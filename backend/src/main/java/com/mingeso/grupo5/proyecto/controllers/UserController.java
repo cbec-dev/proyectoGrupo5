@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
-import com.mingeso.grupo5.proyecto.repositories.SectionsRepository;
+import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import com.mingeso.grupo5.proyecto.controllers.CareerController;
 import com.mingeso.grupo5.proyecto.controllers.SectionController;
 
@@ -38,7 +38,7 @@ public class UserController {
 	@Autowired
 	private CareerRepository careerRepository;
 	@Autowired
-	private SectionsRepository sectionRepository;
+	private SectionRepository sectionRepository;
 	
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<User> getAllUser() {

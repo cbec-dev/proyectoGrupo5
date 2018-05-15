@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.User;
-import com.mingeso.grupo5.proyecto.repositories.SectionsRepository;
+import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 
@@ -23,7 +23,7 @@ import org.springframework.http.HttpStatus;
 @RequestMapping(path="/sections") 
 public class SectionController {
 	@Autowired 
-	private SectionsRepository sectionRepository;
+	private SectionRepository sectionRepository;
 	@Autowired
 	private UserRepository userRepository;
 
