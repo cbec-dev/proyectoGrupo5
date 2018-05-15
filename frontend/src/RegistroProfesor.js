@@ -98,6 +98,8 @@ class RegistroProfesor extends Component {
     
         render() {
             const sections = this.state.sections;
+            const typeUser = this.props.typeUser;
+            if(typeUser===2){
                 return (
                     <body className="body">
                     <h1 className="header1">
@@ -143,6 +145,13 @@ class RegistroProfesor extends Component {
                     </body>
                     
                 );
+            }
+            else{
+                alert("No tiene permisos para acceder a esta vista")
+                return(
+                    <div> {this.props.history.push("/")} </div>
+                );
+            }
             }
           }
     
