@@ -26,4 +26,51 @@ public class StatementTests {
 
         Assert.assertNotNull(testStatement.getIdStatement());
     }
+
+    @Test
+    public void getStatementName() {
+        String name = "Tarea 1";
+        String text = "Instrucciones";
+        Section section = new Section();
+
+        Statement testStatement = new Statement();
+        testStatement.setIdStatement(1);
+        testStatement.setStatementName(name);
+        testStatement.setStatementText(text);
+        testStatement.setStatementSection(section);
+
+        Assert.assertNotNull(testStatement.getStatementName());
+    }
+
+    @Test
+    public void getStatementText() {
+        String name = "Tarea 1";
+        String text = "Instrucciones";
+        Section section = new Section();
+
+        Statement testStatement = new Statement();
+        testStatement.setIdStatement(1);
+        testStatement.setStatementName(name);
+        testStatement.setStatementText(text);
+        testStatement.setStatementSection(section);
+
+        Assert.assertNotNull(testStatement.getStatementText());
+    }
+
+    @Test
+    public void getStatementSection() {
+        String name = "Tarea 1";
+        String text = "Instrucciones";
+        Section section = new Section();
+
+        Statement testStatement = new Statement();
+        testStatement.setIdStatement(1);
+        testStatement.setStatementName(name);
+        testStatement.setStatementText(text);
+        testStatement.setStatementSection(section);
+
+        Assert.assertNotNull(testStatement.getStatementSection());
+    }
+
+    
 }
