@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
 
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Statement {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Integer idStatement;
 
     @NotNull
     private String statementName;
@@ -23,11 +24,11 @@ public class Statement {
     private Section section;
 
     public Integer getIdStatement() {
-        return this.id;
+        return this.idStatement;
     }
     
     public void setIdStatement(Integer id) {
-        this.id = id;
+        this.idStatement = id;
     }
     public Section getSection() {
         return this.section;
@@ -50,5 +51,13 @@ public class Statement {
     
     public void setStatementText(String text) {
         this.statementText = text;
+    }
+
+    public Section getStatementSection() {
+        return this.section;
+    }
+
+    public void setStatementSection (Section section) {
+        this.section = section;
     }
 }
