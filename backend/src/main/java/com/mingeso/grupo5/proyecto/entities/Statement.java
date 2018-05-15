@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Column;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
 
@@ -17,11 +19,12 @@ public class Statement {
 
     @NotNull
     private String statementName;
-
+    @Lob
     @NotNull
     private String statementText;
     @ManyToOne
     private Section section;
+    @Lob
     @NotNull
     private String header;
 

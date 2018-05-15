@@ -98,9 +98,10 @@ class Enunciado extends Component {
 
         this.statement = {section: "", nameStatement: "", text: "", testCases: [], code: ""}
         this.statement.nameStatement = e.nameStatement;
-        this.statement.text = e.text;
+        this.statement.text =e.text;
         this.statement.testCases = e.values;
         this.statement.header = e.code;
+        console.log("texto en codemirror: "+ this.statement.header)
         this.statement.section = e.sectionName;
 
         if(this.statement.nameStatement==="" || this.statement.text ==="" ||this.statement.section==="" || this.statement.header==="" ||this.statement.testCases===[]){
@@ -123,16 +124,14 @@ class Enunciado extends Component {
                     'Content-Type': 'application/json;charset=UTF-8',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
-                }
+                    'Content-Type': 'text/plain',
+                },
+                responseType: 'text'
+
               };
-            //fetch('http://localhost:8081/api/statements/add/'+this.statement.nameStatement+'/'+this.statement.section+'/'+this.statement.text+'/'+this.statement.header)
+            //fetch('http://localhost:8081/api/statements/add/'+this.statement.nameStatement+'/'+this.statement.section+'/'+this.statement.text+'/'+"\""+this.statement.header+"\"")
             //.then(response => console.log("Producto Agregado"+response)) 
-            axios.post("http://localhost:8081/api/statements/add", {
-            statementName: this.statement.nameStatement,
-            statementText: this.statement.text,
-            section: this.statement.section,
-            header: this.statement.header
-            }, axiosConfig)
+            axios.post('http://localhost:8081/api/statements/add/'+this.statement.nameStatement+'/'+this.statement.section+'/'+this.statement.text+'/'+this.statement.header, axiosConfig)
             .then(function(response) {
             console.log(response);
             }) .catch(function (error) {
@@ -170,6 +169,7 @@ class Enunciado extends Component {
             this.setState({
                 code: newCode
             });
+            console.log(this.state.code);
         }
         changeMode (e) {
             var mode = e.target.value;
