@@ -22,7 +22,7 @@ public class StatementTests {
         testStatement.setIdStatement(1);
         testStatement.setStatementName(name);
         testStatement.setStatementText(text);
-        testStatement.setStatementSection(section);
+        testStatement.setSection(section);
 
         Assert.assertNotNull(testStatement.getIdStatement());
     }
@@ -37,7 +37,7 @@ public class StatementTests {
         testStatement.setIdStatement(1);
         testStatement.setStatementName(name);
         testStatement.setStatementText(text);
-        testStatement.setStatementSection(section);
+        testStatement.setSection(section);
 
         Assert.assertNotNull(testStatement.getStatementName());
     }
@@ -52,7 +52,7 @@ public class StatementTests {
         testStatement.setIdStatement(1);
         testStatement.setStatementName(name);
         testStatement.setStatementText(text);
-        testStatement.setStatementSection(section);
+        testStatement.setSection(section);
 
         Assert.assertNotNull(testStatement.getStatementText());
     }
@@ -67,9 +67,9 @@ public class StatementTests {
         testStatement.setIdStatement(1);
         testStatement.setStatementName(name);
         testStatement.setStatementText(text);
-        testStatement.setStatementSection(section);
+        testStatement.setSection(section);
 
-        Assert.assertNotNull(testStatement.getStatementSection());
+        Assert.assertNotNull(testStatement.getSection());
     }
 
     @Test
@@ -111,9 +111,9 @@ public class StatementTests {
         Section section = new Section();
 
         Statement testStatement = new Statement();
-        testStatement.setStatementSection(section);
+        testStatement.setSection(section);
 
-        Assert.assertEquals(section, testStatement.getStatementSection());
+        Assert.assertEquals(section, testStatement.getSection());
     }
     
 }

@@ -12,7 +12,7 @@ import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 
 @Controller
-@CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path="/api/statements")
 
 public class StatementController {

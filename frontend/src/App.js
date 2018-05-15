@@ -47,23 +47,21 @@ class App extends Component {
     
     return (
       <div>
-        <Header/>
+        <Header history={customHistory} typeUser={this.state.user.userType} activeUser={this.state.user} userAvatar={this.state.firebaseUser.providerData[0].photoURL} loggedState={this.state.userLogged} />
         <MuiThemeProvider muiTheme={muiTheme}>
   <Router history={customHistory}>     
       <Switch>
-        <Route path="/Registro" component={Registro} />
-        <Route path="/RegistroProfesor" component={RegistroProfesor} />
-        <Route path="/Prueba" component={Prueba} />
-        <Route path="/Enunciado" component={Enunciado} />
-        <Route path="/Solucion" component={Solucion} />
-        <Route path="/Code" component={CodeMirror} />
-        <Route path="/Login2" component={Login2}/>
-        <Route path="/Home" component={Home}/>
-        <Route path="/CrearCurso" component={CrearCurso}/>
-        <Route path="/verEnunciado:id" component={verEnunciado}/>
-        <Route path="/ListarEnunciados:id" component={ListarEnunciados}/>
-
-        <Route path="/CodeRunner" component={CodeRunner}/>
+        <Route path="/Registro" component={()=> <Registro typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/Prueba" component={()=> <Prueba typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/Enunciado" component={()=> <Enunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/Solucion" component={()=> <Solucion typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}  />
+        <Route path="/Code" component={()=> <CodeMirror typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+    <Route path= "/Login2" component={()=> <Login2 typeUser={this.state.user.userType} callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
+        <Route path="/Home" component={()=> <Home typeUser={this.state.user.userType} callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
+        <Route path="/CrearCurso" component={()=><CrearCurso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
       
 
       </Switch>
@@ -72,6 +70,40 @@ class App extends Component {
 
       </div>
     );
+  }
+  else{
+    return (
+      <body>
+      <div>
+        <Header history={customHistory} loggedState={false} typeUser = {4}/>
+        <MuiThemeProvider muiTheme={muiTheme}>
+  <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
+      <Switch>
+        
+      <Route path="/Registro" component={()=> <Registro history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/RegistroProfesor" component={()=> <RegistroProfesor history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/Prueba" component={()=> <Prueba history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/Enunciado" component={()=> <Enunciado history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/Solucion" component={()=> <Solucion history={customHistory} activeUser={this.state.user}/>}  />
+        <Route path="/Code" component={()=> <CodeMirror history={customHistory} activeUser={this.state.user}/>} />
+    <Route path= "/Login2" component={()=> <Login2 callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
+        <Route path="/Home" component={()=> <Home callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
+        <Route path="/CrearCurso" component={()=><CrearCurso history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
+      
+      
+
+      </Switch>
+  </Router>
+  </MuiThemeProvider> 
+      </div>
+       <label> ningun usuario logueado </label> 
+        <label>PRUEBAA </label>
+        {console.log("APP APP APP" , this.state)}
+      </body>
+      );
+  }
   }
 }
 
