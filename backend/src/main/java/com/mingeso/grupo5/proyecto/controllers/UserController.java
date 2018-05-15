@@ -11,19 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mingeso.grupo5.proyecto.entities.User;
 import com.mingeso.grupo5.proyecto.entities.Career;
 import com.mingeso.grupo5.proyecto.entities.Section;
-import com.mingeso.grupo5.proyecto.entities.Career;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
-import com.mingeso.grupo5.proyecto.controllers.CareerController;
-import com.mingeso.grupo5.proyecto.controllers.SectionController;
 
 
 
