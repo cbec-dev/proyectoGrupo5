@@ -3,26 +3,61 @@ import Registro from './Registro';
 import './css/Header.css';
 import {Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 
+
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       typeUser:"",
-        
+      firebaseUser: JSON.parse(localStorage.getItem('user')),
+      userLogged:JSON.parse(localStorage.getItem('userLogged')),
       };
     }
 
     
-      componentDidMount() {
-      this.setState({typeUser: 2});
+      componentDidMount() { 
+        
       }
+ 
 
 
   render() {
-    const {typeUser} = this.state.typeUser;
+    console.log("HEADER OWO");
+    const typeUser = this.props.typeUser;
+    const userLogged = this.props.loggedState;
+    const photoURL = this.props.userAvatar;
     console.log(this.state.typeUser);
-    console.log(typeUser);
-    if(this.state.typeUser ===1){
+    console.log("HEADER UWU");
+    console.log(this.state.firebaseUser);
+    console.log("HEADER estado user logged: ", this.state.userLogged);
+    console.log("HEADER UWU");
+    if(userLogged===false){
+      console.log("HEADER RENDER IF USER LOGGER FALSE");
+      return (
+        <body>
+        <Navbar >
+          <Navbar.Header>
+          <Navbar.Brand>
+            <a href="/">     
+            <span className="navItem">Home</span>
+            </a>
+          </Navbar.Brand>
+        </Navbar.Header>
+        <Nav>
+        <NavItem eventKey={1} href="/Login2">
+          <span className="navItem">Login</span>
+        </NavItem>
+          </Nav>
+          </Navbar>
+          </body>
+    );      
+   
+
+    
+    }
+  else{
+    console.log("HEADER RENDER ELSE USER LOGGER TRUE");
+    if(typeUser ===1){
       return (
           <body>
           <Navbar >
@@ -43,12 +78,13 @@ class Header extends Component {
               <MenuItem divider />
               <MenuItem eventKey={3.4}>Separated link</MenuItem>
               </NavDropdown>
+              <img className="image" src={photoURL} />
             </Nav>
             </Navbar>
             </body>
       );
     }
-    else if(this.state.typeUser ===2){
+    else if(typeUser ===2){
       return (
         <body>
         <Navbar >
@@ -77,6 +113,7 @@ class Header extends Component {
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
+            <img className="image" src={photoURL} />
           </Nav>
           </Navbar>
           </body>
@@ -108,6 +145,7 @@ class Header extends Component {
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
+            <img className="image" src={photoURL} />
           </Nav>
           </Navbar>
           </body>
@@ -115,5 +153,5 @@ class Header extends Component {
     }
   }
 }
-
+}
 export default Header;
