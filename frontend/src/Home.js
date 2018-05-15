@@ -13,7 +13,8 @@ import createBrowserHistory from "history/createBrowserHistory";
 import Login2 from './Login2';
 import Solucion from './Solucion';
 import App from './App';
-import { PropTypes } from 'react'
+import { PropTypes } from 'react';
+import axios from 'axios';
 
 const muiTheme = getMuiTheme({
   appBar: {
@@ -32,6 +33,9 @@ export default class Home extends React.Component {
             userLogged: false,
             name:"",
             userPlaceHolder: null,
+            user: {career: "", correo: "", idUser: "", section:"", userName:"", userType:""},
+            bool: "",
+            state:"",
         };
         if(this.state.firebaseUser!=null){
             console.log("User:", this.state.firebaseUser.displayName);
@@ -44,6 +48,7 @@ export default class Home extends React.Component {
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
             localStorage.removeItem("user");
+            localStorage.removeItem("activeUserObject");
             this.setState({userLogged: false, firebaseUser: ""});
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
@@ -57,32 +62,68 @@ export default class Home extends React.Component {
         if(this.state.firebaseUser!=null){
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
         }
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET",
+            }
+          };
+          var email = this.state.firebaseUser.email;
+          var self = this;
+          axios.get('http://localhost:8081/users/searchbyEmail/'+email, axiosConfig)
+          .then((response) => {
+            this.setState({state: response.data, bool: true});
+            console.log("RESPONSE: " + response.data);
+          }).catch((error) => {
+            console.log(error);
+            this.setState({bool: false})
+          });
+
+
     }
+    
 
     render() {
         console.log("USUARIO LOGUEADO");
         console.log(JSON.parse(localStorage.getItem("user")));
         console.log("USUARIO LOGUEADO");
-        
-        return (
-            <body className="body">
-                <div className = "div1">
-                    <h1 className = "h">Home</h1>
-                    <div className = "div2">
+        const userEmail = this.state.state.correo;
+        const bool = this.state.bool;
+        if(bool===true){
+            return (
+                <body className="body">
+                    <div className = "div1">
+                        <h1 className = "h">Home</h1>
+                        <div className = "div2">
+                        </div>
+                        
+                        <h3 className = "h">Bienvenido {this.state.name}</h3>
+                
+                        <div className = "div3">
+                            <RaisedButton className = "button"
+                                backgroundColor="#a4c639"
+                                labelColor="#ffffff"
+                                label="Sign Out"
+                                onTouchTap={this.handleLogout}
+                            />
+                        </div>
                     </div>
-                    
-                    <h3 className = "h">Bienvenido {this.state.name}</h3>
-            
-                    <div className = "div3">
-                        <RaisedButton className = "button"
-                            backgroundColor="#a4c639"
-                            labelColor="#ffffff"
-                            label="Sign Out"
-                            onTouchTap={this.handleLogout}
-                        />
-                    </div>
-                </div>
-            </body>
-        );
+                </body>
+            );
+        }
+        else if(bool===false){
+            alert("No se encuentra registrado, sera regresado al login");
+
+            return(
+                <div> {this.handleLogout()} </div>
+            );
+        }
+        else{
+            return(
+                <p> loading... </p>
+                );
+        }
+       
     }
 }

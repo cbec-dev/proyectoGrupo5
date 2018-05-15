@@ -39,7 +39,7 @@ class Header extends Component {
     console.log(this.state.firebaseUser);
     console.log("HEADER estado user logged: ", this.state.userLogged);
     console.log("HEADER UWU");
-    if(this.state.userLogged==false){
+    if(this.state.userLogged===false){
       console.log("HEADER RENDER IF USER LOGGER FALSE");
           if(this.state.typeUser ===1){
             return (
