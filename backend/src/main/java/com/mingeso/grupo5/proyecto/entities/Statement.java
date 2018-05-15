@@ -45,4 +45,12 @@ public class Statement {
     public void setStatementText(String text) {
         this.statementText = text;
     }
+
+    public Section getStatementSection() {
+        return this.section;
+    }
+
+    public void setStatementSection (Section section) {
+        this.section = section;
+    }
 }
