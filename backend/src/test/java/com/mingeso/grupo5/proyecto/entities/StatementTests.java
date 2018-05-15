@@ -72,5 +72,29 @@ public class StatementTests {
         Assert.assertNotNull(testStatement.getStatementSection());
     }
 
+    @Test
+    public void setIdStatement() {
+
+        Statement testStatement = new Statement();
+
+        testStatement.setIdStatement(2);
+        Assert.assertEquals(Integer.valueOf(2), testStatement.getIdStatement());
+        
+    }
+
+    @Test
+    public void setStatementName() {
+        
+    }
+
+    @Test
+    public void setStatementText() {
+        
+    }
+
+    @Test
+    public void setStatementSection() {
+        
+    }
     
 }
