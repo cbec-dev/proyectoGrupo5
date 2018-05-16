@@ -175,6 +175,13 @@ class Solucion extends Component {
 
                     </div>
                   </form>
+
+                  <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                    salida compiler
+                </pre>
+                <button onclick="">Borrar</button>
+            </div>
             </body>
                     
                 );
