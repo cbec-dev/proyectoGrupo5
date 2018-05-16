@@ -35,13 +35,13 @@ public class Statement {
     public void setIdStatement(Integer id) {
         this.idStatement = id;
     }
-    /*public Section getSection() {
+    public Section getSection() {
         return this.section;
     }
     
     public void setSection(Section section) {
         this.section =section;
-    }*/
+    }
     public String getStatementName() {
         return this.statementName;
     }
