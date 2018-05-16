@@ -29,11 +29,12 @@ public class CompilerController {
     }
 
     @GetMapping(path="/runCode")
-    public @ResponseBody String runCode() throws IOException {
+    public @ResponseBody String runCode(
+        @RequestParam String code) throws IOException {
 
         Compiler compiler = new Compiler();
         
-        String out = compiler.run("print(400)");
+        String out = compiler.run(code);
 		return out;
     }
     

@@ -6,18 +6,17 @@ class CodeRunner extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            codigo: "print('pantalones!')",
-            rawSalida: "",
-            salida: "",
+            codigo: "print('hola')",
+            salida: ""
         };
     }
 
     componentDidMount() {
         this.setState({isLoading: true});
 
-        fetch('http://localhost:8081/api/compiler/runCode')
+        fetch('http://localhost:8081/api/compiler/runCode?code='+this.state.codigo)
             .then(response => response.json())
-            .then(data => this.setState({rawSalida: data.stdout, isLoading: false}));
+            .then(data => this.setState({salida: data.stdout}));
         }
 
     render() {
@@ -27,7 +26,7 @@ class CodeRunner extends Component {
                 <p>{this.state.codigo}</p>
 
                 <h1>Salida:</h1>
-                <p>{this.state.rawSalida}</p>
+                <p>{this.state.salida}</p>
 
             </div>
         );
