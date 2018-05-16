@@ -94,8 +94,25 @@ public class UserTests {
 
         Assert.assertNotNull(testUser.getCareer());
     }
+    
+    @Test
+    public void getUserType() {
+        String correo = "user@email.com";
+        String username = "user";
+        Career career = new Career();
+        Section section = new Section();
 
+        User testUser = new User();
+        testUser.setCorreo(correo);
+        testUser.setUserName(username);
+        testUser.setCareer(career);
+        testUser.setSection(section);
+        testUser.setUserType(1);
+        Assert.assertNotNull(testUser.getUserType());
+    }
 
+    
+    
     @Test
     public void setIdUser() {
         User testUser = new User();
@@ -104,7 +121,17 @@ public class UserTests {
         Assert.assertEquals(Integer.valueOf(2), testUser.getIdUser());
 
     }
+    
+    @Test
+    public void setUserType() {
+        User testUser = new User();
 
+        testUser.setUserType(2);
+        Assert.assertEquals(Integer.valueOf(2), testUser.getUserType());
+
+    }
+
+    
     @Test
     public void setCorreo() {
         String correo = "user@email.com";
