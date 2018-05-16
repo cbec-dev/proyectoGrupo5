@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Statement {
@@ -18,8 +20,7 @@ public class Statement {
 
     @NotNull
     private String statementText;
-
-    @OneToOne
+    @ManyToOne
     private Section section;
 
     public Integer getIdStatement() {
@@ -29,7 +30,13 @@ public class Statement {
     public void setIdStatement(Integer id) {
         this.idStatement = id;
     }
-
+    public Section getSection() {
+        return this.section;
+    }
+    
+    public void setSection(Section section) {
+        this.section =section;
+    }
     public String getStatementName() {
         return this.statementName;
     }
@@ -44,5 +51,13 @@ public class Statement {
     
     public void setStatementText(String text) {
         this.statementText = text;
+    }
+
+    public Section getStatementSection() {
+        return this.section;
+    }
+
+    public void setStatementSection (Section section) {
+        this.section = section;
     }
 }

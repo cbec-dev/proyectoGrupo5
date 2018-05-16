@@ -13,16 +13,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mingeso.grupo5.proyecto.entities.Section;
-import com.mingeso.grupo5.proyecto.repositories.SectionsRepository;
+import com.mingeso.grupo5.proyecto.entities.User;
+import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
+import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   
-@CrossOrigin(origins = "http://104.236.68.75:8080/frontendGrupo5")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path="/sections") 
 public class SectionController {
 	@Autowired 
-	private SectionsRepository sectionRepository;
-	
+	private SectionRepository sectionRepository;
+	@Autowired
+	private UserRepository userRepository;
+
 	@GetMapping(path="/allSection")
 	public @ResponseBody Iterable<Section> getAllsection() {
 		
@@ -43,6 +47,31 @@ public class SectionController {
 		sectionRepository.save(n);
 		return "Seccion agregada.";
 	}
+
+		@RequestMapping(value = "/update/{profesor}/{section}", method = { RequestMethod.GET, RequestMethod.PUT})
+		@ResponseStatus(HttpStatus.CREATED)
+		@ResponseBody
+		public Section updateSection(@PathVariable("profesor") String profesor, @PathVariable("section") Integer section) {
+
+			User p = new User();
+			Section s = new Section();
+			p = userRepository.findBycorreo(profesor);
+			System.out.println("Datos: " + userRepository.findBycorreo(profesor));
+			System.out.println("Datos2: " + p);
+
+			s = sectionRepository.findById(section).orElse(null);
+
+			if(p == null || s == null) {
+				
+				return null;
+				
+			}
+			System.out.println("Datos: " + s);
+			s.setIdSection(section);
+			s.setProfesor(p);
+			return sectionRepository.save(s);
+		}
+
 	
 	
 }

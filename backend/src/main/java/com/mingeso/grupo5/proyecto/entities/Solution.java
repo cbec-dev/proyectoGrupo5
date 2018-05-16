@@ -67,4 +67,10 @@ public class Solution {
 		 this.idUser = id;
 	 }
 	 
+	 public Statement getStatement() {
+		 return this.statement;
+	 }
+	 public void setStatement(Statement statement) {
+		 this.statement = statement;
+	 }
 }
