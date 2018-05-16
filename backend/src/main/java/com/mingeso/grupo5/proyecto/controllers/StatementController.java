@@ -1,5 +1,5 @@
 package com.mingeso.grupo5.proyecto.controllers;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,21 +32,31 @@ public class StatementController {
 		Iterable<Statement> findAll = statementRepository.findAll();
 		return findAll;
 	}
+
 	
-	@GetMapping(path="/add") 
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody String addNewStatement (
             @RequestParam String statementName,
 			@RequestParam String statementText,
-			@RequestParam Section section,
+			@RequestParam Integer section,
 			@RequestParam String header) 
             {
+		Section s = new Section();
+		s = sectionRepository.findById(section).orElse(null);
 		Statement n = new Statement();
         n.setStatementName(statementName);
         n.setStatementText(statementText);
-		n.setSection(section);
+		n.setSection(s);
 		n.setHeader(header);
 		statementRepository.save(n);
 		return "Enunciado guardado.";
+	}
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public Statement create(@RequestBody Statement resource) {
+
+	     return statementRepository.save(resource);
 	}
 	@RequestMapping(value = "/add/{statementName}/{section}/{statementText}/{header}", method = { RequestMethod.GET, RequestMethod.POST })
 		@ResponseStatus(HttpStatus.CREATED)

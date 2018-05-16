@@ -138,10 +138,10 @@ class Header extends Component {
             <span className="navItem">Agregar Alumnos</span>
             </NavItem>
             <NavDropdown eventKey={3} title="Profesor" id="basic-nav-dropdown" className="dropdown">
-            <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Ver Enunciados</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
+            <MenuItem className= "menuItem1" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
+            <MenuItem className= "menuItem2" eventKey={3.2} href='/ListarEnunciados'>Ver Enunciados</MenuItem>
+            <MenuItem className= "menuItem3" eventKey={3.3} href='/'>Something else here</MenuItem>
+            <MenuItem className= "menuItem4" eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
