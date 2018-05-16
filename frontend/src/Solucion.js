@@ -40,7 +40,9 @@ class Solucion extends Component {
             singleLineStringErrors: false},
             lineNumbers: true,
             indentUnit: 4,
-            matchBrackets: true
+            matchBrackets: true,
+            codigo: "print 44",
+            salida: ""
 
         };
     }
@@ -56,6 +58,8 @@ class Solucion extends Component {
             return;
         }
     }
+
+    
     subirFormulario(e) {
         console.log("formulario enviado c:");
         this.solution = {nameSolution: "", text: "", code: ""}
@@ -136,7 +140,12 @@ class Solucion extends Component {
                    singleLineStringErrors: false},
     
             });
+            fetch('http://localhost:8081/api/compiler/runCode?code='+this.state.codigo)
+                    .then(response => response.json())
+                    .then(data => this.setState({salida: data.stdout}));
             }
+
+        
 
         render() {
             var options = {
@@ -178,9 +187,8 @@ class Solucion extends Component {
 
                   <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
-                    salida compiler
+                {this.state.salida}
                 </pre>
-                <button onclick="">Borrar</button>
             </div>
             </body>
                     
