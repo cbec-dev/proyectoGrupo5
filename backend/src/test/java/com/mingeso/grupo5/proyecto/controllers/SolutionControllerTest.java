@@ -31,7 +31,7 @@ public class SolutionControllerTest {
 	
 	@Test
     public void getAllSolution() {
-		Assert.assertNotNull(controlador.getAllsolution());
+		Assert.assertNotNull(controlador.getAllsolution()); 
 	}
 	@Test
     public void addNewSolution() {
