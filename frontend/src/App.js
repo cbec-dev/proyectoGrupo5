@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/App.css';
 import Registro from './Registro';
-import {BrowserRouter as Router, Route, Redirect, Link, Switch} from "react-router-dom";
+import {Router as Router, Route, Redirect, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import Enunciado from './Enunciado';
@@ -18,7 +18,10 @@ import ListarEnunciados from './ListarEnunciados';
 import RegistroProfesor from './RegistroProfesor';
 import CrearCurso from './CrearCurso';
 import verEnunciado from './verEnunciado';
-import CodeRunner from './CodeRunner';
+import {loginWithGoogle, logout} from "./firebase/auth";
+import {firebaseAuth} from "./firebase/constants";
+import axios from 'axios';
+
 
 const muiTheme = getMuiTheme({
   appBar: {
@@ -26,30 +29,65 @@ const muiTheme = getMuiTheme({
       height: 50
   },
 });
-
 injectTapEventPlugin();
-
 const customHistory = createBrowserHistory();
+const firebaseAuthKey = "firebaseAuthInProgress";
+const appTokenKey = "appToken";
+const placeHolder = JSON.parse(localStorage.getItem('user'));
 
 
 class App extends Component {
 
   constructor(props) {
     super(props);
+    const stateUWU= JSON.parse(localStorage.getItem('state'));
+      this.state = {
+          userLogged: JSON.parse(localStorage.getItem('userLogged')),
+          firebaseUser: JSON.parse(localStorage.getItem('user')),
+          isLoading: false,
+          user: JSON.parse(localStorage.getItem('activeUserObject')),
+        };
 
-    this.state = {
-        
-      };
+    }
+    myCallbackLogin = (dataFromLogin1, dataFromLogin2, dataFromLogin3) => {
+      this.setState({ userLogged: dataFromLogin1, firebaseUser:dataFromLogin2, user: dataFromLogin3});
+      localStorage.setItem('state', JSON.stringify(this.state));
+      console.log(dataFromLogin2.displayName);
+      localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
+      console.log("CALLBACK FROM LOGIN IN APP :C");
+      
+    };
+    myCallbackHome = (dataFromHome) => {
+      this.setState({userLogged: dataFromHome, firebaseUser: null});
+      localStorage.removeItem("state");
+      localStorage.removeItem("userLogged");
+      localStorage.removeItem("activeUserObject");
+      console.log("CALLBACK FROM HOME IN APP :C");
     }
 
+    myCallbackHomeUser = (dataFromHome) => {
+      this.setState({user: dataFromHome});
+      console.log("CALLBACK FROM HOME IN APP :C");
+    }
 
-  render() {
+    componentWillMount(){
+   
+      
     
-    return (
+  }
+
+    
+  render() {
+    if(this.state.firebaseUser!==null && this.state.user!==null){
+      const userLogged = this.state.userLogged;
+      const firebaseUser = this.state.firebaseUser;
+      const user = this.state.user;
+      return (
+      <body>
       <div>
         <Header history={customHistory} typeUser={this.state.user.userType} activeUser={this.state.user} userAvatar={this.state.firebaseUser.providerData[0].photoURL} loggedState={this.state.userLogged} />
         <MuiThemeProvider muiTheme={muiTheme}>
-  <Router history={customHistory}>     
+  <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
       <Switch>
         <Route path="/Registro" component={()=> <Registro typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
@@ -66,9 +104,16 @@ class App extends Component {
 
       </Switch>
   </Router>
-  </MuiThemeProvider>
-
+  </MuiThemeProvider> 
       </div>
+      <div> <label> ESTADO USUARIO LOGUEADO{this.state.userLogged} </label></div> 
+      <label> NOMBRE DESDE FIREBASE {this.state.firebaseUser.displayName} </label>
+      <div><label> NOMBRE DESDE CONST {firebaseUser.displayName} </label></div>
+      <div><label> NOMBRE DESDE USER {user.userName} </label></div>
+
+        <label>PRUEBAA </label>
+        {console.log("APP APP APP" , this.state)}
+      </body>
     );
   }
   else{
