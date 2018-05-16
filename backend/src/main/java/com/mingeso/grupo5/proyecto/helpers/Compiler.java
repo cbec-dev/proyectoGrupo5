@@ -60,7 +60,7 @@ public class Compiler {
     public String run(String code) throws IOException
     {
         //Conección y headers
-        URL url = new URL("https://run.glot.io/languages/python/latest");
+        URL url = new URL("https://run.glot.io/languages/python/2");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");

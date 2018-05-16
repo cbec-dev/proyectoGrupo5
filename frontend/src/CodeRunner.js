@@ -6,7 +6,7 @@ class CodeRunner extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            codigo: "print('hola')",
+            codigo: "import random; print('número random: '+ random.randint(0,9))",
             salida: ""
         };
     }
