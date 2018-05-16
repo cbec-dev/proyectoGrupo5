@@ -25,12 +25,22 @@ public class SectionControllerTest {
 	private SectionRepository sectionRepository;
 	@Autowired
 	private UserRepository userRepository;
+	
+	SectionController controlador = new SectionController();
+	
+	Integer idSection = 1;
+	String sectionName = "section";
+	
+	
 	@Test
     public void getAllSection() {
+		Assert.assertNotNull(controlador.getAllsection());
 		
     }
 	@Test
     public void addNewSection() {
+		String resultadoEsperado = "Seccion agregada.";
+		Assert.assertEquals(resultadoEsperado ,controlador.addNewSection(idSection, sectionName));
 		
     }
 	@Test
