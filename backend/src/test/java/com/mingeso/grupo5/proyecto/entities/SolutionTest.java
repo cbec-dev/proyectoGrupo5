@@ -176,7 +176,7 @@ public class SolutionTest {
         Solution solution = new Solution();
 
         solution.setStatement(statement);
-        Assert.assertEquals(statement, solution.getSolutionText());
+        Assert.assertEquals(statement, solution.getStatement());
 
     }
 }
