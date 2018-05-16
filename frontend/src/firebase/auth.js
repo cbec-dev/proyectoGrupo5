@@ -13,7 +13,7 @@ function authenticate(promise) {
             // localStorage.save(token);
             var token = result.credential.accessToken;
             var user = result.user;
-            console.log("login happened with firebase, ", JSON.stringify(user));
+            alert("login happened with firebase AUTH.JS, ", JSON.stringify(user));
             localStorage.setItem("firebaseUser", JSON.stringify(result));
             return Promise.resolve(result);
         }).catch(function(error){

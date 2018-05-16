@@ -18,6 +18,7 @@ import ListarEnunciados from './ListarEnunciados';
 import RegistroProfesor from './RegistroProfesor';
 import CrearCurso from './CrearCurso';
 import verEnunciado from './verEnunciado';
+import CodeRunner from './CodeRunner';
 
 const muiTheme = getMuiTheme({
   appBar: {
@@ -61,6 +62,8 @@ class App extends Component {
         <Route path="/CrearCurso" component={CrearCurso}/>
         <Route path="/verEnunciado:id" component={verEnunciado}/>
         <Route path="/ListarEnunciados:id" component={ListarEnunciados}/>
+
+        <Route path="/CodeRunner" component={CodeRunner}/>
       
 
       </Switch>

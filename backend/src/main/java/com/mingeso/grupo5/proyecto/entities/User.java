@@ -6,23 +6,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+
 
 @Entity
 public class User {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idUser;
+    @ManyToOne
+    private Career career;
     @NotNull
+    @Column(unique=true)
 	private String correo;
     @NotNull
     private String userName;
-
+    @NotNull
+    private Integer userType;
     @ManyToOne
     private Section section;
 
-    @ManyToOne
-    private Career career;
 
     public Integer getIdUser() {
         return this.idUser;
@@ -31,7 +37,22 @@ public class User {
     public void setIdUser(Integer id) {
         this.idUser = id;
     }
+   
 
+    public Integer getUserType() {
+        return this.userType;
+    }
+    
+    public void setUserType(Integer type) {
+        this.userType = type;
+    }
+    public Career getCareer() {
+        return this.career;
+    }
+    
+    public void setCareer(Career career) {
+        this.career = career;
+    }    
     public String getCorreo() {
         return this.correo;
     }
@@ -53,11 +74,6 @@ public class User {
         this.section = section;
     }
 
-    public Career getCareer() {
-        return this.career;
-    }
-    public void setCareer(Career career) {
-        this.career = career;
-    }
+   
 
 }
