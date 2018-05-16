@@ -18,6 +18,47 @@
 
 
 }
+.menuItem1{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+.menuItem2{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+.menuItem3{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+.menuItem4{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+
+.dropdown-menu  > li > a {
+  color: #fff !important;
+}
+
 .image{
   height: 30px;
   width: 25px;

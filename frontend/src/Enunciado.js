@@ -37,7 +37,7 @@ class Enunciado extends Component {
             nameSolution:"",
             nameStatement: "",
             text:"",
-            code: defaults.python,
+            code: "",
 			readOnly: false,
 			mode: {name: "python",
             version: 2.7,
@@ -47,7 +47,7 @@ class Enunciado extends Component {
             matchBrackets: true,
             sections: [],
             values: [],
-            sectionName: "",
+            sectionName: {idSection: "", sectionName: ""},
             header: "",
 
         };
@@ -96,54 +96,76 @@ class Enunciado extends Component {
     subirFormulario(e) {
         console.log("formulario enviado c:");
 
-        this.statement = {section: "", nameStatement: "", text: "", testCases: [], code: ""}
-        this.statement.nameStatement = e.nameStatement;
-        this.statement.text =e.text;
-        this.statement.testCases = e.values;
-        this.statement.header = e.code;
-        console.log("texto en codemirror: "+ this.statement.header)
-        this.statement.section = e.sectionName;
+        var statement = {section: "", nameStatement: "", text: "", code: ""}
+        var testCases = [];
+        statement.nameStatement = e.nameStatement;
+        statement.text =e.text;
+        testCases = e.values;
+        statement.header = '\"'+e.code+'\"';
+        console.log("texto en codemirror: "+ statement.header)
+        statement.section = e.sectionName;
 
-        if(this.statement.nameStatement==="" || this.statement.text ==="" ||this.statement.section==="" || this.statement.header==="" ||this.statement.testCases===[]){
+        if(statement.nameStatement==="" || statement.text ==="" ||statement.section==="" || statement.header==="" ||testCases===[]){
             console.log("Debe llenar todos las casillas");
             return;
         }
         else{
             this.limpiarValores(1);
-            console.log("Usuario: "+ this.statement);
-            console.log("Datos: "+ this.statement.nameStatement);
-            console.log("Datos: "+ this.statement.text);
-            console.log("Datos: "+ this.statement.section);
-            console.log("Datos: "+ this.statement.header);
-            console.log("Datos: "+ this.statement.testCases);
-            this.statement.testCases.forEach(element => {
-                console.log("uguu" + element);
-            });
+            console.log("Usuario: "+ statement);
+            console.log("Datos: "+ statement.nameStatement);
+            console.log("Datos: "+ statement.text);
+            //console.log("Datos: "+ statement.section.idSection + "uwu" + statement.section.nameSection);
+            console.log("Datos: "+ statement.header);
+            console.log("Datos: "+ testCases);
+            //testCases.forEach(element => {
+            //    console.log("uguu" + element);
+            //});
             let axiosConfig = {
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
-                    'Content-Type': 'text/plain',
-                },
-                responseType: 'text'
+                }
+                
 
               };
-            //fetch('http://localhost:8081/api/statements/add/'+this.statement.nameStatement+'/'+this.statement.section+'/'+this.statement.text+'/'+"\""+this.statement.header+"\"")
-            //.then(response => console.log("Producto Agregado"+response)) 
-            axios.post('http://localhost:8081/api/statements/add/'+this.statement.nameStatement+'/'+this.statement.section+'/'+this.statement.text+'/'+this.statement.header, axiosConfig)
+            //fetch('http://localhost:8081/api/statements/add?statementName='+statement.nameStatement+'&statementText='+statement.text+'&section='+statement.section+'&header='+statement.header)
+           //.then(response => console.log("Producto Agregado"+response)) 
+            axios.post('http://localhost:8081/api/statements/add?statementName='+statement.nameStatement+'&statementText='+statement.text+'&section='+statement.section+'&header='+statement.header,axiosConfig)
             .then(function(response) {
             console.log(response);
             }) .catch(function (error) {
             console.log(error);
             });
+            /*axios({
+                method: 'post',
+                url: 'http://localhost:8081/api/statements/add',
+                data: {
+                    statementName: statement.statementName,
+                    text:statement.header,
+                    section: statement.section,
+                    header: statement.header,
+
+                },
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             });*/
+            //axios.post('http://localhost:8081/api/statements/add',axiosConfig)
+            //.then(function(response) {
+            //console.log(response);
+            //}) .catch(function (error) {
+            //console.log(error);
+            //});
             }
        
         return;
         }
     limpiarValores(i){
         
-            this.setState({sectionName: "", nameStatement: "", text: "", values: [], code: defaults.python});
+            this.setState({sectionName: "", nameStatement: "", text: "", values: [], code: ""});
             this.render();
     
     }
@@ -158,7 +180,7 @@ class Enunciado extends Component {
         }
         getInitialState () {
             return {
-                code: defaults.python,
+                code: "",
                 readOnly: false,
                 mode: {name: "python",
                version: 3,
