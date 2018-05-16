@@ -8,17 +8,22 @@ class ListarEnunciados extends React.Component {
         super(props);
 
         this.state = {
-            products: [],
+            statements: [],
+            section: "",
             isLoading: false
         };
         }
 
     componentDidMount() {
+        const usuarioActivo = this.props.activeUser;
+        if(usuarioActivo!=null){
+            fetch('http://localhost:8081/sections/search/{IdSection}'+ usuarioActivo.sectio.idSection)
+            .then(response => response.json())
+            .then(data => this.setState({section: data, isLoading: false}));
+        }
         this.setState({isLoading: true});
 
-        fetch('http://104.236.68.75:8080/backendGrupo5/api/all')
-            .then(response => response.json())
-            .then(data => this.setState({products: data, isLoading: false}));
+        
         }
 
     render() {
