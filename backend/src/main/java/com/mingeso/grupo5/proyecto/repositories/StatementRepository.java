@@ -8,6 +8,6 @@ import com.mingeso.grupo5.proyecto.entities.Statement;
 
 public interface StatementRepository extends CrudRepository<Statement, Integer> {
 
-    Statement findBySection(Section section);
+    Statement findBySection(Integer idSection);
 
 }

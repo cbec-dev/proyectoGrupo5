@@ -77,11 +77,11 @@ public class StatementController {
         statementRepository.deleteById(idStatement);
 		return "Enunciado eliminado";
 	}
-	@GetMapping(path="/search/by/section/{section}")
-	public @ResponseBody Statement findBySection(@PathVariable("section") Section section){
-		Statement statement = statementRepository.findBySection(section);
+	@GetMapping(path="/search/by/section/{idSection}")
+	public @ResponseBody String findBySection(@PathVariable("idSection") Integer idSection){
+		Statement estatement = statementRepository.findBySection(idSection);
 
-		return statement;
+		return "statement";
 
 	}
 	
