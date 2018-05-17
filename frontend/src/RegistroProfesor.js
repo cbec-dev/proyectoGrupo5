@@ -16,17 +16,11 @@ class RegistroProfesor extends Component {
             userName:"",
 
         };
-        }
+        this.limpiarValores = this.limpiarValores.bind(this);
+        this.subirFormulario = this.subirFormulario.bind(this);
 
-        createSelectItems() {
-            let sections = [];         
-            for (let i = 0; i <= this.state.sections.length; i++) {             
-                 sections.push(<option key={this.state.sections[i].idSection} value={this.state.sections[i].idSection}>{this.state.sections[i].sectionName}</option>);   
-                 //here I will be creating my options dynamically based on
-                 //what props are currently passed to the parent component
-            }
-            return sections;
-        }  
+
+        }
         subirFormulario(e) {
             console.log("formulario enviado c:");
             var user = {userName:"", section: "", email: "", userType: ""}
@@ -60,15 +54,17 @@ class RegistroProfesor extends Component {
                 fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
                 .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
                 .then(response => alert("Seccion actualizada"+response)))
-
-            
-                
+                fetch('http://localhost:8081/sections/allSection')
+                .then(response => response.json())
+                .then(data => this.setState({sections: data, isLoading: false}));
+                console.log("SECCIONES: ", this.state.sections);
                 //axios.post('http://localhost:8081/users/add', user)
                 //.then(res => {
                 //alert(res);
                // alert(res.data);
                // alert("USUARIO REGISTRADO C:")
-              
+               
+                this.limpiarValores(1);
                 }
            
             return;
