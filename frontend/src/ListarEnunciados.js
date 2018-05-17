@@ -50,6 +50,8 @@ class ListarEnunciados extends React.Component {
         const typeUser = this.props.typeUser;
         const activeUser = this.props.activeUser;
         const isLoading = this.state.isLoading;
+        console.log(sections)
+        console.log(section)
         if (isLoading) {
             return <p>Cargando...</p>;
         }
@@ -70,10 +72,10 @@ class ListarEnunciados extends React.Component {
                     </tr>
                             {sections.map((section) =>
                     <tr key={section.idSection}>
-                        <th>{section.nameSection}</th>
-                        <th>{section.profesor.nameUser}</th>
-                        <th> UWUWUWUUWUW</th>
-                        <th> <button href="/verEnunciado">Ver Enunciado</button></th>
+                        <th>{section.idSection}</th>
+                        <th>{section.sectionName}</th>
+                        <th>{section.profesor.userName}</th>
+                        <th> <button href="/verEnunciado">Ver Enunciados</button></th>
                     </tr> 
                             )}
                 </tbody>
