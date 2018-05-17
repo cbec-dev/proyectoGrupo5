@@ -1,6 +1,9 @@
 package com.mingeso.grupo5.proyecto.controllers;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import antlr.collections.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Iterator;
+
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.User;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
@@ -32,6 +38,7 @@ public class SectionController {
 		return findAll;
 	}
 	
+
 	@GetMapping(path="/addSection") 
 	public @ResponseBody String addNewSection (
             @RequestParam Integer idSection,
