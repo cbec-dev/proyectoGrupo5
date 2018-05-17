@@ -16,6 +16,7 @@ public class StatementTests {
     public void getIdStatement() {
         String name = "Tarea 1";
         String text = "Instrucciones";
+        String header = "header";
         Section section = new Section();
 
         Statement testStatement = new Statement();
@@ -23,8 +24,26 @@ public class StatementTests {
         testStatement.setStatementName(name);
         testStatement.setStatementText(text);
         testStatement.setSection(section);
+        testStatement.setHeader(header);
 
         Assert.assertNotNull(testStatement.getIdStatement());
+    }
+    
+    @Test
+    public void getHeader() {
+        String name = "Tarea 1";
+        String text = "Instrucciones";
+        String header = "header";
+        Section section = new Section();
+
+        Statement testStatement = new Statement();
+        testStatement.setIdStatement(1);
+        testStatement.setStatementName(name);
+        testStatement.setStatementText(text);
+        testStatement.setSection(section);
+        testStatement.setHeader(header);
+
+        Assert.assertNotNull(testStatement.getHeader());
     }
 
     @Test
@@ -114,6 +133,16 @@ public class StatementTests {
         testStatement.setSection(section);
 
         Assert.assertEquals(section, testStatement.getSection());
+    }
+    @Test
+    public void setHeader() {
+
+        String header = "header";
+
+        Statement testStatement = new Statement();
+        testStatement.setHeader(header);
+
+        Assert.assertEquals(header, testStatement.getHeader());
     }
     
 }
