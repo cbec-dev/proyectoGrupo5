@@ -51,6 +51,11 @@ public class SectionController {
 		Section retorno = sectionRepository.findById(IdSection).get();
 		return retorno;
 	}
+	@GetMapping(path="/search/{profesor}")
+	public @ResponseBody Section findOneByProfesor(@PathVariable("profesor") User profesor) {
+		Section retorno = sectionRepository.findByprofesor(profesor);
+		return retorno;
+	}
 
 		@RequestMapping(value = "/update/{profesor}/{section}", method = { RequestMethod.GET, RequestMethod.PUT})
 		@ResponseStatus(HttpStatus.CREATED)

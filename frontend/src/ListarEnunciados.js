@@ -10,16 +10,34 @@ class ListarEnunciados extends React.Component {
         this.state = {
             statements: [],
             section: "",
+            sections:[],
             isLoading: false
         };
         }
 
     componentDidMount() {
         const usuarioActivo = this.props.activeUser;
-        if(usuarioActivo!=null){
-            fetch('http://localhost:8081/sections/search/{IdSection}'+ usuarioActivo.sectio.idSection)
-            .then(response => response.json())
-            .then(data => this.setState({section: data, isLoading: false}));
+        if(usuarioActivo!==null &&this.props.typeUser!==null){
+            if(this.props.typeUser===1){
+                fetch('http://localhost:8081/sections/search/'+ usuarioActivo.section.idSection)
+                .then(response => response.json())
+                .then(data => this.setState({section: data, isLoading: false}));
+            }
+            else if(this.props.typeUser===2){
+                fetch('http://localhost:8081/sections/allSection')
+                .then(response => response.json())
+                .then(data => this.setState({sections: data, isLoading: false}));                
+
+            }
+            else{
+                fetch('http://localhost:8081/sections/search/'+usuarioActivo)
+                .then(response => response.json())
+                .then(data => this.setState({section: data, isLoading: false}));
+            }
+        }
+        else{
+            this.setState({section: null, sections: null, isLoading: false});
+            return;
         }
         this.setState({isLoading: true});
 
@@ -27,40 +45,44 @@ class ListarEnunciados extends React.Component {
         }
 
     render() {
-        const {products, isLoading} = this.state;
+        const section = this.state.section;
+        const sections = this.state.sections;
+        const typeUser = this.props.typeUser;
+        const activeUser = this.props.activeUser;
+        const isLoading = this.state.isLoading;
         if (isLoading) {
             return <p>Cargando...</p>;
         }
 
+        if(typeUser===2){
+            return (
+                <div>
+                            
+                <table id="t02">
+                <tbody>
+                    <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Profesor Encargado</th>
+                    <th>Accion</th>
+                    
+                
+                    </tr>
+                            {sections.map((section) =>
+                    <tr key={section.idSection}>
+                        <th>{section.nameSection}</th>
+                        <th>{section.profesor.nameUser}</th>
+                        <th> UWUWUWUUWUW</th>
+                        <th> <button href="/verEnunciado">Ver Enunciado</button></th>
+                    </tr> 
+                            )}
+                </tbody>
+                </table>
+            </div>
 
-        return (
-            <div>
-                          
-            <table id="t02">
-              <tbody>
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre</th>
-                  <th>PLACEHOLDER</th>
-                  <th>Accion</th>
-                  
-            
-                </tr>
-                        {products.map((product) =>
-                <tr key={product.id}>
-                    <th>{product.id}</th>
-                    <th>{product.codigo}</th>
-                    <th>{product.precio}</th>
-                    <th> UWUWUWUUWUW</th>
-                    <th> <button href="/verEnunciado:id">Ver Enunciado</button></th>
-                </tr> 
-                        )}
-              </tbody>
-            </table>
-        </div>
-
-            
-        );
+                
+            );
+        }
         }
 }
 
