@@ -31,28 +31,33 @@ public class SolutionControllerTest {
 	
 	@Test
     public void getAllSolution() {
+		controlador.addNewSolution(idStatement, solutionName, solutionText, idUser);
 		Assert.assertNotNull(controlador.getAllsolution()); 
 	}
 	@Test
     public void addNewSolution() {
 		
 		String resultadoEsperado = "Producto guardado.";
-		Assert.assertEquals(resultadoEsperado ,controlador.addNewSolution(idStatement, solutionName, solutionText, idUser));
+		String out = controlador.addNewSolution(idStatement, solutionName, solutionText, idUser);
+		Assert.assertEquals(resultadoEsperado ,out);
     }
 	@Test
     public void updateSolution() {
 
 		String resultadoEsperado = "Producto actualizado.";
-		Assert.assertEquals(resultadoEsperado ,controlador.updateSolution(1, idStatement, solutionName, solutionText, idUser));
+		String out = controlador.addNewSolution(idStatement, solutionName, solutionText, idUser);
+		Assert.assertEquals(resultadoEsperado ,out);
 		
     }
 	@Test
     public void findOneSolution() {
+		controlador.addNewSolution(idStatement, solutionName, solutionText, idUser);
 		Assert.assertNotNull(controlador.findOne(1));
     }
 	@Test
     public void deletesolution() {
 		String resultadoEsperado = "Producto eliminado";
+		controlador.addNewSolution(idStatement, solutionName, solutionText, idUser);
 		Assert.assertEquals(resultadoEsperado ,controlador.delete(1));
     }
 	
