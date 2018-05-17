@@ -1,9 +1,6 @@
 package com.mingeso.grupo5.proyecto.entities;
 
 import com.mingeso.grupo5.proyecto.entities.Career;
-import com.mingeso.grupo5.proyecto.entities.Section;
-import com.mingeso.grupo5.proyecto.entities.User;
-
 import org.junit.Test;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
@@ -44,7 +41,24 @@ public class CareerTests {
         Assert.assertNotNull(testCareer.getCareerName());
     }
 
-    
+    @Test
+    public void setIdCareer() {
+        Career testCareer = new Career();
+
+        testCareer.setIdCareer(2);
+        Assert.assertEquals(Integer.valueOf(2), testCareer.getIdCareer());
+
+    }
+
+    @Test
+    public void setCareerName() {
+        String career = "Ingenieria civil informatica";
+
+        Career testCareer = new Career();
+        testCareer.setCareerName(career);
+
+        Assert.assertEquals(career, testCareer.getCareerName());
+    }
     
 
 }
