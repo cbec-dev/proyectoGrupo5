@@ -22,7 +22,23 @@ import com.mingeso.grupo5.proyecto.controllers.CareerController;
 public class CareerControllerTests {
 
     @Test
+    public void getAllCareer() {
+    }
+    
+    @Test
+    public void addNewCareer() {
+    }
+
+    @Test
     public void updateCareer() {
+    }
+
+    @Test
+    public void findOne() {
+    }
+
+    @Test
+    public void delete() {
     }
 }
 
