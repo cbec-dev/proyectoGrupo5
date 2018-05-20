@@ -101,6 +101,18 @@ public class StatementController {
 		
 		
 	}
+	@GetMapping(path="/search/seccion/{section}")
+	public @ResponseBody Iterable<Statement> findOneBySection(@PathVariable("section") Section section) {
+		Iterable<Statement> statement = statementRepository.findBysection(section);
+		if (statement != null) {
+			return statement;
+		}
+		else {
+			return null;
+		}
+		
+		
+	}
 	
 	@RequestMapping(value = "/delete/{idStatement}")
     public @ResponseBody String delete(@PathVariable("idStatement") Integer idStatement) {

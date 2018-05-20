@@ -48,9 +48,9 @@ class RegistroProfesor extends Component {
                     }
                   };
                 alert("formulario enviado");
-                //fetch('http://localhost:8081/users/add?career='+user.career+'&email='+user.email+'&section='+user.section+'&userName='+user.userName+'&userType='+user.userType)
+                fetch('http://localhost:8081/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
                 //.then(response => alert("Usuario Agregado"+response))
-                fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
+                //fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
                 .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
                 .then(response => fetch('http://localhost:8081/sections/allSection')
                 .then(response => response.json())

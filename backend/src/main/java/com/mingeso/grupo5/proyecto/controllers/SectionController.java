@@ -58,9 +58,12 @@ public class SectionController {
 		Section retorno = sectionRepository.findById(IdSection).get();
 		return retorno;
 	}
-	@GetMapping(path="/search/{profesor}")
-	public @ResponseBody Section findOneByProfesor(@PathVariable("profesor") User profesor) {
-		Section retorno = sectionRepository.findByprofesor(profesor);
+	@GetMapping(path="/search/profesor/{idprofesor}")
+	public @ResponseBody Section findOneByProfesor(@PathVariable("idprofesor") Integer idprofesor) {
+		User profesor = new User();
+		profesor = userRepository.findById(idprofesor).get();
+		Section retorno = new Section();
+		retorno = sectionRepository.findByprofesor(profesor);
 		return retorno;
 	}
 
