@@ -104,7 +104,7 @@ public class StatementController {
 		
 	}
 	@GetMapping(path="/search/seccion/{section}")
-	public @ResponseBody Iterable<Statement> findOneBySection(@PathVariable("section") Section section) {
+	public @ResponseBody Iterable<Statement> findBySection(@PathVariable("section") Section section) {
 		Iterable<Statement> statement = statementRepository.findBysection(section);
 		if (statement != null) {
 			return statement;
@@ -122,13 +122,7 @@ public class StatementController {
         statementRepository.deleteById(idStatement);
 		return "Enunciado eliminado";
 	}
-	@GetMapping(path="/search/by/section/{idSection}")
-	public @ResponseBody String findBySection(@PathVariable("idSection") Integer idSection){
-		Statement estatement = statementRepository.findBySection(idSection);
 
-		return "statement";
-
-	}
 	
 	
 }
