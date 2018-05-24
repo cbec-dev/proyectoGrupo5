@@ -1,5 +1,9 @@
 
 insert into user (id_user, correo, user_name, user_type) VALUES ("1", "isaac.espinoza@usach.cl", "isaac espinoza","2");
+insert into user (id_user, correo, user_name, user_type) VALUES ("15", "cristobal.becerraf@usach.cl", "cristobal becerra","2");
+insert into user (id_user, correo, user_name, user_type) VALUES ("16", "luis.abello@usach.cl", "el macabeo","2");
+insert into user (id_user, correo, user_name, user_type) VALUES ("17", "victor.maripangui@usach.cl", "victor maripangui","2");
+insert into user (id_user, correo, user_name, user_type) VALUES ("18", "marcela.rivera.c@usach.cl", "marcela rivera","2");
 
 insert into user (id_user, correo, user_name, user_type) VALUES ("2", "algo@usach.cl", "profesor uwu","3");
 insert into user (id_user, correo, user_name, user_type) VALUES ("3", "algo2@usach.cl", "profesor2","3");
