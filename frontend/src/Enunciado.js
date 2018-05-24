@@ -47,7 +47,7 @@ class Enunciado extends Component {
             matchBrackets: true,
             sections: [],
             values: [],
-            sectionName: {idSection: "", sectionName: ""},
+            sectionName: "",
             header: "",
 
         };
@@ -81,8 +81,8 @@ class Enunciado extends Component {
         if(this.props.typeUser===2){
         fetch('http://localhost:8081/sections/allSection')
             .then(response => response.json())
-            .then(data => this.setState({sections: data, isLoading: false}));
-            this.setState({
+            .then(data => this.setState({sections: data, isLoading: false}))
+            .then(this.setState({
                 isLoading: false,
                 nameSolution:"",
                 text:"",
@@ -91,13 +91,14 @@ class Enunciado extends Component {
                 mode: {name: "python",
                    version: 3,
                    singleLineStringErrors: false},
+                
     
-            });
+            }));
         }
         else if(this.props.typeUser===3){
             fetch('http://localhost:8081/sections/search/profesor/'+this.props.activeUser.idUser)
             .then(response => response.json())
-            .then(data => this.setState({sections: data, isLoading: false}));
+            .then(data => this.setState({sections: data, isLoading: false, sectionName: data.idSection}));
         }
         else{
             return;
@@ -114,6 +115,7 @@ class Enunciado extends Component {
         statement.header = '\"'+e.code+'\"';
         console.log("texto en codemirror: "+ statement.header)
         statement.section = e.sectionName;
+        console.log("Datos seccion: " + statement.section)
 
         if(statement.nameStatement==="" || statement.text ==="" ||statement.section==="" || statement.header==="" ||testCases===[]){
             console.log("Debe llenar todos las casillas");
@@ -306,6 +308,7 @@ class Enunciado extends Component {
                 );
             }
             else if(typeUser ===3){
+
                 return (
                     <body className="body">
                         <form className="form1">
@@ -332,7 +335,7 @@ class Enunciado extends Component {
                         <div className="div6"> <label className="label3"> Seccion:  </label></div>
     
                         <div className="div6">
-                            <input name="sectionName" type= "number" value={this.state.sections.idSection} disabled = "true" hidden="true"/>      
+                            <input name="sectionName" type= "number" value={this.state.sections.idSection} disabled = "true" hidden="true" onChange = {this.handleInputChange}/>      
                        
                         </div>
                         <div className="div6">

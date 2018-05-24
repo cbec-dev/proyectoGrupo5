@@ -88,8 +88,11 @@ class MostrarEnunciado extends Component {
 
         render() {
             const statement = this.props.statement;
+            const header = this.props.statement.header.split("\"");
             console.log("statement mostrar enunciado: ");
             console.log(statement)
+            console.log("header")
+            console.log(header)
             var options = {
                 lineNumbers: true,
                 readOnly: true,
@@ -129,7 +132,7 @@ class MostrarEnunciado extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref="editor" value={statement.header} options={options} autoFocus={true} />
+				<CodeMirror className="codemirror" ref="editor" value={header[1]} options={options} autoFocus={true} />
 		
 			</div>
                   </form>
