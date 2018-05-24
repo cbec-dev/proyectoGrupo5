@@ -40,13 +40,11 @@ class Solucion extends Component {
             lineNumbers: true,
             indentUnit: 4,
             matchBrackets: true,
-            codigo: "print '44'",
             salida: ""
 
         };
     }
     ejecutarSolucion(e) {
-        console.log("formulario enviado c:");
         this.solution = {nameSolution: "", code: ""}
         this.solution.nameSolution = e.nameSolution;
         this.solution.code = e.code;
@@ -55,6 +53,13 @@ class Solucion extends Component {
             alert("Debe llenar todas las casillas");
             return;
         }
+        else{
+            fetch('http://localhost:8081/api/compiler/runCode?code='+this.solution.code)
+            .then(response => response.json())
+            .then(data => this.setState({salida: data.stdout}));
+        }
+
+        
     }
 
     
@@ -136,9 +141,7 @@ class Solucion extends Component {
                    singleLineStringErrors: false},
     
             });
-            fetch('http://localhost:8081/api/compiler/runCode?code='+this.state.codigo)
-                    .then(response => response.json())
-                    .then(data => this.setState({salida: data.stdout}));
+            
             }
 
         
