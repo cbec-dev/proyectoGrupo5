@@ -82,16 +82,19 @@ public class UserController {
 			resource.setUserName(userName);
 			return userRepository.save(resource);
 		}
-		@RequestMapping(value = "/add/{userName}/{userType}/{email}", method = { RequestMethod.GET, RequestMethod.POST })
-		@ResponseStatus(HttpStatus.CREATED)
-		@ResponseBody
-		public User addProfesor(@PathVariable("userName") String userName, @PathVariable("email") String email, @PathVariable("userType") Integer userType) {
+		@GetMapping(path="/add/profesor") 
+	public @ResponseBody String addProfesor (
+            
+            @RequestParam String correo,
+			@RequestParam String userName,
+			@RequestParam Integer userType) {
 
 			User resource = new User();
-			resource.setCorreo(email);
+			resource.setCorreo(correo);
 			resource.setUserType(userType);
 			resource.setUserName(userName);
-			return userRepository.save(resource);
+			userRepository.save(resource);
+			return "profesor registrado";
 		}
 
 	@RequestMapping(method = RequestMethod.POST)

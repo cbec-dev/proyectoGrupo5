@@ -16,17 +16,11 @@ class RegistroProfesor extends Component {
             userName:"",
 
         };
-        }
+        this.limpiarValores = this.limpiarValores.bind(this);
+        this.subirFormulario = this.subirFormulario.bind(this);
 
-        createSelectItems() {
-            let sections = [];         
-            for (let i = 0; i <= this.state.sections.length; i++) {             
-                 sections.push(<option key={this.state.sections[i].idSection} value={this.state.sections[i].idSection}>{this.state.sections[i].sectionName}</option>);   
-                 //here I will be creating my options dynamically based on
-                 //what props are currently passed to the parent component
-            }
-            return sections;
-        }  
+
+        }
         subirFormulario(e) {
             console.log("formulario enviado c:");
             var user = {userName:"", section: "", email: "", userType: ""}
@@ -34,7 +28,6 @@ class RegistroProfesor extends Component {
             user.section = e.sectionName;
             user.userName = e.userName;
             user.email = e.email+ "@usach.cl";
-    
             if(user.section ==="" ||user.email ===""||user.userName===""){
                 alert("Debe llenar todos las casillas");
                 return;
@@ -55,20 +48,20 @@ class RegistroProfesor extends Component {
                     }
                   };
                 alert("formulario enviado");
-                //fetch('http://localhost:8081/users/add?career='+user.career+'&email='+user.email+'&section='+user.section+'&userName='+user.userName+'&userType='+user.userType)
+                fetch('http://localhost:8081/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
                 //.then(response => alert("Usuario Agregado"+response))
-                fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
+                //fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
                 .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
-                .then(response => alert("Seccion actualizada"+response)))
-
-            
-                
+                .then(response => fetch('http://localhost:8081/sections/allSection')
+                .then(response => response.json())
+                .then(data => this.setState({sections: data, isLoading: true}))))
+                console.log("SECCIONES OWO: ", this.state.sections);
                 //axios.post('http://localhost:8081/users/add', user)
                 //.then(res => {
                 //alert(res);
                // alert(res.data);
                // alert("USUARIO REGISTRADO C:")
-              
+                this.limpiarValores(1);
                 }
            
             return;
@@ -76,7 +69,6 @@ class RegistroProfesor extends Component {
     limpiarValores(i){
         if(i===1){
             this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", userName:""});
-            this.render();
         }
     }
     handleInputChange(event) {
@@ -89,15 +81,18 @@ class RegistroProfesor extends Component {
         console.log(name, value, target);
         }
         componentDidMount(){
-                fetch('http://localhost:8081/sections/allSection')
-                .then(response => response.json())
-                .then(data => this.setState({sections: data, isLoading: false}));
-                console.log("SECCIONES: ", this.state.sections);
-        }
+            
+            fetch('http://localhost:8081/sections/allSection')
+            .then(response => response.json())
+            .then(data => this.setState({sections: data, isLoading: true}))          
+            }
 
     
         render() {
-            const sections = this.state.sections;
+            const sections =  this.state.sections.filter(function(seccion) {
+              return seccion.profesor === null
+                })
+            console.log(sections)
             const typeUser = this.props.typeUser;
             if(typeUser===2){
                 return (
@@ -125,13 +120,10 @@ class RegistroProfesor extends Component {
                         <option > </option>
                         {sections.map((section =>
                         {
-                            if(section.profesor===null){
+                            
                                 return <option key={section.idSection} value={section.idSection}>{section.sectionName}</option>
 
-                            }
-                            else{
-                                <option > </option>
-                            }
+                        
                         }
                         ))}
                            

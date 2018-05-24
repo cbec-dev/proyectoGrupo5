@@ -50,10 +50,21 @@ class App extends Component {
 
     }
     myCallbackLogin = (dataFromLogin1, dataFromLogin2, dataFromLogin3) => {
-      this.setState({ userLogged: dataFromLogin1, firebaseUser:dataFromLogin2, user: dataFromLogin3});
+      if(dataFromLogin3===undefined){
+        console.log("CALLBACK LOGIN");
+        console.log("USUARIO NO REGISTRADO")
+        this.setState({ userLogged: false, firebaseUser:dataFromLogin2, user: dataFromLogin3});
+        localStorage.setItem('state', JSON.stringify(this.state));
+        console.log(dataFromLogin2.displayName);
+        localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
+      }
+      else{
+        this.setState({ userLogged: dataFromLogin1, firebaseUser:dataFromLogin2, user: dataFromLogin3});
       localStorage.setItem('state', JSON.stringify(this.state));
       console.log(dataFromLogin2.displayName);
       localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
+      }
+      
       console.log("CALLBACK FROM LOGIN IN APP :C");
       
     };
@@ -78,7 +89,7 @@ class App extends Component {
 
     
   render() {
-    if(this.state.firebaseUser!==null && this.state.user!==null){
+    if(this.state.firebaseUser!==null && this.state.user!==null && this.state.userLogged===true){
       const userLogged = this.state.userLogged;
       const firebaseUser = this.state.firebaseUser;
       const user = this.state.user;

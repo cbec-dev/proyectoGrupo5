@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Section{
     @Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idSection;
     @NotNull
     private String sectionName;

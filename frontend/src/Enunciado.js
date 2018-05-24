@@ -33,7 +33,7 @@ class Enunciado extends Component {
 
 
         this.state = {
-            isLoading: false,
+            isLoading: true,
             nameSolution:"",
             nameStatement: "",
             text:"",
@@ -47,7 +47,7 @@ class Enunciado extends Component {
             matchBrackets: true,
             sections: [],
             values: [],
-            sectionName: {idSection: "", sectionName: ""},
+            sectionName: "",
             header: "",
 
         };
@@ -78,10 +78,11 @@ class Enunciado extends Component {
         this.setState({ values });
      }
     componentDidMount(){
+        if(this.props.typeUser===2){
         fetch('http://localhost:8081/sections/allSection')
             .then(response => response.json())
-            .then(data => this.setState({sections: data, isLoading: false}));
-            this.setState({
+            .then(data => this.setState({sections: data, isLoading: false}))
+            .then(this.setState({
                 isLoading: false,
                 nameSolution:"",
                 text:"",
@@ -90,8 +91,18 @@ class Enunciado extends Component {
                 mode: {name: "python",
                    version: 3,
                    singleLineStringErrors: false},
+                
     
-            });
+            }));
+        }
+        else if(this.props.typeUser===3){
+            fetch('http://localhost:8081/sections/search/profesor/'+this.props.activeUser.idUser)
+            .then(response => response.json())
+            .then(data => this.setState({sections: data, isLoading: false, sectionName: data.idSection}));
+        }
+        else{
+            return;
+        }
         }
     subirFormulario(e) {
         console.log("formulario enviado c:");
@@ -104,19 +115,27 @@ class Enunciado extends Component {
         statement.header = '\"'+e.code+'\"';
         console.log("texto en codemirror: "+ statement.header)
         statement.section = e.sectionName;
+        console.log("Datos seccion: " + statement.section)
 
         if(statement.nameStatement==="" || statement.text ==="" ||statement.section==="" || statement.header==="" ||testCases===[]){
             console.log("Debe llenar todos las casillas");
             return;
         }
         else{
+            if(this.props.typeUser===2){
             this.limpiarValores(1);
+            }
+            else{
+            this.limpiarValores(2);
+
+            }
             console.log("Usuario: "+ statement);
             console.log("Datos: "+ statement.nameStatement);
             console.log("Datos: "+ statement.text);
             //console.log("Datos: "+ statement.section.idSection + "uwu" + statement.section.nameSection);
             console.log("Datos: "+ statement.header);
             console.log("Datos: "+ testCases);
+            console.log("Datos seccion: " + statement.section)
             //testCases.forEach(element => {
             //    console.log("uguu" + element);
             //});
@@ -165,8 +184,14 @@ class Enunciado extends Component {
         }
     limpiarValores(i){
         
+        if(i===1){
             this.setState({sectionName: "", nameStatement: "", text: "", values: [], code: ""});
             this.render();
+        }
+        else{
+            this.setState({nameStatement: "", text: "", values: [], code: ""});
+
+        }
     
     }
     handleInputChange(event) {
@@ -208,12 +233,21 @@ class Enunciado extends Component {
 
 
         render() {
+            const typeUser = this.props.typeUser;
+            const activeUser = this.props.activeUser;
+            const isLoading = this.state.isLoading;
             var options = {
                 lineNumbers: true,
                 readOnly: this.state.readOnly,
                 mode: this.state.mode
             };
-                const sections = this.state.sections;
+            const sections = this.state.sections;
+            console.log("secciones enunciado: ")
+            console.log(sections)
+            if(isLoading){
+                return <p> Cargando...</p>;
+            }
+            if(typeUser==2){
                 return (
                 <body className="body">
                     <form className="form1">
@@ -250,7 +284,7 @@ class Enunciado extends Component {
                     </div>
 
                     <div className="div2">
-                    <label className="labels"> Solucion:  </label>
+                    <label className="labels"> Cabecera Propuesta:  </label>
                     </div>
                    
                     <div className="div3">
@@ -272,6 +306,71 @@ class Enunciado extends Component {
                 </body>
                     
                 );
+            }
+            else if(typeUser ===3){
+
+                return (
+                    <body className="body">
+                        <form className="form1">
+                        <div className="div1">
+                        <label className="label1"> Nombre Enunciado:  </label>
+                        </div>
+                        <div className="div1">
+                            <input className="input" name= "nameStatement" type = "text" value={this.state.nameStatement}
+                            onChange = {this.handleInputChange} />
+                        </div>
+                        <div className="div1">
+                        <label className="label2"> Enunciado:  </label>
+                        </div>
+    
+                        {this.createUI()}        
+              <input type='button' value='Agregar Caso de Prueba' onClick={this.addClick.bind(this)}/>
+                        
+                        
+                        <div className="div2">
+                            
+                            <textarea className="text" name= "text" type = "text" value={this.state.text} 
+                            onChange = {this.handleInputChange} />
+                        </div>
+                        <div className="div6"> <label className="label3"> Seccion:  </label></div>
+    
+                        <div className="div6">
+                            <input name="sectionName" type= "number" value={this.state.sections.idSection} disabled = "true" hidden="true" onChange = {this.handleInputChange}/>      
+                       
+                        </div>
+                        <div className="div6">
+                        <input name= "placeholder" value={this.state.sections.sectionName} disabled = "true" />
+                        </div>
+                        <div className="div2">
+                        <label className="labels"> Cabecera Propuesta:  </label>
+                        </div>
+                       
+                        <div className="div3">
+                    <CodeMirror className="codemirror" ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
+                    <div style={{ marginTop: 10 }} className="div4">
+                        <select onChange={this.changeMode} value={this.state.mode}>
+                            <option value="python">Python</option>
+                            <option value="C">C</option>
+                            <option value="java">Java</option>
+                        </select>
+                    </div>
+                </div>
+    
+                        <div className="div3">
+                          <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</button>
+                          <button type="button" onClick={(e) => this.limpiarValores(2)}>Limpiar Casillas</button>
+                        </div>
+                      </form>
+                    </body>
+                        
+                    );
+            }
+            else{
+                alert("No posee permisos para acceder a esta vista")
+                return(
+                    <div> {this.props.history.push("/")} </div>
+                );
+            }
             }
           }
     
