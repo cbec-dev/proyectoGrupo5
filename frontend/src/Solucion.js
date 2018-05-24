@@ -32,7 +32,6 @@ class Solucion extends Component {
         this.state = {
             isLoading: false,
             nameSolution:"",
-            text:"",
             code: defaults.python,
 			readOnly: false,
 			mode: {name: "python",
@@ -40,30 +39,32 @@ class Solucion extends Component {
             singleLineStringErrors: false},
             lineNumbers: true,
             indentUnit: 4,
-            matchBrackets: true
+            matchBrackets: true,
+            codigo: "print '44'",
+            salida: ""
 
         };
     }
     ejecutarSolucion(e) {
         console.log("formulario enviado c:");
-        this.solution = {nameSolution: "", text: "", code: ""}
+        this.solution = {nameSolution: "", code: ""}
         this.solution.nameSolution = e.nameSolution;
-        this.solution.text = e.text;
         this.solution.code = e.code;
         console.log(this.solution.code);
-        if(this.solution.nameSolution==="" || this.solution.text ===""){
+        if(this.solution.nameSolution==="" || this.solution.code ===""){
             alert("Debe llenar todas las casillas");
             return;
         }
     }
+
+    
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.solution = {nameSolution: "", text: "", code: ""}
+        this.solution = {nameSolution: "", code: ""}
         this.solution.nameSolution = e.nameSolution;
-        this.solution.text = e.text;
         this.solution.code = e.code;
         console.log(this.solution.code);
-        if(this.solution.nameSolution==="" || this.solution.text ===""){
+        if(this.solution.nameSolution==="" || this.solution.code===""){
             alert("Debe llenar todas las casillas");
             return;
         }
@@ -72,11 +73,11 @@ class Solucion extends Component {
             this.limpiarValores(1);
             console.log("Usuario: "+ this.solution);
             console.log("Datos: "+ this.solution.nameSolution);
-            console.log("Datos: "+ this.solution.text);
+            console.log("Datos: "+ this.solution.code);
             
-            fetch('http://104.236.68.75:8080/backendGrupo5/api/add?codigo='+this.user.codigo+'&nombre='+this.user.nombre+'&fecha='+this.user.fecha+'&categoria='+this.user.categoria+'&precio='+this.user.precio)
-            .then(response => console.log("Producto Agregado"+response)) 
-            alert('Su solucion fue enviada: ' + this.state.text);
+            fetch('http://localhost:8081/api/add?code='+this.solution.code+'&nombre='+this.solution.nameSolution)
+            .then(response => console.log("Solucion Agregado"+response)) 
+            alert('Su solucion fue enviada: ');
     
         }
        
@@ -128,7 +129,6 @@ class Solucion extends Component {
             this.setState({
                 isLoading: false,
                 nameSolution:"",
-                text:"",
                 code: defaults.python,
                 readOnly: false,
                 mode: {name: "python",
@@ -136,7 +136,12 @@ class Solucion extends Component {
                    singleLineStringErrors: false},
     
             });
+            fetch('http://localhost:8081/api/compiler/runCode?code='+this.state.codigo)
+                    .then(response => response.json())
+                    .then(data => this.setState({salida: data.stdout}));
             }
+
+        
 
         render() {
             var options = {
@@ -175,6 +180,12 @@ class Solucion extends Component {
 
                     </div>
                   </form>
+
+                  <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                {this.state.salida}
+                </pre>
+            </div>
             </body>
                     
                 );
