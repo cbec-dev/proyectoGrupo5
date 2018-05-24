@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
@@ -119,6 +121,13 @@ public class StatementController {
 		
         statementRepository.deleteById(idStatement);
 		return "Enunciado eliminado";
+	}
+	@GetMapping(path="/search/by/section/{idSection}")
+	public @ResponseBody String findBySection(@PathVariable("idSection") Integer idSection){
+		Statement estatement = statementRepository.findBySection(idSection);
+
+		return "statement";
+
 	}
 	
 	
