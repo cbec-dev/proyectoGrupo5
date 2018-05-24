@@ -29,11 +29,11 @@ class ListarEnunciados extends React.Component {
     componentDidMount() {
         const usuarioActivo = this.props.activeUser;
         if(usuarioActivo!==null &&this.props.typeUser!==null){
-            if(this.props.typeUser===1){
+            if(this.props.typeUser===1&&this.props.activeUser.section!==null){
                 //alumno
                 fetch('http://localhost:8081/sections/search/'+ this.props.activeUser.section.idSection)
                 .then(response => response.json())
-                .then(data => this.setState({section: data, isLoading: false}));
+                .then(data => this.setState({sections: data, isLoading: false}));
             }
             else if(this.props.typeUser===2){
                 //coordinador
@@ -42,11 +42,18 @@ class ListarEnunciados extends React.Component {
                 .then(data => this.setState({sections: data, isLoading: false}));                
 
             }
-            else{
+            else if(this.props.typeUser===3){
                 //profesor
                 fetch('http://localhost:8081/sections/search/profesor/'+this.props.activeUser.idUser)
-                .then(response => response.json())
-                .then(data => this.setState({sections: data, isLoading: false}));
+                .then(response =>  response.json())
+                .then(data => this.setState({sections: data, isLoading: false}))
+                .catch(err => {
+                    console.log("fetch error" + err);
+                    this.setState({sections:null, isLoading: false})
+                });
+            }
+            else{
+                this.setState({section: null, sections: null, isLoading: false});
             }
         }
         else{
@@ -69,7 +76,7 @@ class ListarEnunciados extends React.Component {
             return <p>Cargando...</p>;
         }
 
-        if(typeUser===2){
+        if(typeUser===2 && sections!==null){
             return (
                 <div>
                             
@@ -110,7 +117,7 @@ class ListarEnunciados extends React.Component {
                 
             );
         }
-        else if(typeUser===3){
+        else if(typeUser===3&&sections!==null){
             return (
                 <div>
                             
@@ -148,6 +155,49 @@ class ListarEnunciados extends React.Component {
             
                 
             );
+        }
+        else if(typeUser===1&&sections!==null){
+            return (
+                <div>
+                            
+                <table id="t02">
+                <tbody>
+                    <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Profesor Encargado</th>
+                    <th>Accion</th>
+                    
+                
+                    </tr>
+                            
+                                   <tr key={sections.idSection}>
+                                        <th>{sections.idSection}</th>
+                                        <th>{sections.sectionName}</th>
+                                        <th>{sections.profesor.userName}</th>
+                                        <th> <button onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</button></th>
+                                    </tr> 
+                                
+                            
+                              
+                </tbody>
+                </table>
+                <div>
+                    <label> the worst </label>
+                    {this.state.isSelected ?
+                    <Enunciado statements = {this.state.statements} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    null
+                     }
+                </div>
+                    
+            </div>
+            
+                
+            );
+
+        }
+        else{
+            return <p> No hay secciones que mostrar para este usuario </p>
         }
         }
 }

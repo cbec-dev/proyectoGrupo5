@@ -90,6 +90,23 @@ public class SectionController {
 			s.setProfesor(p);
 			return sectionRepository.save(s);
 		}
+		@RequestMapping(value = "/updateProfesor/{section}", method = { RequestMethod.GET, RequestMethod.PUT})
+		@ResponseStatus(HttpStatus.CREATED)
+		@ResponseBody
+		public Section deleteProfesor(@PathVariable("section") Integer section) {
+			Section s = new Section();
+			s = sectionRepository.findById(section).orElse(null);
+
+			if(s == null) {
+				
+				return null;
+				
+			}
+			System.out.println("Datos: " + s);
+			s.setIdSection(section);
+			s.setProfesor(null);
+			return sectionRepository.save(s);
+		}
 
 	
 	

@@ -40,30 +40,10 @@ export default class Home extends React.Component {
         if(this.state.firebaseUser!=null){
             console.log("User:", this.state.firebaseUser.displayName);
         }
-        this.handleLogout = this.handleLogout.bind(this);
-
-    }
-
-    handleLogout() {
-        logout().then(function () {
-            localStorage.removeItem(appTokenKey);
-            localStorage.removeItem("user");
-            localStorage.removeItem("activeUserObject");
-            this.setState({userLogged: false, firebaseUser: ""});
-            this.props.history.push("/Login2");
-            console.log("user signed out from firebase");
-            localStorage.clear();
-            window.localStorage.clear(); 
-
-        }.bind(this));
-        this.props.callbackFromParentHome(this.state.userLogged);
     }
     componentDidMount(){
-        if(this.state.firebaseUser!==null){
+        /*if(this.state.firebaseUser!==null){
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
-        }
-        else{
-           return this.props.history.push("/Login2")
         }
         let axiosConfig = {
             headers: {
@@ -82,51 +62,17 @@ export default class Home extends React.Component {
             console.log(error);
             this.setState({bool: false})
           });
+          */
 
 
     }
     
 
     render() {
-        console.log("USUARIO LOGUEADO");
-        console.log(JSON.parse(localStorage.getItem("user")));
-        console.log("USUARIO LOGUEADO");
-        const userEmail = this.state.state.correo;
-        const bool = this.state.bool;
-        if(bool===true){
-            return (
-                <body className="body">
-                    <div className = "div1">
-                        <h1 className = "h">Home</h1>
-                        <div className = "div2">
-                        </div>
-                        
-                        <h3 className = "h">Bienvenido {this.state.name}</h3>
-                
-                        <div className = "div3">
-                            <RaisedButton className = "button"
-                                backgroundColor="#a4c639"
-                                labelColor="#ffffff"
-                                label="Sign Out"
-                                onTouchTap={this.handleLogout}
-                            />
-                        </div>
-                    </div>
-                </body>
-            );
-        }
-        else if(bool===false){
-            alert("No se encuentra registrado, sera regresado al login");
+        return(
 
-            return(
-                <div> {this.handleLogout()} </div>
-            );
-        }
-        else{
-            return(
-                <p> loading... </p>
-                );
-        }
+            <p> Uwu </p>
+        );
        
     }
 }
