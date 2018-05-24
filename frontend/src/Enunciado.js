@@ -86,7 +86,7 @@ class Enunciado extends Component {
                 isLoading: false,
                 nameSolution:"",
                 text:"",
-                code: defaults.python,
+                code: "",
                 readOnly: false,
                 mode: {name: "python",
                    version: 3,

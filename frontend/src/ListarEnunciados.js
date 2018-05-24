@@ -105,7 +105,6 @@ class ListarEnunciados extends React.Component {
                 </tbody>
                 </table>
                 <div>
-                    <label> the worst </label>
                     {this.state.isSelected ?
                     <Enunciado statements = {this.state.statements} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
                     null
@@ -144,7 +143,6 @@ class ListarEnunciados extends React.Component {
                 </tbody>
                 </table>
                 <div>
-                    <label> the worst </label>
                     {this.state.isSelected ?
                     <Enunciado statements = {this.state.statements} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
                     null

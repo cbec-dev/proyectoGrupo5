@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import * as React from 'react';
 import './css/verEnunciado.css';
 import MostrarEnunciado from './MostrarEnunciado';
+import Solucion from './Solucion';
 class verEnunciado extends React.Component {
 
     constructor(props) {
@@ -14,12 +15,18 @@ class verEnunciado extends React.Component {
             sections:[],
             isLoading: false,
             isSelected: false,
+            isSelectedSolution:false,
+            idStatement: ""
         };
         this.mostrarEnunciados = this.mostrarEnunciados.bind(this)
+        this.solucionEnunciado = this.solucionEnunciado.bind(this)
         }
     mostrarEnunciados(e){
-        this.setState({isSelected: true, statement: e})
+        this.setState({isSelected: true, statement: e, isSelectedSolution: false, idStatement: ""})
 
+    }
+    solucionEnunciado(e){
+        this.setState({isSelectedSolution: true, idStatement: e, isSelected: false, statement: ""})
     }
 
     render() {
@@ -37,6 +44,7 @@ class verEnunciado extends React.Component {
                     <th>Nombre</th>
                     <th>Seccion</th>
                     <th>Accion</th>
+                    <th> Accion </th>
                     
                 
                     </tr>
@@ -48,6 +56,8 @@ class verEnunciado extends React.Component {
                                         <th>{statement.statementName}</th>
                                         <th>{statement.section.idSection}</th>
                                         <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
+                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+
                                     </tr> 
                                 
                             
@@ -57,6 +67,12 @@ class verEnunciado extends React.Component {
                 <div>
                     {this.state.isSelected ?
                     <MostrarEnunciado  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    null
+                    }
+                    </div>
+                <div>
+                    {this.state.isSelectedSolution ?
+                    <Solucion idStatement = {this.state.idStatement} idUser = {this.props.activeUser.idUser}/>:
                     null
                     }
                     </div>
