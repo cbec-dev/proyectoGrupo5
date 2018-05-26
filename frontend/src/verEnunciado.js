@@ -55,7 +55,7 @@ class verEnunciado extends React.Component {
                                    <tr key={statement.idStatement}>
                                         <th>{statement.idStatement}</th>
                                         <th>{statement.statementName}</th>
-                                        <th>{statement.section.idSection}</th>
+                                        <th>{statement.section.sectionName}</th>
                                         <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
                                         <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
 

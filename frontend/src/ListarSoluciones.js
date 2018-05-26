@@ -33,19 +33,21 @@ class ListarSoluciones extends React.Component {
     }
     componentDidMount(){
         if(this.props.activeUser!==null){
+            console.log("didMount listar soluciones")
             if(this.props.activeUser.typeUser===1){
 
             }
-            else if(this.props.activeUser.typeUser===2){
-                fetch('http://localhost:8081/users/all')
+            else if(this.props.activeUser.userType===2){
+                console.log("didMount listar soluciones usuario coordinador c:");
+                fetch('http://localhost:8081/users/searchtype/'+"1")
                 .then(response => response.json())
-                .then(data => this.setState({users: data, isSelected: true}))
+                .then(data => this.setState({users: data}))
                 .then(fetch('http://localhost:8081/sections/allSection')
                 .then(response => response.json())
-                .then(data => this.setState({sections: data, isSelected: true})))
+                .then(data => this.setState({sections: data})))
                 .then(fetch('http://localhost:8081/api/statements/all')
                 .then(response => response.json())
-                .then(data => this.setState({statements: data, isSelected: true})))
+                .then(data => this.setState({statements: data})))
             }
             else if(this.props.activeUser.typeUser===3){
 
@@ -59,11 +61,13 @@ class ListarSoluciones extends React.Component {
         const statements = this.state.statements;
         console.log("VER Soluciones: ")
         console.log(statements)
+        console.log(sections)
+        console.log(users)
         if(this.props.typeUser===2){
             return (
                 <body>
                 <div>
-                <Label> Usuarios </Label>
+                <label> Usuarios </label>
                 <table id="t03">
                 <tbody>
                     <tr>
@@ -81,9 +85,9 @@ class ListarSoluciones extends React.Component {
                                    <tr key={user.idUser}>
                                         <th>{user.idStatement}</th>
                                         <th>{user.userName}</th>
-                                        <th>{user.section.idSection}</th>
-                                        <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+                                        <th>{user.section.sectionName}</th>
+                                        <th> <button onClick={(e) => this.mostrarEnunciados()}>Ver Enunciado</button></th>
+                                        <th> <button onClick={(e) => this.solucionEnunciado()}>Subir Solucion</button></th>
 
                                     </tr> 
                                 
@@ -100,27 +104,27 @@ class ListarSoluciones extends React.Component {
             </div>
             
             <div>
-                <Label> Secciones </Label>
+                <label> Secciones </label>
                 <table id="t03">
                 <tbody>
                     <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Seccion</th>
+                    <th>Profesor</th>
                     <th>Accion</th>
                     <th> Accion </th>
                     
                 
                     </tr>
-                            {statements.map((statement) =>
+                            {sections.map((section) =>
                             
                                 
-                                   <tr key={statement.idStatement}>
-                                        <th>{statement.idStatement}</th>
-                                        <th>{statement.statementName}</th>
-                                        <th>{statement.section.idSection}</th>
-                                        <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+                                   <tr key={section.idSection}>
+                                        <th>{section.idSection}</th>
+                                        <th>{section.sectionName}</th>
+                                        <th>{section.profesor.userName}</th>
+                                        <th> <button onClick={(e) => this.mostrarEnunciados()}>Ver Enunciado</button></th>
+                                        <th> <button onClick={(e) => this.solucionEnunciado()}>Subir Solucion</button></th>
 
                                     </tr> 
                                 
@@ -137,7 +141,7 @@ class ListarSoluciones extends React.Component {
             </div>
 
 <div>
-<Label> Enunciados </Label>
+<label> Enunciados </label>
 <table id="t03">
 <tbody>
     <tr>
