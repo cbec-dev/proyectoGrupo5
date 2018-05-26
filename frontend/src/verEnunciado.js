@@ -34,6 +34,7 @@ class verEnunciado extends React.Component {
         const isLoading = this.state.isLoading;
         console.log("VER ENUNCIADO: ")
         console.log(statements)
+        if(this.props.typeUser===1){
             return (
                 <div>
                             
@@ -72,7 +73,7 @@ class verEnunciado extends React.Component {
                     </div>
                 <div>
                     {this.state.isSelectedSolution ?
-                    <Solucion idStatement = {this.state.idStatement} idUser = {this.props.activeUser.idUser}/>:
+                    <Solucion idStatement = {this.state.idStatement} idUser = {this.props.activeUser.idUser} activeUser = {this.props.activeUser}/>:
                     null
                     }
                     </div>
@@ -81,7 +82,56 @@ class verEnunciado extends React.Component {
                 
             );
         
-        
+        }
+        else{
+            return (
+                <div>
+                            
+                <table id="t03">
+                <tbody>
+                    <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Seccion</th>
+                    <th>Accion</th>
+                    <th> Accion </th>
+                    
+                
+                    </tr>
+                            {statements.map((statement) =>
+                            
+                                
+                                   <tr key={statement.idStatement}>
+                                        <th>{statement.idStatement}</th>
+                                        <th>{statement.statementName}</th>
+                                        <th>{statement.section.idSection}</th>
+                                        <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
+                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+
+                                    </tr> 
+                                
+                            
+                              )}
+                </tbody>
+                </table>
+                <div>
+                    {this.state.isSelected ?
+                    <MostrarEnunciado  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    null
+                    }
+                    </div>
+                <div>
+                    {this.state.isSelectedSolution ?
+                    <Solucion idStatement = {this.state.idStatement} idUser = {this.props.activeUser.idUser} activeUser = {this.props.activeUser}/>:
+                    null
+                    }
+                    </div>
+            </div>
+            
+                
+            );
+
+        }
         }
 }
 

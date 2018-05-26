@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/Solucion.css';
 import Registro from './Registro';
+import qs from 'qs';
+import axios from 'axios';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
@@ -59,26 +61,44 @@ class Solucion extends Component {
     }
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.solution = {nameSolution: "", text: "", code: ""}
-        this.solution.nameSolution = e.nameSolution;
+        this.solution = {solutionName: "", solutionText: "", idUser: "", idStatement: ""}
+        this.solution.solutionName = e.nameSolution;
         //this.solution.text = e.text;
-        this.solution.code = e.code;
-        console.log(this.solution.code);
-        if(this.solution.nameSolution==="" || this.solution.code ===""){
+        this.solution.solutionText = e.code;
+        this.solution.idUser = this.props.idUser;
+        this.solution.idStatement = this.props.idStatement; 
+        //console.log(this.solution.code);
+        if(this.solution.solutionName==="" || this.solution.solutionText ===""){
             alert("Debe llenar todas las casillas");
             return;
         }
     
         else{
             this.limpiarValores(1);
-            console.log("Usuario: "+ this.solution);
-            console.log("Datos: "+ this.solution.nameSolution);
-            console.log("Datos: "+ this.solution.text);
-            
-            fetch('http://localhost:8081/solutions/add?solutionText='+this.solution.code+'&solutionName='+this.solution.nameSolution+'&idStatement='+ this.props.idStatement+ "&idUser="+this.props.idUser)
-            .then(response => console.log("Solucion Agregado"+response)) 
-            alert('Su solucion fue enviada: '); 
-    
+            console.log("Solucion: "+ this.solution);
+            console.log("Datos: "+ this.solution.solutionName);
+            console.log("Datos: "+ this.solution.solutionText);
+            var r;
+            //fetch('http://localhost:8081/solutions/add?solutionText='+this.solution.code+'&solutionName='+this.solution.nameSolution+'&idStatement='+ this.props.idStatement+ "&idUser="+this.props.idUser)
+            //.then(response => console.log("Solucion Agregada"+response)) 
+            //alert('Su solucion fue enviada: '); 
+            axios({
+                method: 'post',
+                url: 'http://localhost:8081/solutions/add',
+                data: qs.stringify(this.solution),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             }).then(response => {
+                if(response!="Ya existe una solucion para este usuario y enunciado") //error is the error object you can get from the axios call
+                    alert("Ya existe una solucion para este usuario y enunciado")
+                else { 
+                    alert("Solucion guardada");
+                 }
+              });
+             
         }
        
         return;

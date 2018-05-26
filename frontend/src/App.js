@@ -21,6 +21,7 @@ import verEnunciado from './verEnunciado';
 import {loginWithGoogle, logout} from "./firebase/auth";
 import {firebaseAuth} from "./firebase/constants";
 import axios from 'axios';
+import ListarSoluciones from './ListarSoluciones';
 
 
 const muiTheme = getMuiTheme({
@@ -111,7 +112,8 @@ class App extends Component {
         <Route path="/CrearCurso" component={()=><CrearCurso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
-      
+        <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+
 
       </Switch>
   </Router>
@@ -147,7 +149,8 @@ class App extends Component {
         <Route path="/CrearCurso" component={()=><CrearCurso history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
-      
+        <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
+
       
 
       </Switch>

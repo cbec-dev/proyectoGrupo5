@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import axios from 'axios';
+import qs from 'qs';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
@@ -87,6 +88,8 @@ class Enunciado extends Component {
                 nameSolution:"",
                 text:"",
                 code: "",
+                finalDate: "",
+                initialDate: "",
                 readOnly: false,
                 mode: {name: "python",
                    version: 3,
@@ -107,17 +110,30 @@ class Enunciado extends Component {
     subirFormulario(e) {
         console.log("formulario enviado c:");
 
-        var statement = {section: "", nameStatement: "", text: "", code: ""}
+        var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: ""}
         var testCases = [];
-        statement.nameStatement = e.nameStatement;
-        statement.text =e.text;
+        statement.statementName = e.nameStatement;
+        statement.statementText =e.text;
         testCases = e.values;
-        statement.header = '\"'+e.code+'\"';
+        statement.header = e.code;
+        statement.finalDate = new Date(e.finalDate);
+        statement.initialDate = new Date(e.initialDate);
+        var placeholder = new Date();
+        var actual = placeholder.getDate();
         console.log("texto en codemirror: "+ statement.header)
         statement.section = e.sectionName;
         console.log("Datos seccion: " + statement.section)
+        console.log("fecha actual: ")
+        console.log(placeholder)
+        console.log(actual)
+        if(+statement.initialDate>=+statement.finalDate){
+            alert("fecha de inicio no coincide con fecha termino")
 
-        if(statement.nameStatement==="" || statement.text ==="" ||statement.section==="" || statement.header==="" ||testCases===[]){
+        }
+        if(+statement.initialDate<+placeholder){
+            alert("fecha inicial es anterior a fecha actual");
+        }
+        if(statement.statementName==="" || statement.statementText ==="" ||statement.section==="" || statement.header==="" ||testCases===[]){
             console.log("Debe llenar todos las casillas");
             return;
         }
@@ -150,29 +166,27 @@ class Enunciado extends Component {
               };
             //fetch('http://localhost:8081/api/statements/add?statementName='+statement.nameStatement+'&statementText='+statement.text+'&section='+statement.section+'&header='+statement.header)
            //.then(response => console.log("Producto Agregado"+response)) 
-            axios.post('http://localhost:8081/api/statements/add?statementName='+statement.nameStatement+'&statementText='+statement.text+'&section='+statement.section+'&header='+statement.header,axiosConfig)
-            .then(function(response) {
-            console.log(response);
-            }) .catch(function (error) {
-            console.log(error);
-            });
-            /*axios({
+            //axios.post('http://localhost:8081/api/statements/add?statementName='+statement.statementName+'&statementText='+statement.statementText+'&section='+statement.section+'&header='+statement.header,axiosConfig)
+            //.then(function(response) {
+            //console.log(response);
+            //}) .catch(function (error) {
+            //console.log(error);
+            //});
+            var bodyFormData = new FormData();
+            axios({
                 method: 'post',
                 url: 'http://localhost:8081/api/statements/add',
-                data: {
-                    statementName: statement.statementName,
-                    text:statement.header,
-                    section: statement.section,
-                    header: statement.header,
-
-                },
+                data: qs.stringify(statement),
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             });*/
-            //axios.post('http://localhost:8081/api/statements/add',axiosConfig)
+             });
+            
+            console.log("data statement: ")
+            console.log(JSON.stringify(statement))
+            //axios.post('http://localhost:8081/api/statements/add',statement,axiosConfig)
             //.then(function(response) {
             //console.log(response);
             //}) .catch(function (error) {
@@ -185,11 +199,11 @@ class Enunciado extends Component {
     limpiarValores(i){
         
         if(i===1){
-            this.setState({sectionName: "", nameStatement: "", text: "", values: [], code: ""});
+            this.setState({initialDate: "",finalDate: "",sectionName: "", nameStatement: "", text: "", values: [], code: ""});
             this.render();
         }
         else{
-            this.setState({nameStatement: "", text: "", values: [], code: ""});
+            this.setState({initialDate: "",finalDate: "", nameStatement: "", text: "", values: [], code: ""});
 
         }
     
@@ -258,6 +272,24 @@ class Enunciado extends Component {
                         <input className="input" name= "nameStatement" type = "text" value={this.state.nameStatement}
                         onChange = {this.handleInputChange} />
                     </div>
+
+                    <div className="div1">
+                        <label className="label1"> Fecha Inicial:  </label>
+                        </div>
+                        <div className="div1">
+                            <input className="input" name= "initialDate" type = "date" value={this.state.initialDate}
+                            onChange = {this.handleInputChange} />
+                        </div>
+
+
+                    <div className="div1">
+                        <label className="label1"> Fecha Final:  </label>
+                        </div>
+                        <div className="div1">
+                            <input className="input" name= "finalDate" type = "date" value={this.state.finalDate}
+                            onChange = {this.handleInputChange} />
+                        </div>
+
                     <div className="div1">
                     <label className="label2"> Enunciado:  </label>
                     </div>
@@ -319,6 +351,24 @@ class Enunciado extends Component {
                             <input className="input" name= "nameStatement" type = "text" value={this.state.nameStatement}
                             onChange = {this.handleInputChange} />
                         </div>
+
+
+                        <div className="div1">
+                        <label className="label1"> Fecha Inicial:  </label>
+                        </div>
+                        <div className="div1">
+                            <input className="input" name= "initialDate" type = "date" value={this.state.initialDate}
+                            onChange = {this.handleInputChange} />
+                        </div>
+
+                        <div className="div1">
+                        <label className="label1"> Fecha Final:  </label>
+                        </div>
+                        <div className="div1">
+                            <input className="input" name= "finalDate" type = "date" value={this.state.finalDate}
+                            onChange = {this.handleInputChange} />
+                        </div>
+
                         <div className="div1">
                         <label className="label2"> Enunciado:  </label>
                         </div>

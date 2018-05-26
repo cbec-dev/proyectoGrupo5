@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.entities.Section;
@@ -16,7 +20,14 @@ import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import jdk.nashorn.internal.ir.annotations.Reference;
+
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
+import java.time.LocalDateTime;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
@@ -41,15 +52,31 @@ public class StatementController {
             @RequestParam String statementName,
 			@RequestParam String statementText,
 			@RequestParam Integer section,
-			@RequestParam String header) 
+			@RequestParam String header,
+			@RequestParam String finalDate,
+			@RequestParam String initialDate) 
             {
 		Section s = new Section();
 		s = sectionRepository.findById(section).orElse(null);
 		Statement n = new Statement();
-        n.setStatementName(statementName);
+		Date date = new Date();
+		Date initial = new Date();
+		//LocalDate localDate = LocalDate();
+		//Date initialDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		try {
+			 date = formatter.parse(finalDate);
+			 initial = formatter.parse(initialDate);
+			}
+		   catch (Exception e) {
+			
+		   }
+		n.setStatementName(statementName);
         n.setStatementText(statementText);
 		n.setSection(s);
 		n.setHeader(header);
+		n.setFinalDate(date);
+		n.setInitialDate(initial);
 		statementRepository.save(n);
 		return "Enunciado guardado.";
 	}
