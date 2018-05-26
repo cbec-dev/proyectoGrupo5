@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import * as React from 'react';
-import './css/verSolucion.css';
+import './css/ListarSoluciones.css';
 import VerSolucion from './verSolucion';
 
 class ListarSoluciones extends React.Component {
@@ -105,7 +105,7 @@ class ListarSoluciones extends React.Component {
             
             <div>
                 <label> Secciones </label>
-                <table id="t03">
+                <table id="t04">
                 <tbody>
                     <tr>
                     <th>ID</th>
@@ -142,7 +142,7 @@ class ListarSoluciones extends React.Component {
 
 <div>
 <label> Enunciados </label>
-<table id="t03">
+<table id="t05">
 <tbody>
     <tr>
     <th>ID</th>
