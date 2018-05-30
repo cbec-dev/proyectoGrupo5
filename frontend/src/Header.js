@@ -110,6 +110,7 @@ class Header extends Component {
             <MenuItem className= "menuItem" eventKey={3.4} href="/Solucion">Subir Solucion (BORRAR DESPUES)</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.5} href="/CrearCurso">Crear Curso</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.6} href="/Registro">Crear Usuario</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.7} href="/ListarSoluciones">Ver Soluciones</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>

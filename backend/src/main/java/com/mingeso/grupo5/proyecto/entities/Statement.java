@@ -1,5 +1,6 @@
 package com.mingeso.grupo5.proyecto.entities;
-
+import java.util.Date;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,12 +10,13 @@ import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
+import java.time.LocalDateTime;
 
 
 @Entity
 public class Statement {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idStatement;
 
     @NotNull
@@ -27,6 +29,10 @@ public class Statement {
     @Lob
     @NotNull
     private String header;
+    private Date initialDate;
+    private Date finalDate;
+    private Boolean isActive;
+
 
     public Integer getIdStatement() {
         return this.idStatement;
@@ -35,6 +41,31 @@ public class Statement {
     public void setIdStatement(Integer id) {
         this.idStatement = id;
     }
+
+    public Date getFinalDate() {
+        return this.finalDate;
+    }
+    
+    public void setFinalDate(Date finalDate) {
+        this.finalDate = finalDate;
+    }
+
+    public Date getInitialDate() {
+        return this.initialDate;
+    }
+    
+    public void setInitialDate(Date initialDate) {
+        this.initialDate = initialDate;
+    }
+
+    public Boolean getIsActive() {
+        return this.isActive;
+    }
+    
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
     public Section getSection() {
         return this.section;
     }

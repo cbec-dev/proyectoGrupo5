@@ -21,6 +21,7 @@ import verEnunciado from './verEnunciado';
 import {loginWithGoogle, logout} from "./firebase/auth";
 import {firebaseAuth} from "./firebase/constants";
 import axios from 'axios';
+import ListarSoluciones from './ListarSoluciones';
 
 
 const muiTheme = getMuiTheme({
@@ -50,10 +51,21 @@ class App extends Component {
 
     }
     myCallbackLogin = (dataFromLogin1, dataFromLogin2, dataFromLogin3) => {
-      this.setState({ userLogged: dataFromLogin1, firebaseUser:dataFromLogin2, user: dataFromLogin3});
+      if(dataFromLogin3===undefined){
+        console.log("CALLBACK LOGIN");
+        console.log("USUARIO NO REGISTRADO")
+        this.setState({ userLogged: false, firebaseUser:dataFromLogin2, user: dataFromLogin3});
+        localStorage.setItem('state', JSON.stringify(this.state));
+        console.log(dataFromLogin2.displayName);
+        localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
+      }
+      else{
+        this.setState({ userLogged: dataFromLogin1, firebaseUser:dataFromLogin2, user: dataFromLogin3});
       localStorage.setItem('state', JSON.stringify(this.state));
       console.log(dataFromLogin2.displayName);
       localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
+      }
+      
       console.log("CALLBACK FROM LOGIN IN APP :C");
       
     };
@@ -78,7 +90,7 @@ class App extends Component {
 
     
   render() {
-    if(this.state.firebaseUser!==null && this.state.user!==null){
+    if(this.state.firebaseUser!==null && this.state.user!==null && this.state.userLogged===true){
       const userLogged = this.state.userLogged;
       const firebaseUser = this.state.firebaseUser;
       const user = this.state.user;
@@ -100,7 +112,8 @@ class App extends Component {
         <Route path="/CrearCurso" component={()=><CrearCurso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
-      
+        <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+
 
       </Switch>
   </Router>
@@ -136,7 +149,8 @@ class App extends Component {
         <Route path="/CrearCurso" component={()=><CrearCurso history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
-      
+        <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
+
       
 
       </Switch>

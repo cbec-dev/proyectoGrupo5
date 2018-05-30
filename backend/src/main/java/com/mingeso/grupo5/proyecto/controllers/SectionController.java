@@ -1,6 +1,9 @@
 package com.mingeso.grupo5.proyecto.controllers;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import antlr.collections.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Iterator;
+
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.User;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
@@ -32,6 +38,7 @@ public class SectionController {
 		return findAll;
 	}
 	
+
 	@GetMapping(path="/addSection") 
 	public @ResponseBody String addNewSection (
             @RequestParam Integer idSection,
@@ -49,6 +56,14 @@ public class SectionController {
 	@GetMapping(path="/search/{IdSection}")
 	public @ResponseBody Section findOne(@PathVariable("IdSection") Integer IdSection) {
 		Section retorno = sectionRepository.findById(IdSection).get();
+		return retorno;
+	}
+	@GetMapping(path="/search/profesor/{idprofesor}")
+	public @ResponseBody Section findOneByProfesor(@PathVariable("idprofesor") Integer idprofesor) {
+		User profesor = new User();
+		profesor = userRepository.findById(idprofesor).get();
+		Section retorno = new Section();
+		retorno = sectionRepository.findByprofesor(profesor);
 		return retorno;
 	}
 
@@ -73,6 +88,23 @@ public class SectionController {
 			System.out.println("Datos: " + s);
 			s.setIdSection(section);
 			s.setProfesor(p);
+			return sectionRepository.save(s);
+		}
+		@RequestMapping(value = "/updateProfesor/{section}", method = { RequestMethod.GET, RequestMethod.PUT})
+		@ResponseStatus(HttpStatus.CREATED)
+		@ResponseBody
+		public Section deleteProfesor(@PathVariable("section") Integer section) {
+			Section s = new Section();
+			s = sectionRepository.findById(section).orElse(null);
+
+			if(s == null) {
+				
+				return null;
+				
+			}
+			System.out.println("Datos: " + s);
+			s.setIdSection(section);
+			s.setProfesor(null);
 			return sectionRepository.save(s);
 		}
 

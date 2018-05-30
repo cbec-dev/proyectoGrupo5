@@ -1,7 +1,9 @@
 package com.mingeso.grupo5.proyecto.entities;
 
 import com.mingeso.grupo5.proyecto.entities.Statement;
+import com.mingeso.grupo5.proyecto.entities.User;
 import com.mingeso.grupo5.proyecto.entities.Solution;
+import com.mingeso.grupo5.proyecto.entities.Section;
 import org.junit.Test;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
@@ -13,41 +15,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SolutionTest {
 	@Test
     public void getIdSolution() {
-        Integer idStatement = 1;
         String solutionName = "solucion";
         String solutionText = "while True";
-        Integer idUser = 1;
+        User user = new User();
+        user.setIdUser(1);
+        user.setUserName("name");
+        user.setUserType(1);
+        user.setCorreo("correo@usach.cl");
+        Section section = new Section();
+        section.setIdSection(1);
+        section.setSectionName("A-1");
         Statement statement = new Statement();
-
+        statement.setIdStatement(1);
+        statement.setHeader("header");
+        statement.setStatementName("name");
+        statement.setStatementText("text");
+        statement.setSection(section);
         Solution solution= new Solution();
         solution.setIdSolution(1);
-        solution.setIdStatement(idStatement);
+        solution.setStatement(statement);
         solution.setSolutionName(solutionName);
         solution.setSolutionText(solutionText);
-        solution.setIdUser(idUser);
+        solution.setUser(user);
         solution.setStatement(statement);
         
 
         Assert.assertNotNull(solution.getIdSolution());
-    }
-	@Test
-	public void getIdStatement() {
-        Integer idStatement = 1;
-        String solutionName = "solucion";
-        String solutionText = "while True";
-        Integer idUser = 1;
-        Statement statement = new Statement();
-
-        Solution solution= new Solution();
-        solution.setIdSolution(1);
-        solution.setIdStatement(idStatement);
-        solution.setSolutionName(solutionName);
-        solution.setSolutionText(solutionText);
-        solution.setIdUser(idUser);
-        solution.setStatement(statement);
-        
-
-        Assert.assertNotNull(solution.getIdStatement());
     }
 	@Test
 	public void getSolutionName() {
@@ -56,70 +49,105 @@ public class SolutionTest {
         String solutionText = "while True";
         Integer idUser = 1;
         Statement statement = new Statement();
-
         Solution solution= new Solution();
+        User user = new User();
+        user.setIdUser(1);
+        user.setUserName("name");
+        user.setUserType(1);
+        user.setCorreo("correo@usach.cl");
+        Section section = new Section();
+        section.setIdSection(1);
+        section.setSectionName("A-1");
+        statement.setHeader("header");
+        statement.setStatementName("name");
+        statement.setStatementText("text");
+        statement.setSection(section);
         solution.setIdSolution(1);
-        solution.setIdStatement(idStatement);
         solution.setSolutionName(solutionName);
         solution.setSolutionText(solutionText);
-        solution.setIdUser(idUser);
         solution.setStatement(statement);
+        solution.setUser(user);
         
 
         Assert.assertNotNull(solution.getSolutionName());
     }
 	@Test
 	public void getSolutionText() {
-        Integer idStatement = 1;
+
         String solutionName = "solucion";
         String solutionText = "while True";
-        Integer idUser = 1;
         Statement statement = new Statement();
-
         Solution solution= new Solution();
+        User user = new User();
+        user.setIdUser(1);
+        user.setUserName("name");
+        user.setUserType(1);
+        user.setCorreo("correo@usach.cl");
+        Section section = new Section();
+        section.setIdSection(1);
+        section.setSectionName("A-1");
+        statement.setHeader("header");
+        statement.setStatementName("name");
+        statement.setStatementText("text");
+        statement.setSection(section);
         solution.setIdSolution(1);
-        solution.setIdStatement(idStatement);
         solution.setSolutionName(solutionName);
         solution.setSolutionText(solutionText);
-        solution.setIdUser(idUser);
+        solution.setUser(user);
         solution.setStatement(statement);
         
 
         Assert.assertNotNull(solution.getSolutionText());
     }
 	@Test
-	public void getIdUser() {
-        Integer idStatement = 1;
+	public void getUser() {
         String solutionName = "solucion";
         String solutionText = "while True";
-        Integer idUser = 1;
         Statement statement = new Statement();
-
         Solution solution= new Solution();
+        User user = new User();
+        user.setIdUser(1);
+        user.setUserName("name");
+        user.setUserType(1);
+        user.setCorreo("correo@usach.cl");
+        Section section = new Section();
+        section.setIdSection(1);
+        section.setSectionName("A-1");
+        statement.setHeader("header");
+        statement.setStatementName("name");
+        statement.setStatementText("text");
+        statement.setSection(section);
         solution.setIdSolution(1);
-        solution.setIdStatement(idStatement);
         solution.setSolutionName(solutionName);
         solution.setSolutionText(solutionText);
-        solution.setIdUser(idUser);
+        solution.setUser(user);
         solution.setStatement(statement);
         
 
-        Assert.assertNotNull(solution.getIdUser());
+        Assert.assertNotNull(solution.getUser());
     }
 	@Test
 	public void getStatement() {
-        Integer idStatement = 1;
         String solutionName = "solucion";
         String solutionText = "while True";
-        Integer idUser = 1;
         Statement statement = new Statement();
-
         Solution solution= new Solution();
+        User user = new User();
+        user.setIdUser(1);
+        user.setUserName("name");
+        user.setUserType(1);
+        user.setCorreo("correo@usach.cl");
+        Section section = new Section();
+        section.setIdSection(1);
+        section.setSectionName("A-1");
+        statement.setHeader("header");
+        statement.setStatementName("name");
+        statement.setStatementText("text");
+        statement.setSection(section);
         solution.setIdSolution(1);
-        solution.setIdStatement(idStatement);
         solution.setSolutionName(solutionName);
         solution.setSolutionText(solutionText);
-        solution.setIdUser(idUser);
+        solution.setUser(user);
         solution.setStatement(statement);
         
 
@@ -133,14 +161,7 @@ public class SolutionTest {
         Assert.assertEquals(Integer.valueOf(2), solution.getIdSolution());
 
     }
-	@Test
-    public void setIdStatement() {
-        Solution solution = new Solution();
 
-        solution.setIdStatement(2);
-        Assert.assertEquals(Integer.valueOf(2), solution.getIdStatement());
-
-    }
 	@Test
     public void setSolutionName() {
 		String solutionName = "solution";
@@ -162,11 +183,16 @@ public class SolutionTest {
 
     }
 	@Test
-    public void setIdUser() {
+    public void setUser() {
        
 		Solution solution = new Solution();
-        solution.setIdUser(2);
-        Assert.assertEquals(Integer.valueOf(2), solution.getIdUser());
+        User user = new User();
+        user.setIdUser(1);
+        user.setCorreo("correo");
+        user.setUserName("name");
+        user.setUserType(1);
+        solution.setUser(user);
+        Assert.assertEquals(user, solution.getUser());
 
     }
 	@Test
