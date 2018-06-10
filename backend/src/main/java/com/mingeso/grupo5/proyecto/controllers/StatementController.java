@@ -63,7 +63,7 @@ public class StatementController {
 		Date initial = new Date();
 		//LocalDate localDate = LocalDate();
 		//Date initialDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			 date = formatter.parse(finalDate);
 			 initial = formatter.parse(initialDate);
@@ -71,6 +71,8 @@ public class StatementController {
 		   catch (Exception e) {
 			
 		   }
+		System.out.println("Fecha sin formato: " + finalDate);
+		System.out.println("Fecha formateade: " + date);
 		n.setStatementName(statementName);
         n.setStatementText(statementText);
 		n.setSection(s);

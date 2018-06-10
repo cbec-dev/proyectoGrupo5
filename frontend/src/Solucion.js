@@ -92,11 +92,7 @@ class Solucion extends Component {
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => {
-                if(response!="Ya existe una solucion para este usuario y enunciado") //error is the error object you can get from the axios call
-                    alert("Ya existe una solucion para este usuario y enunciado")
-                else { 
-                    alert("Solucion guardada");
-                 }
+                alert(response.data)
               });
              
         }
