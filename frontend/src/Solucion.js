@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/Solucion.css';
 import Registro from './Registro';
+import qs from 'qs';
+import axios from 'axios';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
@@ -16,7 +18,7 @@ require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
 	C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-	python: '#Python 2.7'
+	python: ''
 };
 
 class Solucion extends Component {
@@ -91,7 +93,7 @@ class Solucion extends Component {
     
     	getInitialState () {
             return {
-                code: defaults.python,
+                code: "",
                 readOnly: false,
                 mode: {name: "python",
                version: 3,
@@ -99,6 +101,7 @@ class Solucion extends Component {
             };
         }
         updateCode (newCode) {
+            console.log("CODE CODEMIRROR: " + newCode)
             this.setState({
                 code: newCode
             });
@@ -117,8 +120,10 @@ class Solucion extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, nameSolution:"", code:""});
+            this.setState({isLoading: false, nameSolution:"", code:"", codeMirrorRender: false});
             this.render();
+            CodeMirror;
+
         }
     }
     handleInputChange(event) {

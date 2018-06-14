@@ -88,11 +88,11 @@ class MostrarEnunciado extends Component {
 
         render() {
             const statement = this.props.statement;
-            const header = this.props.statement.header.split("\"");
+            //const header = this.props.statement.header.split("\"");
             console.log("statement mostrar enunciado: ");
             console.log(statement)
-            console.log("header")
-            console.log(header)
+            const initialDate = statement.initialDate.split("T"); 
+            const finalDate = statement.finalDate.split("T");
             var options = {
                 lineNumbers: true,
                 readOnly: true,
@@ -112,7 +112,22 @@ class MostrarEnunciado extends Component {
                     <label className="label2"> Enunciado:  </label>
                     </div>
 
-                    
+                     <div className="div1">
+                        <label className="label1"> Fecha Inicial:  </label>
+                        </div>
+                        <div className="div1">
+                            <input className="input" name= "initialDate" type = "text" value={initialDate[0]}
+                            onChange = {this.handleInputChange} disabled = "true"/>
+                        </div>
+
+
+                    <div className="div1">
+                        <label className="label1"> Fecha Final:  </label>
+                        </div>
+                        <div className="div1">
+                            <input className="input" name= "finalDate" type = "text" value={finalDate[0]}
+                            onChange = {this.handleInputChange} disabled = "true"/>
+                        </div>
                     
                     <div className="div2">
                         
@@ -128,11 +143,11 @@ class MostrarEnunciado extends Component {
                     </div>
 
                     <div className="div2">
-                    <label className="labels"> Solucion:  </label>
+                    <label className="labels"> Cabecera Propuesta:  </label>
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref="editor" value={header[1]} options={options} autoFocus={true} />
+				<CodeMirror className="codemirror" ref="editor" value={statement.header} options={options} autoFocus={true} />
 		
 			</div>
                   </form>
