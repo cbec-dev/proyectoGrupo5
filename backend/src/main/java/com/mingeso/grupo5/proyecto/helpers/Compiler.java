@@ -57,10 +57,13 @@ public class Compiler {
 		return out;
     }
 
-    public String run(String code) throws IOException
+    public String run(String code, String lang) throws IOException
     {
         //Conección y headers
-        URL url = new URL("https://run.glot.io/languages/python/2");
+        URL url = new URL("");
+        if(lang.equals("python")) url = new URL("https://run.glot.io/languages/python/2");
+        if(lang.equals("c")) url = new URL("https://run.glot.io/languages/c");
+        if(lang.equals("java")) url = new URL("https://run.glot.io/languages/java");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
