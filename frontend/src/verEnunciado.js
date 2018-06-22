@@ -24,11 +24,11 @@ class verEnunciado extends React.Component {
         this.solucionEnunciado = this.solucionEnunciado.bind(this)
         }
     mostrarEnunciados(e){
-        this.setState({isSelected: true, statement: e, isSelectedSolution: false, idStatement: ""})
+        this.setState({isSelected: true, statement: e, isSelectedSolution: false})
 
     }
     solucionEnunciado(e){
-        this.setState({isSelectedSolution: true, idStatement: e, isSelected: false, statement: ""})
+        this.setState({isSelectedSolution: true, statement: e, isSelected: false})
     }
 
     render() {
@@ -81,7 +81,7 @@ class verEnunciado extends React.Component {
                                         <th>{statement.section.idSection}</th>
                                         <th>{statement.finalDate}</th>
                                         <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+                                        <th> <button onClick={(e) => this.solucionEnunciado(statement)}>Subir Solucion</button></th>
                                         
 
                                     </tr>);
@@ -93,13 +93,13 @@ class verEnunciado extends React.Component {
                 </table>
                 <div>
                     {this.state.isSelected ?
-                    <MostrarEnunciado  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    <MostrarEnunciado  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
                     null
                     }
                     </div>
                 <div>
                     {this.state.isSelectedSolution ?
-                    <Solucion idStatement = {this.state.idStatement} idUser = {this.props.activeUser.idUser} activeUser = {this.props.activeUser}/>:
+                    <Solucion statement = {this.state.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>:
                     null
                     }
                     </div>
@@ -148,7 +148,7 @@ class verEnunciado extends React.Component {
                                         <th>{statement.section.idSection}</th>
                                         <th>{statement.finalDate}</th>
                                         <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+                                        <th> <button onClick={(e) => this.solucionEnunciado(statement)}>Subir Solucion</button></th>
                                         
 
                                     </tr>);
@@ -160,13 +160,13 @@ class verEnunciado extends React.Component {
                 </table>
                 <div>
                     {this.state.isSelected ?
-                    <MostrarEnunciado  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    <MostrarEnunciado  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
                     null
                     }
                     </div>
                 <div>
                     {this.state.isSelectedSolution ?
-                    <Solucion idStatement = {this.state.idStatement} idUser = {this.props.activeUser.idUser} activeUser = {this.props.activeUser}/>:
+                    <Solucion statement = {this.state.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>:
                     null
                     }
                     </div>

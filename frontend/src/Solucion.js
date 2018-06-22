@@ -67,9 +67,11 @@ class Solucion extends Component {
     
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.solution = {nameSolution: "", code: ""}
-        this.solution.nameSolution = e.nameSolution;
-        this.solution.code = e.code;
+        this.solution = {solutionName: "", solutionText: "", user: "", statement: ""}
+        this.solution.solutionName = e.nameSolution;
+        this.solution.solutionText = e.code;
+        this.solution.idUser = this.props.activeUser.idUser;
+        this.solution.idStatement = this.props.statement.idStatement;
         console.log(this.solution.code);
         if(this.solution.nameSolution==="" || this.solution.code===""){
             alert("Debe llenar todas las casillas");
@@ -79,12 +81,22 @@ class Solucion extends Component {
         else{
             this.limpiarValores(1);
             console.log("Usuario: "+ this.solution);
-            console.log("Datos: "+ this.solution.nameSolution);
-            console.log("Datos: "+ this.solution.code);
-            
-            fetch('http://localhost:8081/api/add?code='+this.solution.code+'&nombre='+this.solution.nameSolution)
-            .then(response => console.log("Solucion Agregado"+response)) 
-            alert('Su solucion fue enviada: ');
+            console.log("Datos: "+ this.solution.solutionName);
+            console.log("Datos: "+ this.solution.solutionText);
+            var bodyFormData = new FormData();
+            axios({
+                method: 'post',
+                url: 'http://localhost:8081/solutions/add',
+                data: qs.stringify(this.solution),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             }).then(response => alert(response.data));
+            //fetch('http://localhost:8081/api/add?code='+this.solution.code+'&nombre='+this.solution.nameSolution)
+            //.then(response => console.log("Solucion Agregado"+response)) 
+            //alert('Su solucion fue enviada: ');
     
         }
        
@@ -93,7 +105,7 @@ class Solucion extends Component {
     
     	getInitialState () {
             return {
-                code: "",
+                code: this.props.statement.header,
                 readOnly: false,
                 mode: {name: "python",
                version: 3,
@@ -120,7 +132,7 @@ class Solucion extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, nameSolution:"", code:"", codeMirrorRender: false});
+            this.setState({isLoading: false, nameSolution:"", code:this.props.statement.header, codeMirrorRender: false});
             this.render();
             CodeMirror;
 
@@ -136,10 +148,11 @@ class Solucion extends Component {
         console.log(name, value, target);
         }
     componentDidMount() {
+
             this.setState({
                 isLoading: false,
                 nameSolution:"",
-                code: defaults.python,
+                code: this.props.statement.header,
                 readOnly: false,
                 mode: {name: "python",
                    version: 3,
@@ -157,6 +170,10 @@ class Solucion extends Component {
                 readOnly: this.state.readOnly,
                 mode: this.state.mode
             };
+            const header = this.props.statement.header;
+            console.log("STATEMENT HEADER: " + header);
+            const typeUser = this.props.typeUser;
+            if(typeUser===1 || typeUser===2){
                 return (
                    <body className="body"> 
                     <form className="form">
@@ -172,7 +189,7 @@ class Solucion extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
+				<CodeMirror className="codemirror" ref="editor" value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
 				<div style={{ marginTop: 10 }} className="div4">
 					<select onChange={this.changeMode} value={this.state.mode}>
 						<option value="python">Python</option>
@@ -198,6 +215,14 @@ class Solucion extends Component {
                     
                 );
             }
+            else{
+                 alert("No tiene permisos para acceder a esta vista")
+                return(
+                    <div> {this.props.history.push("/")} </div>
+                );
+            }
+            }
+
           }
     
     
