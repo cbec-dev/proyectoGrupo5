@@ -50,6 +50,7 @@ class Solucion extends Component {
         this.solution = {nameSolution: "", code: ""}
         this.solution.nameSolution = e.nameSolution;
         this.solution.code = e.code;
+        var code = e.code;
         console.log(this.solution.code);
         if(this.solution.nameSolution==="" || this.solution.code ===""){
             alert("Debe llenar todas las casillas");
@@ -59,6 +60,17 @@ class Solucion extends Component {
             fetch('http://localhost:8081/api/compiler/runCode?code='+this.solution.code)
             .then(response => response.json())
             .then(data => this.setState({salida: data.stdout}));
+            axios({
+                method: 'get',
+                url: 'http://localhost:8081/api/compiler/runCode',
+                data: qs.stringify(code),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "GET",
+                },
+             }).then(response => alert(response.data));
+
         }
 
         
