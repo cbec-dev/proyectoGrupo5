@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import java.time.LocalDateTime;
 
 
@@ -32,7 +34,7 @@ public class Statement {
     private Date initialDate;
     private Date finalDate;
     private Boolean isActive;
-    @ManyToOne
+    @OneToMany
     private ExpectedSolution expectedSolution;
 
 
