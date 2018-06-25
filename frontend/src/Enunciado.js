@@ -110,7 +110,7 @@ class Enunciado extends Component {
     subirFormulario(e) {
         console.log("formulario enviado c:");
 
-        var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: ""}
+        var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: "", expectedSolution: ""}
         var testCases = [];
         statement.statementName = e.nameStatement;
         statement.statementText =e.text;
@@ -118,6 +118,7 @@ class Enunciado extends Component {
         statement.header = e.code;
         statement.finalDate = new Date(e.finalDate);
         statement.initialDate = new Date(e.initialDate);
+        statement.expectedSolution = e.expectedSolution;
         var placeholder = new Date();
         var actual = placeholder.getDate();
         console.log("texto en codemirror: "+ statement.header)
@@ -135,7 +136,7 @@ class Enunciado extends Component {
             alert("fecha inicial es anterior a fecha actual");
             return;
         }
-        if(statement.statementName==="" || statement.statementText ==="" ||statement.section==="" || statement.header==="" ||testCases===[]){
+        if(statement.statementName==="" || statement.statementText ==="" ||statement.section==="" || statement.header==="" ||testCases===[] || statement.expectedSolution===""){
             console.log("Debe llenar todos las casillas");
             return;
         }
@@ -275,6 +276,7 @@ class Enunciado extends Component {
                         onChange = {this.handleInputChange} />
                     </div>
 
+
                     <div className="div1">
                         <label className="label1"> Fecha Inicial:  </label>
                         </div>
@@ -291,6 +293,14 @@ class Enunciado extends Component {
                             <input className="input" name= "finalDate" type = "date" value={this.state.finalDate}
                             onChange = {this.handleInputChange} />
                         </div>
+
+                <div className="div1">
+                        <label className="label1"> Solucion Esperada:  </label>
+                        </div>
+                  <div className="div1">
+                        <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
+                        onChange = {this.handleInputChange} />
+                    </div>
 
                     <div className="div1">
                     <label className="label2"> Enunciado:  </label>
@@ -370,6 +380,14 @@ class Enunciado extends Component {
                             <input className="input" name= "finalDate" type = "date" value={this.state.finalDate}
                             onChange = {this.handleInputChange} />
                         </div>
+
+                        <div className="div1">
+                        <label className="label1"> Solucion Esperada:  </label>
+                        </div>
+                      <div className="div1">
+                        <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
+                        onChange = {this.handleInputChange} />
+                       </div>
 
                         <div className="div1">
                         <label className="label2"> Enunciado:  </label>
