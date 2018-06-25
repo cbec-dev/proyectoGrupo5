@@ -60,7 +60,7 @@ public class Compiler {
     public String run(String code, String lang) throws IOException
     {
         //Conección y headers
-        URL url = new URL("");
+        URL url = new URL("https://run.glot.io/languages/python/2");
         if(lang.equals("python")) url = new URL("https://run.glot.io/languages/python/2");
         if(lang.equals("c")) url = new URL("https://run.glot.io/languages/c/latest");
         if(lang.equals("java")) url = new URL("https://run.glot.io/languages/java/latest");
