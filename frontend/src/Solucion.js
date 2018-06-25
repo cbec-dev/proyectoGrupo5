@@ -47,17 +47,18 @@ class Solucion extends Component {
         };
     }
     ejecutarSolucion(e) {
-        this.solution = {nameSolution: "", code: ""}
+        this.solution = {nameSolution: "", code: "", mode: ""}
         this.solution.nameSolution = e.nameSolution;
         this.solution.code = e.code;
+        this.solution.mode = e.mode;
         var code = e.code;
-        console.log(this.solution.code);
+        console.log(this.solution.mode);
         if(this.solution.nameSolution==="" || this.solution.code ===""){
             alert("Debe llenar todas las casillas");
             return;
         }
         else{
-            fetch('http://localhost:8081/api/compiler/runCode?code='+this.solution.code)
+            fetch('http://localhost:8081/api/compiler/runCode?code='+this.solution.code+'&lang='+this.solution.mode)
             .then(response => response.json())
             .then(data => this.setState({salida: data.stdout}));
             axios({
@@ -205,7 +206,7 @@ class Solucion extends Component {
 				<div style={{ marginTop: 10 }} className="div4">
 					<select onChange={this.changeMode} value={this.state.mode}>
 						<option value="python">Python</option>
-						<option value="C">C</option>
+						<option value="c">C</option>
                         <option value="java">Java</option>
 					</select>
 				</div>
