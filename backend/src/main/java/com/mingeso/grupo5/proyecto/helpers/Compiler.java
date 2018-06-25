@@ -72,7 +72,10 @@ public class Compiler {
         con.setReadTimeout(5000);
 
         //Parametros
-        String params = "{\"files\": [{\"name\": \"main.py\", \"content\": \"" + code +"\"}]}";
+        String params = "";
+        if(lang.equals("python")) params = "{\"files\": [{\"name\": \"main.py\", \"content\": \"" + code +"\"}]}";
+        if(lang.equals("c")) params = "{\"files\": [{\"name\": \"main.c\", \"content\": \"" + code +"\"}]}";
+        if(lang.equals("java")) params = "{\"files\": [{\"name\": \"main.java\", \"content\": \"" + code +"\"}]}";
 
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
@@ -94,7 +97,7 @@ public class Compiler {
         in.close();
 
         con.disconnect();
-
+        
 		return content.toString();
     }
 }
