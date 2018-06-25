@@ -13,6 +13,8 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+
+import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.entities.Section;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import jdk.nashorn.internal.ir.annotations.Reference;
 
+import com.mingeso.grupo5.proyecto.repositories.ExpectedSolutionRepository;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import java.time.LocalDateTime;
 import java.text.DateFormat;
@@ -38,6 +41,8 @@ public class StatementController {
 	private StatementRepository statementRepository;
 	@Autowired
 	private SectionRepository sectionRepository;
+	@Autowired
+	private ExpectedSolutionRepository expectedSolutionRepository;
 
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<Statement> gettAllstatements() {
@@ -54,11 +59,13 @@ public class StatementController {
 			@RequestParam Integer section,
 			@RequestParam String header,
 			@RequestParam String finalDate,
-			@RequestParam String initialDate) 
+			@RequestParam String initialDate,
+			@RequestParam String expectedSolution) 
             {
 		Section s = new Section();
 		s = sectionRepository.findById(section).orElse(null);
 		Statement n = new Statement();
+		ExpectedSolution expectSol=new ExpectedSolution();
 		Date date = new Date();
 		Date initial = new Date();
 		//LocalDate localDate = LocalDate();
@@ -79,7 +86,11 @@ public class StatementController {
 		n.setHeader(header);
 		n.setFinalDate(date);
 		n.setInitialDate(initial);
+		expectSol.setExpectedSolution(expectedSolution);
+		expectedSolutionRepository.save(expectSol);
+		n.setExpectedSolution(expectSol);
 		statementRepository.save(n);
+		
 		return "Enunciado guardado.";
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -89,10 +100,10 @@ public class StatementController {
 
 	     return statementRepository.save(resource);
 	}
-	@RequestMapping(value = "/add/{statementName}/{section}/{statementText}/{header}", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/add/{statementName}/{section}/{statementText}/{header}/{expectedSolution}", method = { RequestMethod.GET, RequestMethod.POST })
 		@ResponseStatus(HttpStatus.CREATED)
 		@ResponseBody
-		public Statement addStatement(@PathVariable("statementName") String statementName, @PathVariable("section") Integer section, @PathVariable("statementText") String statementText, @PathVariable("header") String header) {
+		public Statement addStatement(@PathVariable("statementName") String statementName, @PathVariable("section") Integer section, @PathVariable("statementText") String statementText, @PathVariable("header") String header, @PathVariable("expectedSolution") String expectedSolution) {
 			Section s = new Section();
 			System.out.println("Datos: " + s);
 			s = sectionRepository.findById(section).orElse(null);
@@ -102,19 +113,28 @@ public class StatementController {
 			resource.setSection(s);
 			resource.setHeader(header);
 			resource.setStatementText(statementText);
+			ExpectedSolution expectSol=new ExpectedSolution();
+			expectSol.setExpectedSolution(expectedSolution);
+			expectedSolutionRepository.save(expectSol);
+			resource.setExpectedSolution(expectSol);
 			return statementRepository.save(resource);
 		}
 	@GetMapping(path="/update") 
 	public @ResponseBody String updateStatement (
 			@RequestParam Integer id,
             @RequestParam String statementName,
-            @RequestParam String statementText){
+			@RequestParam String statementText,
+			@RequestParam String expectedSolution){
 		
 
 		Statement n = new Statement();
 		n.setIdStatement(id);
         n.setStatementName(statementName);
-        n.setStatementText(statementText);
+		n.setStatementText(statementText);
+		ExpectedSolution expectSol=new ExpectedSolution();
+		expectSol.setExpectedSolution(expectedSolution);
+		expectedSolutionRepository.save(expectSol);
+		n.setExpectedSolution(expectSol);
 		
 		statementRepository.save(n);
 		return "Enunciado actualizado.";
