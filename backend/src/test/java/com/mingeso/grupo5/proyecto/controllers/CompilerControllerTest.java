@@ -19,10 +19,11 @@ public class CompilerControllerTest {
 	@Test
     public void runCode() throws IOException {
 		String code = "print 4";
+		String lang = "python";
 		CompilerController controlador = new CompilerController();
 		Compiler compiler = new Compiler();
-		String out = compiler.run(code);
-		Assert.assertEquals(out, controlador.runCode(code));
+		String out = compiler.run(code, lang);
+		Assert.assertEquals(out, controlador.runCode(code, lang));
 		
     }
 
