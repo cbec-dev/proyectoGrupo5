@@ -58,7 +58,7 @@ class Solucion extends Component {
             return;
         }
         else{
-            fetch('http://localhost:8081/api/compiler/runCode?code='+this.solution.code)
+            fetch('http://localhost:8081/api/compiler/runCode?code='+this.solution.code+'&lang='+this.solution.mode)
             .then(response => response.json())
             .then(data => this.setState({salida: data.stdout}));
             axios({
