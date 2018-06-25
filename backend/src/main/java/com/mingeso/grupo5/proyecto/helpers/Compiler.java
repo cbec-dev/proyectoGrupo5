@@ -57,10 +57,13 @@ public class Compiler {
 		return out;
     }
 
-    public String run(String code) throws IOException
+    public String run(String code, String lang) throws IOException
     {
         //Conección y headers
-        URL url = new URL("https://run.glot.io/languages/python/2");
+        URL url = new URL("");
+        if(lang.equals("python")) url = new URL("https://run.glot.io/languages/python/2");
+        if(lang.equals("c")) url = new URL("https://run.glot.io/languages/c/latest");
+        if(lang.equals("java")) url = new URL("https://run.glot.io/languages/java/latest");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
@@ -69,7 +72,10 @@ public class Compiler {
         con.setReadTimeout(5000);
 
         //Parametros
-        String params = "{\"files\": [{\"name\": \"main.py\", \"content\": \"" + code +"\"}]}";
+        String params = "";
+        if(lang.equals("python")) params = "{\"files\": [{\"name\": \"main.py\", \"content\": \"" + code +"\"}]}";
+        if(lang.equals("c")) params = "{\"files\": [{\"name\": \"main.c\", \"content\": \"" + code +"\"}]}";
+        if(lang.equals("java")) params = "{\"files\": [{\"name\": \"main.java\", \"content\": \"" + code +"\"}]}";
 
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
