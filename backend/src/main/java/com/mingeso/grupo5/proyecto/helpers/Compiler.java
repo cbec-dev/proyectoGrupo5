@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hibernate.loader.custom.Return;
@@ -99,5 +100,16 @@ public class Compiler {
         con.disconnect();
 
 		return content.toString();
+    }
+
+    public int compareSolutions(String userSolution, List <String> solutions){
+        int retorno=0;
+        for (int i=0; i<solutions.size();i++){
+            if(userSolution.equals(solutions.get(i))){
+                retorno=1;
+                return retorno;
+            }
+        }
+        return retorno;
     }
 }
