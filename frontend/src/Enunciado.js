@@ -128,10 +128,12 @@ class Enunciado extends Component {
         console.log(actual)
         if(+statement.initialDate>=+statement.finalDate){
             alert("fecha de inicio no coincide con fecha termino")
+            return;
 
         }
         if(+statement.initialDate<+placeholder){
             alert("fecha inicial es anterior a fecha actual");
+            return;
         }
         if(statement.statementName==="" || statement.statementText ==="" ||statement.section==="" || statement.header==="" ||testCases===[]){
             console.log("Debe llenar todos las casillas");
