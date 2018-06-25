@@ -63,9 +63,9 @@ class Solucion extends Component {
             //fetch('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python")
             //.then(response => response.json())
             //.then(data => this.setState({salida: data.stdout}));
-            //axios.get('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python").then(response => {
-            // return response.data;
-            // });
+            axios.get('http://localhost:8081/api/compiler/runCode?code='+"print(33)"+"&lang=" + "java").then(response => {
+             return response.data;
+             });
             axios({
                 method: 'get',
                 url: 'http://localhost:8081/api/compiler/runCode',
