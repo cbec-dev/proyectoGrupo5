@@ -32,6 +32,8 @@ public class Statement {
     private Date initialDate;
     private Date finalDate;
     private Boolean isActive;
+    @ManyToOne
+    private ExpectedSolution expectedSolution;
 
 
     public Integer getIdStatement() {
@@ -94,6 +96,13 @@ public class Statement {
     
     public void setHeader(String header) {
         this.header = header;
+    }
+
+    public void setExpectedSolution(ExpectedSolution expectedSolution){
+        this.expectedSolution=expectedSolution;
+    }
+    public ExpectedSolution getExpectedSolution(){
+        return this.expectedSolution;
     }
 
 }
