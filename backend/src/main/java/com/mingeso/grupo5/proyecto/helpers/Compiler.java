@@ -62,8 +62,8 @@ public class Compiler {
         //Conección y headers
         URL url = new URL("");
         if(lang.equals("python")) url = new URL("https://run.glot.io/languages/python/2");
-        if(lang.equals("c")) url = new URL("https://run.glot.io/languages/c");
-        if(lang.equals("java")) url = new URL("https://run.glot.io/languages/java");
+        if(lang.equals("c")) url = new URL("https://run.glot.io/languages/c/latest");
+        if(lang.equals("java")) url = new URL("https://run.glot.io/languages/java/latest");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
@@ -97,7 +97,7 @@ public class Compiler {
         in.close();
 
         con.disconnect();
-        
+
 		return content.toString();
     }
 }
