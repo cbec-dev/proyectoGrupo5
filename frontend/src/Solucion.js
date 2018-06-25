@@ -47,32 +47,35 @@ class Solucion extends Component {
         };
     }
     ejecutarSolucion(e) {
-        this.solution = {nameSolution: "", code: "", mode: ""}
+        this.solution = {nameSolution: "", code: ""}
+        var lang = "python";
+
         this.solution.nameSolution = e.nameSolution;
         this.solution.code = e.code;
-        this.solution.mode = e.mode;
+        var algo = {code: "", lang: ""}
+        algo.code = "print(33)";
+        algo.lang = "python";
+        console.log("DATOS: " + algo.code + "-" + algo.lang );
         var code = e.code;
-        console.log(this.solution.mode);
-        if(this.solution.nameSolution==="" || this.solution.code ===""){
-            alert("Debe llenar todas las casillas");
-            return;
-        }
-        else{
-            fetch('http://localhost:8081/api/compiler/runCode?code='+this.solution.code+'&lang='+this.solution.mode)
-            .then(response => response.json())
-            .then(data => this.setState({salida: data.stdout}));
+        console.log(this.solution.code);
+    
+
+            //fetch('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python")
+            //.then(response => response.json())
+            //.then(data => this.setState({salida: data.stdout}));
+            //axios.get('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python").then(response => {
+            // return response.data;
+            // });
             axios({
                 method: 'get',
                 url: 'http://localhost:8081/api/compiler/runCode',
-                data: qs.stringify(code),
+                data: qs.stringify(algo),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "GET",
                 },
              }).then(response => alert(response.data));
-
-        }
 
         
     }
