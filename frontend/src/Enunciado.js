@@ -110,15 +110,24 @@ class Enunciado extends Component {
     subirFormulario(e) {
         console.log("formulario enviado c:");
 
-        var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: "", expectedSolution: ""}
+        var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: "", expectedSolution: []}
         var testCases = [];
+        var bodyFormData = new FormData();
+        bodyFormData.set('section', e.sectionName);
+        bodyFormData.set('statementName', e.nameStatement);
+        bodyFormData.set('statementText', e.text);
+        bodyFormData.set('finalDate', new Date(e.finalDate));
+        bodyFormData.set('initialDate', new Date(e.initialDate));
+        bodyFormData.set('expectedSolution', e.values);
+        bodyFormData.set('header', e.code);
         statement.statementName = e.nameStatement;
         statement.statementText =e.text;
         testCases = e.values;
         statement.header = e.code;
         statement.finalDate = new Date(e.finalDate);
         statement.initialDate = new Date(e.initialDate);
-        statement.expectedSolution = e.expectedSolution;
+        //statement.expectedSolution = e.values;
+        statement.expectedSolution = e.values;
         var placeholder = new Date();
         var actual = placeholder.getDate();
         console.log("texto en codemirror: "+ statement.header)
@@ -175,11 +184,11 @@ class Enunciado extends Component {
             //}) .catch(function (error) {
             //console.log(error);
             //});
-            var bodyFormData = new FormData();
+
             axios({
                 method: 'post',
                 url: 'http://localhost:8081/api/statements/add',
-                data: qs.stringify(statement),
+                data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -302,13 +311,13 @@ class Enunciado extends Component {
                         onChange = {this.handleInputChange} />
                     </div>
 
-                    <div className="div1">
-                    <label className="label2"> Enunciado:  </label>
-                    </div>
+                    
 
                     {this.createUI()}        
           <input type='button' value='Agregar Caso de Prueba' onClick={this.addClick.bind(this)}/>
-                    
+                    <div className="div1">
+                    <label className="label2"> Enunciado:  </label>
+                    </div>
                     
                     <div className="div2">
                         
@@ -389,14 +398,14 @@ class Enunciado extends Component {
                         onChange = {this.handleInputChange} />
                        </div>
 
-                        <div className="div1">
-                        <label className="label2"> Enunciado:  </label>
-                        </div>
+                      
     
                         {this.createUI()}        
               <input type='button' value='Agregar Caso de Prueba' onClick={this.addClick.bind(this)}/>
                         
-                        
+                          <div className="div1">
+                        <label className="label2"> Enunciado:  </label>
+                        </div>
                         <div className="div2">
                             
                             <textarea className="text" name= "text" type = "text" value={this.state.text} 

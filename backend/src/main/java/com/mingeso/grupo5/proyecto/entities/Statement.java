@@ -11,7 +11,7 @@ import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import java.util.List;
 import java.time.LocalDateTime;
 
 
@@ -35,7 +35,7 @@ public class Statement {
     private Date finalDate;
     private Boolean isActive;
     @OneToMany
-    private ExpectedSolution expectedSolution;
+    private List<ExpectedSolution> expectedSolution;
 
 
     public Integer getIdStatement() {
@@ -100,10 +100,10 @@ public class Statement {
         this.header = header;
     }
 
-    public void setExpectedSolution(ExpectedSolution expectedSolution){
+    public void setExpectedSolution(List<ExpectedSolution> expectedSolution){
         this.expectedSolution=expectedSolution;
     }
-    public ExpectedSolution getExpectedSolution(){
+    public List<ExpectedSolution> getExpectedSolution(){
         return this.expectedSolution;
     }
 
