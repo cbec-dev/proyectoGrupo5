@@ -29,7 +29,6 @@ class Solucion extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
-        this.ejecutarSolucion = this.ejecutarSolucion.bind(this);
         
         this.state = {
             isLoading: false,
@@ -55,21 +54,24 @@ class Solucion extends Component {
         var algo = {code: "", lang: ""}
         algo.code = "print(33)";
         algo.lang = "python";
-        console.log("DATOS: " + algo.code + "-" + algo.lang );
+        console.log("DATOS: " + e.code + "-" + algo.lang );
         var code = e.code;
         console.log(this.solution.code);
-    
+        var bodyFormData = new FormData();
+        bodyFormData.set('code', e.code);
+        bodyFormData.set('lang' ,'python');
+        console.log(bodyFormData)
 
             //fetch('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python")
             //.then(response => response.json())
             //.then(data => this.setState({salida: data.stdout}));
-            axios.get('http://localhost:8081/api/compiler/runCode?code='+"print(33)"+"&lang=" + "java").then(response => {
+            axios.get('http://localhost:8081/api/compiler/runCode?code='+e.code+"&lang=" + "c").then(response => {
              return response.data;
              });
             axios({
                 method: 'get',
                 url: 'http://localhost:8081/api/compiler/runCode',
-                data: qs.stringify(algo),
+                data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",

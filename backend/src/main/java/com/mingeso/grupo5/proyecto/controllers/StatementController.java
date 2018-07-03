@@ -61,8 +61,8 @@ public class StatementController {
 			@RequestParam String statementText,
 			@RequestParam Integer section,
 			@RequestParam String header,
-			@RequestParam String finalDate,
-			@RequestParam String initialDate,
+			@RequestParam Date finalDate,
+			@RequestParam Date initialDate,
 			@RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution) 
             {
 		Section s = new Section();
@@ -71,18 +71,18 @@ public class StatementController {
 		s = sectionRepository.findById(section).orElse(null);
 		Statement n = new Statement();
 		List<ExpectedSolution> expectSol=new ArrayList<ExpectedSolution>();
-		Date date = new Date();
-		Date initial = new Date();
+		//Date date = new Date();
+		//Date initial = new Date();
 		//LocalDate localDate = LocalDate();
 		//Date initialDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			 date = formatter.parse(finalDate);
-			 initial = formatter.parse(initialDate);
-			}
-		   catch (Exception e) {
+		//DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		//try {
+		//	 date = formatter.parse(finalDate);
+		//	 initial = formatter.parse(initialDate);
+		//	}
+		//   catch (Exception e) {
 			
-		   }
+		//   }
 		for(String str : expectedSolution){
     		System.out.println(str);
     		ExpectedSolution temp = new ExpectedSolution();
@@ -90,14 +90,14 @@ public class StatementController {
     		expectedSolutionRepository.save(temp);
     		expectSol.add(temp);
 			}
-		System.out.println("Fecha sin formato: " + finalDate);
-		System.out.println("Fecha formateade: " + date);
+		//System.out.println("Fecha sin formato: " + finalDate);
+		//System.out.println("Fecha formateade: " + date);
 		n.setStatementName(statementName);
         n.setStatementText(statementText);
 		n.setSection(s);
 		n.setHeader(header);
-		n.setFinalDate(date);
-		n.setInitialDate(initial);
+		n.setFinalDate(finalDate);
+		n.setInitialDate(initialDate);
 		//expectSol.setExpectedSolution(expectedSolution);
 		//expectedSolutionRepository.save(expectSol);
 		n.setExpectedSolution(expectSol);

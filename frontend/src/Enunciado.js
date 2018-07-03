@@ -37,6 +37,7 @@ class Enunciado extends Component {
             isLoading: true,
             nameSolution:"",
             nameStatement: "",
+            expectedSolution: "",
             text:"",
             code: "",
 			readOnly: false,
@@ -211,11 +212,13 @@ class Enunciado extends Component {
     limpiarValores(i){
         
         if(i===1){
-            this.setState({initialDate: "",finalDate: "",sectionName: "", nameStatement: "", text: "", values: [], code: ""});
+            this.setState({initialDate: "",finalDate: "",sectionName: "", nameStatement: "", text: "", values: [], code: "", expectedSolution: ""});
+            this.cm.codeMirror.setValue("")
             this.render();
         }
         else{
-            this.setState({initialDate: "",finalDate: "", nameStatement: "", text: "", values: [], code: ""});
+            this.setState({initialDate: "",finalDate: "", nameStatement: "", text: "", values: [], code: "", expectedSolution: "", sectionName: ""});
+            this.cm.codeMirror.setValue("")
 
         }
     
@@ -341,14 +344,7 @@ class Enunciado extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
-				<div style={{ marginTop: 10 }} className="div4">
-					<select onChange={this.changeMode} value={this.state.mode}>
-						<option value="python">Python</option>
-						<option value="C">C</option>
-                        <option value="java">Java</option>
-					</select>
-				</div>
+				<CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
 			</div>
 
                     <div className="div3">
@@ -425,14 +421,7 @@ class Enunciado extends Component {
                         </div>
                        
                         <div className="div3">
-                    <CodeMirror className="codemirror" ref="editor" value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
-                    <div style={{ marginTop: 10 }} className="div4">
-                        <select onChange={this.changeMode} value={this.state.mode}>
-                            <option value="python">Python</option>
-                            <option value="C">C</option>
-                            <option value="java">Java</option>
-                        </select>
-                    </div>
+                    <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
                 </div>
     
                         <div className="div3">
