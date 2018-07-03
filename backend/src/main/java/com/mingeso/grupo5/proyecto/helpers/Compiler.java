@@ -112,4 +112,10 @@ public class Compiler {
         }
         return retorno;
     }
+
+    public int codeStructureCheck(String code) {
+
+        
+        return 0;
+    }
 }
