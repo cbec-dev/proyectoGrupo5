@@ -177,8 +177,27 @@ class Solucion extends Component {
                    singleLineStringErrors: false},
     
             });
-            
+            //this.cm.codeMirror.setValue(this.props.statement.header)
+
             }
+    componentWillReceiveProps(){
+          this.setState({
+                isLoading: false,
+                nameSolution:"",
+                code: this.props.statement.header,
+                readOnly: false,
+                mode: {name: "python",
+                   version: 3,
+                   singleLineStringErrors: false},
+    
+            });
+            this.cm.codeMirror.setValue(this.props.statement.header)
+            this.render();
+    }
+    componentDidUpdate(){
+            this.cm.codeMirror.setValue(this.props.statement.header)
+    }
+
 
         
 
@@ -207,7 +226,7 @@ class Solucion extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref="editor" value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
+				<CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
 				<div style={{ marginTop: 10 }} className="div4">
 					<select onChange={this.changeMode} value={this.state.mode}>
 						<option value="python">Python</option>

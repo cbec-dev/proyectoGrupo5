@@ -68,8 +68,25 @@ class MostrarEnunciado extends Component {
         let values = [...this.state.values];
         values.splice(i,1);
         this.setState({ values });
-     }    
-        getInitialState () {
+     } 
+     componentWillReceiveProps(){
+        this.setState({
+                isLoading: false,
+                nameSolution:"",
+                code: this.props.statement.header,
+                readOnly: false,
+                mode: {name: "python",
+                   version: 3,
+                   singleLineStringErrors: false},
+    
+            });
+        //this.cm.codeMirror.setValue(this.props.statement.header)
+     }
+     componentDidUpdate(){
+            this.cm.codeMirror.setValue(this.props.statement.header)
+    }   
+
+     getInitialState () {
             return {
                 code: this.props.statement.header,
                 nameStatement: this.props.statement.nameStatement,
@@ -81,7 +98,10 @@ class MostrarEnunciado extends Component {
                singleLineStringErrors: false},
             };
 
+
+
         }
+
      
      
 
@@ -147,7 +167,7 @@ class MostrarEnunciado extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref="editor" value={statement.header} options={options} autoFocus={true} />
+				<CodeMirror className="codemirror" ref={el => this.cm = el} value={statement.header} options={options} autoFocus={true} />
 		
 			</div>
                   </form>

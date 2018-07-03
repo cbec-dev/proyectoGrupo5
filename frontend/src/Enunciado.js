@@ -31,8 +31,6 @@ class Enunciado extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.addClick = this.addClick.bind(this);
         this.removeClick = this.removeClick.bind(this);
-
-
         this.state = {
             isLoading: true,
             nameSolution:"",
@@ -195,7 +193,7 @@ class Enunciado extends Component {
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             });
+             }).then(response => alert(response.data));
             
             console.log("data statement: ")
             console.log(JSON.stringify(statement))
@@ -212,12 +210,12 @@ class Enunciado extends Component {
     limpiarValores(i){
         
         if(i===1){
-            this.setState({initialDate: "",finalDate: "",sectionName: "", nameStatement: "", text: "", values: [], code: "", expectedSolution: ""});
+            this.setState({initialDate: "",finalDate: "",nameStatement: "", text: "", values: [], code: "", expectedSolution: ""});
             this.cm.codeMirror.setValue("")
             this.render();
         }
         else{
-            this.setState({initialDate: "",finalDate: "", nameStatement: "", text: "", values: [], code: "", expectedSolution: "", sectionName: ""});
+            this.setState({initialDate: "",finalDate: "", nameStatement: "", text: "", values: [], code: "", expectedSolution: ""});
             this.cm.codeMirror.setValue("")
 
         }
