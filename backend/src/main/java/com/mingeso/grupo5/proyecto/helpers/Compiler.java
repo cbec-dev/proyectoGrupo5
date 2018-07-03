@@ -113,9 +113,30 @@ public class Compiler {
         return retorno;
     }
 
-    public int codeStructureCheck(String code) {
+    public int codeStructureCheck(String code, String lang) {
 
+        boolean entrada = false;
+        boolean procesamiento = false;
+        boolean salida = false;
+        switch (lang) {
+            case "python":  entrada = code.matches("(?i).*#entrada.*");
+                            procesamiento = code.matches("(?i).*#procesamiento.*");
+                            salida = code.matches("(?i).*#salida.*");
+                            break;
+            case "c":       entrada = code.matches("(?i).*//entrada.*");
+                            procesamiento = code.matches("(?i).*//procesamiento.*");
+                            salida = code.matches("(?i).*//salida.*");
+                            break;
+            case "java":    entrada = code.matches("(?i).*//entrada.*");
+                            procesamiento = code.matches("(?i).*//procesamiento.*");
+                            salida = code.matches("(?i).*//salida.*");
+                            break;
+            default:        entrada = salida = procesamiento = false;
+                            break;
+        }
+        boolean out = entrada && salida && procesamiento;
         
-        return 0;
+        if(out) return 1;
+        else return 0;
     }
 }
