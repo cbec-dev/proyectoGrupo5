@@ -34,7 +34,22 @@ public class Compiler {
         //System.out.println(output);
         return output;
     }
-
+    
+    public int checkCommentaries(String code, String lang) {
+    	
+    	
+    	
+    	switch (lang) {
+    		case "python":
+    		
+    		case "c":
+    		
+    		case "java":
+    	}
+    	
+    	return 1;
+    }
+    
     public String getLanguages() throws IOException
     {
         URL url = new URL("https://run.glot.io/languages");
