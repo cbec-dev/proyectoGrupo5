@@ -22,6 +22,8 @@ import {loginWithGoogle, logout} from "./firebase/auth";
 import {firebaseAuth} from "./firebase/constants";
 import axios from 'axios';
 import ListarSoluciones from './ListarSoluciones';
+import VerSolucion from './verSolucion';
+
 
 
 const muiTheme = getMuiTheme({
@@ -119,6 +121,7 @@ class App extends Component {
         <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user} callBackFromParentStatement= {this.myCallBackStatement}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/VerSolucion" component={()=><verSolucion typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
 
 
       </Switch>
