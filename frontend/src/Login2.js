@@ -72,7 +72,7 @@ export default class Login extends React.Component {
             console.log("user signed out from firebase");
         }.bind(this));
         this.setState({userLogged: false, firebaseUser: ""});
-        this.props.callbackFromParent(this.state.userLogged, this.firebaseUser);
+        //this.props.callbackFromParentLogin(this.state.userLogged, this.firebaseUser);
 
 
     }

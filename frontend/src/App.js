@@ -35,6 +35,7 @@ const customHistory = createBrowserHistory();
 const firebaseAuthKey = "firebaseAuthInProgress";
 const appTokenKey = "appToken";
 const placeHolder = JSON.parse(localStorage.getItem('user'));
+var statement = "";
 
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
           firebaseUser: JSON.parse(localStorage.getItem('user')),
           isLoading: false,
           user: JSON.parse(localStorage.getItem('activeUserObject')),
+          statement: "",
         };
 
     }
@@ -81,7 +83,11 @@ class App extends Component {
       this.setState({user: dataFromHome});
       console.log("CALLBACK FROM HOME IN APP :C");
     }
-
+    myCallBackStatement = (dataFromStatement) => {
+      statement = dataFromStatement;
+      //this.setState({statement: dataFromStatement});
+      console.log("CALLBACK FROM STATEMENT IN APP: " + dataFromStatement + "-" + this.state.statement + "-" + this.state.statement.header+ "-" +dataFromStatement.header);
+    }
     componentWillMount(){
    
       
@@ -105,13 +111,13 @@ class App extends Component {
         <Route path="/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/Prueba" component={()=> <Prueba typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/Enunciado" component={()=> <Enunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Solucion" component={()=> <Solucion typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}  />
+        <Route path="/Solucion" component={()=> <Solucion statement={statement} callBackFromParentStatement= {this.myCallbackStatement} location={this.props.location} typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}  />
         <Route path="/Code" component={()=> <CodeMirror typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
     <Route path= "/Login2" component={()=> <Login2 typeUser={this.state.user.userType} callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
         <Route path="/Home" component={()=> <Home typeUser={this.state.user.userType} callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
         <Route path="/CrearCurso" component={()=><CrearCurso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
-        <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
-        <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
+        <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user} callBackFromParentStatement= {this.myCallBackStatement}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
 
 
@@ -142,7 +148,7 @@ class App extends Component {
         <Route path="/RegistroProfesor" component={()=> <RegistroProfesor history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/Prueba" component={()=> <Prueba history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/Enunciado" component={()=> <Enunciado history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Solucion" component={()=> <Solucion history={customHistory} activeUser={this.state.user}/>}  />
+        <Route path="/Solucion" component={()=> <Solucion location={this.props.location} history={customHistory} activeUser={this.state.user}/>}  />
         <Route path="/Code" component={()=> <CodeMirror history={customHistory} activeUser={this.state.user}/>} />
     <Route path= "/Login2" component={()=> <Login2 callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
         <Route path="/Home" component={()=> <Home callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />

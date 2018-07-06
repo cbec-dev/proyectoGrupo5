@@ -191,11 +191,11 @@ class Solucion extends Component {
                    singleLineStringErrors: false},
     
             });
-            this.cm.codeMirror.setValue(this.props.statement.header)
+            //this.cm.codeMirror.setValue(this.props.statement.header)
             this.render();
     }
     componentDidUpdate(){
-            this.cm.codeMirror.setValue(this.props.statement.header)
+            //this.cm.codeMirror.setValue(this.props.statement.header)
     }
 
 
@@ -208,12 +208,23 @@ class Solucion extends Component {
                 mode: this.state.mode
             };
             const header = this.props.statement.header;
-            console.log("STATEMENT HEADER: " + header);
+            console.log("STATEMENT HEADER: " + header+ "-" + this.props.statement.statementText);
             const typeUser = this.props.typeUser;
+            if(header === undefined || this.props.statement ===undefined){
+                return(<div> {this.props.history.push("/ListarEnunciado")} </div>); 
+            }
             if(typeUser===1 || typeUser===2){
                 return (
                    <body className="body"> 
                     <form className="form">
+                    <div className="div1">
+                    <label classname="labels"> Enunciado: </label>
+                    </div>
+                    <div className="div2">
+                        
+                        <textarea className="text" name= "text" type = "text" value={this.props.statement.statementText} 
+                        disabled = "true"/>
+                    </div>
                     <div className="div1">
                     <label className="labels"> Nombre Solucion:  </label>
                     </div>

@@ -1,10 +1,13 @@
 import { Button } from 'react-bootstrap';
 import * as React from 'react';
+import {Route, Redirect, Router, Switch} from 'react-router';
+import {Link} from 'react-router-dom';
 import './css/verEnunciado.css';
 import MostrarEnunciado from './MostrarEnunciado';
 import Solucion from './Solucion';
 import Moment from 'react-moment';
 import moment from 'moment';
+var statement = "";
 class verEnunciado extends React.Component {
 
     constructor(props) {
@@ -29,9 +32,32 @@ class verEnunciado extends React.Component {
     }
     solucionEnunciado(e){
         this.setState({isSelectedSolution: true, statement: e, isSelected: false})
+        this.props.callBackFromParentStatement(e);
+        console.log("post-call back statement:" + e + "-" + e.statementText + "-" + e.header);
+        statement = e;
+        //return <Redirect to="/Solucion" render={()=><Solucion statement = {e} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>
+
+        //return <Link to={{
+  //pathname: '/Solucion',
+  //state: { statement: e }
+//}}/>
+
+        /*return this.props.history.push({
+            pathname:"/Solucion",
+            state:{
+                statement:this.state.statement,
+                typeUser: this.props.typeUser,
+                idUser: this.props.activeUser.idUser,
+                history: this.props.history,
+                activeUser: this.props.activeUser,
+
+              }
+            });*/
+        //return <Link to={'/Solucion'+e }>Create Idea</Link>
     }
 
     render() {
+
         const statements = this.props.statements; 
         const currentDate = new Date();
         const now = moment();
@@ -45,7 +71,6 @@ class verEnunciado extends React.Component {
         if(this.props.typeUser===1){
             return (
                 <div>
-                            
                 <table id="t04">
                 <tbody>
                     <tr>
@@ -99,7 +124,7 @@ class verEnunciado extends React.Component {
                     </div>
                 <div>
                     {this.state.isSelectedSolution ?
-                    <Solucion statement = {this.state.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>:
+        <Redirect push to="/Solucion" render={()=><Solucion statement = {this.state.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
                     null
                     }
                     </div>
@@ -166,7 +191,7 @@ class verEnunciado extends React.Component {
                     </div>
                 <div>
                     {this.state.isSelectedSolution ?
-                    <Solucion statement = {this.state.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>:
+                    <Redirect push to="/Solucion" render={()=><Solucion statement = {statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
                     null
                     }
                     </div>
