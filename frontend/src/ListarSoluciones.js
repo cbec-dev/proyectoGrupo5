@@ -36,12 +36,22 @@ class ListarSoluciones extends React.Component {
             .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
             .then(console.log("SOLUCIONES -" + object))
         }
+        else if(type==="alumno"){
+            console.log("Mostrar soluciones alumno")
+            fetch('http://localhost:8081/solutions/searchbyStatement/' + object.idStatement)
+            .then(response => response.json())
+            .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
+            .then(console.log("SOLUCIONES -" + object))
+
+        }
     }
     componentDidMount(){
         if(this.props.activeUser!==null){
             console.log("didMount listar soluciones")
             if(this.props.activeUser.typeUser===1){
-
+                fetch('http://localhost:8081/solutions/searchbyUser/' + this.props.activeUser.idUser)
+                .then(response => response.json())
+                .then(data => this.setState({solutions: data}))
 
             }
             else if(this.props.activeUser.userType===2){
@@ -66,6 +76,7 @@ class ListarSoluciones extends React.Component {
         const users = this.state.users;
         const sections = this.state.sections;
         const statements = this.state.statements;
+        const solutions = this.state.solutions;
         if(this.props.typeUser===2){
             return (
                 <body>
@@ -179,30 +190,29 @@ class ListarSoluciones extends React.Component {
             );
         
         }
-        else{
+        else if(this.props.userType===1){
             return (
                 <div>
-                            
+                <p> Mis Soluciones: </p>
                 <table id="t03">
                 <tbody>
                     <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Seccion</th>
+                    <th>Nombre Enunciado</th>
                     <th>Accion</th>
-                    <th> Accion </th>
+                    
                     
                 
                     </tr>
-                            {statements.map((statement) =>
+                            {solutions.map((solution) =>
                             
                                 
-                                   <tr key={statement.idStatement}>
-                                        <th>{statement.idStatement}</th>
-                                        <th>{statement.statementName}</th>
-                                        <th>{statement.section.idSection}</th>
-                                        <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+                                   <tr key={solution.idSolution}>
+                                        <th>{solution.idSolution}</th>
+                                        <th>{solution.solutionName}</th>
+                                        <th>{solution.statement.statementName}</th>
+                                        <th> <button onClick={(object, type) => this.mostrarSolucion(solution, "alumno")}>Ver Solucion</button></th>
 
                                     </tr> 
                                 

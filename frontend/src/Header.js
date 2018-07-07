@@ -78,7 +78,9 @@ class Header extends Component {
               <MenuItem divider />
               <MenuItem eventKey={3.4}>Separated link</MenuItem>
               </NavDropdown>
+              <div className="image-cropper">
               <img className="image" src={photoURL} />
+              </div>
             </Nav>
             </Navbar>
             </body>
@@ -113,7 +115,9 @@ class Header extends Component {
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
+            <div className="image-cropper">
             <img className="image" src={photoURL} />
+            </div>
           </Nav>
           </Navbar>
           </body>
@@ -144,7 +148,9 @@ class Header extends Component {
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
+            <div className="image-cropper"> 
             <img className="image" src={photoURL} />
+            </div>
           </Nav>
           </Navbar>
           </body>

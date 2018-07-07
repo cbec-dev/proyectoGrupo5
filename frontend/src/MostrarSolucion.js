@@ -41,6 +41,7 @@ class MostrarSolucion extends Component {
             values: [],
             sectionName: "",
             header: "",
+            solution: "",
 
         };
     }
@@ -73,7 +74,7 @@ class MostrarSolucion extends Component {
         this.setState({
                 isLoading: false,
                 nameSolution:"",
-                code: this.props.statement.header,
+                code: this.props.solution.solutionText,
                 readOnly: false,
                 mode: {name: "python",
                    version: 3,
@@ -83,7 +84,7 @@ class MostrarSolucion extends Component {
         //this.cm.codeMirror.setValue(this.props.statement.header)
      }
      componentDidUpdate(){
-            this.cm.codeMirror.setValue(this.props.statement.header)
+            this.cm.codeMirror.setValue(this.props.solution.solutionText)
     }   
 
      getInitialState () {
@@ -107,12 +108,10 @@ class MostrarSolucion extends Component {
 
 
         render() {
-            const statement = this.props.statement;
+            const solution = this.props.solution;
             //const header = this.props.statement.header.split("\"");
-            console.log("statement mostrar enunciado: ");
-            console.log(statement)
-            const initialDate = statement.initialDate.split("T"); 
-            const finalDate = statement.finalDate.split("T");
+            console.log("solution mostrar enunciado: ");
+            console.log(solution)
             var options = {
                 lineNumbers: true,
                 readOnly: true,
@@ -125,33 +124,27 @@ class MostrarSolucion extends Component {
                     <label className="label1"> Nombre Enunciado:  </label>
                     </div>
                     <div className="div1">
-                        <input className="input" name= "nameStatement" type = "text" value={statement.statementName}
+                        <input className="input" name= "solutionName" type = "text" value={solution.solutionName}
                         disabled = "true"/>
                     </div>
                     <div className="div1">
-                    <label className="label2"> Enunciado:  </label>
+                    <label className="label2"> Solucion:  </label>
+                    </div>
+                    
+                    <div className="div1">
+                    <label className="label2"> Nombre Enunciado:  </label>
                     </div>
 
-                     <div className="div1">
-                        <label className="label1"> Fecha Inicial:  </label>
-                        </div>
-                        <div className="div1">
-                            <input className="input" name= "initialDate" type = "text" value={initialDate[0]}
-                            onChange = {this.handleInputChange} disabled = "true"/>
-                        </div>
-
-
-                    <div className="div1">
-                        <label className="label1"> Fecha Final:  </label>
-                        </div>
-                        <div className="div1">
-                            <input className="input" name= "finalDate" type = "text" value={finalDate[0]}
-                            onChange = {this.handleInputChange} disabled = "true"/>
-                        </div>
-                    
                     <div className="div2">
                         
-                        <textarea className="text" name= "text" type = "text" value={statement.statementText} 
+                        <textarea className="input" name= "text" type = "text" value={solution.statement.statementName} 
+                        disabled = "true"/>
+                    </div>
+                    <div className="div1">
+                    <label className="label2"> Nombre Usuario:  </label>
+                    </div>
+                    <div className="div1">
+                        <input className="input" name= "solutionName" type = "text" value={solution.user.userName}
                         disabled = "true"/>
                     </div>
                     <div className="div1">
@@ -167,7 +160,7 @@ class MostrarSolucion extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref={el => this.cm = el} value={statement.header} options={options} autoFocus={true} />
+				<CodeMirror className="codemirror" ref={el => this.cm = el} value={solution.solutionText} options={options} autoFocus={true} />
 		
 			</div>
                   </form>
