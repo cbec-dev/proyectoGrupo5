@@ -38,5 +38,32 @@ public class CompilerController {
         String out = compiler.run(code, lang);
 		return out;
     }
+
+    @GetMapping(path="/checkCode")
+    @ResponseBody String checkCode(
+        @RequestParam String code,
+        @RequestParam String lang) throws IOException {
+
+            String header = "Calidad del código:";
+            String structure = "Estructura: ";
+            String variables = "Variables: ";
+            String identation = "Identación: ";
+            String comments = "Comentarios: ";
+
+            //Se checkea estructura del código
+            if(Compiler.codeStructureCheck(code, lang)==1) structure = structure + "Correcto";
+            else structure = structure + "Incorrecto";
+
+            //Checkear variables
+
+            //Checkear identación
+
+            //Checkear comentarios
+
+
+            String out = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
+			return out;
+
+        }
     
 }
