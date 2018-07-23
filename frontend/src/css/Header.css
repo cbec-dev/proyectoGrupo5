@@ -59,7 +59,20 @@
   color: #fff !important;
 }
 
-.image{
-  height: 30px;
-  width: 25px;
+.image-cropper {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+
+
+}
+
+.image {
+
+  display: block;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+
 }

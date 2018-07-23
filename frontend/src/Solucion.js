@@ -29,7 +29,6 @@ class Solucion extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
-        this.ejecutarSolucion = this.ejecutarSolucion.bind(this);
         
         this.state = {
             isLoading: false,
@@ -55,21 +54,24 @@ class Solucion extends Component {
         var algo = {code: "", lang: ""}
         algo.code = "print(33)";
         algo.lang = "python";
-        console.log("DATOS: " + algo.code + "-" + algo.lang );
+        console.log("DATOS: " + e.code + "-" + algo.lang );
         var code = e.code;
         console.log(this.solution.code);
-    
+        var bodyFormData = new FormData();
+        bodyFormData.set('code', e.code);
+        bodyFormData.set('lang' ,'python');
+        console.log(bodyFormData)
 
             //fetch('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python")
             //.then(response => response.json())
             //.then(data => this.setState({salida: data.stdout}));
-            axios.get('http://localhost:8081/api/compiler/runCode?code='+"print(33)"+"&lang=" + "java").then(response => {
+            axios.get('http://localhost:8081/api/compiler/runCode?code='+e.code+"&lang=" + "c").then(response => {
              return response.data;
              });
             axios({
                 method: 'get',
                 url: 'http://localhost:8081/api/compiler/runCode',
-                data: qs.stringify(algo),
+                data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -175,8 +177,27 @@ class Solucion extends Component {
                    singleLineStringErrors: false},
     
             });
-            
+            //this.cm.codeMirror.setValue(this.props.statement.header)
+
             }
+    componentWillReceiveProps(){
+          this.setState({
+                isLoading: false,
+                nameSolution:"",
+                code: this.props.statement.header,
+                readOnly: false,
+                mode: {name: "python",
+                   version: 3,
+                   singleLineStringErrors: false},
+    
+            });
+            //this.cm.codeMirror.setValue(this.props.statement.header)
+            this.render();
+    }
+    componentDidUpdate(){
+            //this.cm.codeMirror.setValue(this.props.statement.header)
+    }
+
 
         
 
@@ -187,12 +208,23 @@ class Solucion extends Component {
                 mode: this.state.mode
             };
             const header = this.props.statement.header;
-            console.log("STATEMENT HEADER: " + header);
+            console.log("STATEMENT HEADER: " + header+ "-" + this.props.statement.statementText);
             const typeUser = this.props.typeUser;
+            if(header === undefined || this.props.statement ===undefined){
+                return(<div> {this.props.history.push("/ListarEnunciado")} </div>); 
+            }
             if(typeUser===1 || typeUser===2){
                 return (
                    <body className="body"> 
                     <form className="form">
+                    <div className="div1">
+                    <label classname="labels"> Enunciado: </label>
+                    </div>
+                    <div className="div2">
+                        
+                        <textarea className="text" name= "text" type = "text" value={this.props.statement.statementText} 
+                        disabled = "true"/>
+                    </div>
                     <div className="div1">
                     <label className="labels"> Nombre Solucion:  </label>
                     </div>
@@ -205,7 +237,7 @@ class Solucion extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref="editor" value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
+				<CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
 				<div style={{ marginTop: 10 }} className="div4">
 					<select onChange={this.changeMode} value={this.state.mode}>
 						<option value="python">Python</option>

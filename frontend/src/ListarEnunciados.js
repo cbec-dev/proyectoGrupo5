@@ -106,7 +106,7 @@ class ListarEnunciados extends React.Component {
                 </table>
                 <div>
                     {this.state.isSelected ?
-                    <Enunciado statements = {this.state.statements} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
+                    <Enunciado statements = {this.state.statements} callBackFromParentStatement= {this.props.callBackFromParentStatement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
                     null
                      }
                 </div>
@@ -144,7 +144,7 @@ class ListarEnunciados extends React.Component {
                 </table>
                 <div>
                     {this.state.isSelected ?
-                    <Enunciado statements = {this.state.statements} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
+                    <Enunciado statements = {this.state.statements} callBackFromParentStatement= {this.props.callBackFromParentStatement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
                     null
                      }
                 </div>
@@ -183,7 +183,7 @@ class ListarEnunciados extends React.Component {
                 <div>
                     <label> the worst </label>
                     {this.state.isSelected ?
-                    <Enunciado statements = {this.state.statements} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
+                    <Enunciado statements = {this.state.statements} callBackFromParentStatement= {this.props.callBackFromParentStatement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
                     null
                      }
                 </div>

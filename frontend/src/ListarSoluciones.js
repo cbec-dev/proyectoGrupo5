@@ -9,11 +9,13 @@ class ListarSoluciones extends React.Component {
         super(props);
 
         this.state = {
+            solutions: [],
             statements: [],
             statement:"",
             section: "",
             isLoading: false,
             isSelected: false,
+            isSelectedSolutionStatement: false,
             isSelectedSolution:false,
             idStatement: "",
             solutionsBySection: [],
@@ -25,16 +27,31 @@ class ListarSoluciones extends React.Component {
         };
         this.mostrarSolucion = this.mostrarSolucion.bind(this)
         }
-    mostrarSolucion(e){
-        fetch('http://localhost:8081/api/statements/search/seccion/'+ e)
-        .then(response => response.json())
-        .then(data => this.setState({solutions: data, isSelected: true}))
+    mostrarSolucion(object, type){
+        console.log("MOSTRAR SOLUCION" + "-" + type)
+        if(type==="enunciado"){
+            console.log("MOSTRAR POR STATEMENT")
+            fetch('http://localhost:8081/solutions/searchbyStatement/' + object.idStatement)
+            .then(response => response.json())
+            .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
+            .then(console.log("SOLUCIONES -" + object))
+        }
+        else if(type==="alumno"){
+            console.log("Mostrar soluciones alumno")
+            fetch('http://localhost:8081/solutions/searchbyStatement/' + object.idStatement)
+            .then(response => response.json())
+            .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
+            .then(console.log("SOLUCIONES -" + object))
 
+        }
     }
     componentDidMount(){
         if(this.props.activeUser!==null){
             console.log("didMount listar soluciones")
             if(this.props.activeUser.typeUser===1){
+                fetch('http://localhost:8081/solutions/searchbyUser/' + this.props.activeUser.idUser)
+                .then(response => response.json())
+                .then(data => this.setState({solutions: data}))
 
             }
             else if(this.props.activeUser.userType===2){
@@ -59,10 +76,7 @@ class ListarSoluciones extends React.Component {
         const users = this.state.users;
         const sections = this.state.sections;
         const statements = this.state.statements;
-        console.log("VER Soluciones: ")
-        console.log(statements)
-        console.log(sections)
-        console.log(users)
+        const solutions = this.state.solutions;
         if(this.props.typeUser===2){
             return (
                 <body>
@@ -86,8 +100,7 @@ class ListarSoluciones extends React.Component {
                                         <th>{user.idStatement}</th>
                                         <th>{user.userName}</th>
                                         <th>{user.section.sectionName}</th>
-                                        <th> <button onClick={(e) => this.mostrarEnunciados()}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado()}>Subir Solucion</button></th>
+                                        <th> <button onClick={(object, type) => this.mostrarSolucion(user, "usuario")}>Mostrar Soluciones</button></th>
 
                                     </tr> 
                                 
@@ -123,8 +136,7 @@ class ListarSoluciones extends React.Component {
                                         <th>{section.idSection}</th>
                                         <th>{section.sectionName}</th>
                                         <th>{section.profesor.userName}</th>
-                                        <th> <button onClick={(e) => this.mostrarEnunciados()}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado()}>Subir Solucion</button></th>
+                                        <th> <button onClick={(object, type) => this.mostrarSolucion(section, "seccion")}>Mostrar Soluciones</button></th>
 
                                     </tr> 
                                 
@@ -134,7 +146,7 @@ class ListarSoluciones extends React.Component {
                 </table>
                 <div>
                     {this.state.isSelected ?
-                    <VerSolucion  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    <VerSolucion  solutions={this.state.solutions} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
                     null
                     }
                     </div>
@@ -160,9 +172,7 @@ class ListarSoluciones extends React.Component {
                         <th>{statement.idStatement}</th>
                         <th>{statement.statementName}</th>
                         <th>{statement.section.idSection}</th>
-                        <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
-                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
-
+                        <th> <button onClick={(object, type) => this.mostrarSolucion(statement, "enunciado")}>Mostrar Soluciones</button></th>
                     </tr> 
                 
             
@@ -170,8 +180,8 @@ class ListarSoluciones extends React.Component {
 </tbody>
 </table>
 <div>
-    {this.state.isSelected ?
-    <VerSolucion  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+    {this.state.isSelectedSolutionStatement ?
+    <VerSolucion  solutions={this.state.solutions} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
     null
     }
     </div>
@@ -180,30 +190,29 @@ class ListarSoluciones extends React.Component {
             );
         
         }
-        else{
+        else if(this.props.userType===1){
             return (
                 <div>
-                            
+                <p> Mis Soluciones: </p>
                 <table id="t03">
                 <tbody>
                     <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Seccion</th>
+                    <th>Nombre Enunciado</th>
                     <th>Accion</th>
-                    <th> Accion </th>
+                    
                     
                 
                     </tr>
-                            {statements.map((statement) =>
+                            {solutions.map((solution) =>
                             
                                 
-                                   <tr key={statement.idStatement}>
-                                        <th>{statement.idStatement}</th>
-                                        <th>{statement.statementName}</th>
-                                        <th>{statement.section.idSection}</th>
-                                        <th> <button onClick={(e) => this.mostrarEnunciados(statement)}>Ver Enunciado</button></th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(statement.idStatement)}>Subir Solucion</button></th>
+                                   <tr key={solution.idSolution}>
+                                        <th>{solution.idSolution}</th>
+                                        <th>{solution.solutionName}</th>
+                                        <th>{solution.statement.statementName}</th>
+                                        <th> <button onClick={(object, type) => this.mostrarSolucion(solution, "alumno")}>Ver Solucion</button></th>
 
                                     </tr> 
                                 
@@ -212,8 +221,8 @@ class ListarSoluciones extends React.Component {
                 </tbody>
                 </table>
                 <div>
-                    {this.state.isSelected ?
-                    <VerSolucion  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    {this.state.isSelectedSolutionStatement ?
+                    <VerSolucion  solutions={this.state.solutions} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
                     null
                     }
                     </div>
