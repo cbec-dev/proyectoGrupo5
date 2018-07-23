@@ -113,11 +113,13 @@ public class Compiler {
         return retorno;
     }
 
-    public int codeStructureCheck(String code, String lang) {
+    public static int codeStructureCheck(String code, String lang) {
 
         boolean entrada = false;
         boolean procesamiento = false;
         boolean salida = false;
+        /*Se busca la presencia de comentarios con los contenidos entrada, procesamiento o salida
+        en cada posible lenguaje.*/
         switch (lang) {
             case "python":  entrada = code.matches("(?i).*#entrada.*");
                             procesamiento = code.matches("(?i).*#procesamiento.*");
@@ -135,7 +137,8 @@ public class Compiler {
                             break;
         }
         boolean out = entrada && salida && procesamiento;
-        
+
+        //Si estan todos los comentarios de las secciones requeridas se retorna 1, caso contraro 0.
         if(out) return 1;
         else return 0;
     }
