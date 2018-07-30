@@ -29,14 +29,16 @@ public class CompilerController {
 		return languages;
     }
 
-@RequestMapping(value = "/runCode", method = RequestMethod.GET)    
+@RequestMapping(value = "/runCode", method = RequestMethod.POST)    
 public @ResponseBody String runCode(
         @RequestParam String code,
         @RequestParam String lang) throws IOException {
-
+        System.out.println(code);
+        System.out.println(lang);
         Compiler compiler = new Compiler();
-        
+        System.out.println("despues compiler");
         String out = compiler.run(code, lang);
+        System.out.println(out);
 		return out;
     }
 

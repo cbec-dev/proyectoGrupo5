@@ -69,8 +69,8 @@ public class Compiler {
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
         con.setRequestProperty("Authorization", "Token 630953e5-4643-4643-b7e0-107713756318");
-        con.setConnectTimeout(5000);
-        con.setReadTimeout(5000);
+        con.setConnectTimeout(10000);
+        con.setReadTimeout(10000);
 
         //Parametros
         String params = "";

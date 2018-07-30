@@ -31,6 +31,7 @@ class ListarEnunciados extends React.Component {
         if(usuarioActivo!==null &&this.props.typeUser!==null){
             if(this.props.typeUser===1&&this.props.activeUser.section!==null){
                 //alumno
+                console.log("alumno u.u")
                 fetch('http://localhost:8081/sections/search/'+ this.props.activeUser.section.idSection)
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false}));
@@ -154,7 +155,8 @@ class ListarEnunciados extends React.Component {
                 
             );
         }
-        else if(typeUser===1&&sections!==null){
+        else if(typeUser===1){
+            console.log("ALUMNO")
             return (
                 <div>
                             

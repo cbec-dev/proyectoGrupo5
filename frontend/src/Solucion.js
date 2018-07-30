@@ -18,7 +18,8 @@ require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
 	C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-	python: ''
+	python: '',
+    java: ''
 };
 
 class Solucion extends Component {
@@ -41,43 +42,71 @@ class Solucion extends Component {
             lineNumbers: true,
             indentUnit: 4,
             matchBrackets: true,
-            salida: ""
+            salida: "",
+            name: ""
 
         };
     }
     ejecutarSolucion(e) {
-        this.solution = {nameSolution: "", code: ""}
+        this.solution = {code: "", lang: ""}
         var lang = "python";
 
-        this.solution.nameSolution = e.nameSolution;
         this.solution.code = e.code;
+        this.solution.lang = e.name;
         var algo = {code: "", lang: ""}
         algo.code = "print(33)";
         algo.lang = "python";
-        console.log("DATOS: " + e.code + "-" + algo.lang );
+        console.log("DATOS: " + e.code + "-" + algo.lang + "-" + e.name);
         var code = e.code;
-        console.log(this.solution.code);
+        console.log(this.solution);
         var bodyFormData = new FormData();
         bodyFormData.set('code', e.code);
-        bodyFormData.set('lang' ,'python');
+        bodyFormData.set('lang',e.name);
         console.log(bodyFormData)
+        console.log(bodyFormData.code)
+        console.log(bodyFormData.lang)
 
             //fetch('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python")
             //.then(response => response.json())
             //.then(data => this.setState({salida: data.stdout}));
-            axios.get('http://localhost:8081/api/compiler/runCode?code='+e.code+"&lang=" + "c").then(response => {
+            /*axios.get('http://localhost:8081/api/compiler/runCode', this.solution).then(response => {
              return response.data;
-             });
-            axios({
-                method: 'get',
+             });*/
+           /*axios.post('http://localhost:8081/api/compiler/runCode', {
+              headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+              data: {
+                code: e.code,
+                lang: e.name
+              }
+            }).then(response => {
+             return response.data;
+             })*/
+             /*axios({
+                method: 'post',
                 url: 'http://localhost:8081/api/compiler/runCode',
-                data: bodyFormData,
+                data: JSON.stringify(this.solution),
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             }).then(response => console.log(response.data));*/
+            axios({
+                method: 'post',
+                url: 'http://localhost:8081/api/compiler/runCode',
+                data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
-                    "Access-Control-Allow-Methods": "GET",
+                    "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => alert(response.data));
+             }).then(response => console.log(response.data));
+            //fetch('http://localhost:8081/api/compiler/runCode?code='+ e.code + "&lang=" + e.name)
+            //.then(response => response.json())
 
         
     }
@@ -140,8 +169,9 @@ class Solucion extends Component {
             var mode = e.target.value;
             this.setState({
                 mode: mode,
-                code: defaults[mode]
+                name: e.target.value,
             });
+            console.log(this.state.name)
         }
         toggleReadOnly () {
             this.setState({
@@ -175,6 +205,7 @@ class Solucion extends Component {
                 mode: {name: "python",
                    version: 3,
                    singleLineStringErrors: false},
+                name: "python"
     
             });
             //this.cm.codeMirror.setValue(this.props.statement.header)
@@ -239,7 +270,7 @@ class Solucion extends Component {
                     <div className="div3">
 				<CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
 				<div style={{ marginTop: 10 }} className="div4">
-					<select onChange={this.changeMode} value={this.state.mode}>
+					<select onChange={this.changeMode} value={this.state.name}>
 						<option value="python">Python</option>
 						<option value="c">C</option>
                         <option value="java">Java</option>

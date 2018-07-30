@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import * as React from 'react';
 import './css/ListarSoluciones.css';
 import VerSolucion from './verSolucion';
+import MostrarSolucion from './MostrarSolucion';
 
 class ListarSoluciones extends React.Component {
 
@@ -23,7 +24,8 @@ class ListarSoluciones extends React.Component {
             solutionsByUser: [],
             allSolutions: [],
             solutionsByStatement: [],
-            users: []
+            users: [],
+            solution: ""
         };
         this.mostrarSolucion = this.mostrarSolucion.bind(this)
         }
@@ -38,17 +40,16 @@ class ListarSoluciones extends React.Component {
         }
         else if(type==="alumno"){
             console.log("Mostrar soluciones alumno")
-            fetch('http://localhost:8081/solutions/searchbyStatement/' + object.idStatement)
-            .then(response => response.json())
-            .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
-            .then(console.log("SOLUCIONES -" + object))
+            this.setState({solution: object, isSelectedSolutionStatement: true})
+            
 
         }
     }
     componentDidMount(){
         if(this.props.activeUser!==null){
             console.log("didMount listar soluciones")
-            if(this.props.activeUser.typeUser===1){
+            if(this.props.activeUser.userType===1){
+                console.log("ALUMNO OWOWOWO")
                 fetch('http://localhost:8081/solutions/searchbyUser/' + this.props.activeUser.idUser)
                 .then(response => response.json())
                 .then(data => this.setState({solutions: data}))
@@ -77,6 +78,9 @@ class ListarSoluciones extends React.Component {
         const sections = this.state.sections;
         const statements = this.state.statements;
         const solutions = this.state.solutions;
+        console.log("WENA LXS CABRXS")
+        console.log(solutions)
+        console.log(this.props.typeUser)
         if(this.props.typeUser===2){
             return (
                 <body>
@@ -190,7 +194,8 @@ class ListarSoluciones extends React.Component {
             );
         
         }
-        else if(this.props.userType===1){
+        else if(this.props.typeUser===1){
+            console.log("ALUMNOOO")
             return (
                 <div>
                 <p> Mis Soluciones: </p>
@@ -222,7 +227,7 @@ class ListarSoluciones extends React.Component {
                 </table>
                 <div>
                     {this.state.isSelectedSolutionStatement ?
-                    <VerSolucion  solutions={this.state.solutions} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
+                    <MostrarSolucion  statement = {this.state.solution.statement} solution={this.state.solution} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
                     null
                     }
                     </div>

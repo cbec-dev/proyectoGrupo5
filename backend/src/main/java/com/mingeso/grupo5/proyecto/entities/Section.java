@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Column;
 
 
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ public class Section{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idSection;
     @NotNull
+    @Column(unique=true)
     private String sectionName;
     @OneToOne
     private User profesor;

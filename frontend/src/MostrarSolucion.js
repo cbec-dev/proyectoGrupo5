@@ -109,6 +109,7 @@ class MostrarSolucion extends Component {
 
         render() {
             const solution = this.props.solution;
+            const statement = this.props.statement;
             //const header = this.props.statement.header.split("\"");
             console.log("solution mostrar enunciado: ");
             console.log(solution)

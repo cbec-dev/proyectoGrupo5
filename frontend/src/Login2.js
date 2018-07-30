@@ -68,6 +68,7 @@ export default class Login extends React.Component {
     handleLogout() {
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
+            this.props.callbackFromParentLogin(this.state.userLogged, this.firebaseUser);
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
         }.bind(this));

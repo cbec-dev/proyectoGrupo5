@@ -11,27 +11,26 @@ class CrearCurso extends Component {
             isLoading: false,
             sectionName:"",
             teacherId:"",
+            sections: [],
 
         };
         }
     subirFormulario(e) {
         console.log("formulario enviado c:");
-        this.section = {sectionName: "", teacherId: ""}
-        this.section.teacherId = e.teacherId;
+        this.section = {sectionName: ""}
         this.section.sectionName = e.sectionName;
        
-        if(this.user.idCareer==="" || this.section.sectionName ==="" ||this.section.teacherId ===""){
+        if(this.section.sectionName ===""){
             console.log("Debe llenar todos las casillas");
             return;
         }
         else{
             this.limpiarValores(1);
-            console.log("Usuario: "+ this.user);
-            console.log("Datos: "+ this.user.sectionName);
-            console.log("Datos: "+ this.user.teacherId);
-            
-            fetch('http://104.236.68.75:8080/backendGrupo5/api/add?codigo='+this.user.codigo+'&nombre='+this.user.nombre+'&fecha='+this.user.fecha+'&categoria='+this.user.categoria+'&precio='+this.user.precio)
-            .then(response => console.log("Producto Agregado"+response)) 
+            fetch('http://localhost:8081/sections/addSection?sectionName='+this.section.sectionName)
+            .then(response => console.log("Seccion Agregada"+response))
+            .then(fetch('http://localhost:8081/sections/allSection')
+            .then(response => response.json())
+            .then(data => this.setState({sections: data, isLoading: false}))) 
             }
        
         return;
@@ -52,13 +51,53 @@ class CrearCurso extends Component {
         console.log(name, value, target);
         }
 
+    componentDidMount(){
+        
+        fetch('http://localhost:8081/sections/allSection')
+            .then(response => response.json())
+            .then(data => this.setState({sections: data, isLoading: false}))
 
+    }
         render() {
+            const sections =  this.state.sections;
+            if(this.props.typeUser ==2){
                 return (
                     <body className="body">
                     <h1 className="header1">
                     <span className="texto"> Registrar Curso: </span>
                     </h1>
+                            
+                <table id="t02">
+                <tbody>
+                    <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Profesor Encargado</th>
+                    
+                
+                    </tr>
+                            {sections.map((section) =>
+                            {
+                                if(section.profesor!==null){
+                                   return <tr key={section.idSection}>
+                                        <th>{section.idSection}</th>
+                                        <th>{section.sectionName}</th>
+                                        <th>{section.profesor.userName}</th>
+                                    </tr> 
+                                }
+                                else{
+                                    return <tr key={section.idSection}>
+                                        <th>{section.idSection}</th>
+                                        <th>{section.sectionName}</th>
+                                        <th>sin asignar</th>
+                                    </tr>
+
+                                }
+                            }
+                              )}
+                </tbody>
+                </table>
+
                     <form className="formulario">
                    
                     <div className="div3"><label className="label1"> Nombre Seccion:  </label> </div>
@@ -66,17 +105,7 @@ class CrearCurso extends Component {
                         <input name= "sectionName" type = "text" value={this.state.sectionName}
                         onChange = {this.handleInputChange} />
                     </div>
-                    
-                    <div className="div6"> <label className="label3"> Profesor:  </label></div>
-
-                    <div className="div6">
-                        <select name="teacherName" component="select" onChange = {this.handleInputChange}>
-                        value={this.state.teacherId}
-                            <option value={"id-profesor"}>UWU</option>
-                            <option value={"id-profesor"}>OWO</option>
-                           
-                         </select>
-                    </div>
+                
                     <div className="div7">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Agregar Curso</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
@@ -85,8 +114,16 @@ class CrearCurso extends Component {
                     </body>
                     
                 );
+                }
+            else{
+                alert("No posee permisos para acceder a esta vista");
+                return(
+                    <div> {this.props.history.push("/")} </div>
+                    );
+                }
             }
           }
+    
     
     
     export default CrearCurso;

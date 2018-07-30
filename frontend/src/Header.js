@@ -73,9 +73,8 @@ class Header extends Component {
             <span className="navItem">Login</span>
           </NavItem>
             <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="dropdown">  <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2} href="/Solucion">Subir Solucion</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
+              <MenuItem eventKey={3.2} href="/ListarEnunciados">Ver Mis Enunciados</MenuItem>
+              <MenuItem eventKey={3.3} href="/ListarSoluciones">Ver Mis Soluciones</MenuItem>
               <MenuItem eventKey={3.4}>Separated link</MenuItem>
               </NavDropdown>
               <div className="image-cropper">
