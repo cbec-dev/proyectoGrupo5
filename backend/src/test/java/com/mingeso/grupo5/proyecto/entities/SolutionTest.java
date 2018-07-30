@@ -9,6 +9,9 @@ import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -71,6 +74,40 @@ public class SolutionTest {
 
         Assert.assertNotNull(solution.getSolutionName());
     }
+
+    @Test
+	public void getDate() {
+        Integer idStatement = 1;
+        String solutionName = "solucion";
+        String solutionText = "while True";
+        Integer idUser = 1;
+        Date date = java.sql.Date.valueOf("2018-01-05");
+        Statement statement = new Statement();
+        Solution solution= new Solution();
+        User user = new User();
+        user.setIdUser(1);
+        user.setUserName("name");
+        user.setUserType(1);
+        user.setCorreo("correo@usach.cl");
+        Section section = new Section();
+        section.setIdSection(1);
+        section.setSectionName("A-1");
+        statement.setHeader("header");
+        statement.setStatementName("name");
+        statement.setStatementText("text");
+        statement.setSection(section);
+        solution.setIdSolution(1);
+        solution.setSolutionName(solutionName);
+        solution.setSolutionText(solutionText);
+        solution.setStatement(statement);
+        solution.setUser(user);
+        solution.setDate(date);
+        
+
+        Assert.assertNotNull(solution.getDate());
+    }
+
+
 	@Test
 	public void getSolutionText() {
 
@@ -182,6 +219,19 @@ public class SolutionTest {
         Assert.assertEquals(solutionText, solution.getSolutionText());
 
     }
+
+    @Test
+    public void setDate() {
+		Date date = java.sql.Date.valueOf("2018-01-05");
+		
+        Solution solution = new Solution();
+
+        solution.setDate(date);
+        Assert.assertEquals(date, solution.getDate());
+
+    }
+
+
 	@Test
     public void setUser() {
        
