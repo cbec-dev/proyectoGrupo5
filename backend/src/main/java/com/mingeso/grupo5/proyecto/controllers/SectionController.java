@@ -41,12 +41,8 @@ public class SectionController {
 
 	@GetMapping(path="/addSection") 
 	public @ResponseBody String addNewSection (
-            @RequestParam Integer idSection,
             @RequestParam String sectionName) {
-		
-
 		Section n = new Section();
-        n.setIdSection(idSection);
         n.setSectionName(sectionName);
 		
 		sectionRepository.save(n);

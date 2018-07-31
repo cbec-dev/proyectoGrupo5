@@ -84,8 +84,8 @@ public class Compiler {
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
         con.setRequestProperty("Authorization", "Token 630953e5-4643-4643-b7e0-107713756318");
-        con.setConnectTimeout(5000);
-        con.setReadTimeout(5000);
+        con.setConnectTimeout(10000);
+        con.setReadTimeout(10000);
 
         //Parametros
         String params = "";
@@ -126,5 +126,35 @@ public class Compiler {
             }
         }
         return retorno;
+    }
+
+    public static int codeStructureCheck(String code, String lang) {
+
+        boolean entrada = false;
+        boolean procesamiento = false;
+        boolean salida = false;
+        /*Se busca la presencia de comentarios con los contenidos entrada, procesamiento o salida
+        en cada posible lenguaje.*/
+        switch (lang) {
+            case "python":  entrada = code.matches("(?i).*#entrada.*");
+                            procesamiento = code.matches("(?i).*#procesamiento.*");
+                            salida = code.matches("(?i).*#salida.*");
+                            break;
+            case "c":       entrada = code.matches("(?i).*//entrada.*");
+                            procesamiento = code.matches("(?i).*//procesamiento.*");
+                            salida = code.matches("(?i).*//salida.*");
+                            break;
+            case "java":    entrada = code.matches("(?i).*//entrada.*");
+                            procesamiento = code.matches("(?i).*//procesamiento.*");
+                            salida = code.matches("(?i).*//salida.*");
+                            break;
+            default:        entrada = salida = procesamiento = false;
+                            break;
+        }
+        boolean out = entrada && salida && procesamiento;
+
+        //Si estan todos los comentarios de las secciones requeridas se retorna 1, caso contraro 0.
+        if(out) return 1;
+        else return 0;
     }
 }

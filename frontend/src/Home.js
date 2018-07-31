@@ -45,10 +45,12 @@ export default class Home extends React.Component {
     }
 
     handleLogout() {
+        console.log("deslogueando uwu")
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
             localStorage.removeItem("user");
             localStorage.removeItem("activeUserObject");
+            this.props.callbackFromParentHome(this.state.userLogged);
             this.setState({userLogged: false, firebaseUser: ""});
             this.props.history.push("/Login2");
             console.log("user signed out from firebase");
@@ -56,7 +58,6 @@ export default class Home extends React.Component {
             window.localStorage.clear(); 
 
         }.bind(this));
-        this.props.callbackFromParentHome(this.state.userLogged);
     }
     componentDidMount(){
         if(this.state.firebaseUser!==null){
@@ -91,6 +92,7 @@ export default class Home extends React.Component {
         console.log("USUARIO LOGUEADO");
         console.log(JSON.parse(localStorage.getItem("user")));
         console.log("USUARIO LOGUEADO");
+        console.log("DSADSADASDSADDD")
         const userEmail = this.state.state.correo;
         const bool = this.state.bool;
         if(bool===true){
@@ -108,7 +110,7 @@ export default class Home extends React.Component {
                                 backgroundColor="#a4c639"
                                 labelColor="#ffffff"
                                 label="Sign Out"
-                                onTouchTap={this.handleLogout}
+                                onClick={(e) => this.handleLogout()}
                             />
                         </div>
                     </div>
