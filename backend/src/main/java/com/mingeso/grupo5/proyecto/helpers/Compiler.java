@@ -35,20 +35,7 @@ public class Compiler {
         return output;
     }
     
-    public int checkCommentaries(String code, String lang) {
-    	
-    	
-    	
-    	switch (lang) {
-    		case "python":
-    		
-    		case "c":
-    		
-    		case "java":
-    	}
-    	
-    	return 1;
-    }
+    
     
     public String getLanguages() throws IOException
     {
@@ -127,7 +114,30 @@ public class Compiler {
         }
         return retorno;
     }
-
+    
+    public int checkCommentaries(String code, String lang) {
+    	boolean comentarios = false;
+    	
+    	//Se busca que al menos hayan 3 comentarios a parte de los comenatrios que indican entrada,procesamiento y salida
+    	switch (lang) {
+    		case "python": comentarios = code.matches(".*#.{6,}");
+    		
+    		case "c": comentarios = code.matches(".*//.{6,}");
+    		
+    		case "java": comentarios = code.matches(".*//.{6,}");
+    		
+    		default: comentarios = false;
+            break;
+    	}
+    	
+    	if (comentarios) {
+    		return 1;
+    	}
+    	else {
+    		return 0;
+    	}
+    }
+    
     public static int codeStructureCheck(String code, String lang) {
 
         boolean entrada = false;
