@@ -108,7 +108,7 @@ class Header extends Component {
             <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Listar Enunciados</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.5} href="/CrearCurso">Crear Curso</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.5} href="/CrearCurso">Administrar Seccion</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.6} href="/Registro">Crear Usuario</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.7} href="/ListarSoluciones">Ver Soluciones</MenuItem>
             <MenuItem divider />
