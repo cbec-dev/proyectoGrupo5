@@ -148,7 +148,9 @@ public class Compiler {
         String [] cadenas = code.split("\n");
         int contadorTab = 0;
         int largo = cadenas.length;
-        
+        //se separa el string code por los saltos de lineas
+        //y se busca que al menos haya alguna identacion tanto por
+        //tabulacion o por espacios
         for (int i = 0; i<largo;i++) {
 	        switch (lang) {
 	            case "python":  tab = cadenas[i].matches("^(\t| ).*");
@@ -164,7 +166,6 @@ public class Compiler {
 	        tab = false;
 	        
         }
-        //Si estan todos los comentarios de las secciones requeridas se retorna 1, caso contraro 0.
         if(contadorTab >= 3) return 1;
         else return 0;
     }
