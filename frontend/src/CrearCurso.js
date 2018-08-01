@@ -6,6 +6,7 @@ class CrearCurso extends Component {
     constructor(props) {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.removeProfesor = this.removeProfesor.bind(this);
         this.state = {
             products: [],
             isLoading: false,
@@ -15,6 +16,10 @@ class CrearCurso extends Component {
 
         };
         }
+    removeProfesor(e){
+        
+
+    }
     subirFormulario(e) {
         console.log("formulario enviado c:");
         this.section = {sectionName: ""}
@@ -73,6 +78,8 @@ class CrearCurso extends Component {
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Profesor Encargado</th>
+                    <th> Remover Profesor</th>
+                    <th> Agregar Profesor </th>
                     
                 
                     </tr>
@@ -83,6 +90,11 @@ class CrearCurso extends Component {
                                         <th>{section.idSection}</th>
                                         <th>{section.sectionName}</th>
                                         <th>{section.profesor.userName}</th>
+                                        <th><button type="button" onClick={(e) => this.removeProfesor(section)}>Remover Profesor</button> </th>
+                                        <th> Profesor ya asignado </th>
+
+                                        
+                                        }
                                     </tr> 
                                 }
                                 else{
@@ -90,6 +102,8 @@ class CrearCurso extends Component {
                                         <th>{section.idSection}</th>
                                         <th>{section.sectionName}</th>
                                         <th>sin asignar</th>
+                                        <th> <button type="disabled" onClick={(e) => this.removeProfesor(section)}>Remover Profesor</button> </th>
+                                        <th> ------------DEBE IR UN SELECT CON PROFESORES DISPONIBLES----------</th>
                                     </tr>
 
                                 }
