@@ -142,4 +142,30 @@ public class Compiler {
         if(out) return 1;
         else return 0;
     }
+    
+    public int checkIdentacion(String code, String lang) {
+    	boolean tab = false;
+        String [] cadenas = code.split("\n");
+        int contadorTab = 0;
+        int largo = cadenas.length;
+        
+        for (int i = 0; i<largo;i++) {
+	        switch (lang) {
+	            case "python":  tab = code.matches("^(\t| ).*");
+	                            break;
+	            case "c":       tab = code.matches("^(\t| ).*");
+	                            break;
+	            case "java":    tab = code.matches("^(\t| ).*");
+	                            break;
+	            default:        tab = false;
+	                            break;
+	        }
+	        if(tab) contadorTab++;
+	        tab = false;
+	        
+        }
+        //Si estan todos los comentarios de las secciones requeridas se retorna 1, caso contraro 0.
+        if(contadorTab >= 3) return 1;
+        else return 0;
+    }
 }
