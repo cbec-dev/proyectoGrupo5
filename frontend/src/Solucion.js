@@ -229,20 +229,6 @@ class Solucion extends Component {
             //this.cm.codeMirror.setValue(this.props.statement.header)
     }
 
-    mostrarFerdback (resultado) {
-        var algo; 
-        if(resultado==1)
-        {
-            algo = "falta incluir comentarios"
-            return algo;
-        }
-        else(resultado == 2)
-        {
-            algo = "correcto"
-            return algo
-        }
-    }
-
 
         
 
@@ -302,11 +288,6 @@ class Solucion extends Component {
                   <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida}
-                </pre>
-            </div>
-            <div class="divTxt">
-                <pre class="gb wf" id="preOutput">
-                {this.mostrarFerdback(1)}
                 </pre>
             </div>
             </body>
