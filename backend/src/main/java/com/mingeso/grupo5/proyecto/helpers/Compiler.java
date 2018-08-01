@@ -151,11 +151,11 @@ public class Compiler {
         
         for (int i = 0; i<largo;i++) {
 	        switch (lang) {
-	            case "python":  tab = code.matches("^(\t| ).*");
+	            case "python":  tab = cadenas[i].matches("^(\t| ).*");
 	                            break;
-	            case "c":       tab = code.matches("^(\t| ).*");
+	            case "c":       tab = cadenas[i].matches("^(\t| ).*");
 	                            break;
-	            case "java":    tab = code.matches("^(\t| ).*");
+	            case "java":    tab = cadenas[i].matches("^(\t| ).*");
 	                            break;
 	            default:        tab = false;
 	                            break;
