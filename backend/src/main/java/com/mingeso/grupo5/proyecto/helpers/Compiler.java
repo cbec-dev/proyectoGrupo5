@@ -60,6 +60,9 @@ public class Compiler {
 
     public String run(String code, String lang) throws IOException
     {
+        //Se agrega backslash de escape a posibles comillas dobles
+        code = code.replaceAll("\"", "\\\\\"");
+
         //Conección y headers
         URL url = new URL("https://run.glot.io/languages/python/2");
         if(lang.equals("python")) url = new URL("https://run.glot.io/languages/python/2");
@@ -76,7 +79,8 @@ public class Compiler {
         String params = "";
         if(lang.equals("python")) params = "{\"files\": [{\"name\": \"main.py\", \"content\": \"" + code +"\"}]}";
         if(lang.equals("c")) params = "{\"files\": [{\"name\": \"main.c\", \"content\": \"" + code +"\"}]}";
-        if(lang.equals("java")) params = "{\"files\": [{\"name\": \"main.java\", \"content\": \"" + code +"\"}]}";
+        if(lang.equals("java")) params = "{\"files\": [{\"name\": \"Main.java\", \"content\": \"" + code +"\"}]}";
+
 
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
