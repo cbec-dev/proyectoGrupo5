@@ -17,8 +17,8 @@ require('codemirror/mode/python/python');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
-	C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-	python: '',
+    C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
+    python: '',
     java: ''
 };
 
@@ -35,14 +35,16 @@ class Solucion extends Component {
             isLoading: false,
             nameSolution:"",
             code: defaults.python,
-			readOnly: false,
-			mode: {name: "python",
+            readOnly: false,
+            mode: {name: "python",
             version: 2.7,
             singleLineStringErrors: false},
             lineNumbers: true,
             indentUnit: 4,
             matchBrackets: true,
             salida: "",
+            salida1: "",
+            salida2: "",
             name: ""
 
         };
@@ -104,10 +106,11 @@ class Solucion extends Component {
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => console.log(response.data));
+             }).then(response => this.setState({salida: response.data.stdout, salida1: response.data.stderr, salida2: response.data.error}));
+
             //fetch('http://localhost:8081/api/compiler/runCode?code='+ e.code + "&lang=" + e.name)
             //.then(response => response.json())
-
+            
         
     }
 
@@ -150,7 +153,7 @@ class Solucion extends Component {
         return;
         }
     
-    	getInitialState () {
+        getInitialState () {
             return {
                 code: this.props.statement.header,
                 readOnly: false,
@@ -282,15 +285,15 @@ class Solucion extends Component {
                     </div>
                    
                     <div className="div3">
-				<CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
-				<div style={{ marginTop: 10 }} className="div4">
-					<select onChange={this.changeMode} value={this.state.name}>
-						<option value="python">Python</option>
-						<option value="c">C</option>
+                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
+                <div style={{ marginTop: 10 }} className="div4">
+                    <select onChange={this.changeMode} value={this.state.name}>
+                        <option value="python">Python</option>
+                        <option value="c">C</option>
                         <option value="java">Java</option>
-					</select>
-				</div>
-			</div>
+                    </select>
+                </div>
+            </div>
                     <div className="div1">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
                       <button type="button" onClick={(e) => this.ejecutarSolucion(this.state)}>Ejecutar Solucion</button>
@@ -302,6 +305,8 @@ class Solucion extends Component {
                   <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida}
+                {this.state.salida1}
+                {this.state.salida2}
                 </pre>
             </div>
             <div class="divTxt">
