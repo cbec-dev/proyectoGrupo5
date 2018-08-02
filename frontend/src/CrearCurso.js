@@ -17,9 +17,25 @@ class CrearCurso extends Component {
             sections: [],
             profesores: [],
             response: "",
+            prof: ""
 
         };
         }
+    agregarProfesor(profesor, section){
+        console.log("AGREGAR PROFESOR: ")
+        console.log(profesor)
+        console.log(section)
+        this.limpiarValores(1)
+        if(profesor!==null && section !==null && profesor !== undefined && section !== undefined && profesor!== ""){
+        fetch('http://localhost:8081/sections/update/'+profesor+'/'+section.idSection)
+                .then(response => fetch('http://localhost:8081/sections/allSection')
+                .then(response => response.json())
+                .then(data => this.setState({sections: data, isLoading: false})))
+        }
+        else{
+            alert("Debe seleccionar un profesor!")
+        }
+    }
     removeProfesor(e){
         var section = e;
         console.log("REMOVER PROFESOR: " + e + "-" + section)
@@ -55,8 +71,22 @@ class CrearCurso extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, sectionName: "", teacherId:""});
+            this.setState({isLoading: false, sectionName: "", teacherId:"", prof: ""});
             this.render();
+        }
+    }
+    verificar(array, object){
+        var largo = array.length
+        var i;
+        var contador=0;
+  
+        for(i = 0; i < largo; i++){ 
+            if(object.idUser!==array[i].idUser){
+                contador++;
+            }
+        }
+        if(contador===largo){
+            return true
         }
     }
     handleInputChange(event) {
@@ -91,29 +121,21 @@ class CrearCurso extends Component {
                 );
             //var eq = Object.toJSON(user1) == Object.toJSON(user2);
             prof_ = prof_.filter(profesor => profesor !== undefined)
+            var i = 0
+            var array = []
+            var largo = profesores.length
+            for(i=0; i<largo;i++){
+                if(this.verificar(prof_, profesores[i])===true){
+                    array.push(profesores[i])
 
-
-            console.log("PROFESORES CON SECCION: ")
-            console.log(prof_)
-            console.log(prof_.includes(profesores[0]))
-            console.log(prof_.includes(profesores[1]))
-            console.log(prof_.includes(profesores[2]))
-            console.log(prof_.includes(profesores[3]))
-            console.log(prof_.includes(profesores[10]))
-            console.log(prof_.includes(profesores[9]))
-            console.log("----------------")
-            const profesores_filtrados =  this.state.profesores.filter(function(profesor) {
+                }
+            }
+            //const profesores_filtrados =  this.state.profesores.filter(function(profesor) {
               //return seccion.profesor === null
-              return prof_.includes(JSON.stringify(profesor))===true
+              //return this.verificar(prof_,profesor)
 
-                })
-            console.log("profesores pwp: ");
-            console.log(profesores)
-            console.log("------------")
-
-            console.log("profesores sin seccion: ");
-            console.log(profesores_filtrados)
-            console.log("------------")
+                //})
+          
             if(isLoading===true){
                 return(<p> Cargando...</p>)
             }
@@ -131,7 +153,7 @@ class CrearCurso extends Component {
                     <th>Nombre</th>
                     <th>Profesor Encargado</th>
                     <th> Accion</th>
-                    
+                    <th> Accion </th>
                 
                     </tr>
                             {sections.map((section) =>
@@ -142,7 +164,7 @@ class CrearCurso extends Component {
                                         <th>{section.sectionName}</th>
                                         <th>{section.profesor.userName}</th>
                                         <th><button type="button" onClick={(e) => this.removeProfesor(section)}>Remover Profesor</button> </th>
-
+                                        <th> Accion no valida</th>
                                         
                                         
                                     </tr> 
@@ -152,7 +174,25 @@ class CrearCurso extends Component {
                                         <th>{section.idSection}</th>
                                         <th>{section.sectionName}</th>
                                         <th>sin asignar</th>
-                                        <th> ------------DEBE IR UN SELECT CON PROFESORES DISPONIBLES----------</th>
+                                        <th> 
+                                        <div className="div6">
+                                            <select name="prof" component="select" onChange = {this.handleInputChange}>
+                                            <option > </option>
+                                            {array.map((profesor =>
+                                            {
+                                                
+                                                    return <option key={profesor.idUser} value={profesor.correo}>{profesor.userName}</option>
+
+                                            
+                                            }
+                                            ))}
+                                               
+                                             </select>
+                                        </div>
+
+                                        </th>
+                                        <th><button type="button" onClick={(e,d) => this.agregarProfesor(this.state.prof, section)}>Agregar Profesor</button> </th>
+
                                     </tr>
 
                                 }

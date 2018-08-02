@@ -50,7 +50,7 @@ class RegistroProfesor extends Component {
                 console.log("Datos: "+ user.email);
                 console.log("Datos: "+ user.userName);
                 console.log("Datos: "+ user.userType);
-    
+                var bool = true
                 let axiosConfig = {
                     headers: {
                         'Content-Type': 'application/json;charset=UTF-8',
@@ -60,7 +60,19 @@ class RegistroProfesor extends Component {
                   };
                 fetch('http://localhost:8081/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
                 .then(response=> response.text())
-                .then(data => alert(data))
+                .then(data =>
+                    {
+                        if(data==="mail ya se encuentra registrado"){
+                            alert(data)
+                            bool = false
+                            user.email = ""
+                            user.section = ""
+                            return;
+                        }
+                        else{
+                            alert(data)
+                        }
+                    })
                 //fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
                 .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
                 .then(response => fetch('http://localhost:8081/sections/allSection')
