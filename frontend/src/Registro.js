@@ -18,6 +18,7 @@ class Registro extends Component {
             email:"",
             userName:"",
             userType: "",
+            response: ""
 
         };
         }
@@ -30,7 +31,17 @@ class Registro extends Component {
         user.section = e.sectionName;
         user.userName = e.userName;
         user.email = e.email+ "@usach.cl";
-
+        var verificador = e.email.split("@")
+            console.log("email splited: ")
+            console.log(verificador)
+            console.log(verificador.length)
+            console.log("-----------------")
+            if(verificador.length>1){
+                alert("Correo invalido ingrese datos nuevamente")
+                this.limpiarValores(1);
+                return;
+            }
+        //ENTREGAR MENSAJE POR CORREO REPETIDOOO
         if(user.career==="" || user.section ==="" ||user.email ===""||user.userName===""){
             alert("Debe llenar todos las casillas");
             return;
@@ -51,12 +62,12 @@ class Registro extends Component {
                     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
                 }
               };
-            alert("formulario enviado");
             //fetch('http://localhost:8081/users/add?career='+user.career+'&email='+user.email+'&section='+user.section+'&userName='+user.userName+'&userType='+user.userType)
             //.then(response => alert("Usuario Agregado"+response))
             fetch('http://localhost:8081/users/add/'+user.career+'/'+user.section+'/'+user.userName+'/'+user.userType+'/'+user.email)
-            .then(response => alert("Usuario Agregado"+response))
-            
+            .then(response => response.text())
+            .then(data=> alert(data))
+
             //axios.post('http://localhost:8081/users/add', user)
             //.then(res => {
             //alert(res);
@@ -69,7 +80,7 @@ class Registro extends Component {
         } 
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", userName:""});
+            this.setState({isLoading: false, email: "", userName:""});
             this.render();
         }
     }

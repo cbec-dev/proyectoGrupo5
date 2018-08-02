@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/CrearCurso.css';
+import axios from 'axios';
+
 
 class CrearCurso extends Component {
     constructor(props) {
@@ -9,15 +11,25 @@ class CrearCurso extends Component {
         this.removeProfesor = this.removeProfesor.bind(this);
         this.state = {
             products: [],
-            isLoading: false,
+            isLoading: true,
             sectionName:"",
             teacherId:"",
             sections: [],
+            profesores: [],
+            response: "",
 
         };
         }
     removeProfesor(e){
-        
+        var section = e;
+        console.log("REMOVER PROFESOR: " + e + "-" + section)
+        this.setState({isLoading: true})
+        fetch('http://localhost:8081/sections/removeP/'+section.idSection)
+            .then(response => this.setState({response: response, isLoading: true}))
+            .then(alert("Profesor removido correctamente"))
+            .then(fetch('http://localhost:8081/sections/allSection')
+            .then(response => response.json())
+            .then(data => this.setState({sections: data, isLoading: false}))) 
 
     }
     subirFormulario(e) {
@@ -33,6 +45,7 @@ class CrearCurso extends Component {
             this.limpiarValores(1);
             fetch('http://localhost:8081/sections/addSection?sectionName='+this.section.sectionName)
             .then(response => console.log("Seccion Agregada"+response))
+            .then(this.setState({isLoading: true}))
             .then(fetch('http://localhost:8081/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}))) 
@@ -57,14 +70,53 @@ class CrearCurso extends Component {
         }
 
     componentDidMount(){
-        
         fetch('http://localhost:8081/sections/allSection')
             .then(response => response.json())
-            .then(data => this.setState({sections: data, isLoading: false}))
+            .then(data => this.setState({sections: data}))
+            .then(fetch('http://localhost:8081/users/searchtype/'+3)
+            .then(response => response.json())
+            .then(data => this.setState({profesores: data, isLoading: false})))
 
     }
         render() {
             const sections =  this.state.sections;
+            const isLoading = this.state.isLoading;
+            const profesores = this.state.profesores;
+            var prof_ = sections.map(section=> 
+            {
+                if(section.profesor!==null){
+                    return section.profesor
+                }
+            }
+                );
+            //var eq = Object.toJSON(user1) == Object.toJSON(user2);
+            prof_ = prof_.filter(profesor => profesor !== undefined)
+
+
+            console.log("PROFESORES CON SECCION: ")
+            console.log(prof_)
+            console.log(prof_.includes(profesores[0]))
+            console.log(prof_.includes(profesores[1]))
+            console.log(prof_.includes(profesores[2]))
+            console.log(prof_.includes(profesores[3]))
+            console.log(prof_.includes(profesores[10]))
+            console.log(prof_.includes(profesores[9]))
+            console.log("----------------")
+            const profesores_filtrados =  this.state.profesores.filter(function(profesor) {
+              //return seccion.profesor === null
+              return prof_.includes(JSON.stringify(profesor))===true
+
+                })
+            console.log("profesores pwp: ");
+            console.log(profesores)
+            console.log("------------")
+
+            console.log("profesores sin seccion: ");
+            console.log(profesores_filtrados)
+            console.log("------------")
+            if(isLoading===true){
+                return(<p> Cargando...</p>)
+            }
             if(this.props.typeUser ==2){
                 return (
                     <body className="body">
@@ -78,8 +130,7 @@ class CrearCurso extends Component {
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Profesor Encargado</th>
-                    <th> Remover Profesor</th>
-                    <th> Agregar Profesor </th>
+                    <th> Accion</th>
                     
                 
                     </tr>
@@ -91,10 +142,9 @@ class CrearCurso extends Component {
                                         <th>{section.sectionName}</th>
                                         <th>{section.profesor.userName}</th>
                                         <th><button type="button" onClick={(e) => this.removeProfesor(section)}>Remover Profesor</button> </th>
-                                        <th> Profesor ya asignado </th>
 
                                         
-                                        }
+                                        
                                     </tr> 
                                 }
                                 else{
@@ -102,7 +152,6 @@ class CrearCurso extends Component {
                                         <th>{section.idSection}</th>
                                         <th>{section.sectionName}</th>
                                         <th>sin asignar</th>
-                                        <th> <button type="disabled" onClick={(e) => this.removeProfesor(section)}>Remover Profesor</button> </th>
                                         <th> ------------DEBE IR UN SELECT CON PROFESORES DISPONIBLES----------</th>
                                     </tr>
 

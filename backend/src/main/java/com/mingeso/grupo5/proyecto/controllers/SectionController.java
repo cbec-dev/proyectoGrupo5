@@ -54,10 +54,11 @@ public class SectionController {
 		Section retorno = sectionRepository.findById(IdSection).get();
 		return retorno;
 	}
-	@RequestMapping(value="/removeP/{IdSection}", method = RequestMethod.PUT)
+	@RequestMapping(value="/removeP/{IdSection}", method = {RequestMethod.PUT, RequestMethod.GET})
 	public @ResponseBody String removeProfesor(@PathVariable("IdSection") Integer IdSection){
 		Section seccion = sectionRepository.findById(IdSection).get();
 		seccion.setProfesor(null);
+		sectionRepository.save(seccion);
 		return "Profesor removido correctamente c:";
 
 	}

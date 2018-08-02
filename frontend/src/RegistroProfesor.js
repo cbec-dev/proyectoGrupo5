@@ -27,6 +27,17 @@ class RegistroProfesor extends Component {
             user.userType= 3;
             user.section = e.sectionName;
             user.userName = e.userName;
+            var verificador = e.email.split("@")
+            //ENTREGAR MENSAJE POR CORREO REPETIDOOO
+            console.log("email splited: ")
+            console.log(verificador)
+            console.log(verificador.length)
+            console.log("-----------------")
+            if(verificador.length>1){
+                alert("Correo invalido ingrese datos nuevamente")
+                this.limpiarValores(1);
+                return;
+            }
             user.email = e.email+ "@usach.cl";
             if(user.section ==="" ||user.email ===""||user.userName===""){
                 alert("Debe llenar todos las casillas");
@@ -47,9 +58,9 @@ class RegistroProfesor extends Component {
                         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
                     }
                   };
-                alert("formulario enviado");
                 fetch('http://localhost:8081/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
-                //.then(response => alert("Usuario Agregado"+response))
+                .then(response=> response.text())
+                .then(data => alert(data))
                 //fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
                 .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
                 .then(response => fetch('http://localhost:8081/sections/allSection')
@@ -68,7 +79,7 @@ class RegistroProfesor extends Component {
             } 
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, idCareer: "", sectionName: "", email: "", userName:""});
+            this.setState({isLoading: false, idCareer: "", email: "", userName:""});
         }
     }
     handleInputChange(event) {

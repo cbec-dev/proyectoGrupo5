@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
+import java.sql.*;
 
 
 
@@ -59,9 +60,8 @@ public class UserController {
 		return "Usuarix guardadx";
 	}
 	@RequestMapping(value = "/add/{career}/{section}/{userName}/{userType}/{email}", method = { RequestMethod.GET, RequestMethod.POST })
-		@ResponseStatus(HttpStatus.CREATED)
 		@ResponseBody
-		public User addUser2(@PathVariable("career") Integer career, @PathVariable("section") Integer section, @PathVariable("userName") String userName, @PathVariable("email") String email, @PathVariable("userType") Integer userType) {
+		public String addUser2(@PathVariable("career") Integer career, @PathVariable("section") Integer section, @PathVariable("userName") String userName, @PathVariable("email") String email, @PathVariable("userType") Integer userType) {
 
 			Career c = new Career();
 			Section s = new Section();
@@ -77,12 +77,17 @@ public class UserController {
 			User resource = new User();
 			resource.setCareer(c);
 			resource.setSection(s);
+			if(userRepository.findBycorreo(email)!=null){
+				return "mail ya se encuentra registrado";
+			}
 			resource.setCorreo(email);
+			
 			resource.setUserType(userType);
 			resource.setUserName(userName);
-			return userRepository.save(resource);
+			userRepository.save(resource);
+			return "Usuario agregado correctamente";
 		}
-		@GetMapping(path="/add/profesor") 
+	@RequestMapping(path="/add/profesor", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public @ResponseBody String addProfesor (
             
             @RequestParam String correo,
@@ -90,6 +95,9 @@ public class UserController {
 			@RequestParam Integer userType) {
 
 			User resource = new User();
+			if(userRepository.findBycorreo(correo)!=null){
+				return "mail ya se encuentra registrado";
+			}
 			resource.setCorreo(correo);
 			resource.setUserType(userType);
 			resource.setUserName(userName);
