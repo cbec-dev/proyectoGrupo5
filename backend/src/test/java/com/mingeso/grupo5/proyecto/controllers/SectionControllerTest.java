@@ -40,7 +40,7 @@ public class SectionControllerTest {
 	@Test
     public void addNewSection() {
 		String resultadoEsperado = "Seccion agregada.";
-		Assert.assertEquals(resultadoEsperado ,controlador.addNewSection(idSection, sectionName));
+		Assert.assertEquals(resultadoEsperado ,controlador.addNewSection(sectionName));
 		
     }
 	@Test
