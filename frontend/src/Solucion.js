@@ -139,7 +139,7 @@ class Solucion extends Component {
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => this.setState({salida3: response.data.stdout}));
+             }).then(response => this.setState({salida3: response.data}));
 
             
       
