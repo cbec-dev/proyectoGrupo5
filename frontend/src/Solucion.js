@@ -45,6 +45,7 @@ class Solucion extends Component {
             salida: "",
             salida1: "",
             salida2: "",
+            salida3: "",
             name: ""
 
         };
@@ -53,6 +54,7 @@ class Solucion extends Component {
         this.solution = {code: "", lang: ""}
         var lang = "python";
 
+        
         this.solution.code = e.code;
         this.solution.lang = e.name;
         var algo = {code: "", lang: ""}
@@ -107,11 +109,41 @@ class Solucion extends Component {
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => this.setState({salida: response.data.stdout, salida1: response.data.stderr, salida2: response.data.error}));
-
-            //fetch('http://localhost:8081/api/compiler/runCode?code='+ e.code + "&lang=" + e.name)
-            //.then(response => response.json())
-            
+             
         
+    }
+    mostrarFeedback(e)
+    {
+        this.solution = {code: "", lang: ""}
+        
+        this.solution.code = e.code;
+        this.solution.lang = e.name;
+        var algo = {code: "", lang: ""}
+        algo.code = "print(33)";
+        algo.lang = "python";
+        console.log("DATOS: " + e.code + "-" + algo.lang + "-" + e.name);
+        var code = e.code;
+        console.log(this.solution);
+        var bodyFormData = new FormData();
+        bodyFormData.set('code', e.code);
+        bodyFormData.set('lang',e.name);
+        console.log(bodyFormData)
+        console.log(bodyFormData.code)
+        console.log(bodyFormData.lang)
+        axios({
+                method: 'post',
+                url: 'http://localhost:8081/api/compiler/checkCode',
+                data: qs.stringify(this.solution),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             }).then(response => this.setState({salida3: response.data.stdout}));
+
+            
+      
+
     }
 
     
@@ -296,7 +328,8 @@ class Solucion extends Component {
             </div>
                     <div className="div1">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
-                      <button type="button" onClick={(e) => this.ejecutarSolucion(this.state)}>Ejecutar Solucion</button>
+                      <button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</button>
+                      <button type="button" onClick={(e) => this.mostrarFeedback(this.state)}> Mostrar Feedback</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
 
                     </div>
@@ -311,7 +344,7 @@ class Solucion extends Component {
             </div>
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
-                {this.mostrarFerdback(1)}
+                {this.state.salida3}
                 </pre>
             </div>
             </body>
