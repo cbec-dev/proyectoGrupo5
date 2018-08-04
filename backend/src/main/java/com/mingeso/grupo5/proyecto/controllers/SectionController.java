@@ -54,6 +54,22 @@ public class SectionController {
 		Section retorno = sectionRepository.findById(IdSection).get();
 		return retorno;
 	}
+	@RequestMapping(value="/removeP/{IdSection}", method = {RequestMethod.PUT, RequestMethod.GET})
+	public @ResponseBody String removeProfesor(@PathVariable("IdSection") Integer IdSection){
+		Section seccion = sectionRepository.findById(IdSection).get();
+		seccion.setProfesor(null);
+		sectionRepository.save(seccion);
+		return "Profesor removido correctamente c:";
+
+	}
+	@RequestMapping(value="/addProfesor/{IdSection}/{idprofesor}", method = RequestMethod.PUT)
+	public @ResponseBody String addProfesor(@PathVariable("IdSection") Integer IdSection, @PathVariable("idprofesor") Integer idprofesor){
+		Section seccion = sectionRepository.findById(IdSection).get();
+		User profesor = userRepository.findById(idprofesor).get();
+		seccion.setProfesor(profesor);
+		return "Profesor aniadido correctamente c:";
+
+	}
 	@GetMapping(path="/search/profesor/{idprofesor}")
 	public @ResponseBody Section findOneByProfesor(@PathVariable("idprofesor") Integer idprofesor) {
 		User profesor = new User();
