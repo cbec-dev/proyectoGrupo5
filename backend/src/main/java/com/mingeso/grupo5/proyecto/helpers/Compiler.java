@@ -60,6 +60,9 @@ public class Compiler {
 
     public String run(String code, String lang) throws IOException
     {
+        //Se agrega backslash de escape a posibles comillas dobles
+        code = code.replaceAll("\"", "\\\\\"");
+
         //Conección y headers
         URL url = new URL("https://run.glot.io/languages/python/2");
         if(lang.equals("python")) url = new URL("https://run.glot.io/languages/python/2");
@@ -76,7 +79,8 @@ public class Compiler {
         String params = "";
         if(lang.equals("python")) params = "{\"files\": [{\"name\": \"main.py\", \"content\": \"" + code +"\"}]}";
         if(lang.equals("c")) params = "{\"files\": [{\"name\": \"main.c\", \"content\": \"" + code +"\"}]}";
-        if(lang.equals("java")) params = "{\"files\": [{\"name\": \"main.java\", \"content\": \"" + code +"\"}]}";
+        if(lang.equals("java")) params = "{\"files\": [{\"name\": \"Main.java\", \"content\": \"" + code +"\"}]}";
+
 
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
@@ -121,21 +125,27 @@ public class Compiler {
         /*Se busca la presencia de comentarios con los contenidos entrada, procesamiento o salida
         en cada posible lenguaje.*/
         switch (lang) {
-            case "python":  entrada = code.matches("(?i).*#entrada.*");
-                            procesamiento = code.matches("(?i).*#procesamiento.*");
-                            salida = code.matches("(?i).*#salida.*");
+            case "python":  entrada = code.matches("(?is).*#entrada.*");
+                            procesamiento = code.matches("(?is).*#procesamiento.*");
+                            salida = code.matches("(?is).*#salida.*");
                             break;
-            case "c":       entrada = code.matches("(?i).*//entrada.*");
-                            procesamiento = code.matches("(?i).*//procesamiento.*");
-                            salida = code.matches("(?i).*//salida.*");
+            case "c":       entrada = code.matches("(?is).*//entrada.*");
+                            procesamiento = code.matches("(?is).*//procesamiento.*");
+                            salida = code.matches("(?is).*//salida.*");
                             break;
-            case "java":    entrada = code.matches("(?i).*//entrada.*");
-                            procesamiento = code.matches("(?i).*//procesamiento.*");
-                            salida = code.matches("(?i).*//salida.*");
+            case "java":    entrada = code.matches("(?is).*//entrada.*");
+                            procesamiento = code.matches("(?is).*//procesamiento.*");
+                            salida = code.matches("(?is).*//salida.*");
                             break;
             default:        entrada = salida = procesamiento = false;
                             break;
         }
+        System.out.println("-------BOOLEANS------------");
+        System.out.println(entrada);
+        System.out.println(procesamiento);
+        System.out.println(salida);
+        System.out.println("--------------------");
+
         boolean out = entrada && salida && procesamiento;
 
         //Si estan todos los comentarios de las secciones requeridas se retorna 1, caso contraro 0.
