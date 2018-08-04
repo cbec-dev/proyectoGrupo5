@@ -168,4 +168,31 @@ public class Compiler {
         if(out) return 1;
         else return 0;
     }
+    
+    public int checkIdentacion(String code, String lang) {
+    	boolean tab = false;
+        String [] cadenas = code.split("\n");
+        int contadorTab = 0;
+        int largo = cadenas.length;
+        //se separa el string code por los saltos de lineas
+        //y se busca que al menos haya alguna identacion tanto por
+        //tabulacion o por espacios
+        for (int i = 0; i<largo;i++) {
+	        switch (lang) {
+	            case "python":  tab = cadenas[i].matches("^(\t| ).*");
+	                            break;
+	            case "c":       tab = cadenas[i].matches("^(\t| ).*");
+	                            break;
+	            case "java":    tab = cadenas[i].matches("^(\t| ).*");
+	                            break;
+	            default:        tab = false;
+	                            break;
+	        }
+	        if(tab) contadorTab++;
+	        tab = false;
+	        
+        }
+        if(contadorTab >= 3) return 1;
+        else return 0;
+    }
 }
