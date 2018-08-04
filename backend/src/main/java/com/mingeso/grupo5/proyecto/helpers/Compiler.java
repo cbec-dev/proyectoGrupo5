@@ -171,27 +171,21 @@ public class Compiler {
         /*Se busca la presencia de comentarios con los contenidos entrada, procesamiento o salida
         en cada posible lenguaje.*/
         switch (lang) {
-            case "python":  entrada = code.matches("(?is).*#entrada.*");
-                            procesamiento = code.matches("(?is).*#procesamiento.*");
-                            salida = code.matches("(?is).*#salida.*");
+            case "python":  entrada = code.matches("(?i).*#entrada.*");
+                            procesamiento = code.matches("(?i).*#procesamiento.*");
+                            salida = code.matches("(?i).*#salida.*");
                             break;
-            case "c":       entrada = code.matches("(?is).*//entrada.*");
-                            procesamiento = code.matches("(?is).*//procesamiento.*");
-                            salida = code.matches("(?is).*//salida.*");
+            case "c":       entrada = code.matches("(?i).*//entrada.*");
+                            procesamiento = code.matches("(?i).*//procesamiento.*");
+                            salida = code.matches("(?i).*//salida.*");
                             break;
-            case "java":    entrada = code.matches("(?is).*//entrada.*");
-                            procesamiento = code.matches("(?is).*//procesamiento.*");
-                            salida = code.matches("(?is).*//salida.*");
+            case "java":    entrada = code.matches("(?i).*//entrada.*");
+                            procesamiento = code.matches("(?i).*//procesamiento.*");
+                            salida = code.matches("(?i).*//salida.*");
                             break;
             default:        entrada = salida = procesamiento = false;
                             break;
         }
-        System.out.println("-------BOOLEANS------------");
-        System.out.println(entrada);
-        System.out.println(procesamiento);
-        System.out.println(salida);
-        System.out.println("--------------------");
-
         boolean out = entrada && salida && procesamiento;
 
         //Si estan todos los comentarios de las secciones requeridas se retorna 1, caso contraro 0.

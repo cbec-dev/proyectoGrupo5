@@ -42,7 +42,7 @@ public @ResponseBody String runCode(
 		return out;
     }
 
-    @RequestMapping(path="/checkCode", method = RequestMethod.POST)
+    @GetMapping(path="/checkCode")
     @ResponseBody String checkCode(
         @RequestParam String code,
         @RequestParam String lang) throws IOException {
@@ -64,12 +64,8 @@ public @ResponseBody String runCode(
             //Checkear comentarios
 
 
-            String feedback = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
-
-            System.out.println("------------------FEEDBACK--------------");
-            System.out.println(feedback);
-            System.out.print("------------------------------------------");
-			return feedback;
+            String out = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
+			return out;
 
         }
     
