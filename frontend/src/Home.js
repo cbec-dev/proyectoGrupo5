@@ -64,7 +64,7 @@ export default class Home extends React.Component {
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
         }
         else{
-           return this.props.history.push("/Login2")
+            return this.props.history.push("/backendGrupo5/Login2")
         }
         let axiosConfig = {
             headers: {
