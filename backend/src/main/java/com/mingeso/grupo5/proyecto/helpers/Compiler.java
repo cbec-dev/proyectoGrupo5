@@ -143,6 +143,26 @@ public class Compiler {
     	}
     }
     
+    
+    public static int checkVariables(String code, String lang) {
+    	boolean variable = false;
+    	//Busca las variables que no cumplan con la longitud minima requerida 
+        switch (lang) {
+            case "python":  variable = code.matches(".*([a-zA-Z0-9_]{1,2})(=| =).*");
+                            break;
+            case "c":       variable = code.matches(".*(int |char |float |double )([a-zA-Z0-9_*]{1,2})(=| =|;).*");
+                            break;
+            case "java":    variable = code.matches(".*(int |char |float |double |String )([a-zA-Z0-9_]{1,2})(=| =|;).*");
+                            break;
+            default:        variable = false;
+                            break;
+        }
+        
+        if(variable) return 0;
+        
+        else return 1;
+    }
+    
     public static int codeStructureCheck(String code, String lang) {
 
         boolean entrada = false;
