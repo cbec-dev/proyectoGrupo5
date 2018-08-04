@@ -15,7 +15,7 @@ import java.io.IOException;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:8080/frontendGrupo5")
 @RequestMapping(path="/api/compiler")
 
 public class CompilerController {

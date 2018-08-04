@@ -101,11 +101,11 @@ class Solucion extends Component {
              }).then(response => console.log(response.data));*/
             axios({
                 method: 'post',
-                url: 'http://localhost:8081/api/compiler/runCode',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/runCode',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:8080/backendGrupo5",
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => this.setState({salida: response.data.stdout, salida1: response.data.stderr, salida2: response.data.error}));
@@ -126,11 +126,11 @@ class Solucion extends Component {
         bodyFormData.set('lang',e.name);
         axios({
                 method: 'post',
-                url: 'http://localhost:8081/api/compiler/checkCode',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:8080/backendGrupo5",
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => this.setState({salida3: response.data}));
@@ -158,11 +158,11 @@ class Solucion extends Component {
             var bodyFormData = new FormData();
             axios({
                 method: 'post',
-                url: 'http://localhost:8081/solutions/add',
+                url: 'http://209.97.152.30:8080/backendGrupo5/solutions/add',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:8080/backendGrupo5",
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => alert(response.data));

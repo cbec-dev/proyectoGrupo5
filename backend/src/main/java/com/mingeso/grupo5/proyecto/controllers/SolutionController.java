@@ -20,7 +20,7 @@ import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller   
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:8080/frontendGrupo5")
 @RequestMapping(path="/solutions") 
 public class SolutionController {
 	@Autowired 
