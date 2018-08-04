@@ -35,7 +35,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:8080/frontendGrupo5")
 @Controller
 @RequestMapping(path="/api/statements")
 

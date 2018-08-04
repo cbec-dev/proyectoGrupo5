@@ -74,8 +74,8 @@ class RegistroProfesor extends Component {
                         }
                     })
                 //fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
-                .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
-                .then(response => fetch('http://localhost:8081/sections/allSection')
+                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/update/'+user.email+'/'+user.section)
+                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: true}))))
                 console.log("SECCIONES OWO: ", this.state.sections);
@@ -105,7 +105,7 @@ class RegistroProfesor extends Component {
         }
         componentDidMount(){
             
-            fetch('http://localhost:8081/sections/allSection')
+            fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: true}))          
             }
