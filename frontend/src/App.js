@@ -109,19 +109,19 @@ class App extends Component {
         <MuiThemeProvider muiTheme={muiTheme}>
   <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
       <Switch>
-        <Route path="/Registro" component={()=> <Registro typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Prueba" component={()=> <Prueba typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Enunciado" component={()=> <Enunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Solucion" component={()=> <Solucion statement={statement} callBackFromParentStatement= {this.myCallbackStatement} location={this.props.location} typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}  />
-        <Route path="/Code" component={()=> <CodeMirror typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-    <Route path= "/Login2" component={()=> <Login2 typeUser={this.state.user.userType} callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
-        <Route path="/Home" component={()=> <Home typeUser={this.state.user.userType} callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
-        <Route path="/CrearCurso" component={()=><CrearCurso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
-        <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
-        <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user} callBackFromParentStatement= {this.myCallBackStatement}/>}/>
-        <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
-        <Route path="/VerSolucion" component={()=><verSolucion typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
+        <Route path="/frontendGrupo5/Registro" component={()=> <Registro typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/Prueba" component={()=> <Prueba typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/Enunciado" component={()=> <Enunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/Solucion" component={()=> <Solucion statement={statement} callBackFromParentStatement= {this.myCallbackStatement} location={this.props.location} typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}  />
+        <Route path="/frontendGrupo5/Code" component={()=> <CodeMirror typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
+    <Route path= "/frontendGrupo5/Login2" component={()=> <Login2 typeUser={this.state.user.userType} callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
+        <Route path="/frontendGrupo5/Home" component={()=> <Home typeUser={this.state.user.userType} callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
+        <Route path="/frontendGrupo5/CrearCurso" component={()=><CrearCurso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/frontendGrupo5/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
+        <Route path="/frontendGrupo5/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user} callBackFromParentStatement= {this.myCallBackStatement}/>}/>
+        <Route path="/frontendGrupo5/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/frontendGrupo5/VerSolucion" component={()=><verSolucion typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
 
 
       </Switch>
@@ -147,18 +147,18 @@ class App extends Component {
   <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
       <Switch>
         
-      <Route path="/Registro" component={()=> <Registro history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/RegistroProfesor" component={()=> <RegistroProfesor history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Prueba" component={()=> <Prueba history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Enunciado" component={()=> <Enunciado history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Solucion" component={()=> <Solucion location={this.props.location} history={customHistory} activeUser={this.state.user}/>}  />
-        <Route path="/Code" component={()=> <CodeMirror history={customHistory} activeUser={this.state.user}/>} />
-    <Route path= "/Login2" component={()=> <Login2 callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
-        <Route path="/Home" component={()=> <Home callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
-        <Route path="/CrearCurso" component={()=><CrearCurso history={customHistory} activeUser={this.state.user}/>}/>
-        <Route path="/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
-        <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
-        <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
+      <Route path="/frontendGrupo5/Registro" component={()=> <Registro history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/RegistroProfesor" component={()=> <RegistroProfesor history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/Prueba" component={()=> <Prueba history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/Enunciado" component={()=> <Enunciado history={customHistory} activeUser={this.state.user}/>} />
+        <Route path="/frontendGrupo5/Solucion" component={()=> <Solucion location={this.props.location} history={customHistory} activeUser={this.state.user}/>}  />
+        <Route path="/frontendGrupo5/Code" component={()=> <CodeMirror history={customHistory} activeUser={this.state.user}/>} />
+    <Route path= "/frontendGrupo5/Login2" component={()=> <Login2 callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
+        <Route path="/frontendGrupo5/Home" component={()=> <Home callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
+        <Route path="/frontendGrupo5/CrearCurso" component={()=><CrearCurso history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/frontendGrupo5/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/frontendGrupo5/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/frontendGrupo5/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
 
       
 
