@@ -34,7 +34,9 @@ public class Compiler {
         //System.out.println(output);
         return output;
     }
-
+    
+    
+    
     public String getLanguages() throws IOException
     {
         URL url = new URL("https://run.glot.io/languages");
@@ -112,7 +114,31 @@ public class Compiler {
         }
         return retorno;
     }
-
+    
+    public int checkCommentaries(String code, String lang) {
+    	boolean comentarios = false;
+    	
+    	//Se busca que al menos hayan 3 comentarios a parte de los comenatrios que indican entrada,procesamiento y salida
+    	switch (lang) {
+    	
+        case "python":  comentarios = code.matches("(.*#.*){6,}");
+                        break;
+        case "c":       comentarios = code.matches("(.*//.*){6,}");
+                        break;
+        case "java":    comentarios = code.matches("(.*//.*){6,}");
+                        break;
+        default:        comentarios = false;
+                        break;
+    	}
+    	
+    	if (comentarios) {
+    		return 1;
+    	}
+    	else {
+    		return 0;
+    	}
+    }
+    
     public static int codeStructureCheck(String code, String lang) {
 
         boolean entrada = false;
