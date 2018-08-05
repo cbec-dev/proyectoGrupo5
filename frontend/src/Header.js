@@ -52,7 +52,6 @@ class Header extends Component {
           </body>
     );      
    
-
     
     }
   else{
