@@ -76,6 +76,12 @@
 .dropdown-menu  > li > a {
   color: #fff !important;
 }
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  background-color: #bf4242;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  background-color: #bf4242;
+}
 
 .image-cropper {
   height: 50px;
