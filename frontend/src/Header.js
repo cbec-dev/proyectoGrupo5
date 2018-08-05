@@ -61,7 +61,7 @@ class Header extends Component {
           </Navbar.Header>
           <Nav>
           <NavItem eventKey={1} href="/Login2">
-            <span className="navItem">Login</span>
+            <span className="navItem">Sesión</span>
           </NavItem>
             <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="Profesor">  
               <MenuItem className="menuItem" eventKey={3.2} href="/ListarEnunciados">Ver Mis Enunciados</MenuItem>
@@ -88,7 +88,7 @@ class Header extends Component {
           </Navbar.Header>
           <Nav>
           <NavItem eventKey={1} href="/Login2">
-            <span className="navItem">Login</span>
+            <span className="navItem">Sesión</span>
           </NavItem>
             <NavDropdown eventKey={3} title="Agregar Usuarios" id="basic-nav-dropdown" className="Profesor">
             <MenuItem className= "menuItem" eventKey={3.7} href='/Registro'>Registrar Alumno</MenuItem>
@@ -122,7 +122,7 @@ class Header extends Component {
           </Navbar.Header>
           <Nav>
           <NavItem eventKey={1} href="/Login2">
-            <span className="navItem">Login</span>
+            <span className="navItem">Sesión</span>
           </NavItem>
             <NavItem eventKey={1} href="/Registro">
             <span className="navItem">Agregar Alumnos</span>
