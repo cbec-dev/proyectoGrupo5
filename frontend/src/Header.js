@@ -39,7 +39,7 @@ class Header extends Component {
           <Navbar.Header>
           <Navbar.Brand>
             <a href="/">     
-            <span className="navItem">Home</span>
+            <span className="navItem">Inicio</span>
             </a>
           </Navbar.Brand>
         </Navbar.Header>
@@ -64,7 +64,7 @@ class Header extends Component {
             <Navbar.Header>
             <Navbar.Brand>
               <a href="/">     
-               <span className="navItem">Home</span>
+               <span className="navItem">Inicio</span>
                </a>
             </Navbar.Brand>
           </Navbar.Header>
@@ -92,7 +92,7 @@ class Header extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/">     
-               <span className="navItem">Home</span>
+               <span className="navItem">Inicio</span>
                </a>
             </Navbar.Brand>
           </Navbar.Header>
@@ -129,7 +129,7 @@ class Header extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/">     
-               <span className="navItem">Home</span>
+               <span className="navItem">Inicio</span>
                </a>
             </Navbar.Brand>
           </Navbar.Header>
