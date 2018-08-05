@@ -57,15 +57,15 @@ public @ResponseBody String runCode(
 
             //Checkear variables
             if(Compiler.checkVariables(code, lang)==1) variables = variables + "Correcto";
-            else structure = structure + "Incorrecto";
+            else variables = variables + "Incorrecto";
 
             //Checkear identación
             if(Compiler.checkIdentacion(code, lang)==1) identation = identation + "Correcto";
-            else structure = structure + "Incorrecto";
+            else identation = identation + "Incorrecto";
 
             //Checkear comentarios
             if(Compiler.checkCommentaries(code, lang)==1) comments = comments + "Correcto";
-            else structure = structure + "Incorrecto";
+            else comments = comments + "Incorrecto";
 
 
             String feedback = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
