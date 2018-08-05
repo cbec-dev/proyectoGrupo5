@@ -87,7 +87,7 @@ class Registro extends Component {
         fetch('http://209.97.152.30:8080/backendGrupo5/Careers/all')
             .then(response => response.json())
            .then(data => this.setState({careers: data, isLoading: false}));
-            fetch('http://localhost:8081/sections/allSection')
+            fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}));
 

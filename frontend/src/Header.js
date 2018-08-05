@@ -67,7 +67,6 @@ class Header extends Component {
             <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="dropdown">  <MenuItem eventKey={3.1}>Action</MenuItem>
               <MenuItem eventKey={3.2} href="/ListarEnunciados">Ver Mis Enunciados</MenuItem>
               <MenuItem eventKey={3.3} href="/ListarSoluciones">Ver Mis Soluciones</MenuItem>
-              <MenuItem eventKey={3.4}>Separated link</MenuItem>
               </NavDropdown>
               <div className="image-cropper">
               <img className="image" src={photoURL} />
@@ -99,10 +98,9 @@ class Header extends Component {
             <NavDropdown eventKey={3} title="Coordinador" id="basic-nav-dropdown" className="Profesor">
             <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Listar Enunciados</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.5} href="/CrearCurso">Administrar Seccion</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.6} href="/Registro">Crear Usuario</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.7} href="/ListarSoluciones">Ver Soluciones</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.3} href="/CrearCurso">Administrar Seccion</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.4} href="/Registro">Crear Usuario</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.5} href="/ListarSoluciones">Ver Soluciones</MenuItem>
             </NavDropdown>
             <div className="image-cropper">
             <img className="image" src={photoURL} />
@@ -133,7 +131,6 @@ class Header extends Component {
             <NavDropdown eventKey={3} title="Profesor" id="basic-nav-dropdown" className="dropdown">
             <MenuItem className= "menuItem1" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
             <MenuItem className= "menuItem2" eventKey={3.2} href='/ListarEnunciados'>Ver Enunciados</MenuItem>
-            <MenuItem className= "menuItem3" eventKey={3.3} href='/'>Something else here</MenuItem>
             </NavDropdown>
             <div className="image-cropper"> 
             <img className="image" src={photoURL} />
