@@ -98,8 +98,7 @@ class Header extends Component {
             <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Listar Enunciados</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.3} href="/CrearCurso">Administrar Seccion</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.4} href="/Registro">Crear Usuario</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.5} href="/ListarSoluciones">Ver Soluciones</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.4} href="/ListarSoluciones">Ver Soluciones</MenuItem>
             </NavDropdown>
             <div className="image-cropper">
             <img className="image" src={photoURL} />
