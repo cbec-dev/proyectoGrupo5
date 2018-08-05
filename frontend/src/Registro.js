@@ -24,7 +24,6 @@ class Registro extends Component {
         }
         
     subirFormulario(e) {
-        console.log("formulario enviado c:");
         var user = {career: "", userName:"", section: "", email: "", userType: ""}
         user.career = e.idCareer;
         user.userType= 1;
@@ -32,10 +31,7 @@ class Registro extends Component {
         user.userName = e.userName;
         user.email = e.email+ "@usach.cl";
         var verificador = e.email.split("@")
-            console.log("email splited: ")
-            console.log(verificador)
-            console.log(verificador.length)
-            console.log("-----------------")
+        
             if(verificador.length>1){
                 alert("Correo invalido ingrese datos nuevamente")
                 this.limpiarValores(1);
@@ -48,12 +44,7 @@ class Registro extends Component {
         }
         else{
             this.limpiarValores(1);
-            console.log("Usuario: "+ user);
-            console.log("Datos: "+ user.section);
-            console.log("Datos: "+ user.career);
-            console.log("Datos: "+ user.email);
-            console.log("Datos: "+ user.userName);
-            console.log("Datos: "+ user.userType);
+     
 
             let axiosConfig = {
                 headers: {
@@ -64,7 +55,7 @@ class Registro extends Component {
               };
             //fetch('http://localhost:8081/users/add?career='+user.career+'&email='+user.email+'&section='+user.section+'&userName='+user.userName+'&userType='+user.userType)
             //.then(response => alert("Usuario Agregado"+response))
-            fetch('http://localhost:8081/users/add/'+user.career+'/'+user.section+'/'+user.userName+'/'+user.userType+'/'+user.email)
+            fetch('http://209.97.152.30:8080/backendGrupo5/users/add/'+user.career+'/'+user.section+'/'+user.userName+'/'+user.userType+'/'+user.email)
             .then(response => response.text())
             .then(data=> alert(data))
 
@@ -91,16 +82,14 @@ class Registro extends Component {
         this.setState({
             [name]: value
             });
-        console.log(name, value, target);
         }
     componentDidMount(){
-        fetch('http://localhost:8081/Careers/all')
+        fetch('http://209.97.152.30:8080/backendGrupo5/Careers/all')
             .then(response => response.json())
            .then(data => this.setState({careers: data, isLoading: false}));
             fetch('http://localhost:8081/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}));
-            console.log("SECCIONES: ", this.state.sections);
 
     }
 

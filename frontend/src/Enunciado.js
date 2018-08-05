@@ -79,7 +79,7 @@ class Enunciado extends Component {
      }
     componentDidMount(){
         if(this.props.typeUser===2){
-        fetch('http://localhost:8081/sections/allSection')
+        fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}))
             .then(this.setState({
@@ -98,7 +98,7 @@ class Enunciado extends Component {
             }));
         }
         else if(this.props.typeUser===3){
-            fetch('http://localhost:8081/sections/search/profesor/'+this.props.activeUser.idUser)
+            fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false, sectionName: data.idSection}));
         }
@@ -107,7 +107,6 @@ class Enunciado extends Component {
         }
         }
     subirFormulario(e) {
-        console.log("formulario enviado c:");
 
         var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: "", expectedSolution: []}
         var testCases = [];
@@ -129,13 +128,8 @@ class Enunciado extends Component {
         statement.expectedSolution = e.values;
         var placeholder = new Date();
         var actual = placeholder.getDate();
-        console.log("texto en codemirror: "+ statement.header)
         statement.section = e.sectionName;
-        console.log("Datos seccion: " + statement.section)
-        console.log("fecha actual: ")
-        console.log(placeholder)
-        console.log(actual)
-        if(+statement.initialDate>=+statement.finalDate){
+        if(+statement.initialDate>+statement.finalDate){
             alert("fecha de inicio no coincide con fecha termino")
             return;
 
@@ -145,7 +139,7 @@ class Enunciado extends Component {
             return;
         }
         if(statement.statementName==="" || statement.statementText ==="" ||statement.section==="" || statement.header==="" ||testCases===[] || statement.expectedSolution===""){
-            console.log("Debe llenar todos las casillas");
+            alert("Debe llenar todas las casillas");
             return;
         }
         else{
@@ -156,13 +150,7 @@ class Enunciado extends Component {
             this.limpiarValores(2);
 
             }
-            console.log("Usuario: "+ statement);
-            console.log("Datos: "+ statement.nameStatement);
-            console.log("Datos: "+ statement.text);
-            //console.log("Datos: "+ statement.section.idSection + "uwu" + statement.section.nameSection);
-            console.log("Datos: "+ statement.header);
-            console.log("Datos: "+ testCases);
-            console.log("Datos seccion: " + statement.section)
+           
             //testCases.forEach(element => {
             //    console.log("uguu" + element);
             //});
@@ -186,7 +174,7 @@ class Enunciado extends Component {
 
             axios({
                 method: 'post',
-                url: 'http://localhost:8081/api/statements/add',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/statements/add',
                 data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -195,8 +183,7 @@ class Enunciado extends Component {
                 },
              }).then(response => alert(response.data));
             
-            console.log("data statement: ")
-            console.log(JSON.stringify(statement))
+        
             //axios.post('http://localhost:8081/api/statements/add',statement,axiosConfig)
             //.then(function(response) {
             //console.log(response);
@@ -228,7 +215,6 @@ class Enunciado extends Component {
         this.setState({
             [name]: value
             });
-        console.log(name, value, target);
         }
         getInitialState () {
             return {
@@ -269,8 +255,7 @@ class Enunciado extends Component {
                 mode: this.state.mode
             };
             const sections = this.state.sections;
-            console.log("secciones enunciado: ")
-            console.log(sections)
+       
             if(isLoading){
                 return <p> Cargando...</p>;
             }

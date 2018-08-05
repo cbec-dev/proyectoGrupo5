@@ -27,8 +27,8 @@ class CrearCurso extends Component {
         console.log(section)
         this.limpiarValores(1)
         if(profesor!==null && section !==null && profesor !== undefined && section !== undefined && profesor!== ""){
-        fetch('http://localhost:8081/sections/update/'+profesor+'/'+section.idSection)
-                .then(response => fetch('http://localhost:8081/sections/allSection')
+        fetch('http://209.97.152.30:8080/backendGrupo5/sections/update/'+profesor+'/'+section.idSection)
+                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false})))
         }
@@ -49,20 +49,19 @@ class CrearCurso extends Component {
 
     }
     subirFormulario(e) {
-        console.log("formulario enviado c:");
         this.section = {sectionName: ""}
         this.section.sectionName = e.sectionName;
        
         if(this.section.sectionName ===""){
-            console.log("Debe llenar todos las casillas");
+            alert("Debe llenar todos las casillas");
             return;
         }
         else{
             this.limpiarValores(1);
-            fetch('http://localhost:8081/sections/addSection?sectionName='+this.section.sectionName)
+            fetch('http://209.97.152.30:8080/backendGrupo5/sections/addSection?sectionName='+this.section.sectionName)
             .then(response => console.log("Seccion Agregada"+response))
             .then(this.setState({isLoading: true}))
-            .then(fetch('http://localhost:8081/sections/allSection')
+            .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}))) 
             }
@@ -96,14 +95,13 @@ class CrearCurso extends Component {
         this.setState({
             [name]: value
             });
-        console.log(name, value, target);
         }
 
     componentDidMount(){
-        fetch('http://localhost:8081/sections/allSection')
+        fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data}))
-            .then(fetch('http://localhost:8081/users/searchtype/'+3)
+            .then(fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+3)
             .then(response => response.json())
             .then(data => this.setState({profesores: data, isLoading: false})))
 
