@@ -115,7 +115,7 @@ class App extends Component {
         <Route path="/frontendGrupo5/Enunciado" component={()=> <Enunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/frontendGrupo5/Solucion" component={()=> <Solucion statement={statement} callBackFromParentStatement= {this.myCallbackStatement} location={this.props.location} typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}  />
         <Route path="/frontendGrupo5/Code" component={()=> <CodeMirror typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-    <Route path= "/frontendGrupo5/Login2" component={()=> <Login2 typeUser={this.state.user.userType} callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
+        <Route path= "/frontendGrupo5/Login2" component={()=> <Login2 typeUser={this.state.user.userType} callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
         <Route path="/frontendGrupo5/Home" component={()=> <Home typeUser={this.state.user.userType} callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
         <Route path="/frontendGrupo5/CrearCurso" component={()=><CrearCurso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/frontendGrupo5/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
