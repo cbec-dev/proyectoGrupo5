@@ -119,7 +119,7 @@ public class Compiler {
         return retorno;
     }
     
-    public int checkCommentaries(String code, String lang) {
+    public static int checkCommentaries(String code, String lang) {
     	boolean comentarios = false;
     	
     	//Se busca que al menos hayan 3 comentarios a parte de los comenatrios que indican entrada,procesamiento y salida
@@ -199,7 +199,7 @@ public class Compiler {
         else return 0;
     }
     
-    public int checkIdentacion(String code, String lang) {
+    public static int checkIdentacion(String code, String lang) {
     	boolean tab = false;
         String [] cadenas = code.split("\n");
         int contadorTab = 0;

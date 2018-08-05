@@ -58,10 +58,16 @@ public @ResponseBody String runCode(
             else structure = structure + "Incorrecto";
 
             //Checkear variables
+            if(Compiler.checkVariables(code, lang)==1) variables = variables + "Correcto";
+            else structure = structure + "Incorrecto";
 
             //Checkear identación
+            if(Compiler.checkIdentacion(code, lang)==1) identation = identation + "Correcto";
+            else structure = structure + "Incorrecto";
 
             //Checkear comentarios
+            if(Compiler.checkCommentaries(code, lang)==1) comments = comments + "Correcto";
+            else structure = structure + "Incorrecto";
 
 
             String feedback = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
