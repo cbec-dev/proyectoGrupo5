@@ -40,10 +40,10 @@ class CrearCurso extends Component {
         var section = e;
         console.log("REMOVER PROFESOR: " + e + "-" + section)
         this.setState({isLoading: true})
-        fetch('http://localhost:8081/sections/removeP/'+section.idSection)
+        fetch('http://209.97.152.30:8080/backendGrupo5/sections/removeP/'+section.idSection)
             .then(response => this.setState({response: response, isLoading: true}))
             .then(alert("Profesor removido correctamente"))
-            .then(fetch('http://localhost:8081/sections/allSection')
+            .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}))) 
 
