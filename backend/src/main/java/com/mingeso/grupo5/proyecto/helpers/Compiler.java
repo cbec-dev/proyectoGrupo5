@@ -127,9 +127,9 @@ public class Compiler {
     	
         case "python":  comentarios = code.matches("(.*#.*){6,}");
                         break;
-        case "c":       comentarios = code.matches("(.*//.*){6,}");
+        case "c":       comentarios = code.matches("((?is).*//.*){6,}");
                         break;
-        case "java":    comentarios = code.matches("(.*//.*){6,}");
+        case "java":    comentarios = code.matches("((?is).*//.*){6,}");
                         break;
         default:        comentarios = false;
                         break;
@@ -148,11 +148,11 @@ public class Compiler {
     	boolean variable = false;
     	//Busca las variables que no cumplan con la longitud minima requerida 
         switch (lang) {
-            case "python":  variable = code.matches(".*([a-zA-Z0-9_]{1,2})(=| =).*");
+            case "python":  variable = code.matches("(?is).*(^|\\n| )([a-zA-Z0-9_]{1,2})(=| =).*");
                             break;
-            case "c":       variable = code.matches(".*(int |char |float |double )([a-zA-Z0-9_*]{1,2})(=| =|;).*");
+            case "c":       variable = code.matches("(?is).*(int |char |float |double )([a-zA-Z0-9_*]{1,2})(=| =|;).*");
                             break;
-            case "java":    variable = code.matches(".*(int |char |float |double |String )([a-zA-Z0-9_]{1,2})(=| =|;).*");
+            case "java":    variable = code.matches("(?is).*(int |char |float |double |String )([a-zA-Z0-9_]{1,2})(=| =|;).*");
                             break;
             default:        variable = false;
                             break;
