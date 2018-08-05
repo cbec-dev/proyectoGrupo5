@@ -70,7 +70,7 @@ public @ResponseBody String runCode(
             	identation = identation + "Correcto";
             }
             else {
-            	identation = identation + "El codigo no esta identatado";
+            	identation = identation + "El codigo no tiene la identación minima(3) o esta escrito en una linea";
             }
 
             //Checkear comentarios

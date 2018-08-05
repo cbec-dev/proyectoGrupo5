@@ -201,6 +201,9 @@ public class Compiler {
         //se separa el string code por los saltos de lineas
         //y se busca que al menos haya alguna identacion tanto por
         //tabulacion o por espacios
+        if (largo == 1) {
+        	return 0; //Cuando todo el codigo esta en una linea
+        }
         for (int i = 0; i<largo;i++) {
 	        switch (lang) {
 	            case "python":  tab = cadenas[i].matches("^(\t| ).*");
