@@ -153,7 +153,7 @@ class App extends Component {
         <Route path="/frontendGrupo5/Enunciado" component={()=> <Enunciado history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/frontendGrupo5/Solucion" component={()=> <Solucion location={this.props.location} history={customHistory} activeUser={this.state.user}/>}  />
         <Route path="/frontendGrupo5/Code" component={()=> <CodeMirror history={customHistory} activeUser={this.state.user}/>} />
-    <Route path= "/frontendGrupo5/Login2" component={()=> <Login2 callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
+        <Route path= "/frontendGrupo5/Login2" component={()=> <Login2 callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
         <Route path="/frontendGrupo5/Home" component={()=> <Home callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
         <Route path="/frontendGrupo5/CrearCurso" component={()=><CrearCurso history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/frontendGrupo5/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>

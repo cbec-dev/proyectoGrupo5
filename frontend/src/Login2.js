@@ -22,7 +22,7 @@ const getUser = async (correo) =>{
       var self = this;
       try {
         let res = await axios({
-             url: 'http://209.97.152.30:8080/frontendGrupo5/users/searchbyEmail/'+correo,
+             url: 'http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo,
              method: 'get',
              timeout: 8000,
              headers: {
