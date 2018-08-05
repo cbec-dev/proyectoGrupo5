@@ -109,7 +109,6 @@ class MostrarEnunciado extends Component {
         render() {
             const statement = this.props.statement;
             //const header = this.props.statement.header.split("\"");
-            console.log("statement mostrar enunciado: ");
          
             const initialDate = statement.initialDate.split("T"); 
             const finalDate = statement.finalDate.split("T");

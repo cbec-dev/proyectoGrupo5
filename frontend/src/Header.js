@@ -48,7 +48,6 @@ class Header extends Component {
     
     }
   else{
-    console.log("HEADER RENDER ELSE USER LOGGER TRUE");
     if(typeUser ===1){
       return (
           <body>
@@ -64,9 +63,9 @@ class Header extends Component {
           <NavItem eventKey={1} href="/Login2">
             <span className="navItem">Login</span>
           </NavItem>
-            <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="dropdown">  <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2} href="/ListarEnunciados">Ver Mis Enunciados</MenuItem>
-              <MenuItem eventKey={3.3} href="/ListarSoluciones">Ver Mis Soluciones</MenuItem>
+            <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="Profesor">  
+              <MenuItem className="menuItem" eventKey={3.2} href="/ListarEnunciados">Ver Mis Enunciados</MenuItem>
+              <MenuItem className="menuItem" eventKey={3.3} href="/ListarSoluciones">Ver Mis Soluciones</MenuItem>
               </NavDropdown>
               <div className="image-cropper">
               <img className="image" src={photoURL} />
