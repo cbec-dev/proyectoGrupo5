@@ -22,7 +22,7 @@ const getUser = async (correo) =>{
       var self = this;
       try {
         let res = await axios({
-             url: 'http://localhost:8081/users/searchbyEmail/'+correo,
+             url: 'http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo,
              method: 'get',
              timeout: 8000,
              headers: {
@@ -150,7 +150,7 @@ export default class Login extends React.Component {
                 this.setState({userEmail: correo[1]});
                 console.log("CORREO USUARIO: ", correo[1]);
                 
-                /*fetch('http://localhost:8081/users/searchbyEmail/'+correo[1])
+                /*fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
                 .then(response => response.json())
                 .then(console.log('algo' + this.state.a)
                 .then(data => this.setState({a: data})));
@@ -230,7 +230,7 @@ export default class Login extends React.Component {
                   };
                 
                   var self = this;
-                  axios.get('http://localhost:8081/users/searchbyEmail/'+correo[1], axiosConfig)
+                  axios.get('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1], axiosConfig)
                    .then(function (response) {
                      console.log(response);
                      self.setState({activeUser: response.data})
