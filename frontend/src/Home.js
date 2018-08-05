@@ -75,7 +75,7 @@ export default class Home extends React.Component {
           };
           var email = this.state.firebaseUser.email;
           var self = this;
-          axios.get('http://209.97.152.30:8080/frontendGrupo5/users/searchbyEmail/'+email, axiosConfig)
+          axios.get('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+email, axiosConfig)
           .then((response) => {
             this.setState({state: response.data, bool: true});
             console.log("RESPONSE: " + response.data);

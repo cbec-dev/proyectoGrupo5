@@ -64,7 +64,7 @@ class Registro extends Component {
               };
             //fetch('http://localhost:8081/users/add?career='+user.career+'&email='+user.email+'&section='+user.section+'&userName='+user.userName+'&userType='+user.userType)
             //.then(response => alert("Usuario Agregado"+response))
-            fetch('http://209.97.152.30:8080/frontendGrupo5/users/add/'+user.career+'/'+user.section+'/'+user.userName+'/'+user.userType+'/'+user.email)
+            fetch('http://209.97.152.30:8080/backendGrupo5/users/add/'+user.career+'/'+user.section+'/'+user.userName+'/'+user.userType+'/'+user.email)
             .then(response => response.text())
             .then(data=> alert(data))
 
@@ -94,10 +94,10 @@ class Registro extends Component {
         console.log(name, value, target);
         }
     componentDidMount(){
-        fetch('http://209.97.152.30:8080/frontendGrupo5/Careers/all')
+        fetch('http://209.97.152.30:8080/backendGrupo5/Careers/all')
             .then(response => response.json())
            .then(data => this.setState({careers: data, isLoading: false}));
-            fetch('http://209.97.152.30:8080/frontendGrupo5/sections/allSection')
+            fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}));
             console.log("SECCIONES: ", this.state.sections);

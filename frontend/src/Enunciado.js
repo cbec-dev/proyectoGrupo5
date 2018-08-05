@@ -79,7 +79,7 @@ class Enunciado extends Component {
      }
     componentDidMount(){
         if(this.props.typeUser===2){
-        fetch('http://209.97.152.30:8080/frontendGrupo5/sections/allSection')
+        fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}))
             .then(this.setState({
@@ -98,7 +98,7 @@ class Enunciado extends Component {
             }));
         }
         else if(this.props.typeUser===3){
-            fetch('http://209.97.152.30:8080/frontendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
+            fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false, sectionName: data.idSection}));
         }
@@ -186,7 +186,7 @@ class Enunciado extends Component {
 
             axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/frontendGrupo5/api/statements/add',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/statements/add',
                 data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

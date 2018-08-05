@@ -101,7 +101,7 @@ class Solucion extends Component {
              }).then(response => console.log(response.data));*/
             axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/frontendGrupo5/api/compiler/runCode',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/runCode',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -132,7 +132,7 @@ class Solucion extends Component {
         console.log(bodyFormData.lang)
         axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/frontendGrupo5/api/compiler/checkCode',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -168,7 +168,7 @@ class Solucion extends Component {
             var bodyFormData = new FormData();
             axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/frontendGrupo5/solutions/add',
+                url: 'http://209.97.152.30:8080/backendGrupo5/solutions/add',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
