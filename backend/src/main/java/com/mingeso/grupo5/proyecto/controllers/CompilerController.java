@@ -35,6 +35,7 @@ public @ResponseBody String runCode(
         @RequestParam String lang) throws IOException {
       
         Compiler compiler = new Compiler();
+        String out = compiler.run(code, lang); 
    
 		return out;
     }
