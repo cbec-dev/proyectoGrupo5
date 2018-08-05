@@ -23,7 +23,7 @@ import java.sql.*;
 
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:5050")
 @Controller   
 @RequestMapping(path="/users") 
 public class UserController {
@@ -66,14 +66,12 @@ public class UserController {
 			Career c = new Career();
 			Section s = new Section();
 			c = careerRepository.findById(career).orElse(null);
-			System.out.println("Datos: " + c);
 			s = sectionRepository.findById(section).orElse(null);
 			if(c == null || s == null) {
 				
 				return null;
 				
 			}
-			System.out.println("Datos: " + s);
 			User resource = new User();
 			resource.setCareer(c);
 			resource.setSection(s);
@@ -137,7 +135,6 @@ public class UserController {
 	@GetMapping(path="/searchbyEmail/{email}")
 	public @ResponseBody User findOneEmail(@PathVariable("email") String email) {
 		User retorno = userRepository.findBycorreo(email);
-		System.out.println("USUARIO ENCONTRADO: " + retorno.getUserName());
 		return retorno;
 	}
 	

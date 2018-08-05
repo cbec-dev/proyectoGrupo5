@@ -14,7 +14,7 @@ class CodeRunner extends Component {
     componentDidMount() {
         this.setState({isLoading: true});
 
-        fetch('http://localhost:8081/api/compiler/runCode?code='+this.state.codigo)
+        fetch('http://209.97.152.30:8080/backendGrupo5/api/compiler/runCode?code='+this.state.codigo)
             .then(response => response.json())
             .then(data => this.setState({salida: data.stdout}));
         }

@@ -45,7 +45,6 @@ export default class Home extends React.Component {
     }
 
     handleLogout() {
-        console.log("deslogueando uwu")
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
             localStorage.removeItem("user");
@@ -53,7 +52,6 @@ export default class Home extends React.Component {
             this.props.callbackFromParentHome(this.state.userLogged);
             this.setState({userLogged: false, firebaseUser: ""});
             this.props.history.push("/Login2");
-            console.log("user signed out from firebase");
             localStorage.clear();
             window.localStorage.clear(); 
 
@@ -75,12 +73,10 @@ export default class Home extends React.Component {
           };
           var email = this.state.firebaseUser.email;
           var self = this;
-          axios.get('http://localhost:8081/users/searchbyEmail/'+email, axiosConfig)
+          axios.get('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+email, axiosConfig)
           .then((response) => {
             this.setState({state: response.data, bool: true});
-            console.log("RESPONSE: " + response.data);
           }).catch((error) => {
-            console.log(error);
             this.setState({bool: false})
           });
 
@@ -89,10 +85,7 @@ export default class Home extends React.Component {
     
 
     render() {
-        console.log("USUARIO LOGUEADO");
-        console.log(JSON.parse(localStorage.getItem("user")));
-        console.log("USUARIO LOGUEADO");
-        console.log("DSADSADASDSADDD")
+       
         const userEmail = this.state.state.correo;
         const bool = this.state.bool;
         if(bool===true){

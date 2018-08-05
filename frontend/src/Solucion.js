@@ -60,15 +60,12 @@ class Solucion extends Component {
         var algo = {code: "", lang: ""}
         algo.code = "print(33)";
         algo.lang = "python";
-        console.log("DATOS: " + e.code + "-" + algo.lang + "-" + e.name);
         var code = e.code;
         console.log(this.solution);
         var bodyFormData = new FormData();
         bodyFormData.set('code', e.code);
         bodyFormData.set('lang',e.name);
-        console.log(bodyFormData)
-        console.log(bodyFormData.code)
-        console.log(bodyFormData.lang)
+     
 
             //fetch('http://localhost:8081/api/compiler/runCode?code='+"print()"+"&lang=" + "python")
             //.then(response => response.json())
@@ -101,7 +98,7 @@ class Solucion extends Component {
              }).then(response => console.log(response.data));*/
             axios({
                 method: 'post',
-                url: 'http://localhost:8081/api/compiler/runCode',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/runCode',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -132,7 +129,7 @@ class Solucion extends Component {
         console.log(bodyFormData.lang)
         axios({
                 method: 'post',
-                url: 'http://localhost:8081/api/compiler/checkCode',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -148,7 +145,6 @@ class Solucion extends Component {
 
     
     subirFormulario(e) {
-        console.log("formulario enviado c:");
         this.solution = {solutionName: "", solutionText: "", user: "", statement: ""}
         this.solution.solutionName = e.nameSolution;
         this.solution.solutionText = e.code;
@@ -168,7 +164,7 @@ class Solucion extends Component {
             var bodyFormData = new FormData();
             axios({
                 method: 'post',
-                url: 'http://localhost:8081/solutions/add',
+                url: 'http://209.97.152.30:8080/backendGrupo5/solutions/add',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -288,7 +284,6 @@ class Solucion extends Component {
                 mode: this.state.mode
             };
             const header = this.props.statement.header;
-            console.log("STATEMENT HEADER: " + header+ "-" + this.props.statement.statementText);
             const typeUser = this.props.typeUser;
             if(header === undefined || this.props.statement ===undefined){
                 return(<div> {this.props.history.push("/ListarEnunciado")} </div>); 

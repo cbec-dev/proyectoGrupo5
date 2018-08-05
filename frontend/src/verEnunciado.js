@@ -33,7 +33,6 @@ class verEnunciado extends React.Component {
     solucionEnunciado(e){
         this.setState({isSelectedSolution: true, statement: e, isSelected: false})
         this.props.callBackFromParentStatement(e);
-        console.log("post-call back statement:" + e + "-" + e.statementText + "-" + e.header);
         statement = e;
         //return <Redirect to="/Solucion" render={()=><Solucion statement = {e} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>
 
@@ -64,10 +63,7 @@ class verEnunciado extends React.Component {
         const isLoading = this.state.isLoading;
         const r = true;
         const dateFormatted = currentDate.getFullYear() + '-' + (currentDate.getMonth()+1) + '-' + currentDate.getDate() + 'T04:00:00.000+0000';
-        console.log("VER ENUNCIADO: ")
-        console.log(statements)
-        console.log("FECHA: " + now);
-        console.log("FECHA FORMATEADA: " + dateFormatted);
+       
         if(this.props.typeUser===1){
             return (
                 <div>

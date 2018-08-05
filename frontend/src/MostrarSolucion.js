@@ -111,8 +111,7 @@ class MostrarSolucion extends Component {
             const solution = this.props.solution;
             const statement = this.props.statement;
             //const header = this.props.statement.header.split("\"");
-            console.log("solution mostrar enunciado: ");
-            console.log(solution)
+      
             var options = {
                 lineNumbers: true,
                 readOnly: true,
@@ -122,7 +121,7 @@ class MostrarSolucion extends Component {
                 <body className="body">
                     <form className="form1">
                     <div className="div1">
-                    <label className="label1"> Nombre Enunciado:  </label>
+                    <label className="label1"> Nombre Solucion:  </label>
                     </div>
                     <div className="div1">
                         <input className="input" name= "solutionName" type = "text" value={solution.solutionName}
@@ -139,6 +138,15 @@ class MostrarSolucion extends Component {
                     <div className="div2">
                         
                         <textarea className="input" name= "text" type = "text" value={solution.statement.statementName} 
+                        disabled = "true"/>
+                    </div>
+                     <div className="div1">
+                    <label className="label2"> Enunciado:  </label>
+                    </div>
+
+                    <div className="div2">
+                        
+                        <textarea className="input" name= "text" type = "text" value={solution.statement.statementText} 
                         disabled = "true"/>
                     </div>
                     <div className="div1">

@@ -23,7 +23,7 @@ import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 
 @Controller   
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:5050")
 @RequestMapping(path="/sections") 
 public class SectionController {
 	@Autowired 
@@ -87,8 +87,7 @@ public class SectionController {
 			User p = new User();
 			Section s = new Section();
 			p = userRepository.findBycorreo(profesor);
-			System.out.println("Datos: " + userRepository.findBycorreo(profesor));
-			System.out.println("Datos2: " + p);
+		
 
 			s = sectionRepository.findById(section).orElse(null);
 
@@ -97,7 +96,6 @@ public class SectionController {
 				return null;
 				
 			}
-			System.out.println("Datos: " + s);
 			s.setIdSection(section);
 			s.setProfesor(p);
 			return sectionRepository.save(s);
@@ -114,7 +112,6 @@ public class SectionController {
 				return null;
 				
 			}
-			System.out.println("Datos: " + s);
 			s.setIdSection(section);
 			s.setProfesor(null);
 			return sectionRepository.save(s);

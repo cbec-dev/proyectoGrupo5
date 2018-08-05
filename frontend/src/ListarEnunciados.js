@@ -20,7 +20,7 @@ class ListarEnunciados extends React.Component {
         this.verEnunciados = this.verEnunciados.bind(this)
         }
     verEnunciados(e){
-        fetch('http://localhost:8081/api/statements/search/seccion/'+ e)
+        fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ e)
         .then(response => response.json())
         .then(data => this.setState({statements: data, isSelected: true}))
         
@@ -31,21 +31,20 @@ class ListarEnunciados extends React.Component {
         if(usuarioActivo!==null &&this.props.typeUser!==null){
             if(this.props.typeUser===1&&this.props.activeUser.section!==null){
                 //alumno
-                console.log("alumno u.u")
-                fetch('http://localhost:8081/sections/search/'+ this.props.activeUser.section.idSection)
+                fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/'+ this.props.activeUser.section.idSection)
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false}));
             }
             else if(this.props.typeUser===2){
                 //coordinador
-                fetch('http://localhost:8081/sections/allSection')
+                fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false}));                
 
             }
             else if(this.props.typeUser===3){
                 //profesor
-                fetch('http://localhost:8081/sections/search/profesor/'+this.props.activeUser.idUser)
+                fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
                 .then(response =>  response.json())
                 .then(data => this.setState({sections: data, isLoading: false}))
                 .catch(err => {
@@ -71,8 +70,7 @@ class ListarEnunciados extends React.Component {
         const typeUser = this.props.typeUser;
         const activeUser = this.props.activeUser;
         const isLoading = this.state.isLoading;
-        console.log("Secciones: ")
-        console.log(sections)
+       
         if (isLoading) {
             return <p>Cargando...</p>;
         }
@@ -156,7 +154,6 @@ class ListarEnunciados extends React.Component {
             );
         }
         else if(typeUser===1){
-            console.log("ALUMNO")
             return (
                 <div>
                             
@@ -183,7 +180,6 @@ class ListarEnunciados extends React.Component {
                 </tbody>
                 </table>
                 <div>
-                    <label> the worst </label>
                     {this.state.isSelected ?
                     <Enunciado statements = {this.state.statements} callBackFromParentStatement= {this.props.callBackFromParentStatement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
                     null

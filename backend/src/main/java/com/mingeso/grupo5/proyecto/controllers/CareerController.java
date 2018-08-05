@@ -17,7 +17,7 @@ import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
 import org.springframework.http.HttpStatus;
  
 @Controller   
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:5050")
 @RequestMapping(path="/Careers") 
 public class CareerController {
   @Autowired 

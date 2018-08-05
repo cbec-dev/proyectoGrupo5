@@ -18,6 +18,23 @@
 
 
 }
+
+.menuItem:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem1:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem2:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem3:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem4:hover{
+  background-color: rgb(11,11,11);
+}
+
 .menuItem1{
   color: white !important;
   -webkit-text-fill-color: white;
@@ -33,6 +50,7 @@
   -moz-text-decoration-color: white;
   text-decoration-color: white;
   background-color: rgb(24, 24, 43);
+
 
 
 }
@@ -57,6 +75,12 @@
 
 .dropdown-menu  > li > a {
   color: #fff !important;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  background-color: #bf4242;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  background-color: #bf4242;
 }
 
 .image-cropper {

@@ -15,7 +15,7 @@ import java.io.IOException;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:5050")
 @RequestMapping(path="/api/compiler")
 
 public class CompilerController {
@@ -33,12 +33,10 @@ public class CompilerController {
 public @ResponseBody String runCode(
         @RequestParam String code,
         @RequestParam String lang) throws IOException {
-        System.out.println(code);
-        System.out.println(lang);
+      
         Compiler compiler = new Compiler();
-        System.out.println("despues compiler");
-        String out = compiler.run(code, lang);
-        System.out.println(out);
+        String out = compiler.run(code, lang); 
+   
 		return out;
     }
 
@@ -59,22 +57,19 @@ public @ResponseBody String runCode(
 
             //Checkear variables
             if(Compiler.checkVariables(code, lang)==1) variables = variables + "Correcto";
-            else structure = structure + "Incorrecto";
+            else variables = variables + "Incorrecto";
 
             //Checkear identación
             if(Compiler.checkIdentacion(code, lang)==1) identation = identation + "Correcto";
-            else structure = structure + "Incorrecto";
+            else identation = identation + "Incorrecto";
 
             //Checkear comentarios
             if(Compiler.checkCommentaries(code, lang)==1) comments = comments + "Correcto";
-            else structure = structure + "Incorrecto";
+            else comments = comments + "Incorrecto";
 
 
             String feedback = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
 
-            System.out.println("------------------FEEDBACK--------------");
-            System.out.println(feedback);
-            System.out.print("------------------------------------------");
 			return feedback;
 
         }

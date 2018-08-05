@@ -22,17 +22,13 @@ class RegistroProfesor extends Component {
 
         }
         subirFormulario(e) {
-            console.log("formulario enviado c:");
             var user = {userName:"", section: "", email: "", userType: ""}
             user.userType= 3;
             user.section = e.sectionName;
             user.userName = e.userName;
             var verificador = e.email.split("@")
-            //ENTREGAR MENSAJE POR CORREO REPETIDOOO
-            console.log("email splited: ")
-            console.log(verificador)
-            console.log(verificador.length)
-            console.log("-----------------")
+            //ENTREGAR MENSAJE POR CORREO REPETIDO
+     
             if(verificador.length>1){
                 alert("Correo invalido ingrese datos nuevamente")
                 this.limpiarValores(1);
@@ -45,11 +41,7 @@ class RegistroProfesor extends Component {
             }
             else{
                 this.limpiarValores(1);
-                console.log("Usuario: "+ user);
-                console.log("Datos: "+ user.section);
-                console.log("Datos: "+ user.email);
-                console.log("Datos: "+ user.userName);
-                console.log("Datos: "+ user.userType);
+           
                 var bool = true
                 let axiosConfig = {
                     headers: {
@@ -58,7 +50,7 @@ class RegistroProfesor extends Component {
                         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
                     }
                   };
-                fetch('http://localhost:8081/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
+                fetch('http://209.97.152.30:8080/backendGrupo5/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
                 .then(response=> response.text())
                 .then(data =>
                     {
@@ -74,11 +66,10 @@ class RegistroProfesor extends Component {
                         }
                     })
                 //fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
-                .then(response => fetch('http://localhost:8081/sections/update/'+user.email+'/'+user.section)
-                .then(response => fetch('http://localhost:8081/sections/allSection')
+                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/update/'+user.email+'/'+user.section)
+                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: true}))))
-                console.log("SECCIONES OWO: ", this.state.sections);
                 //axios.post('http://localhost:8081/users/add', user)
                 //.then(res => {
                 //alert(res);
@@ -105,7 +96,7 @@ class RegistroProfesor extends Component {
         }
         componentDidMount(){
             
-            fetch('http://localhost:8081/sections/allSection')
+            fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: true}))          
             }
@@ -115,7 +106,6 @@ class RegistroProfesor extends Component {
             const sections =  this.state.sections.filter(function(seccion) {
               return seccion.profesor === null
                 })
-            console.log(sections)
             const typeUser = this.props.typeUser;
             if(typeUser===2){
                 return (
