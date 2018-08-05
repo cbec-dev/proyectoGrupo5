@@ -28,7 +28,7 @@ class CrearCurso extends Component {
         this.limpiarValores(1)
         if(profesor!==null && section !==null && profesor !== undefined && section !== undefined && profesor!== ""){
         fetch('http://209.97.152.30:8080/backendGrupo5/sections/update/'+profesor+'/'+section.idSection)
-                .then(response => fetch('http://localhost:8081/sections/allSection')
+                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false})))
         }
@@ -130,11 +130,7 @@ class CrearCurso extends Component {
 
                 }
             }
-            //const profesores_filtrados =  this.state.profesores.filter(function(profesor) {
-              //return seccion.profesor === null
-              //return this.verificar(prof_,profesor)
-
-                //})
+            
           
             if(isLoading===true){
                 return(<p> Cargando...</p>)
