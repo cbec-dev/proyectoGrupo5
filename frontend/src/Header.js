@@ -22,17 +22,10 @@ class Header extends Component {
 
 
   render() {
-    console.log("HEADER OWO");
     const typeUser = this.props.typeUser;
     const userLogged = this.props.loggedState;
     const photoURL = this.props.userAvatar;
-    console.log(this.state.typeUser);
-    console.log("HEADER UWU");
-    console.log(this.state.firebaseUser);
-    console.log("HEADER estado user logged: ", this.state.userLogged);
-    console.log("HEADER UWU");
     if(userLogged===false){
-      console.log("HEADER RENDER IF USER LOGGER FALSE");
       return (
         <body>
         <Navbar >
@@ -110,8 +103,6 @@ class Header extends Component {
             <MenuItem className= "menuItem" eventKey={3.5} href="/CrearCurso">Administrar Seccion</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.6} href="/Registro">Crear Usuario</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.7} href="/ListarSoluciones">Ver Soluciones</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
             <div className="image-cropper">
             <img className="image" src={photoURL} />
@@ -143,8 +134,6 @@ class Header extends Component {
             <MenuItem className= "menuItem1" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
             <MenuItem className= "menuItem2" eventKey={3.2} href='/ListarEnunciados'>Ver Enunciados</MenuItem>
             <MenuItem className= "menuItem3" eventKey={3.3} href='/'>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
             <div className="image-cropper"> 
             <img className="image" src={photoURL} />

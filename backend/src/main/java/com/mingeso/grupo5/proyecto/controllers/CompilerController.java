@@ -15,7 +15,7 @@ import java.io.IOException;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:5050")
 @RequestMapping(path="/api/compiler")
 
 public class CompilerController {
@@ -33,12 +33,9 @@ public class CompilerController {
 public @ResponseBody String runCode(
         @RequestParam String code,
         @RequestParam String lang) throws IOException {
-        System.out.println(code);
-        System.out.println(lang);
+      
         Compiler compiler = new Compiler();
-        System.out.println("despues compiler");
-        String out = compiler.run(code, lang);
-        System.out.println(out);
+   
 		return out;
     }
 
@@ -72,9 +69,6 @@ public @ResponseBody String runCode(
 
             String feedback = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
 
-            System.out.println("------------------FEEDBACK--------------");
-            System.out.println(feedback);
-            System.out.print("------------------------------------------");
 			return feedback;
 
         }

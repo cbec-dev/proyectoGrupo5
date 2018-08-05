@@ -42,8 +42,7 @@ class verSolucion extends React.Component {
 
         const isLoading = this.state.isLoading;
         const solutions = this.props.solutions; 
-        console.log("SOLUCIONE UWUS: " + solutions)
-        console.log(this.props.solutions)
+     
         if(isLoading ===true || solutions===undefined){
             return(<p> Cargando...</p>);
         }

@@ -56,21 +56,16 @@ class App extends Component {
     }
     myCallbackLogin = (dataFromLogin1, dataFromLogin2, dataFromLogin3) => {
       if(dataFromLogin3===undefined){
-        console.log("CALLBACK LOGIN");
-        console.log("USUARIO NO REGISTRADO")
         this.setState({ userLogged: false, firebaseUser:dataFromLogin2, user: dataFromLogin3});
         localStorage.setItem('state', JSON.stringify(this.state));
-        console.log(dataFromLogin2.displayName);
         localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
       }
       else{
         this.setState({ userLogged: dataFromLogin1, firebaseUser:dataFromLogin2, user: dataFromLogin3});
       localStorage.setItem('state', JSON.stringify(this.state));
-      console.log(dataFromLogin2.displayName);
       localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
       }
       
-      console.log("CALLBACK FROM LOGIN IN APP :C");
       
     };
     myCallbackHome = (dataFromHome) => {
@@ -78,17 +73,14 @@ class App extends Component {
       localStorage.removeItem("state");
       localStorage.removeItem("userLogged");
       localStorage.removeItem("activeUserObject");
-      console.log("CALLBACK FROM HOME IN APP :C");
     }
 
     myCallbackHomeUser = (dataFromHome) => {
       this.setState({user: dataFromHome});
-      console.log("CALLBACK FROM HOME IN APP :C");
     }
     myCallBackStatement = (dataFromStatement) => {
       statement = dataFromStatement;
       //this.setState({statement: dataFromStatement});
-      console.log("CALLBACK FROM STATEMENT IN APP: " + dataFromStatement + "-" + this.state.statement + "-" + this.state.statement.header+ "-" +dataFromStatement.header);
     }
     componentWillMount(){
    
@@ -128,13 +120,7 @@ class App extends Component {
   </Router>
   </MuiThemeProvider> 
       </div>
-      <div> <label> ESTADO USUARIO LOGUEADO{this.state.userLogged} </label></div> 
-      <label> NOMBRE DESDE FIREBASE {this.state.firebaseUser.displayName} </label>
-      <div><label> NOMBRE DESDE CONST {firebaseUser.displayName} </label></div>
-      <div><label> NOMBRE DESDE USER {user.userName} </label></div>
-
-        <label>PRUEBAA </label>
-        {console.log("APP APP APP" , this.state)}
+     
       </body>
     );
   }
@@ -166,9 +152,6 @@ class App extends Component {
   </Router>
   </MuiThemeProvider> 
       </div>
-       <label> ningun usuario logueado </label> 
-        <label>PRUEBAA </label>
-        {console.log("APP APP APP" , this.state)}
       </body>
       );
   }

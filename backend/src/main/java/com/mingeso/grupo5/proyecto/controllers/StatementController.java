@@ -35,7 +35,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://209.97.152.30:5050")
 @Controller
 @RequestMapping(path="/api/statements")
 
@@ -66,7 +66,6 @@ public class StatementController {
 			@RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution) 
             {
 		Section s = new Section();
-		System.out.println(expectedSolution);
 		//int num = expectedSolution.size();
 		s = sectionRepository.findById(section).orElse(null);
 		Statement n = new Statement();
@@ -84,7 +83,6 @@ public class StatementController {
 			
 		//   }
 		for(String str : expectedSolution){
-    		System.out.println(str);
     		ExpectedSolution temp = new ExpectedSolution();
     		temp.setExpectedSolution(str);
     		expectedSolutionRepository.save(temp);

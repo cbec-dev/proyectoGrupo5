@@ -133,7 +133,6 @@ export default class Login extends React.Component {
 
         firebaseAuth().onAuthStateChanged(user => {
             if (user) {
-                console.log("User signed in: ", JSON.stringify(user));
 
                 localStorage.removeItem(firebaseAuthKey);
         
@@ -145,10 +144,8 @@ export default class Login extends React.Component {
                 var email = JSON.stringify(user.email);
                 var domain = email.split("@");
                 var userLogged = true;
-                console.log("DOMAIN: ", domain[1]);
                 var correo = email.split("\"");
                 this.setState({userEmail: correo[1]});
-                console.log("CORREO USUARIO: ", correo[1]);
                 
                 /*fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
                 .then(response => response.json())
@@ -160,39 +157,23 @@ export default class Login extends React.Component {
 
                 
                 
-                if(email==="\"espinoza.isaac.18@gmail.com\""){
-                    alert("ADMINISTRADOR")
-                    console.log("User email signed in: ", JSON.stringify(user.email));
-                    // store the token
-                    localStorage.setItem("userType", JSON.stringify("administrator"));
-                    localStorage.setItem("userLogged", JSON.stringify(userLogged));
-                    this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
-                    console.log("LOGIN, ESTADO USERLOGGED: ", this.userLogged);
-                    this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
-                    return this.props.history.push("/Home");
-
-                }
-                else if(domain[1] !== "usach.cl\"" && domain[1]!==""){
+            
+                if(domain[1] !== "usach.cl\"" && domain[1]!==""){
                     alert("Solo se puede iniciar sesion con cuentas @usach.cl");
                     localStorage.removeItem(appTokenKey);
                     localStorage.removeItem("user");
                     localStorage.removeItem(firebaseAuthKey);
                     this.setState({userLogged: false, firebaseUser: ""});
                     //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
-                    console.log("user signed out from firebase");
                     localStorage.clear();
                     window.localStorage.clear();
                     return this.props.history.push("/Login2");
                 }
                 else{
 
-                    console.log("USER PLACEHOLDERRRRRRRRR", this.state.userPlaceHolder);
-                    console.log("User email signed in: ", JSON.stringify(user.email));
                     // store the token
                     localStorage.setItem("userLogged", JSON.stringify(userLogged));
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
-                    console.log("LOGIN, ESTADO USERLOGGED: ", this.userLogged);
-                    console.log("PROMISE:" + user);
                     getUser(correo[1])
                     .then(res => this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), res));
                     return this.props.history.push("/Home");
@@ -244,7 +225,6 @@ export default class Login extends React.Component {
 
     render() {
         
-        console.log(firebaseAuthKey + "=" + localStorage.getItem(firebaseAuthKey));
         if (localStorage.getItem(firebaseAuthKey) === "1") return <SplashScreen />;
         return <LoginPage handleGoogleLogin={this.handleGoogleLogin}/>;
     }

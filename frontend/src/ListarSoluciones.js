@@ -30,16 +30,12 @@ class ListarSoluciones extends React.Component {
         this.mostrarSolucion = this.mostrarSolucion.bind(this)
         }
     mostrarSolucion(object, type){
-        console.log("MOSTRAR SOLUCION" + "-" + type)
         if(type==="enunciado"){
-            console.log("MOSTRAR POR STATEMENT")
-            fetch('http://localhost:8081/solutions/searchbyStatement/' + object.idStatement)
+            fetch('http://209.97.152.30:8080/backendGrupo5/solutions/searchbyStatement/' + object.idStatement)
             .then(response => response.json())
             .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
-            .then(console.log("SOLUCIONES -" + object))
         }
         else if(type==="alumno"){
-            console.log("Mostrar soluciones alumno")
             this.setState({solution: object, isSelectedSolutionStatement: true})
             
 
@@ -47,23 +43,20 @@ class ListarSoluciones extends React.Component {
     }
     componentDidMount(){
         if(this.props.activeUser!==null){
-            console.log("didMount listar soluciones")
             if(this.props.activeUser.userType===1){
-                console.log("ALUMNO OWOWOWO")
-                fetch('http://localhost:8081/solutions/searchbyUser/' + this.props.activeUser.idUser)
+                fetch('http://http://209.97.152.30:8080/backendGrupo5/solutions/searchbyUser/' + this.props.activeUser.idUser)
                 .then(response => response.json())
                 .then(data => this.setState({solutions: data}))
 
             }
             else if(this.props.activeUser.userType===2){
-                console.log("didMount listar soluciones usuario coordinador c:");
-                fetch('http://localhost:8081/users/searchtype/'+"1")
+                fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
                 .then(response => response.json())
                 .then(data => this.setState({users: data}))
-                .then(fetch('http://localhost:8081/sections/allSection')
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data})))
-                .then(fetch('http://localhost:8081/api/statements/all')
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
                 .then(response => response.json())
                 .then(data => this.setState({statements: data})))
             }
@@ -78,9 +71,7 @@ class ListarSoluciones extends React.Component {
         const sections = this.state.sections;
         const statements = this.state.statements;
         const solutions = this.state.solutions;
-        console.log("WENA LXS CABRXS")
-        console.log(solutions)
-        console.log(this.props.typeUser)
+      
         if(this.props.typeUser===2){
             return (
                 <body>
@@ -195,7 +186,6 @@ class ListarSoluciones extends React.Component {
         
         }
         else if(this.props.typeUser===1){
-            console.log("ALUMNOOO")
             return (
                 <div>
                 <p> Mis Soluciones: </p>
