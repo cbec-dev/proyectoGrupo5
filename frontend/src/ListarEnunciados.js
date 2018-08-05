@@ -20,7 +20,7 @@ class ListarEnunciados extends React.Component {
         this.verEnunciados = this.verEnunciados.bind(this)
         }
     verEnunciados(e){
-        fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ e)
+        fetch('http://209.97.152.30:8080/frontendGrupo5/api/statements/search/seccion/'+ e)
         .then(response => response.json())
         .then(data => this.setState({statements: data, isSelected: true}))
         
@@ -32,20 +32,20 @@ class ListarEnunciados extends React.Component {
             if(this.props.typeUser===1&&this.props.activeUser.section!==null){
                 //alumno
                 console.log("alumno u.u")
-                fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/'+ this.props.activeUser.section.idSection)
+                fetch('http://209.97.152.30:8080/frontendGrupo5/sections/search/'+ this.props.activeUser.section.idSection)
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false}));
             }
             else if(this.props.typeUser===2){
                 //coordinador
-                fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                fetch('http://209.97.152.30:8080/frontendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false}));                
 
             }
             else if(this.props.typeUser===3){
                 //profesor
-                fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
+                fetch('http://209.97.152.30:8080/frontendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
                 .then(response =>  response.json())
                 .then(data => this.setState({sections: data, isLoading: false}))
                 .catch(err => {

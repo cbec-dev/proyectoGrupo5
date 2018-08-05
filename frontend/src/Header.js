@@ -44,7 +44,7 @@ class Header extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-        <NavItem eventKey={1} href="/backendGrupo5/Login2">
+        <NavItem eventKey={1} href="/frontendGrupo5/Login2">
           <span className="navItem">Login</span>
         </NavItem>
           </Nav>
@@ -69,12 +69,12 @@ class Header extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-          <NavItem eventKey={1} href="/backendGrupo5/Login2">
+          <NavItem eventKey={1} href="/frontendGrupo5/Login2">
             <span className="navItem">Login</span>
           </NavItem>
             <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="dropdown">  <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2} href="/backendGrupo5/ListarEnunciados">Ver Mis Enunciados</MenuItem>
-              <MenuItem eventKey={3.3} href="/backendGrupo5/ListarSoluciones">Ver Mis Soluciones</MenuItem>
+              <MenuItem eventKey={3.2} href="/frontendGrupo5/ListarEnunciados">Ver Mis Enunciados</MenuItem>
+              <MenuItem eventKey={3.3} href="/frontendGrupo5/ListarSoluciones">Ver Mis Soluciones</MenuItem>
               <MenuItem eventKey={3.4}>Separated link</MenuItem>
               </NavDropdown>
               <div className="image-cropper">
@@ -97,20 +97,20 @@ class Header extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-          <NavItem eventKey={1} href="/backendGrupo5/Login2">
+          <NavItem eventKey={1} href="/frontendGrupo5/Login2">
             <span className="navItem">Login</span>
           </NavItem>
             <NavDropdown eventKey={3} title="Agregar Usuarios" id="basic-nav-dropdown" className="Profesor">
-            <MenuItem className= "menuItem" eventKey={3.7} href='/backendGrupo5/Registro'>Registrar Alumno</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.8} href='/backendGrupo5/RegistroProfesor'>Registrar Profesor</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.7} href='/frontendGrupo5/Registro'>Registrar Alumno</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.8} href='/frontendGrupo5/RegistroProfesor'>Registrar Profesor</MenuItem>
             </NavDropdown>
             <NavDropdown eventKey={3} title="Coordinador" id="basic-nav-dropdown" className="Profesor">
-            <MenuItem className= "menuItem" eventKey={3.1} href='/backendGrupo5/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.2} href='/backendGrupo5/ListarEnunciados'>Listar Enunciados</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.1} href='/frontendGrupo5/Enunciado'>Subir Enunciado</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.2} href='/frontendGrupo5/ListarEnunciados'>Listar Enunciados</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.5} href="/backendGrupo5/CrearCurso">Administrar Seccion</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.6} href="/backendGrupo5/Registro">Crear Usuario</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.7} href="/backendGrupo5/ListarSoluciones">Ver Soluciones</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.5} href="/frontendGrupo5/CrearCurso">Administrar Seccion</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.6} href="/frontendGrupo5/Registro">Crear Usuario</MenuItem>
+            <MenuItem className= "menuItem" eventKey={3.7} href="/frontendGrupo5/ListarSoluciones">Ver Soluciones</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>
             </NavDropdown>
@@ -134,15 +134,15 @@ class Header extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-          <NavItem eventKey={1} href="/backendGrupo5/Login2">
+          <NavItem eventKey={1} href="/frontendGrupo5/Login2">
             <span className="navItem">Login</span>
           </NavItem>
-            <NavItem eventKey={1} href="/backendGrupo5/Registro">
+            <NavItem eventKey={1} href="/frontendGrupo5/Registro">
             <span className="navItem">Agregar Alumnos</span>
             </NavItem>
             <NavDropdown eventKey={3} title="Profesor" id="basic-nav-dropdown" className="dropdown">
-            <MenuItem className= "menuItem1" eventKey={3.1} href='/backendGrupo5/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem2" eventKey={3.2} href='/backendGrupo5/ListarEnunciados'>Ver Enunciados</MenuItem>
+            <MenuItem className= "menuItem1" eventKey={3.1} href='/frontendGrupo5/Enunciado'>Subir Enunciado</MenuItem>
+            <MenuItem className= "menuItem2" eventKey={3.2} href='/frontendGrupo5/ListarEnunciados'>Ver Enunciados</MenuItem>
             <MenuItem className= "menuItem3" eventKey={3.3} href='/'>Something else here</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={3.5}>Separated link</MenuItem>

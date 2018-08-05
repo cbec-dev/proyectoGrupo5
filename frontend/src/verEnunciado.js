@@ -124,7 +124,7 @@ class verEnunciado extends React.Component {
                     </div>
                 <div>
                     {this.state.isSelectedSolution ?
-        <Redirect push to="/backendGrupo5/Solucion" render={()=><Solucion statement = {this.state.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
+        <Redirect push to="/frontendGrupo5/Solucion" render={()=><Solucion statement = {this.state.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
                     null
                     }
                     </div>
@@ -191,7 +191,7 @@ class verEnunciado extends React.Component {
                     </div>
                 <div>
                     {this.state.isSelectedSolution ?
-                    <Redirect push to="/backendGrupo5/Solucion" render={()=><Solucion statement = {statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
+                    <Redirect push to="/frontendGrupo5/Solucion" render={()=><Solucion statement = {statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
                     null
                     }
                     </div>

@@ -22,7 +22,7 @@ const getUser = async (correo) =>{
       var self = this;
       try {
         let res = await axios({
-             url: 'http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo,
+             url: 'http://209.97.152.30:8080/frontendGrupo5/users/searchbyEmail/'+correo,
              method: 'get',
              timeout: 8000,
              headers: {
@@ -69,7 +69,7 @@ export default class Login extends React.Component {
         logout().then(function () {
             localStorage.removeItem(appTokenKey);
             this.props.callbackFromParentLogin(this.state.userLogged, this.firebaseUser);
-            this.props.history.push("/backendGrupo5/Login2");
+            this.props.history.push("/frontendGrupo5/Login2");
             console.log("user signed out from firebase");
         }.bind(this));
         this.setState({userLogged: false, firebaseUser: ""});
@@ -126,7 +126,7 @@ export default class Login extends React.Component {
          * We have appToken relevant for our backend API
          */
         if (localStorage.getItem(appTokenKey)) {
-            this.props.history.push("/backendGrupo5/Home");
+            this.props.history.push("/frontendGrupo5/Home");
             return;
         }
         
@@ -169,7 +169,7 @@ export default class Login extends React.Component {
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
                     console.log("LOGIN, ESTADO USERLOGGED: ", this.userLogged);
                     this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
-                    return this.props.history.push("/backendGrupo5/Home");
+                    return this.props.history.push("/frontendGrupo5/Home");
 
                 }
                 else if(domain[1] !== "usach.cl\"" && domain[1]!==""){
@@ -182,7 +182,7 @@ export default class Login extends React.Component {
                     console.log("user signed out from firebase");
                     localStorage.clear();
                     window.localStorage.clear();
-                    return this.props.history.push("/backendGrupo5/Login2");
+                    return this.props.history.push("/frontendGrupo5/Login2");
                 }
                 else{
 
@@ -195,7 +195,7 @@ export default class Login extends React.Component {
                     console.log("PROMISE:" + user);
                     getUser(correo[1])
                     .then(res => this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), res));
-                    return this.props.history.push("/backendGrupo5/Home");
+                    return this.props.history.push("/frontendGrupo5/Home");
                 }
                
             }

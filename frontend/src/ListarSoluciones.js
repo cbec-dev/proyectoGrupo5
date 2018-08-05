@@ -33,7 +33,7 @@ class ListarSoluciones extends React.Component {
         console.log("MOSTRAR SOLUCION" + "-" + type)
         if(type==="enunciado"){
             console.log("MOSTRAR POR STATEMENT")
-            fetch('http://209.97.152.30:8080/backendGrupo5/solutions/searchbyStatement/' + object.idStatement)
+            fetch('http://209.97.152.30:8080/frontendGrupo5/solutions/searchbyStatement/' + object.idStatement)
             .then(response => response.json())
             .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
             .then(console.log("SOLUCIONES -" + object))
@@ -50,20 +50,20 @@ class ListarSoluciones extends React.Component {
             console.log("didMount listar soluciones")
             if(this.props.activeUser.userType===1){
                 console.log("ALUMNO OWOWOWO")
-                fetch('http://209.97.152.30:8080/backendGrupo5/solutions/searchbyUser/' + this.props.activeUser.idUser)
+                fetch('http://209.97.152.30:8080/frontendGrupo5/solutions/searchbyUser/' + this.props.activeUser.idUser)
                 .then(response => response.json())
                 .then(data => this.setState({solutions: data}))
 
             }
             else if(this.props.activeUser.userType===2){
                 console.log("didMount listar soluciones usuario coordinador c:");
-                fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
+                fetch('http://209.97.152.30:8080/frontendGrupo5/users/searchtype/'+"1")
                 .then(response => response.json())
                 .then(data => this.setState({users: data}))
-                .then(fetch('hhttp://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                .then(fetch('hhttp://209.97.152.30:8080/frontendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data})))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
+                .then(fetch('http://209.97.152.30:8080/frontendGrupo5/api/statements/all')
                 .then(response => response.json())
                 .then(data => this.setState({statements: data})))
             }

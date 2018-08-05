@@ -52,7 +52,7 @@ export default class Home extends React.Component {
             localStorage.removeItem("activeUserObject");
             this.props.callbackFromParentHome(this.state.userLogged);
             this.setState({userLogged: false, firebaseUser: ""});
-            this.props.history.push("/backendGrupo5/Login2");
+            this.props.history.push("/frontendGrupo5/Login2");
             console.log("user signed out from firebase");
             localStorage.clear();
             window.localStorage.clear(); 
@@ -64,7 +64,7 @@ export default class Home extends React.Component {
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
         }
         else{
-            return this.props.history.push("/backendGrupo5/Login2")
+            return this.props.history.push("/frontendGrupo5/Login2")
         }
         let axiosConfig = {
             headers: {
@@ -75,7 +75,7 @@ export default class Home extends React.Component {
           };
           var email = this.state.firebaseUser.email;
           var self = this;
-          axios.get('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+email, axiosConfig)
+          axios.get('http://209.97.152.30:8080/frontendGrupo5/users/searchbyEmail/'+email, axiosConfig)
           .then((response) => {
             this.setState({state: response.data, bool: true});
             console.log("RESPONSE: " + response.data);
