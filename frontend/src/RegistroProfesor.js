@@ -50,7 +50,7 @@ class RegistroProfesor extends Component {
                         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
                     }
                   };
-                fetch('http://http://209.97.152.30:8080/backendGrupo5/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
+                fetch('http://209.97.152.30:8080/backendGrupo5/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
                 .then(response=> response.text())
                 .then(data =>
                     {
