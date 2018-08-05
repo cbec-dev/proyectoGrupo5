@@ -58,10 +58,28 @@ public @ResponseBody String runCode(
             else structure = structure + "Incorrecto";
 
             //Checkear variables
+            if (Compiler.checkVariables(code, lang)==1) {
+            	variables = variables + "Correcto";
+            }
+            else {
+            	variables = variables + "No cumple con variables representativas";
+            }
 
             //Checkear identación
+            if (Compiler.checkIdentacion(code,lang) == 1) {
+            	identation = identation + "Correcto";
+            }
+            else {
+            	identation = identation + "El codigo no esta identatado";
+            }
 
             //Checkear comentarios
+            if (Compiler.checkCommentaries(code, lang) == 1) {
+            	comments = comments + "Correcto";
+            }
+            else {
+            	comments = comments + "No cumple con los comentarios minimos (3)";
+            }
 
 
             String out = header + "\n" + structure + "\n" + variables + "\n" + identation + "\n" + comments + "\n";
