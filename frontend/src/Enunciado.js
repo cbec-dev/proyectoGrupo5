@@ -134,10 +134,6 @@ class Enunciado extends Component {
             return;
 
         }
-        if(+statement.initialDate<+placeholder){
-            alert("fecha inicial es anterior a fecha actual");
-            return;
-        }
         if(statement.statementName==="" || statement.statementText ==="" ||statement.section==="" || statement.header==="" ||testCases===[] || statement.expectedSolution===""){
             alert("Debe llenar todas las casillas");
             return;
