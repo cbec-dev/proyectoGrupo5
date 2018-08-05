@@ -44,7 +44,7 @@ class ListarSoluciones extends React.Component {
     componentDidMount(){
         if(this.props.activeUser!==null){
             if(this.props.activeUser.userType===1){
-                fetch('http://http://209.97.152.30:8080/backendGrupo5/solutions/searchbyUser/' + this.props.activeUser.idUser)
+                fetch('http://209.97.152.30:8080/backendGrupo5/solutions/searchbyUser/' + this.props.activeUser.idUser)
                 .then(response => response.json())
                 .then(data => this.setState({solutions: data}))
 

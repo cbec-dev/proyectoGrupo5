@@ -154,7 +154,6 @@ class ListarEnunciados extends React.Component {
             );
         }
         else if(typeUser===1){
-            console.log("ALUMNO")
             return (
                 <div>
                             
@@ -181,7 +180,6 @@ class ListarEnunciados extends React.Component {
                 </tbody>
                 </table>
                 <div>
-                    <label> the worst </label>
                     {this.state.isSelected ?
                     <Enunciado statements = {this.state.statements} callBackFromParentStatement= {this.props.callBackFromParentStatement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
                     null
