@@ -18,6 +18,23 @@
 
 
 }
+
+.menuItem:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem1:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem2:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem3:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem4:hover{
+  background-color: rgb(11,11,11);
+}
+
 .menuItem1{
   color: white !important;
   -webkit-text-fill-color: white;
