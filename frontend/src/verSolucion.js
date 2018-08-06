@@ -4,6 +4,7 @@ import {Route, Redirect, Router, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
 import './css/verEnunciado.css';
 import MostrarEnunciado from './MostrarEnunciado';
+import MostrarSolucion from './MostrarSolucion';
 import Solucion from './Solucion';
 import Moment from 'react-moment';
 import moment from 'moment';
@@ -22,12 +23,13 @@ class verSolucion extends React.Component {
             isSelected: false,
             isSelectedSolution:false,
             isSelectedSolutionStatement: false,
-            idStatement: ""
+            idStatement: "",
+            solution: "",
         };
         this.mostrarSolucion = this.mostrarSolucion.bind(this)
         }
     mostrarSolucion(e){
-        this.setState({isSelected: false, statement: e, isSelectedSolutionStatement: true})
+        this.setState({isSelected: false, solution: e, isSelectedSolutionStatement: true})
 
     }
     componentDidMount(){
@@ -122,7 +124,7 @@ class verSolucion extends React.Component {
                                         <th>{solution.solutionName}</th>
                                         <th>{solution.statement.statementName}</th>
                                         <th>{solution.statement.section.sectionName}</th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(statement)}>Ver Solucion</button></th>
+                                        <th> <button onClick={(e) => this.solucionEnunciado(solution)}>Ver Solucion</button></th>
                                         
 
                                     </tr>
@@ -140,7 +142,7 @@ class verSolucion extends React.Component {
                     </div>
                 <div>
                     {this.state.isSelectedSolutionStatement ?
-                    <Redirect push to="/Solucion" render={()=><Solucion statement = {statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
+                    <MostrarSolucion  statement = {this.state.solution.statement} solution={this.state.solution} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
                     null
                     }
                     </div>
