@@ -286,7 +286,7 @@ class Enunciado extends Component {
                         </div>
 
                 <div className="div1">
-                        <label className="label1"> Solucion Esperada:  </label>
+                        <label className="label1"> Solución Esperada:  </label>
                         </div>
                   <div className="div1">
                         <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
@@ -296,7 +296,7 @@ class Enunciado extends Component {
                     
 
                     {this.createUI()}        
-          <input type='button' value='Agregar Caso de Prueba' onClick={this.addClick.bind(this)}/>
+          <input type='button' value='Agregar solución esperada' onClick={this.addClick.bind(this)}/>
                     <div className="div1">
                     <label className="label2"> Enunciado:  </label>
                     </div>
@@ -366,7 +366,7 @@ class Enunciado extends Component {
                         </div>
 
                         <div className="div1">
-                        <label className="label1"> Solucion Esperada:  </label>
+                        <label className="label1"> Solución Esperada:  </label>
                         </div>
                       <div className="div1">
                         <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
@@ -376,7 +376,7 @@ class Enunciado extends Component {
                       
     
                         {this.createUI()}        
-              <input type='button' value='Agregar Caso de Prueba' onClick={this.addClick.bind(this)}/>
+              <input type='button' value='Agregar solución esperada' onClick={this.addClick.bind(this)}/>
                         
                           <div className="div1">
                         <label className="label2"> Enunciado:  </label>
