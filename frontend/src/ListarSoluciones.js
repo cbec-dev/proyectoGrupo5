@@ -61,7 +61,15 @@ class ListarSoluciones extends React.Component {
                 .then(data => this.setState({statements: data})))
             }
             else if(this.props.activeUser.typeUser===3){
-
+                fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
+                .then(response => response.json())
+                .then(data => this.setState({users: data}))
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                .then(response => response.json())
+                .then(data => this.setState({sections: data})))
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
+                .then(response => response.json())
+                .then(data => this.setState({statements: data})))
             }
         }   
 
@@ -72,80 +80,10 @@ class ListarSoluciones extends React.Component {
         const statements = this.state.statements;
         const solutions = this.state.solutions;
       
-        if(this.props.typeUser===2){
+        if(this.props.typeUser===2 &&this.props.typeUser===3 ){
             return (
                 <body>
-                <div>
-                <label> Usuarios </label>
-                <table id="t03">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Seccion</th>
-                    <th>Accion</th>
-                    <th> Accion </th>
-                    
-                
-                    </tr>
-                            {users.map((user) =>
-                            
-                                
-                                   <tr key={user.idUser}>
-                                        <th>{user.idStatement}</th>
-                                        <th>{user.userName}</th>
-                                        <th>{user.section.sectionName}</th>
-                                        <th> <button onClick={(object, type) => this.mostrarSolucion(user, "usuario")}>Mostrar Soluciones</button></th>
-
-                                    </tr> 
-                                
-                            
-                              )}
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelected ?
-                    <VerSolucion  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
-                    null
-                    }
-                    </div>
-            </div>
-            
-            <div>
-                <label> Secciones </label>
-                <table id="t04">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Profesor</th>
-                    <th>Accion</th>
-                    <th> Accion </th>
-                    
-                
-                    </tr>
-                            {sections.map((section) =>
-                            
-                                
-                                   <tr key={section.idSection}>
-                                        <th>{section.idSection}</th>
-                                        <th>{section.sectionName}</th>
-                                        <th>{section.profesor.userName}</th>
-                                        <th> <button onClick={(object, type) => this.mostrarSolucion(section, "seccion")}>Mostrar Soluciones</button></th>
-
-                                    </tr> 
-                                
-                            
-                              )}
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelected ?
-                    <VerSolucion  solutions={this.state.solutions} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
-                    null
-                    }
-                    </div>
-            </div>
+               
 
 <div>
 <label> Enunciados </label>
