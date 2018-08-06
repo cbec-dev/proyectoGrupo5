@@ -1,7 +1,7 @@
 {
   "homepage": ".",
   "name": "proyecto",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
