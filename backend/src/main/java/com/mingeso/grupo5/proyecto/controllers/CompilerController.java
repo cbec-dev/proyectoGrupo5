@@ -25,20 +25,19 @@ public class CompilerController {
 
         Compiler compiler = new Compiler();
         
-        String languages = compiler.getLanguages();
-		return languages;
+		return "languages";
     }
 
-@RequestMapping(value = "/runCode", method = RequestMethod.POST)    
-public @ResponseBody String runCode(
-        @RequestParam String code,
-        @RequestParam String lang) throws IOException {
-      
-        Compiler compiler = new Compiler();
-        String out = compiler.run(code, lang); 
-   
-		return out;
-    }
+    @RequestMapping(value = "/runCode", method = RequestMethod.POST)    
+    public @ResponseBody String runCode(
+            @RequestParam String code,
+            @RequestParam String lang) throws IOException {
+        
+            Compiler compiler = new Compiler();
+            String out = compiler.run(code, lang); 
+    
+            return out;
+        }
 
     @RequestMapping(path="/checkCode", method = RequestMethod.POST)
     @ResponseBody String checkCode(

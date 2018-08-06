@@ -8,34 +8,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.hibernate.loader.custom.Return;
 
 public class Compiler {
-
-    public String compilePythonOLD(String code) throws IOException
-    {
-        String fileName = "code.py";
-        FileWriter fileWriter = new FileWriter(fileName);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.print(code);
-        printWriter.close();
-
-        String command = "python code.py";
-        Process p = Runtime.getRuntime().exec(command);
-
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        //String output = in.readLine();
-        String output = in.toString();
-        //System.out.println(output);
-        return output;
-    }
-    
-    
     
     public String getLanguages() throws IOException
     {
