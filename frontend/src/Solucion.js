@@ -106,42 +106,33 @@ class Solucion extends Component {
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => this.setState({salida: response.data.stdout, salida1: response.data.stderr, salida2: response.data.error}));
-             
+             this.mostrarFeedback(e);
         
     }
-    mostrarFeedback(e)
-    {
-        this.solution = {code: "", lang: ""}
-        
-        this.solution.code = e.code;
-        this.solution.lang = e.name;
-        var algo = {code: "", lang: ""}
-        algo.code = "print(33)";
-        algo.lang = "python";
-        console.log("DATOS: " + e.code + "-" + algo.lang + "-" + e.name);
-        var code = e.code;
-        console.log(this.solution);
-        var bodyFormData = new FormData();
-        bodyFormData.set('code', e.code);
-        bodyFormData.set('lang',e.name);
-        console.log(bodyFormData)
-        console.log(bodyFormData.code)
-        console.log(bodyFormData.lang)
-        axios({
-                method: 'post',
-                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
-                data: qs.stringify(this.solution),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
-                    "Access-Control-Allow-Methods": "POST",
-                },
-             }).then(response => this.setState({salida3: response.data}));
-
-            
-      
-
-    }
+    
+        mostrarFeedback(e)
+        {
+            this.solution = {code: "", lang: ""}   
+            this.solution.code = e.code;
+            this.solution.lang = e.name;
+            var algo = {code: "", lang: ""}
+            algo.code = "print(33)";
+            algo.lang = "python";
+            var code = e.code;
+            var bodyFormData = new FormData();
+            bodyFormData.set('code', e.code);
+            bodyFormData.set('lang',e.name);
+            axios({
+                    method: 'post',
+                    url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
+                    data: qs.stringify(this.solution),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        "Access-Control-Allow-Origin": "http://localhost:3000",
+                        "Access-Control-Allow-Methods": "POST",
+                    },
+                    }).then(response => this.setState({salida3: response.data}));
+        }
 
     
     subirFormulario(e) {
@@ -260,22 +251,6 @@ class Solucion extends Component {
             //this.cm.codeMirror.setValue(this.props.statement.header)
     }
 
-    mostrarFerdback (resultado) {
-        var algo; 
-        if(resultado==1)
-        {
-            algo = "falta incluir comentarios"
-            return algo;
-        }
-        else(resultado == 2)
-        {
-            algo = "correcto"
-            return algo
-        }
-    }
-
-
-        
 
         render() {
             var options = {
@@ -301,41 +276,50 @@ class Solucion extends Component {
                         disabled = "true"/>
                     </div>
                     <div className="div1">
-                    <label className="labels"> Nombre Solucion:  </label>
+                    <label className="labels"> Nombre Solución:  </label>
                     </div>
                     <div className="div1">
                         <input name= "nameSolution" type = "text" value={this.state.nameSolution}
                         onChange = {this.handleInputChange} />
                     </div>
                     <div className="div2">
-                    <label className="labels"> Solucion:  </label>
+                    <label className="labels"> Solución:  </label>
                     </div>
                    
                     <div className="div3">
                 <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
                 <div style={{ marginTop: 10 }} className="div4">
-                    <select onChange={this.changeMode} value={this.state.name}>
-                        <option value="python">Python</option>
-                        <option value="c">C</option>
-                        <option value="java">Java</option>
-                    </select>
+                <div className="div1">
+                    <label className="labels"> Lenguaje de la Solución:  </label>
+                    
+                        <select onChange={this.changeMode} value={this.state.name}>
+                            <option value="python">Python</option>
+                            <option value="c">C</option>
+                            <option value="java">Java</option>
+                        </select>
+                    </div>
                 </div>
             </div>
                     <div className="div1">
                       <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
                       <button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</button>
-                      <button type="button" onClick={(e) => this.mostrarFeedback(this.state)}> Mostrar Feedback</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
 
                     </div>
                   </form>
 
-                  <div class="divTxt">
+                <div className="div1">
+                    <label classname="labels"> Salida del código: </label>
+                </div>  
+                <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida}
                 {this.state.salida1}
                 {this.state.salida2}
                 </pre>
+            </div>
+            <div className="div1">
+                <label classname="labels"> Feedback de la solución propuesta: </label>
             </div>
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
