@@ -106,40 +106,10 @@ class Solucion extends Component {
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => this.setState({salida: response.data.stdout, salida1: response.data.stderr, salida2: response.data.error}));
-             
-        
-    }
-    mostrarFeedback(e)
-    {
-        this.solution = {code: "", lang: ""}
-        
-        this.solution.code = e.code;
-        this.solution.lang = e.name;
-        var algo = {code: "", lang: ""}
-        algo.code = "print(33)";
-        algo.lang = "python";
-        console.log("DATOS: " + e.code + "-" + algo.lang + "-" + e.name);
-        var code = e.code;
-        console.log(this.solution);
-        var bodyFormData = new FormData();
-        bodyFormData.set('code', e.code);
-        bodyFormData.set('lang',e.name);
-        console.log(bodyFormData)
-        console.log(bodyFormData.code)
-        console.log(bodyFormData.lang)
-        axios({
-                method: 'post',
-                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
-                data: qs.stringify(this.solution),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
-                    "Access-Control-Allow-Methods": "POST",
-                },
-             }).then(response => this.setState({salida3: response.data}));
              this.mostrarFeedback(e);
         
-            }
+    }
+    
         mostrarFeedback(e)
         {
             this.solution = {code: "", lang: ""}   
