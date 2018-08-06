@@ -1,5 +1,7 @@
 package com.mingeso.grupo5.proyecto;
 
+import com.mingeso.grupo5.proyecto.helpers.SingleLogger;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -13,6 +15,15 @@ public class ProyectoApplication extends SpringBootServletInitializer {
         return application.sources(ProyectoApplication.class);
     }
 	public static void main(String[] args) {
+		int logging = 0;
+		if(logging==1)
+		{
+			SingleLogger logger = SingleLogger.getInstance();
+			logger.createLogFile();
+			logger.log("Programa iniciando");
+
+		}
+
 		SpringApplication.run(ProyectoApplication.class, args);
 		
 	}
