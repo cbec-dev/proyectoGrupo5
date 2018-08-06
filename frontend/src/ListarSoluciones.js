@@ -49,7 +49,7 @@ class ListarSoluciones extends React.Component {
                 .then(data => this.setState({solutions: data}))
 
             }
-            else if(this.props.activeUser.userType===2){
+            else if(this.props.activeUser.userType===2 || this.props.activeUser.userType===3){
                 fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
                 .then(response => response.json())
                 .then(data => this.setState({users: data}))

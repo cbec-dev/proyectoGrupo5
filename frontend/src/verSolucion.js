@@ -124,7 +124,7 @@ class verSolucion extends React.Component {
                                         <th>{solution.solutionName}</th>
                                         <th>{solution.statement.statementName}</th>
                                         <th>{solution.statement.section.sectionName}</th>
-                                        <th> <button onClick={(e) => this.solucionEnunciado(solution)}>Ver Solucion</button></th>
+                                        <th> <button onClick={(e) => this.mostrarSolucion(solution)}>Ver Solucion</button></th>
                                         
 
                                     </tr>
