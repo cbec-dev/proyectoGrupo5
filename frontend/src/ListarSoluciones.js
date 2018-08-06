@@ -80,7 +80,7 @@ class ListarSoluciones extends React.Component {
         const statements = this.state.statements;
         const solutions = this.state.solutions;
       
-        if(this.props.typeUser===2 &&this.props.typeUser===3 ){
+        if(this.props.typeUser===2 || this.props.typeUser===3 ){
             return (
                 <body>
                 <div>
