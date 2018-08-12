@@ -4,6 +4,7 @@ import './css/App.css';
 import Registro from './Registro';
 import {Router as Router, Route, Redirect, Link, Switch} from "react-router-dom";
 import Header from './Header';
+import {BrowserRouter} from "react-router-dom";
 import Home from './Home';
 import Enunciado from './Enunciado';
 import Solucion from './Solucion';
@@ -97,9 +98,11 @@ class App extends Component {
       return (
       <body>
       <div>
-        <Header history={customHistory} typeUser={this.state.user.userType} activeUser={this.state.user} userAvatar={this.state.firebaseUser.providerData[0].photoURL} loggedState={this.state.userLogged} />
         <MuiThemeProvider muiTheme={muiTheme}>
-  <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
+  <BrowserRouter history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
+      <React.Fragment>
+      <Header history={customHistory} typeUser={this.state.user.userType} activeUser={this.state.user} userAvatar={this.state.firebaseUser.providerData[0].photoURL} loggedState={this.state.userLogged} />
+
       <Switch>
         <Route path="/Registro" component={()=> <Registro typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
@@ -117,7 +120,8 @@ class App extends Component {
 
 
       </Switch>
-  </Router>
+      </React.Fragment>
+  </BrowserRouter>
   </MuiThemeProvider> 
       </div>
      
@@ -128,9 +132,11 @@ class App extends Component {
     return (
       <body>
       <div>
-        <Header history={customHistory} loggedState={false} typeUser = {4}/>
         <MuiThemeProvider muiTheme={muiTheme}>
-  <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
+  <BrowserRouter history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
+      <React.Fragment>
+      <Header history={customHistory} loggedState={false} typeUser = {4}/>
+
       <Switch>
         
       <Route path="/Registro" component={()=> <Registro history={customHistory} activeUser={this.state.user}/>} />
@@ -149,7 +155,8 @@ class App extends Component {
       
 
       </Switch>
-  </Router>
+      </React.Fragment>
+  </BrowserRouter>
   </MuiThemeProvider> 
       </div>
       </body>

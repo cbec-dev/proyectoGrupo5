@@ -118,7 +118,7 @@ class Enunciado extends Component {
         }
     subirFormulario(e) {
 
-        var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: "", expectedSolution: []}
+        var statement = {section: "", statementName: "", statementText: "", finalDate: "", initialDate: "", expectedSolution: [], testCases: []}
         var testCases = [];
         var bodyFormData = new FormData();
         bodyFormData.set('section', e.sectionName);
@@ -128,6 +128,7 @@ class Enunciado extends Component {
         bodyFormData.set('initialDate', new Date(e.initialDate));
         bodyFormData.set('expectedSolution', e.values);
         bodyFormData.set('header', e.code);
+        bodyFormData.set('testCases', e.values2);
         statement.statementName = e.nameStatement;
         statement.statementText =e.text;
         testCases = e.values;
@@ -139,6 +140,7 @@ class Enunciado extends Component {
         var placeholder = new Date();
         var actual = placeholder.getDate();
         statement.section = e.sectionName;
+        statement.testCases = e.values2;
         if(+statement.initialDate>+statement.finalDate){
             alert("fecha de inicio no coincide con fecha termino")
             return;
