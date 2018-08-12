@@ -92,7 +92,7 @@ public class StatementController {
     		expectedSolutionRepository.save(temp);
     		expectSol.add(temp);
 			}
-		for(String str : tCase){
+		for(String str : testCases){
     		TestCase tempCase = new TestCase();
     		tempCase.settestCase(str);
     		testCaseRepository.save(tempCase);
