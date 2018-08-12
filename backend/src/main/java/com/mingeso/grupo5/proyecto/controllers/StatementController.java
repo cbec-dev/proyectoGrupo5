@@ -66,7 +66,7 @@ public class StatementController {
 			@RequestParam Date finalDate,
 			@RequestParam Date initialDate,
 			@RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution),
-			@RequestParam(value = "testCases", required = false) List<String> testCases) 
+			@RequestParam(value = "testCases", required = false) List<String> testCases)) 
             {
 		Section s = new Section();
 		//int num = expectedSolution.size();

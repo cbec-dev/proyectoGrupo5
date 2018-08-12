@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Registro from './Registro';
 import './css/Header.css';
+import {NavLink} from 'react-router-dom';
 import {Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 
 
@@ -99,6 +100,11 @@ class Header extends Component {
             <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Listar Enunciados</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.3} href="/CrearCurso">Administrar Seccion</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.4} href="/ListarSoluciones">Ver Soluciones</MenuItem>
+            <NavLink to="/Registro" style={{ textDecoration: 'none', display: 'block' }}>
+              <MenuItem>
+                Registro OwO
+              </MenuItem>
+            </NavLink>
             </NavDropdown>
             <div className="image-cropper">
             <img className="image" src={photoURL} />
