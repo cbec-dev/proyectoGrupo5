@@ -19,13 +19,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
 import com.mingeso.grupo5.proyecto.entities.Section;
+import com.mingeso.grupo5.proyecto.entities.TestCase;
 import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
+import com.mingeso.grupo5.proyecto.repositories.TestCaseRepository; 
 import jdk.nashorn.internal.ir.annotations.Reference;
 
 import com.mingeso.grupo5.proyecto.repositories.ExpectedSolutionRepository;
@@ -46,7 +47,8 @@ public class StatementController {
 	private SectionRepository sectionRepository;
 	@Autowired
 	private ExpectedSolutionRepository expectedSolutionRepository;
-
+	@Autowired
+	private TestCaseRepository testCaseRepository;
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<Statement> gettAllstatements() {
 		
@@ -63,13 +65,15 @@ public class StatementController {
 			@RequestParam String header,
 			@RequestParam Date finalDate,
 			@RequestParam Date initialDate,
-			@RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution) 
+			@RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution),
+			@RequestParam(value = "testCases", required = false) List<String> testCases) 
             {
 		Section s = new Section();
 		//int num = expectedSolution.size();
 		s = sectionRepository.findById(section).orElse(null);
 		Statement n = new Statement();
 		List<ExpectedSolution> expectSol=new ArrayList<ExpectedSolution>();
+		List<TestCase> testC = new ArrayList<TestCase>();
 		//Date date = new Date();
 		//Date initial = new Date();
 		//LocalDate localDate = LocalDate();
@@ -88,6 +92,12 @@ public class StatementController {
     		expectedSolutionRepository.save(temp);
     		expectSol.add(temp);
 			}
+		for(String str : tCase){
+    		TestCase tempCase = new TestCase();
+    		tempCase.settestCase(str);
+    		testCaseRepository.save(tempCase);
+    		testC.add(tempCase);
+			}
 		//System.out.println("Fecha sin formato: " + finalDate);
 		//System.out.println("Fecha formateade: " + date);
 		n.setStatementName(statementName);
@@ -99,6 +109,7 @@ public class StatementController {
 		//expectSol.setExpectedSolution(expectedSolution);
 		//expectedSolutionRepository.save(expectSol);
 		n.setExpectedSolution(expectSol);
+		n.setTestCases(testC);
 		statementRepository.save(n);
 		
 		return "Enunciado guardado.";

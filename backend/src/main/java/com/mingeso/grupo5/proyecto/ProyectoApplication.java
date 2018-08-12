@@ -15,7 +15,7 @@ public class ProyectoApplication extends SpringBootServletInitializer {
         return application.sources(ProyectoApplication.class);
     }
 	public static void main(String[] args) {
-		int logging = 0;
+		int logging = 1;
 		if(logging==1)
 		{
 			SingleLogger logger = SingleLogger.getInstance();

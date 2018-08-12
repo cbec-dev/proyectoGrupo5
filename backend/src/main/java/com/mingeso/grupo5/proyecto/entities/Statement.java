@@ -36,6 +36,8 @@ public class Statement {
     private Boolean isActive;
     @OneToMany
     private List<ExpectedSolution> expectedSolution;
+    @OneToMany
+    private List<TestCase> testCases;
 
 
     public Integer getIdStatement() {
@@ -106,5 +108,10 @@ public class Statement {
     public List<ExpectedSolution> getExpectedSolution(){
         return this.expectedSolution;
     }
-
+    public void setTestCases(List<TestCase> testCases){
+        this.testCases=testCases;
+    }
+    public List<TestCase> getTestCases(){
+        return this.testCases;
+    }
 }

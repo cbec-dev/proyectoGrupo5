@@ -47,6 +47,7 @@ class Enunciado extends Component {
             matchBrackets: true,
             sections: [],
             values: [],
+            values2: [],
             sectionName: "",
             header: "",
 
@@ -56,6 +57,7 @@ class Enunciado extends Component {
         return this.state.values.map((el, i) => 
             <div key={i}>
                <input type="text" value={el||''} onChange={this.handleChange.bind(this, i)} />
+                <input type="text" value={el||''} onChange={this.handleChange2.bind(this, i)} />
                <input type='button' value='Remover' onClick={this.removeClick.bind(this, i)}/>
             </div>          
         )
@@ -67,7 +69,12 @@ class Enunciado extends Component {
         this.setState({ values });
         console.log(i, values[i])
      }
-     
+     handleChange(i, event) {
+        let values2 = [...this.state.values2];
+        values2[i] = event.target.value;
+        this.setState({ values2 });
+        console.log(i, values2[i])
+     }
      addClick(){
        this.setState(prevState => ({ values: [...prevState.values, '']}))
      }
@@ -193,12 +200,12 @@ class Enunciado extends Component {
     limpiarValores(i){
         
         if(i===1){
-            this.setState({initialDate: "",finalDate: "",nameStatement: "", text: "", values: [], code: "", expectedSolution: ""});
+            this.setState({initialDate: "",finalDate: "",nameStatement: "", text: "", values: [],values2: [], code: "", expectedSolution: ""});
             this.cm.codeMirror.setValue("")
             this.render();
         }
         else{
-            this.setState({initialDate: "",finalDate: "", nameStatement: "", text: "", values: [], code: "", expectedSolution: ""});
+            this.setState({initialDate: "",finalDate: "", nameStatement: "", text: "", values: [],values2: [], code: "", expectedSolution: ""});
             this.cm.codeMirror.setValue("")
 
         }
@@ -296,7 +303,7 @@ class Enunciado extends Component {
                     
 
                     {this.createUI()}        
-          <input type='button' value='Agregar solución esperada' onClick={this.addClick.bind(this)}/>
+          <input type='button' value='Agregar solución esperada y caso de prueba' onClick={this.addClick.bind(this)}/>
                     <div className="div1">
                     <label className="label2"> Enunciado:  </label>
                     </div>

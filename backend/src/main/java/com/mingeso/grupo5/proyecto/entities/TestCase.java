@@ -16,8 +16,6 @@ public class TestCase {
     private Integer idTestCase;
     @NotNull
     private String testCase;
-    @ManyToOne
-    private Statement statement;
 
     public Integer getIdTestCase() {
         return this.idTestCase;
@@ -25,13 +23,6 @@ public class TestCase {
     
     public void setIdTestCase(Integer id) {
         this.idTestCase = id;
-    }
-    public Statement getStatement() {
-        return this.statement;
-    }
-    
-    public void setStatement(Statement statement) {
-        this.statement =statement;
     }
     public String gettestCase() {
         return this.testCase;
