@@ -27,7 +27,7 @@ public class TestCaseController {
 		return findAll;
 	}
 	
-	@GetMapping(path="/add") 
+/*	@GetMapping(path="/add") 
 	public @ResponseBody String addNewTestCase (
             @RequestParam String testCase,
             @RequestParam Statement statement) 
@@ -56,7 +56,7 @@ public class TestCaseController {
 		testCaseRepository.save(n);
 		return "Caso de prueba actualizado.";
 	}
-	
+	*/
 	@GetMapping(path="/search/{idTestCase}")
 	public @ResponseBody TestCase findOne(@PathVariable("idTestCase") Integer idTestCase) {
 		TestCase testCase = testCaseRepository.findById(idTestCase).get();
