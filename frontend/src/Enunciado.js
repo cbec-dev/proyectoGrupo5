@@ -58,11 +58,20 @@ class Enunciado extends Component {
     createUI(){
         return this.state.values.map((el, i) => 
             <div key={i}>
+            <p> Solucion Esperada: {i}</p>
                <input type="text" value={el||''} onChange={this.handleChange.bind(this, i)} />
-                <input type="text" value={el||''} onChange={this.handleChange2.bind(this, i)} />
                <input type='button' value='Remover' onClick={this.removeClick.bind(this, i)}/>
             </div>          
         )
+     }
+     createUI2(){
+      return this.state.values2.map((el, i) => 
+            <div key={i}>
+            <p> Caso Prueba: {i}</p>
+               <input type="text" value={el||''} onChange={this.handleChange2.bind(this, i)} />
+            </div>          
+        )  
+
      }
    
      handleChange(i, event) {
@@ -84,8 +93,11 @@ class Enunciado extends Component {
      
      removeClick(i){
         let values = [...this.state.values];
+        let values2 = [...this.state.values2];
         values.splice(i,1);
+        values2.splice(i,1);
         this.setState({ values });
+        this.setState({ values2 });
      }
     componentDidMount(){
         if(this.props.typeUser===2){
@@ -316,6 +328,7 @@ class Enunciado extends Component {
                     
 
                     {this.createUI()}        
+                    {this.createUI2()}
           <input type='button' value='Agregar solución esperada y caso de prueba' onClick={this.addClick.bind(this)}/>
                     <div className="div1">
                     <label className="label2"> Enunciado:  </label>

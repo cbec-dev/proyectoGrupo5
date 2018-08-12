@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Registro from './Registro';
 import './css/Header.css';
 import {Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
+import { LinkContainer } from "react-router-bootstrap";
 
 
 class Header extends Component {
@@ -63,9 +64,17 @@ class Header extends Component {
           <NavItem eventKey={1} href="/Login2">
             <span className="navItem">Sesión</span>
           </NavItem>
-            <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="Profesor">  
-              <MenuItem className="menuItem" eventKey={3.2} href="/ListarEnunciados">Ver Mis Enunciados</MenuItem>
-              <MenuItem className="menuItem" eventKey={3.3} href="/ListarSoluciones">Ver Mis Soluciones</MenuItem>
+            <NavDropdown eventKey={3} title="Alumno" id="basic-nav-dropdown" className="Profesor"> 
+              <LinkContainer to="/ListarEnunciados">
+            <NavItem className="menuItem" eventKey={3.2} href="#">
+                Ver Mis Enunciados
+            </NavItem>
+             </LinkContainer>
+             <LinkContainer to="/ListarSoluciones">
+            <NavItem className="menuItem" eventKey={3.3} href="#">
+                Ver Mis Soluciones
+            </NavItem>
+             </LinkContainer> 
               </NavDropdown>
               <div className="image-cropper">
               <img className="image" src={photoURL} />
@@ -91,14 +100,38 @@ class Header extends Component {
             <span className="navItem">Sesión</span>
           </NavItem>
             <NavDropdown eventKey={3} title="Agregar Usuarios" id="basic-nav-dropdown" className="Profesor">
-            <MenuItem className= "menuItem" eventKey={3.7} href='/Registro'>Registrar Alumno</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.8} href='/RegistroProfesor'>Registrar Profesor</MenuItem>
+            <LinkContainer to="/Registro">
+            <NavItem className="menuItem" eventKey={3.5} href="#">
+                Registrar Alumnos
+            </NavItem>
+             </LinkContainer>
+            <LinkContainer to="/RegistroProfesor">
+            <NavItem className="menuItem" eventKey={3.6} href="#">
+                Registrar Profesor
+            </NavItem>
+             </LinkContainer>
             </NavDropdown>
             <NavDropdown eventKey={3} title="Coordinador" id="basic-nav-dropdown" className="Profesor">
-            <MenuItem className= "menuItem" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.2} href='/ListarEnunciados'>Listar Enunciados</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.3} href="/CrearCurso">Administrar Seccion</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.4} href="/ListarSoluciones">Ver Soluciones</MenuItem>
+            <LinkContainer to="/Enunciado">
+            <NavItem className="menuItem" eventKey={3.1} href="#">
+                Subir Enunciado
+            </NavItem>
+             </LinkContainer>
+             <LinkContainer to="/ListarEnunciados">
+            <NavItem className="menuItem" eventKey={3.2} href="#">
+                Listar Enunciados
+            </NavItem>
+             </LinkContainer>
+             <LinkContainer to="/CrearCurso">
+            <NavItem className="menuItem" eventKey={3.3} href="#">
+                Administrar Secciones
+            </NavItem>
+             </LinkContainer>
+            <LinkContainer to="/ListarSoluciones">
+            <NavItem className="menuItem" eventKey={3.4} href="#">
+                Ver Soluciones
+            </NavItem>
+             </LinkContainer>
             </NavDropdown>
             <div className="image-cropper">
             <img className="image" src={photoURL} />
@@ -123,14 +156,28 @@ class Header extends Component {
           <NavItem eventKey={1} href="/Login2">
             <span className="navItem">Sesión</span>
           </NavItem>
-            <NavItem eventKey={1} href="/Registro">
-            <span className="navItem">Agregar Alumnos</span>
+            <LinkContainer to="/Registro">
+            <NavItem className="menuItem" eventKey={3.6} href="#">
+                Registrar Alumnos
             </NavItem>
+             </LinkContainer>
+  
             <NavDropdown eventKey={3} title="Profesor" id="basic-nav-dropdown" className="dropdown">
-            <MenuItem className= "menuItem1" eventKey={3.1} href='/Enunciado'>Subir Enunciado</MenuItem>
-            <MenuItem className= "menuItem2" eventKey={3.2} href='/ListarEnunciados'>Ver Enunciados</MenuItem>
-            <MenuItem className= "menuItem" eventKey={3.5} href="/ListarSoluciones">Ver Soluciones</MenuItem>
-
+            <LinkContainer to="/Enunciado">
+            <NavItem className="menuItem" eventKey={3.7} href="#">
+                Subir Enunciado
+            </NavItem>
+             </LinkContainer>
+             <LinkContainer to="/ListarEnunciados">
+            <NavItem className="menuItem" eventKey={3.5} href="#">
+                Ver Enunciados
+            </NavItem>
+             </LinkContainer>
+             <LinkContainer to="/ListarSoluciones">
+            <NavItem className="menuItem" eventKey={3.5} href="#">
+                Ver Soluciones
+            </NavItem>
+             </LinkContainer>
             </NavDropdown>
             <div className="image-cropper"> 
             <img className="image" src={photoURL} />

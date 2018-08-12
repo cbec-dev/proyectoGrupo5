@@ -23,6 +23,7 @@ import {firebaseAuth} from "./firebase/constants";
 import axios from 'axios';
 import ListarSoluciones from './ListarSoluciones';
 import VerSolucion from './verSolucion';
+import {BrowserRouter} from "react-router-dom";
 
 
 
@@ -97,9 +98,11 @@ class App extends Component {
       return (
       <body>
       <div>
-        <Header history={customHistory} typeUser={this.state.user.userType} activeUser={this.state.user} userAvatar={this.state.firebaseUser.providerData[0].photoURL} loggedState={this.state.userLogged} />
         <MuiThemeProvider muiTheme={muiTheme}>
-  <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
+  <BrowserRouter history={customHistory} callbackFromParentHome ={this.myCallbackHome}>
+  <React.Fragment>
+  <Header history={customHistory} typeUser={this.state.user.userType} activeUser={this.state.user} userAvatar={this.state.firebaseUser.providerData[0].photoURL} loggedState={this.state.userLogged} />
+     
       <Switch>
         <Route path="/Registro" component={()=> <Registro typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
@@ -117,7 +120,8 @@ class App extends Component {
 
 
       </Switch>
-  </Router>
+  </React.Fragment>
+  </BrowserRouter>
   </MuiThemeProvider> 
       </div>
      
@@ -130,7 +134,7 @@ class App extends Component {
       <div>
         <Header history={customHistory} loggedState={false} typeUser = {4}/>
         <MuiThemeProvider muiTheme={muiTheme}>
-  <Router history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
+  <BrowserRouter history={customHistory} callbackFromParentHome ={this.myCallbackHome}>     
       <Switch>
         
       <Route path="/Registro" component={()=> <Registro history={customHistory} activeUser={this.state.user}/>} />
@@ -149,7 +153,7 @@ class App extends Component {
       
 
       </Switch>
-  </Router>
+  </BrowserRouter>
   </MuiThemeProvider> 
       </div>
       </body>
