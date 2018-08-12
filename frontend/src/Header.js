@@ -92,6 +92,16 @@ class Header extends Component {
             <span className="navItem">Sesión</span>
           </NavItem>
             <NavDropdown eventKey={3} title="Agregar Usuarios" id="basic-nav-dropdown" className="Profesor">
+             <NavLink to="/Registro" style={{ textDecoration: 'none', display: 'block' }}>
+              <MenuItem className="menuItem">
+                Registrar Alumno
+              </MenuItem>
+            </NavLink>
+             <NavLink to="/RegistroProfesor" style={{ textDecoration: 'none', display: 'block' }}>
+              <MenuItem className="menuItem">
+                Registro Profesor
+              </MenuItem>
+            </NavLink>
             <MenuItem className= "menuItem" eventKey={3.7} href='/Registro'>Registrar Alumno</MenuItem>
             <MenuItem className= "menuItem" eventKey={3.8} href='/RegistroProfesor'>Registrar Profesor</MenuItem>
             </NavDropdown>
