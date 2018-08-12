@@ -29,6 +29,7 @@ class Enunciado extends Component {
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChange2 = this.handleChange2.bind(this);
         this.addClick = this.addClick.bind(this);
         this.removeClick = this.removeClick.bind(this);
         this.state = {
@@ -36,6 +37,7 @@ class Enunciado extends Component {
             nameSolution:"",
             nameStatement: "",
             expectedSolution: "",
+            testCase: "",
             text:"",
             code: "",
 			readOnly: false,
@@ -297,6 +299,14 @@ class Enunciado extends Component {
                         </div>
                   <div className="div1">
                         <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
+                        onChange = {this.handleInputChange} />
+                    </div>
+
+                <div className="div1">
+                        <label className="label1"> Caso de prueba:  </label>
+                        </div>
+                  <div className="div1">
+                        <input className="input" name= "testCase" type = "text" value={this.state.testCase}
                         onChange = {this.handleInputChange} />
                     </div>
 
