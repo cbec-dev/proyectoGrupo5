@@ -71,7 +71,7 @@ class Enunciado extends Component {
         this.setState({ values });
         console.log(i, values[i])
      }
-     handleChange(i, event) {
+     handleChange2(i, event) {
         let values2 = [...this.state.values2];
         values2[i] = event.target.value;
         this.setState({ values2 });
@@ -79,6 +79,7 @@ class Enunciado extends Component {
      }
      addClick(){
        this.setState(prevState => ({ values: [...prevState.values, '']}))
+       this.setState(prevState => ({ values2: [...prevState.values2, '']}))
      }
      
      removeClick(i){
