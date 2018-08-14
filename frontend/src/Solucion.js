@@ -30,7 +30,7 @@ class Solucion extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
-        
+        this.tick = this.tick.bind(this);
         this.state = {
             isLoading: false,
             nameSolution:"",
@@ -46,7 +46,8 @@ class Solucion extends Component {
             salida1: "",
             salida2: "",
             salida3: "",
-            name: ""
+            name: "",
+            elapsed: 0,
 
         };
     }
@@ -218,7 +219,7 @@ class Solucion extends Component {
         console.log(name, value, target);
         }
     componentDidMount() {
-
+            this.timer = setInterval(this.tick, 50);
             this.setState({
                 isLoading: false,
                 nameSolution:"",
@@ -233,6 +234,13 @@ class Solucion extends Component {
             //this.cm.codeMirror.setValue(this.props.statement.header)
 
             }
+    componentWillUnmount(){
+        clearInterval(this.timer);
+
+    }
+    tick(){
+        this.setState({elapsed: new Date() - this.props.start});
+    }
     componentWillReceiveProps(){
           this.setState({
                 isLoading: false,
@@ -253,6 +261,9 @@ class Solucion extends Component {
 
 
         render() {
+            var elapsed = Math.round(this.state.elapsed / 100);
+            // This will give a number with one digit after the decimal dot (xx.x):
+            var seconds = (elapsed / 10).toFixed(1);  
             var options = {
                 lineNumbers: true,
                 readOnly: this.state.readOnly,
@@ -268,6 +279,7 @@ class Solucion extends Component {
                    <body className="body"> 
                     <form className="form">
                     <div className="div1">
+                    <p>La tarea fue comenzada hace <b>{seconds} </b> segundos.</p>
                     <label classname="labels"> Enunciado: </label>
                     </div>
                     <div className="div2">

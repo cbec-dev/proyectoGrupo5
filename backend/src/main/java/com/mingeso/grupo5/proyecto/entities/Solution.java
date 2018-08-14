@@ -26,6 +26,10 @@ public class Solution {
 	 @OneToOne
 	 private Statement statement;
 	 private Date date;
+	 private Integer score;
+	 private Integer testCasesSuccess;
+	 private Integer testCasesFailed;
+	 private Float time;
 	 
 	 public Integer getIdSolution() {
 		 return this.IdSolution;
@@ -69,5 +73,29 @@ public class Solution {
 	 }
 	 public void setStatement(Statement statement) {
 		 this.statement = statement;
+	 }
+	 public Integer getScore() {
+		 return this.score;
+	 }
+	 public void setScore(Integer score) {
+		 this.score = score;
+	 }
+	 public Integer getTestCasesSuccess() {
+		 return this.testCasesSuccess;
+	 }
+	 public void setTestCasesSuccess(Integer testCasesSuccess) {
+		 this.testCasesSuccess = testCasesSuccess;
+	 }
+	 public Integer getTestCasesFailed() {
+		 return this.testCasesFailed;
+	 }
+	 public void setTestCasesFailed(Integer testCasesFailed) {
+		 this.testCasesFailed = testCasesFailed;
+	 }
+	 public Float getTime() {
+		 return this.time;
+	 }
+	 public void setTime(Float time) {
+		 this.time = time;
 	 }
 }
