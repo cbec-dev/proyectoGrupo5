@@ -105,7 +105,7 @@ public class CompilerController {
                 test_cases_string = test_cases_string + str + "\n";
             }
             for (int i = 0; i<expectedSolution.size();i++){
-            if(salidas.get(i).contains(expectedSolution.get(i))){
+            if(salidas.get(i).split(",")[0].split(":")[1].equals(expectedSolution.get(i))){
                 casos_exitosos = casos_exitosos+1;
             }
         }

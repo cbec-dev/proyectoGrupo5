@@ -389,6 +389,8 @@ class Solucion extends Component {
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida4}
+                {this.state.nTest}
+                {this.state.sTest}
                 </pre>
             </div>
             </body>
