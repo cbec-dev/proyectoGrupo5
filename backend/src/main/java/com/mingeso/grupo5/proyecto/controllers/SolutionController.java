@@ -42,7 +42,8 @@ public class SolutionController {
             @RequestParam Integer idStatement,
             @RequestParam String solutionName,
             @RequestParam String solutionText,
-            @RequestParam Integer idUser) {
+            @RequestParam Integer idUser,
+            @RequestParam Float time) {
 		
 
 		Solution n = new Solution();
@@ -63,6 +64,7 @@ public class SolutionController {
 		n.setSolutionText(solutionText);
 		n.setDate(date);
         n.setUser(u);
+        n.setTime(time);
 		
 		solutionRepository.save(n);
 		return "Solucion guardada c:.";

@@ -53,10 +53,8 @@ class Solucion extends Component {
         };
     }
     ejecutarSolucion(e) {
-        var end = new Date();
-        var seconds = (end.getTime()-this.state.start.getTime())/1000
-        console.log("Se demoró: "+ seconds +" segundos")
-        alert("Se demoró: "+ seconds +" segundos")
+        console.log(this.state.secondsElapsed)
+
         this.solution = {code: "", lang: ""}
         var lang = "python";
 
@@ -142,12 +140,14 @@ class Solucion extends Component {
 
     
     subirFormulario(e) {
+        console.log("Se demoró: "+ this.state.secondsElapsed)
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
         alert("Se demoró: "+ seconds +" segundos")
-        this.solution = {solutionName: "", solutionText: "", user: "", statement: ""}
+        this.solution = {solutionName: "", solutionText: "", user: "", statement: "", time: ""}
         this.solution.solutionName = e.nameSolution;
         this.solution.solutionText = e.code;
+        this.time = this.state.secondsElapsed;
         this.solution.idUser = this.props.activeUser.idUser;
         this.solution.idStatement = this.props.statement.idStatement;
         console.log(this.solution.code);
