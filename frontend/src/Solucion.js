@@ -252,7 +252,6 @@ class Solucion extends Component {
     }
     tick(){
        this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-       console.log(this.sate.secondsElapsed)
     }
     componentWillReceiveProps(){
           this.setState({
@@ -289,13 +288,20 @@ class Solucion extends Component {
         this.solution.lang = e.name;
         this.solution.expectedSolution = expected;
         this.solution.testCases = test_cases;
+        var bodyFormData = new FormData();
+        bodyFormData.set('code', e.code);
+        bodyFormData.set('lang', e.name);
+        bodyFormData.set('expectedSolution', expected);
+        bodyFormData.set('testCases', test_cases);
+        console.log("DATOS MANDADOS EN CHECK SOLUTIONS: ")
+        console.log(bodyFormData)
             axios({
                 method: 'post',
                 url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkSolutions',
-                data: qs.stringify(this.solution),
+                data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => this.setState({salida4: response.data}));    
