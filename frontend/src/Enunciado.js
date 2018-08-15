@@ -138,15 +138,23 @@ class Enunciado extends Component {
         bodyFormData.set('statementText', e.text);
         bodyFormData.set('finalDate', new Date(e.finalDate));
         bodyFormData.set('initialDate', new Date(e.initialDate));
-        bodyFormData.set('expectedSolution', qs.stringify(e.values));
+        var i = 0;
+        for(i = 0; i<e.values2.length;i++){
+            bodyFormData.append('testCases', e.values2[i]);
+        }
+        for(i = 0; i<e.values.length;i++){
+            bodyFormData.append('expectedSolution', e.values[i]);    
+        }
+        
         bodyFormData.set('header', e.code);
-        bodyFormData.set('testCases', qs.stringify(e.values2));
+        
         console.log("##################################")
         console.log("SUBIR ENUNCIADO TEST CASES Y SOLUCIONES: ")
         console.log(e.values2.length)
         console.log(e.values2)
         console.log(e.values)
         console.log(e.values.length)
+        console.log(bodyFormData)
         console.log("##################################")
         statement.statementName = e.nameStatement;
         statement.statementText =e.text;
