@@ -207,7 +207,7 @@ class Enunciado extends Component {
                 data: qs.stringify(statement),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:8080",
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => alert(response.data));
