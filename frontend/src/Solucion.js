@@ -46,6 +46,7 @@ class Solucion extends Component {
             salida1: "",
             salida2: "",
             salida3: "",
+            salida4: "",
             name: "",
             secondsElapsed: 0,
             start: "",
@@ -126,6 +127,7 @@ class Solucion extends Component {
             var bodyFormData = new FormData();
             bodyFormData.set('code', e.code);
             bodyFormData.set('lang',e.name);
+            this.checkSolutions();
             axios({
                     method: 'post',
                     url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
@@ -269,6 +271,17 @@ class Solucion extends Component {
     componentDidUpdate(){
             //this.cm.codeMirror.setValue(this.props.statement.header)
     }
+    checkSolutions(){
+        var expected = [];
+        var test_cases = [];
+        this.props.statement.testCases.map((test) =>
+             this.test_cases.push(test)   )
+        this.props.statement.expectedSolution.map((test) =>
+             this.expected.push(test)   )
+        console.log("DENTRO CHECK SOLUTIONS c:")
+        console.log(this.expected)
+        console.log(this.test_cases)    
+    }
 
 
         render() {
@@ -345,6 +358,11 @@ class Solucion extends Component {
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida3}
+                </pre>
+            </div>
+            <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                {this.state.salida4}
                 </pre>
             </div>
             </body>

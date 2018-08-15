@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.mingeso.grupo5.proyecto.entities.TestCase;
+import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
 import java.io.IOException;
-
+import java.util.List;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
 
 @Controller
@@ -72,5 +73,52 @@ public class CompilerController {
 			return feedback;
 
         }
+
+    @RequestMapping(path="/checkSolutions", method = RequestMethod.POST)
+    @ResponseBody String checkSolutions(
+        @RequestParam String code,
+        @RequestParam String lang,
+        @RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution,
+        @RequestParam(value = "testCases", required = false) List<String> testCases) throws IOException {
+
+            String salidas_string = "Salidas: ";
+            String test_cases = "Casos de prueba totales: ";
+            String test_cases_string = "Casos de prueba: ";
+            String expected = "Soluciones Esperadas: ";
+            test_cases = test_cases + testCases.size();
+            List<String> salidas = new ArrayList<String>();
+            for(int i=0;i<expectedSolution.size();i++){
+                expected = expected + expectedSolution[i] + "\n";
+            }
+            for(int i=0;i<testCases.size();i++){
+                String new_code = code.replace("entradas", testCases[i]);
+                Compiler compiler = new Compiler();
+                salidas.add(compiler.run(new_code, lang)); 
+            }
+            for(int i=0;i<salidas.size();i++){
+                salidas_string = salidas_string + salidas[i] + "\n";
+            }
+            for(int i=0;i<test_cases_string.size();i++){
+                test_cases_string = test_cases_string + testCases[i] + "\n";
+            }
+            //for (int i=0; i<solutions.size();i++){
+            //if(userSolution.equals(solutions.get(i))){
+            //    retorno=1;
+            //    return retorno;
+            //}
+
+        //}
+
+
+
+            String feedback = test_cases+ "\n" +salidas_string + test_cases_string + expected;
+
+            return feedback;
+
+        }
     
 }
+
+    
+
+
