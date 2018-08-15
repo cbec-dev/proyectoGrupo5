@@ -48,10 +48,14 @@ class Solucion extends Component {
             salida3: "",
             name: "",
             secondsElapsed: 0,
+            start: "",
 
         };
     }
     ejecutarSolucion(e) {
+        var end = new Date();
+        var seconds = (end.getTime()-this.state.start.getTime())/1000
+        alert("Se demoró: "+ seconds +" segundos")
         this.solution = {code: "", lang: ""}
         var lang = "python";
 
@@ -137,6 +141,9 @@ class Solucion extends Component {
 
     
     subirFormulario(e) {
+        var end = new Date();
+        var seconds = (end.getTime()-this.state.start.getTime())/1000
+        alert("Se demoró: "+ seconds +" segundos")
         this.solution = {solutionName: "", solutionText: "", user: "", statement: ""}
         this.solution.solutionName = e.nameSolution;
         this.solution.solutionText = e.code;
@@ -225,6 +232,7 @@ class Solucion extends Component {
                 nameSolution:"",
                 code: this.props.statement.header,
                 readOnly: false,
+                start: new Date(),
                 mode: {name: "python",
                    version: 3,
                    singleLineStringErrors: false},
@@ -240,6 +248,7 @@ class Solucion extends Component {
     }
     tick(){
        this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+       console.log(this.sate.secondsElapsed)
     }
     componentWillReceiveProps(){
           this.setState({
@@ -261,7 +270,7 @@ class Solucion extends Component {
 
 
         render() {
-            
+        
             var options = {
                 lineNumbers: true,
                 readOnly: this.state.readOnly,
