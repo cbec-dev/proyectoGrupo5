@@ -143,8 +143,10 @@ class Enunciado extends Component {
         bodyFormData.set('testCases', e.values2);
         console.log("##################################")
         console.log("SUBIR ENUNCIADO TEST CASES Y SOLUCIONES: ")
+        console.log(e.values2.length)
         console.log(e.values2)
         console.log(e.values)
+        console.log(e.values.length)
         console.log("##################################")
         statement.statementName = e.nameStatement;
         statement.statementText =e.text;
