@@ -293,6 +293,7 @@ class Solucion extends Component {
         var bodyFormData = new FormData();
         bodyFormData.set('code', e.code);
         bodyFormData.set('lang', e.name);
+        var i = 0;
         for(i = 0; i<expected.length;i++){
             bodyFormData.append('expectedSolution', expected[i]);
         }
