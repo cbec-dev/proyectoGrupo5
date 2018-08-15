@@ -138,9 +138,9 @@ class Enunciado extends Component {
         bodyFormData.set('statementText', e.text);
         bodyFormData.set('finalDate', new Date(e.finalDate));
         bodyFormData.set('initialDate', new Date(e.initialDate));
-        bodyFormData.set('expectedSolution', e.values);
+        bodyFormData.set('expectedSolution', JSON.stringify(e.values));
         bodyFormData.set('header', e.code);
-        bodyFormData.set('testCases', e.values2);
+        bodyFormData.set('testCases', JSON.stringify(e.values2));
         console.log("##################################")
         console.log("SUBIR ENUNCIADO TEST CASES Y SOLUCIONES: ")
         console.log(e.values2.length)
