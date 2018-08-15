@@ -204,9 +204,9 @@ class Enunciado extends Component {
             axios({
                 method: 'post',
                 url: 'http://209.97.152.30:8080/backendGrupo5/api/statements/add',
-                data: qs.stringify(statement),
+                data: JSON.stringify(statement),
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                     "Access-Control-Allow-Origin": "http://209.97.152.30:8080",
                     "Access-Control-Allow-Methods": "POST",
                 },
