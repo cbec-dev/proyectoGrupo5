@@ -55,6 +55,7 @@ class Solucion extends Component {
     ejecutarSolucion(e) {
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
+        console.log("Se demoró: "+ seconds +" segundos")
         alert("Se demoró: "+ seconds +" segundos")
         this.solution = {code: "", lang: ""}
         var lang = "python";
