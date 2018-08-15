@@ -89,6 +89,8 @@ class App extends Component {
     
   }
 
+
+
     
   render() {
     if(this.state.firebaseUser!==null && this.state.user!==null && this.state.userLogged===true){

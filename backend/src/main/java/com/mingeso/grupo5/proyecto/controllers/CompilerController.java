@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import com.mingeso.grupo5.proyecto.entities.TestCase;
 import java.io.IOException;
 
 import com.mingeso.grupo5.proyecto.helpers.Compiler;

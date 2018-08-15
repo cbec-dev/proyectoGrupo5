@@ -47,7 +47,7 @@ class Solucion extends Component {
             salida2: "",
             salida3: "",
             name: "",
-            elapsed: 0,
+            secondsElapsed: 0,
 
         };
     }
@@ -219,7 +219,7 @@ class Solucion extends Component {
         console.log(name, value, target);
         }
     componentDidMount() {
-            this.timer = setInterval(this.tick, 50);
+            this.interval = setInterval(this.tick, 1000);
             this.setState({
                 isLoading: false,
                 nameSolution:"",
@@ -235,11 +235,11 @@ class Solucion extends Component {
 
             }
     componentWillUnmount(){
-        clearInterval(this.timer);
+        clearInterval(this.interval);
 
     }
     tick(){
-        this.setState({elapsed: new Date() - this.props.start});
+       this.setState({secondsElapsed: this.state.secondsElapsed + 1});
     }
     componentWillReceiveProps(){
           this.setState({
@@ -261,9 +261,7 @@ class Solucion extends Component {
 
 
         render() {
-            var elapsed = Math.round(this.state.elapsed / 100);
-            // This will give a number with one digit after the decimal dot (xx.x):
-            var seconds = (elapsed / 10).toFixed(1);  
+            
             var options = {
                 lineNumbers: true,
                 readOnly: this.state.readOnly,
@@ -279,7 +277,7 @@ class Solucion extends Component {
                    <body className="body"> 
                     <form className="form">
                     <div className="div1">
-                    <p>La tarea fue comenzada hace <b>{seconds} </b> segundos.</p>
+                    <p>La tarea fue comenzada hace <b>{this.state.secondsElapsed} </b> segundos.</p>
                     <label classname="labels"> Enunciado: </label>
                     </div>
                     <div className="div2">
