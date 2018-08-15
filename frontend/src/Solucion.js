@@ -297,7 +297,7 @@ class Solucion extends Component {
         for(i = 0; i<expected.length;i++){
             bodyFormData.append('expectedSolution', expected[i]);
         }
-        for(i = 0; i<e.values.length;i++){
+        for(i = 0; i<test_cases.length;i++){
             bodyFormData.append('testCases', test_cases[i]);    
         }
         
