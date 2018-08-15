@@ -293,8 +293,13 @@ class Solucion extends Component {
         var bodyFormData = new FormData();
         bodyFormData.set('code', e.code);
         bodyFormData.set('lang', e.name);
-        bodyFormData.set('expectedSolution', expected);
-        bodyFormData.set('testCases', test_cases);
+        for(i = 0; i<expected.length;i++){
+            bodyFormData.append('expectedSolution', expected[i]);
+        }
+        for(i = 0; i<e.values.length;i++){
+            bodyFormData.append('testCases', test_cases[i]);    
+        }
+        
         console.log("DATOS MANDADOS EN CHECK SOLUTIONS: ")
         console.log(bodyFormData)
             axios({
