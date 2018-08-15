@@ -11,10 +11,17 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.mingeso.grupo5.proyecto.entities.Career;
 import com.mingeso.grupo5.proyecto.entities.Solution;
 import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.entities.User;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
 import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
 import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
@@ -29,6 +36,8 @@ public class SolutionController {
 	private UserRepository userRepository;
 	@Autowired
 	private StatementRepository statementRepository;
+	@Autowired
+	private CareerRepository careerRepository;
 	
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<Solution> getAllsolution() {
@@ -67,7 +76,7 @@ public class SolutionController {
         n.setTime(time);
 		
 		solutionRepository.save(n);
-		return "Solucion guardada c:.";
+		return "Solucion guardada";
 	}
 	@GetMapping(path="/update") 
 	public @ResponseBody String updateSolution (
@@ -137,6 +146,29 @@ public class SolutionController {
 		
         solutionRepository.deleteById(IdSolution);
 		return "Producto eliminado";
+	}
+
+	@GetMapping(path="/searchbyCareer/{IdCareer}")
+	public @ResponseBody Iterable<Solution> findByCareer(@PathVariable("IdCareer") Integer IdCareer) {
+		
+		//Iterable<Solution> retorno=new Iterable;
+		Career career = new Career();
+		career=careerRepository.findById(IdCareer).get();
+		Iterable<User> estudiantes = userRepository.findByCareer(career);
+		ArrayList <Solution> retorno= new ArrayList<Solution>();
+		for(User estudiante : estudiantes){
+			Iterable<Solution> solutions = solutionRepository.findByUser(estudiante);
+			for(Solution solution : solutions){
+				retorno.add(solution);
+			}
+			
+		}
+
+
+		
+		return retorno;
+		
+		
 	}
 	
 	
