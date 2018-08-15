@@ -100,12 +100,15 @@ public class StatementController {
 			}
 		//System.out.println("Fecha sin formato: " + finalDate);
 		//System.out.println("Fecha formateade: " + date);
+		Date javaDateFinal=new SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(finalDate);
+		Date javaDateInitial=new SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(initialDate);
+
 		n.setStatementName(statementName);
         n.setStatementText(statementText);
 		n.setSection(s);
 		n.setHeader(header);
-		n.setFinalDate(finalDate);
-		n.setInitialDate(initialDate);
+		n.setFinalDate(javaDateFinal);
+		n.setInitialDate(javaDateInitial);
 		//expectSol.setExpectedSolution(expectedSolution);
 		//expectedSolutionRepository.save(expectSol);
 		n.setExpectedSolution(expectSol);
