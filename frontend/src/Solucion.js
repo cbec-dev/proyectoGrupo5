@@ -275,9 +275,9 @@ class Solucion extends Component {
         var expected = [];
         var test_cases = [];
         this.props.statement.testCases.map((test) =>
-             test_cases.push(test)   )
+             test_cases.push(test.testCase)   )
         this.props.statement.expectedSolution.map((test) =>
-             expected.push(test)   )
+             expected.push(test.expectedSolution)   )
         console.log("DENTRO CHECK SOLUTIONS c:")
         console.log(expected)
         console.log(test_cases)    
