@@ -50,6 +50,8 @@ class Solucion extends Component {
             name: "",
             secondsElapsed: 0,
             start: "",
+            nTest: "",
+            sTest: "",
 
         };
     }
@@ -304,7 +306,7 @@ class Solucion extends Component {
                     "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => this.setState({salida4: response.data}));    
+             }).then(response => this.setState({salida4: response.data[0], nTest:response.data[1], sTest: response.data[2]}));    
     }
 
 

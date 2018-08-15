@@ -76,7 +76,7 @@ public class CompilerController {
         }
 
     @RequestMapping(path="/checkSolutions", method = RequestMethod.POST)
-    @ResponseBody String checkSolutions(
+    @ResponseBody List<String> checkSolutions(
         @RequestParam String code,
         @RequestParam String lang,
         @RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution,
@@ -86,8 +86,10 @@ public class CompilerController {
             String test_cases = "Casos de prueba totales: ";
             String test_cases_string = "Casos de prueba: ";
             String expected = "Soluciones Esperadas: ";
+            int casos_exitosos = 0;
             test_cases = test_cases + testCases.size();
             List<String> salidas = new ArrayList<String>();
+            List<String> retorno = new ArrayList<String>();
             for(String str : expectedSolution){
                 expected = expected + str + "\n";
             }
@@ -102,6 +104,11 @@ public class CompilerController {
             for(String str : testCases){
                 test_cases_string = test_cases_string + str + "\n";
             }
+            for (int i = 0; i<expectedSolution.size();i++){
+            if(salidas.get(i).contains(expectedSolution.get(i))){
+                casos_exitosos = casos_exitosos+1;
+            }
+        }
             //for (int i=0; i<solutions.size();i++){
             //if(userSolution.equals(solutions.get(i))){
             //    retorno=1;
@@ -113,8 +120,10 @@ public class CompilerController {
 
 
             String feedback = test_cases+ "\n" +salidas_string + test_cases_string + expected;
-
-            return feedback;
+            retorno.add(feedback);
+            retorno.add(""+testCases.size());
+            retorno.add(""+casos_exitosos);
+            return retorno;
 
         }
     

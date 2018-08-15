@@ -309,26 +309,13 @@ class Enunciado extends Component {
                             onChange = {this.handleInputChange} />
                         </div>
 
-                <div className="div1">
-                        <label className="label1"> Solución Esperada:  </label>
-                        </div>
-                  <div className="div1">
-                        <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
-                        onChange = {this.handleInputChange} />
-                    </div>
-
-                <div className="div1">
-                        <label className="label1"> Caso de prueba:  </label>
-                        </div>
-                  <div className="div1">
-                        <input className="input" name= "testCase" type = "text" value={this.state.testCase}
-                        onChange = {this.handleInputChange} />
-                    </div>
 
                     
-
+                    <div>
+                    <label className="label1"> Soluciones esperadas y casos de prueba:  </label>
                     {this.createUI()}        
                     {this.createUI2()}
+                    </div>
           <input type='button' value='Agregar solución esperada y caso de prueba' onClick={this.addClick.bind(this)}/>
                     <div className="div1">
                     <label className="label2"> Enunciado:  </label>
@@ -398,17 +385,11 @@ class Enunciado extends Component {
                             onChange = {this.handleInputChange} />
                         </div>
 
-                        <div className="div1">
-                        <label className="label1"> Solución Esperada:  </label>
-                        </div>
-                      <div className="div1">
-                        <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
-                        onChange = {this.handleInputChange} />
-                       </div>
-
-                      
-    
-                        {this.createUI()}        
+                    <div>
+                    <label className="label1"> Soluciones esperadas y casos de prueba:  </label>
+                    {this.createUI()}        
+                    {this.createUI2()}
+                    </div>       
               <input type='button' value='Agregar solución esperada' onClick={this.addClick.bind(this)}/>
                         
                           <div className="div1">
