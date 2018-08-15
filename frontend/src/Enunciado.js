@@ -202,7 +202,7 @@ class Enunciado extends Component {
             axios({
                 method: 'post',
                 url: 'http://209.97.152.30:8080/backendGrupo5/api/statements/add',
-                data: bodyFormData,
+                data: statement,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",

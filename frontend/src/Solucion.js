@@ -389,7 +389,8 @@ class Solucion extends Component {
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida4}
-                N° casos de prueba: {this.state.nTest}
+                N° casos de prueba: {this.state.nTest}\n
+
                 Casos de prueba exitosos: {this.state.sTest}
                 </pre>
             </div>
