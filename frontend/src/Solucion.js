@@ -147,7 +147,7 @@ class Solucion extends Component {
         this.solution = {solutionName: "", solutionText: "", user: "", statement: "", time: ""}
         this.solution.solutionName = e.nameSolution;
         this.solution.solutionText = e.code;
-        this.time = this.state.secondsElapsed;
+        this.solution.time = this.state.secondsElapsed;
         this.solution.idUser = this.props.activeUser.idUser;
         this.solution.idStatement = this.props.statement.idStatement;
         console.log("TIME: " + this.time);
