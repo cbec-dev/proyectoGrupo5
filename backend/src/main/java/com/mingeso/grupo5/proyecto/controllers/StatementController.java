@@ -112,7 +112,7 @@ public class StatementController {
 		n.setTestCases(testC);
 		statementRepository.save(n);
 		
-		return "Enunciado guardado: "+ testCases.size()+"";
+		return "Enunciado guardado: "+ testCases.size()+" " + testCases;
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
