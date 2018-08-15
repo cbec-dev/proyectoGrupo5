@@ -13,6 +13,7 @@ import com.mingeso.grupo5.proyecto.entities.TestCase;
 import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
 import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
 
 @Controller
@@ -87,19 +88,19 @@ public class CompilerController {
             String expected = "Soluciones Esperadas: ";
             test_cases = test_cases + testCases.size();
             List<String> salidas = new ArrayList<String>();
-            for(int i=0;i<expectedSolution.size();i++){
-                expected = expected + expectedSolution[i] + "\n";
+            for(String str : expectedSolution){
+                expected = expected + str + "\n";
             }
-            for(int i=0;i<testCases.size();i++){
-                String new_code = code.replace("entradas", testCases[i]);
+            for(String str : testCases){
+                String new_code = code.replace("entradas", str);
                 Compiler compiler = new Compiler();
                 salidas.add(compiler.run(new_code, lang)); 
             }
-            for(int i=0;i<salidas.size();i++){
-                salidas_string = salidas_string + salidas[i] + "\n";
+            for(String str : salidas){
+                salidas_string = salidas_string + str + "\n";
             }
-            for(int i=0;i<test_cases_string.size();i++){
-                test_cases_string = test_cases_string + testCases[i] + "\n";
+            for(String str : testCases){
+                test_cases_string = test_cases_string + str + "\n";
             }
             //for (int i=0; i<solutions.size();i++){
             //if(userSolution.equals(solutions.get(i))){
