@@ -280,7 +280,25 @@ class Solucion extends Component {
              expected.push(test.expectedSolution)   )
         console.log("DENTRO CHECK SOLUTIONS c:")
         console.log(expected)
-        console.log(test_cases)    
+        console.log(test_cases)
+        console.log(this.state.secondsElapsed)
+
+        this.solution = {code: "", lang: "", expectedSolution: [], testCases: []}
+        var lang = "python";
+        this.solution.code = e.code;
+        this.solution.lang = e.name;
+        this.solution.expectedSolution = expected;
+        this.solution.testCases = test_cases;
+            axios({
+                method: 'post',
+                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkSolutions',
+                data: qs.stringify(this.solution),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             }).then(response => this.setState({salida4: response.data}));    
     }
 
 
