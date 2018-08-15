@@ -58,7 +58,7 @@ class Solucion extends Component {
 
         this.solution = {code: "", lang: ""}
         var lang = "python";
-        this.checkSolutions();
+        this.checkSolutions(e);
 
         
         this.solution.code = e.code;
@@ -271,7 +271,7 @@ class Solucion extends Component {
     componentDidUpdate(){
             //this.cm.codeMirror.setValue(this.props.statement.header)
     }
-    checkSolutions(){
+    checkSolutions(e){
         var expected = [];
         var test_cases = [];
         this.props.statement.testCases.map((test) =>
