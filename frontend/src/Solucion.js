@@ -58,6 +58,7 @@ class Solucion extends Component {
 
         this.solution = {code: "", lang: ""}
         var lang = "python";
+        this.checkSolutions();
 
         
         this.solution.code = e.code;
@@ -127,7 +128,6 @@ class Solucion extends Component {
             var bodyFormData = new FormData();
             bodyFormData.set('code', e.code);
             bodyFormData.set('lang',e.name);
-            this.checkSolutions();
             axios({
                     method: 'post',
                     url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
