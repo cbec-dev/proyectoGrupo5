@@ -43,7 +43,7 @@ public class SolutionController {
             @RequestParam String solutionName,
             @RequestParam String solutionText,
             @RequestParam Integer idUser,
-            @RequestParam Float time) {
+            @RequestParam Integer time) {
 		
 
 		Solution n = new Solution();

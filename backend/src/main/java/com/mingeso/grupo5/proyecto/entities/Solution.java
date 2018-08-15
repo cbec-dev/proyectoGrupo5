@@ -29,7 +29,7 @@ public class Solution {
 	 private Integer score;
 	 private Integer testCasesSuccess;
 	 private Integer testCasesFailed;
-	 private Float time;
+	 private Integer time;
 	 
 	 public Integer getIdSolution() {
 		 return this.IdSolution;
@@ -92,10 +92,10 @@ public class Solution {
 	 public void setTestCasesFailed(Integer testCasesFailed) {
 		 this.testCasesFailed = testCasesFailed;
 	 }
-	 public Float getTime() {
+	 public Integer getTime() {
 		 return this.time;
 	 }
-	 public void setTime(Float time) {
+	 public void setTime(Integer time) {
 		 this.time = time;
 	 }
 }

@@ -143,15 +143,16 @@ class Solucion extends Component {
         console.log("Se demoró: "+ this.state.secondsElapsed)
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
-        alert("Se demoró: "+ seconds +" segundos")
+        alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
         this.solution = {solutionName: "", solutionText: "", user: "", statement: "", time: ""}
         this.solution.solutionName = e.nameSolution;
         this.solution.solutionText = e.code;
         this.time = this.state.secondsElapsed;
         this.solution.idUser = this.props.activeUser.idUser;
         this.solution.idStatement = this.props.statement.idStatement;
-        console.log(this.solution.code);
-        if(this.solution.nameSolution==="" || this.solution.code===""){
+        console.log("TIME: " + this.time);
+        console.log(this.solution.solutionText);
+        if(this.solution.nameSolution==="" || this.solution.solutionText===""){
             alert("Debe llenar todas las casillas");
             return;
         }
