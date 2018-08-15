@@ -160,6 +160,8 @@ class Enunciado extends Component {
         var actual = placeholder.getDate();
         statement.section = e.sectionName;
         statement.testCases = e.values2;
+        console.log("DENTRO STATEMENT: ")
+        console.log(statement)
         if(+statement.initialDate>+statement.finalDate){
             alert("fecha de inicio no coincide con fecha termino")
             return;
@@ -202,7 +204,7 @@ class Enunciado extends Component {
             axios({
                 method: 'post',
                 url: 'http://209.97.152.30:8080/backendGrupo5/api/statements/add',
-                data: statement,
+                data: qs.stringify(statement),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
