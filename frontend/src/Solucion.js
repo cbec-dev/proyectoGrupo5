@@ -158,8 +158,8 @@ class Solucion extends Component {
         this.solution.idUser = this.props.activeUser.idUser;
         this.solution.idStatement = this.props.statement.idStatement;
         this.checkSolutions(e)
-        .then(this.solution.testCasesSuccess = this.state.sTest)
-        .then(this.solution.testCasesFailed = this.state.nTest)
+        this.solution.testCasesSuccess = this.state.sTest
+        this.solution.testCasesFailed = this.state.nTest
         console.log("TIME: " + this.time);
         console.log(this.solution.solutionText);
         if(this.solution.nameSolution==="" || this.solution.solutionText===""){
