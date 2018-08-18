@@ -7,7 +7,7 @@ import axios from 'axios';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
+import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 var ReactDOM = require('react-dom');
 var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
@@ -50,6 +50,9 @@ class Solucion extends Component {
             name: "",
             secondsElapsed: 0,
             start: "",
+            nTest: "",
+            sTest: "",
+            bool: true
 
         };
     }
@@ -142,33 +145,38 @@ class Solucion extends Component {
 
     
     subirFormulario(e) {
+
         console.log("Se demoró: "+ this.state.secondsElapsed)
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
         alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
-        this.solution = {solutionName: "", solutionText: "", user: "", statement: "", time: ""}
-        this.solution.solutionName = e.nameSolution;
-        this.solution.solutionText = e.code;
-        this.solution.time = this.state.secondsElapsed;
-        this.solution.idUser = this.props.activeUser.idUser;
-        this.solution.idStatement = this.props.statement.idStatement;
-        console.log("TIME: " + this.time);
-        console.log(this.solution.solutionText);
-        if(this.solution.nameSolution==="" || this.solution.solutionText===""){
+        var solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCases: ""}
+        solution.solutionName = e.nameSolution;
+        solution.solutionText = e.code;
+        solution.time = this.state.secondsElapsed;
+        solution.idUser = this.props.activeUser.idUser;
+        solution.idStatement = this.props.statement.idStatement;
+        this.checkSolutions(e)
+        solution.testCasesSuccess = this.state.sTest
+        solution.testCases = this.state.nTest
+        console.log("TIME: " + this.state.secondsElapsed);
+        console.log(solution.solutionText);
+        console.log("owo " + this.state.sTest)
+        console.log("uwu " + this.state.nTest)
+        if(solution.solutionName==="" || solution.solutionText===""){
             alert("Debe llenar todas las casillas");
             return;
         }
     
         else{
             this.limpiarValores(1);
-            console.log("Usuario: "+ this.solution);
-            console.log("Datos: "+ this.solution.solutionName);
-            console.log("Datos: "+ this.solution.solutionText);
-            var bodyFormData = new FormData();
+            console.log(": "+ solution);
+            console.log("Datos: "+ solution.solutionName);
+            console.log("Datos: "+ solution.solutionText);
             axios({
                 method: 'post',
                 url: 'http://209.97.152.30:8080/backendGrupo5/solutions/add',
-                data: qs.stringify(this.solution),
+                data: qs.stringify(solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -271,6 +279,7 @@ class Solucion extends Component {
             //this.cm.codeMirror.setValue(this.props.statement.header)
     }
     checkSolutions(e){
+        this.mostrarFeedback(e)
         var expected = [];
         var test_cases = [];
         this.props.statement.testCases.map((test) =>
@@ -291,8 +300,14 @@ class Solucion extends Component {
         var bodyFormData = new FormData();
         bodyFormData.set('code', e.code);
         bodyFormData.set('lang', e.name);
-        bodyFormData.set('expectedSolution', expected);
-        bodyFormData.set('testCases', test_cases);
+        var i = 0;
+        for(i = 0; i<expected.length;i++){
+            bodyFormData.append('expectedSolution', expected[i]);
+        }
+        for(i = 0; i<test_cases.length;i++){
+            bodyFormData.append('testCases', test_cases[i]);    
+        }
+        
         console.log("DATOS MANDADOS EN CHECK SOLUTIONS: ")
         console.log(bodyFormData)
             axios({
@@ -304,7 +319,7 @@ class Solucion extends Component {
                     "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => this.setState({salida4: response.data}));    
+             }).then(response => this.setState({salida4: response.data[0], nTest:response.data[1], sTest: response.data[2], bool: false}));    
     }
 
 
@@ -359,9 +374,9 @@ class Solucion extends Component {
                 </div>
             </div>
                     <div className="div1">
-                      <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
-                      <button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</button>
-                      <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</Button>
+                      <Button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</Button>
+                      <Button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
 
                     </div>
                   </form>
@@ -387,6 +402,21 @@ class Solucion extends Component {
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida4}
+                </pre>
+            </div>
+            <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                N° casos de prueba: {this.state.nTest}
+                </pre>
+            </div>
+            <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                Casos de prueba exitosos: {this.state.sTest}
+                </pre>
+            </div>
+            <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                Porcentaje exito: {100*this.state.sTest/this.state.nTest}%
                 </pre>
             </div>
             </body>

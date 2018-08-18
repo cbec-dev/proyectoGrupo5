@@ -138,9 +138,24 @@ class Enunciado extends Component {
         bodyFormData.set('statementText', e.text);
         bodyFormData.set('finalDate', new Date(e.finalDate));
         bodyFormData.set('initialDate', new Date(e.initialDate));
-        bodyFormData.set('expectedSolution', e.values);
+        var i = 0;
+        for(i = 0; i<e.values2.length;i++){
+            bodyFormData.append('testCases', e.values2[i]);
+        }
+        for(i = 0; i<e.values.length;i++){
+            bodyFormData.append('expectedSolution', e.values[i]);    
+        }
+        
         bodyFormData.set('header', e.code);
-        bodyFormData.set('testCases', e.values2);
+        
+        console.log("##################################")
+        console.log("SUBIR ENUNCIADO TEST CASES Y SOLUCIONES: ")
+        console.log(e.values2.length)
+        console.log(e.values2)
+        console.log(e.values)
+        console.log(e.values.length)
+        console.log(bodyFormData)
+        console.log("##################################")
         statement.statementName = e.nameStatement;
         statement.statementText =e.text;
         testCases = e.values;
@@ -309,26 +324,13 @@ class Enunciado extends Component {
                             onChange = {this.handleInputChange} />
                         </div>
 
-                <div className="div1">
-                        <label className="label1"> Solución Esperada:  </label>
-                        </div>
-                  <div className="div1">
-                        <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
-                        onChange = {this.handleInputChange} />
-                    </div>
-
-                <div className="div1">
-                        <label className="label1"> Caso de prueba:  </label>
-                        </div>
-                  <div className="div1">
-                        <input className="input" name= "testCase" type = "text" value={this.state.testCase}
-                        onChange = {this.handleInputChange} />
-                    </div>
 
                     
-
+                    <div>
+                    <label className="label1"> Soluciones esperadas y casos de prueba:  </label>
                     {this.createUI()}        
                     {this.createUI2()}
+                    </div>
           <input type='button' value='Agregar solución esperada y caso de prueba' onClick={this.addClick.bind(this)}/>
                     <div className="div1">
                     <label className="label2"> Enunciado:  </label>
@@ -398,17 +400,11 @@ class Enunciado extends Component {
                             onChange = {this.handleInputChange} />
                         </div>
 
-                        <div className="div1">
-                        <label className="label1"> Solución Esperada:  </label>
-                        </div>
-                      <div className="div1">
-                        <input className="input" name= "expectedSolution" type = "text" value={this.state.expectedSolution}
-                        onChange = {this.handleInputChange} />
-                       </div>
-
-                      
-    
-                        {this.createUI()}        
+                    <div>
+                    <label className="label1"> Soluciones esperadas y casos de prueba:  </label>
+                    {this.createUI()}        
+                    {this.createUI2()}
+                    </div>       
               <input type='button' value='Agregar solución esperada' onClick={this.addClick.bind(this)}/>
                         
                           <div className="div1">

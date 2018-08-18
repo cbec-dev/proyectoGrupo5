@@ -28,8 +28,9 @@ public class Solution {
 	 private Date date;
 	 private Integer score;
 	 private Integer testCasesSuccess;
-	 private Integer testCasesFailed;
+	 private Integer testCases;
 	 private Integer time;
+	 private Double pSuccess;
 	 
 	 public Integer getIdSolution() {
 		 return this.IdSolution;
@@ -86,16 +87,22 @@ public class Solution {
 	 public void setTestCasesSuccess(Integer testCasesSuccess) {
 		 this.testCasesSuccess = testCasesSuccess;
 	 }
-	 public Integer getTestCasesFailed() {
-		 return this.testCasesFailed;
+	 public Integer getTestCases() {
+		 return this.testCases;
 	 }
-	 public void setTestCasesFailed(Integer testCasesFailed) {
-		 this.testCasesFailed = testCasesFailed;
+	 public void setTestCases(Integer testCases) {
+		 this.testCases = testCases;
 	 }
 	 public Integer getTime() {
 		 return this.time;
 	 }
 	 public void setTime(Integer time) {
 		 this.time = time;
+	 }
+	 public Double getpSuccess() {
+		 return this.pSuccess;
+	 }
+	 public void setpSuccess(Double pSuccess) {
+		 this.pSuccess = pSuccess;
 	 }
 }
