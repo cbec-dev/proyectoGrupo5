@@ -149,9 +149,8 @@ public class SolutionController {
 	}
 
 	@GetMapping(path="/searchbyCareer/{IdCareer}")
-	public @ResponseBody Iterable<Solution> findByCareer(@PathVariable("IdCareer") Integer IdCareer) {
+	public @ResponseBody ArrayList<Solution> findByCareer(@PathVariable("IdCareer") Integer IdCareer) {
 		
-		//Iterable<Solution> retorno=new Iterable;
 		Career career = new Career();
 		career=careerRepository.findById(IdCareer).get();
 		Iterable<User> estudiantes = userRepository.findByCareer(career);
