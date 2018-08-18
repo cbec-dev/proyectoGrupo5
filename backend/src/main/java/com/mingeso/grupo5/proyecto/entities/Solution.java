@@ -30,7 +30,7 @@ public class Solution {
 	 private Integer testCasesSuccess;
 	 private Integer testCases;
 	 private Integer time;
-	 private Float pSuccess;
+	 private Double pSuccess;
 	 
 	 public Integer getIdSolution() {
 		 return this.IdSolution;
@@ -99,10 +99,10 @@ public class Solution {
 	 public void setTime(Integer time) {
 		 this.time = time;
 	 }
-	 public Float getpSuccess() {
+	 public Double getpSuccess() {
 		 return this.pSuccess;
 	 }
-	 public void setpSuccess(Float pSuccess) {
+	 public void setpSuccess(Double pSuccess) {
 		 this.pSuccess = pSuccess;
 	 }
 }
