@@ -149,32 +149,31 @@ class Solucion extends Component {
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
         alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
-        this.solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCasesFailed: ""}
-        this.solution.solutionName = e.nameSolution;
-        this.solution.solutionText = e.code;
-        this.solution.time = this.state.secondsElapsed;
-        this.solution.idUser = this.props.activeUser.idUser;
-        this.solution.idStatement = this.props.statement.idStatement;
+        var solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCasesFailed: ""}
+        solution.solutionName = e.nameSolution;
+        solution.solutionText = e.code;
+        solution.time = this.state.secondsElapsed;
+        solution.idUser = this.props.activeUser.idUser;
+        solution.idStatement = this.props.statement.idStatement;
         this.checkSolutions(e)
-        this.solution.testCasesSuccess = this.state.sTest
-        this.solution.testCasesFailed = this.state.nTest
-        console.log("TIME: " + this.time);
-        console.log(this.solution.solutionText);
-        if(this.solution.solutionName==="" || this.solution.solutionText===""){
+        solution.testCasesSuccess = this.state.sTest
+        solution.testCasesFailed = this.state.nTest
+        console.log("TIME: " + this.state.secondsElapsed);
+        console.log(solution.solutionText);
+        if(solution.solutionName==="" || solution.solutionText===""){
             alert("Debe llenar todas las casillas");
             return;
         }
     
         else{
             this.limpiarValores(1);
-            console.log("Usuario: "+ this.solution);
-            console.log("Datos: "+ this.solution.solutionName);
-            console.log("Datos: "+ this.solution.solutionText);
-            var bodyFormData = new FormData();
+            console.log(": "+ solution);
+            console.log("Datos: "+ solution.solutionName);
+            console.log("Datos: "+ solution.solutionText);
             axios({
                 method: 'post',
                 url: 'http://209.97.152.30:8080/backendGrupo5/solutions/add',
-                data: qs.stringify(this.solution),
+                data: qs.stringify(solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     "Access-Control-Allow-Origin": "http://localhost:3000",
