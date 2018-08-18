@@ -51,7 +51,8 @@ class Solucion extends Component {
             secondsElapsed: 0,
             start: "",
             nTest: "",
-            sTest: ""
+            sTest: "",
+            bool: true
 
         };
     }
@@ -160,6 +161,8 @@ class Solucion extends Component {
         solution.testCasesFailed = this.state.nTest
         console.log("TIME: " + this.state.secondsElapsed);
         console.log(solution.solutionText);
+        console.log("owo " + this.state.sTest)
+        console.log("uwu " + this.state.nTest)
         if(solution.solutionName==="" || solution.solutionText===""){
             alert("Debe llenar todas las casillas");
             return;
@@ -315,7 +318,7 @@ class Solucion extends Component {
                     "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => this.setState({salida4: response.data[0], nTest:response.data[1], sTest: response.data[2]}));    
+             }).then(response => this.setState({salida4: response.data[0], nTest:response.data[1], sTest: response.data[2], bool: false}));    
     }
 
 
@@ -370,7 +373,7 @@ class Solucion extends Component {
                 </div>
             </div>
                     <div className="div1">
-                      <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Solucion</button>
+                      <button type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</button>
                       <button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
 
@@ -398,8 +401,18 @@ class Solucion extends Component {
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida4}
-                N° casos de prueba: {this.state.nTest}"\n"
+                N° casos de prueba: {this.state.nTest}
 
+                Casos de prueba exitosos: {this.state.sTest}
+                </pre>
+            </div>
+            <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                N° casos de prueba: {this.state.nTest}
+                </pre>
+            </div>
+            <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
                 Casos de prueba exitosos: {this.state.sTest}
                 </pre>
             </div>

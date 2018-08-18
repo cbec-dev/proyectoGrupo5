@@ -99,7 +99,7 @@ public class CompilerController {
                 salidas.add(compiler.run(new_code, lang)); 
             }
             for(String str : salidas){
-                salidas_string = salidas_string + str + "\n";
+                salidas_string = salidas_string +str.split(",")[0].split(":")[1] +" " +str.split(",")[1].split(":")[1] + " " + str.split(",")[2].split(":")[1].split("}")[0]+ "\n";
             }
             for(String str : testCases){
                 test_cases_string = test_cases_string + str + "\n";
