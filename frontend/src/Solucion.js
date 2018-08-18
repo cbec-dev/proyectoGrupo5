@@ -7,7 +7,7 @@ import axios from 'axios';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
+import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 var ReactDOM = require('react-dom');
 var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
@@ -150,7 +150,7 @@ class Solucion extends Component {
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
         alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
-        var solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCasesFailed: ""}
+        var solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCases: ""}
         solution.solutionName = e.nameSolution;
         solution.solutionText = e.code;
         solution.time = this.state.secondsElapsed;
@@ -158,7 +158,7 @@ class Solucion extends Component {
         solution.idStatement = this.props.statement.idStatement;
         this.checkSolutions(e)
         solution.testCasesSuccess = this.state.sTest
-        solution.testCasesFailed = this.state.nTest
+        solution.testCases = this.state.nTest
         console.log("TIME: " + this.state.secondsElapsed);
         console.log(solution.solutionText);
         console.log("owo " + this.state.sTest)
@@ -373,7 +373,7 @@ class Solucion extends Component {
                 </div>
             </div>
                     <div className="div1">
-                      <button type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</Button>
                       <button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</button>
                       <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
 
@@ -401,9 +401,6 @@ class Solucion extends Component {
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 {this.state.salida4}
-                N° casos de prueba: {this.state.nTest}
-
-                Casos de prueba exitosos: {this.state.sTest}
                 </pre>
             </div>
             <div class="divTxt">
@@ -414,6 +411,11 @@ class Solucion extends Component {
             <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
                 Casos de prueba exitosos: {this.state.sTest}
+                </pre>
+            </div>
+            <div class="divTxt">
+                <pre class="gb wf" id="preOutput">
+                Porcentaje exito: {100*this.state.sTest/this.state.nTest}%
                 </pre>
             </div>
             </body>
