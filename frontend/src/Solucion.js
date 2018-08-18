@@ -30,8 +30,6 @@ class Solucion extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
-        this.checkSolutions = this.checkSolutions.bind(this);
-        this.subirFormulario = this.subirFormulario.bind(this);
         this.tick = this.tick.bind(this);
         this.state = {
             isLoading: false,
@@ -151,7 +149,7 @@ class Solucion extends Component {
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
         alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
-        this.solution = {solutionName: "", solutionText: "", user: "", statement: "", time: "", testCasesSuccess: "", testCasesFailed: ""}
+        this.solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCasesFailed: ""}
         this.solution.solutionName = e.nameSolution;
         this.solution.solutionText = e.code;
         this.solution.time = this.state.secondsElapsed;
@@ -162,7 +160,7 @@ class Solucion extends Component {
         this.solution.testCasesFailed = this.state.nTest
         console.log("TIME: " + this.time);
         console.log(this.solution.solutionText);
-        if(this.solution.nameSolution==="" || this.solution.solutionText===""){
+        if(this.solution.solutionName==="" || this.solution.solutionText===""){
             alert("Debe llenar todas las casillas");
             return;
         }
