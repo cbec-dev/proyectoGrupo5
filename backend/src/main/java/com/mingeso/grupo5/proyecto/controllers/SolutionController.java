@@ -69,7 +69,7 @@ public class SolutionController {
         n.setTime(time);
         n.setTestCases(testCases);
         n.setTestCasesSuccess(testCasesSuccess);
-		Float percent = 100*testCasesSuccess/testCases;
+		Float percent = 100.0*testCasesSuccess/testCases;
 		n.setpSuccess(percent);
 		solutionRepository.save(n);
 		return "Solucion guardada c:.";
