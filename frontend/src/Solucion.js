@@ -279,6 +279,7 @@ class Solucion extends Component {
             //this.cm.codeMirror.setValue(this.props.statement.header)
     }
     checkSolutions(e){
+        this.mostrarFeedback(e)
         var expected = [];
         var test_cases = [];
         this.props.statement.testCases.map((test) =>
@@ -374,8 +375,8 @@ class Solucion extends Component {
             </div>
                     <div className="div1">
                       <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</Button>
-                      <button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</button>
-                      <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
+                      <Button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</Button>
+                      <Button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
 
                     </div>
                   </form>
