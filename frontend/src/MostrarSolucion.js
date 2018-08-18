@@ -95,7 +95,13 @@ class MostrarSolucion extends Component {
      }
      componentDidUpdate(){
             this.cm.codeMirror.setValue(this.props.solution.solutionText)
-    }   
+    }
+    componentDidMount() {
+            
+            this.setState({        
+                name: "python"
+            });
+        }   
 
      getInitialState () {
             return {
@@ -163,6 +169,7 @@ class MostrarSolucion extends Component {
         this.solution.testCases = test_cases;
         var bodyFormData = new FormData();
         bodyFormData.set('code', this.props.solution.solutionText);
+        console.log(this.props.solution.solutionText)
         bodyFormData.set('lang', e.name);
         var i = 0;
         for(i = 0; i<expected.length;i++){
@@ -267,7 +274,7 @@ class MostrarSolucion extends Component {
 			</div>
                   </form>
                   <div>
-                  <Button type="button" onClick={(e) => this.checkSolutions(this.state) }>Ejecutar Solucion</Button>
+                  <Button type="button" bsStyle="info" onClick={(e) => this.checkSolutions(this.state) }>Ejecutar Solucion</Button>
                   </div>
                   <div className="div1">
                 <label classname="labels"> Feedback de la solución propuesta: </label>
