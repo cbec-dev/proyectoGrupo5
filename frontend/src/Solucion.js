@@ -51,7 +51,7 @@ class Solucion extends Component {
             secondsElapsed: 0,
             start: "",
             nTest: "",
-            sTest: "",
+            sTest: ""
 
         };
     }
@@ -144,16 +144,20 @@ class Solucion extends Component {
 
     
     subirFormulario(e) {
+
         console.log("Se demoró: "+ this.state.secondsElapsed)
         var end = new Date();
         var seconds = (end.getTime()-this.state.start.getTime())/1000
         alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
-        this.solution = {solutionName: "", solutionText: "", user: "", statement: "", time: ""}
+        this.solution = {solutionName: "", solutionText: "", user: "", statement: "", time: "", testCasesSuccess: "", testCasesFailed: ""}
         this.solution.solutionName = e.nameSolution;
         this.solution.solutionText = e.code;
         this.solution.time = this.state.secondsElapsed;
         this.solution.idUser = this.props.activeUser.idUser;
         this.solution.idStatement = this.props.statement.idStatement;
+        this.checkSolutions(e)
+        .then(this.solution.testCasesSuccess = this.state.sTest)
+        .then(this.solution.testCasesFailed = this.state.nTest)
         console.log("TIME: " + this.time);
         console.log(this.solution.solutionText);
         if(this.solution.nameSolution==="" || this.solution.solutionText===""){

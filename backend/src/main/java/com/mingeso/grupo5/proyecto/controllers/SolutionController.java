@@ -43,7 +43,9 @@ public class SolutionController {
             @RequestParam String solutionName,
             @RequestParam String solutionText,
             @RequestParam Integer idUser,
-            @RequestParam Integer time) {
+            @RequestParam Integer time,
+            @RequestParam Integer testCasesSuccess,
+            @RequestParam Integer testCases) {
 		
 
 		Solution n = new Solution();
@@ -65,7 +67,10 @@ public class SolutionController {
 		n.setDate(date);
         n.setUser(u);
         n.setTime(time);
-		
+        n.setTestCases(testCases);
+        n.setTestCasesSuccess(testCasesSuccess);
+		Float percent = 100*testCasesSuccess/testCases;
+		n.setpSuccess(percent);
 		solutionRepository.save(n);
 		return "Solucion guardada c:.";
 	}
