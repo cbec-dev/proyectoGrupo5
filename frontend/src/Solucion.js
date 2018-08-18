@@ -30,6 +30,8 @@ class Solucion extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
+        this.checkSolutions = this.checkSolutions.bind(this);
+        this.subirFormulario = this.subirFormulario.bind(this);
         this.tick = this.tick.bind(this);
         this.state = {
             isLoading: false,
