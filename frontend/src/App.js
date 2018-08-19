@@ -9,6 +9,7 @@ import Enunciado from './Enunciado';
 import Solucion from './Solucion';
 import CodeMirror from './codemirror/CodeMirror';
 import Prueba from './Prueba';
+import Stats from './Stats';
 import Login2 from './Login2';
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import createBrowserHistory from "history/createBrowserHistory";
