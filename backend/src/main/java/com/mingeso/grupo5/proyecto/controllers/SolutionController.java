@@ -1,4 +1,5 @@
 package com.mingeso.grupo5.proyecto.controllers;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -16,6 +17,8 @@ import com.mingeso.grupo5.proyecto.entities.Career;
 import com.mingeso.grupo5.proyecto.entities.Solution;
 import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.entities.User;
+import com.mingeso.grupo5.proyecto.helpers.SolutionStatsContext;
+import com.mingeso.grupo5.proyecto.helpers.statstrategies.TimeStats;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +30,7 @@ import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller   
-@CrossOrigin(origins = "http://209.97.152.30:5050")
+@CrossOrigin(origins = {"http://209.97.152.30:5050", "http://localhost:5050"})
 @RequestMapping(path="/solutions") 
 public class SolutionController {
 	@Autowired 
@@ -168,12 +171,44 @@ public class SolutionController {
 			
 		}
 
-
-		
 		return retorno;
-		
-		
 	}
+
+	@RequestMapping(path="/getStats", method = RequestMethod.POST)
+    @ResponseBody String checkCode(
+		@RequestParam String filter,
+		@RequestParam String method,
+        @RequestParam int id) throws IOException {
+
+			//Se crea contexto y se elige método a utilizar
+			SolutionStatsContext ctx = new SolutionStatsContext();
+			switch (method) {
+				case "time":	ctx.setStatsStrategy(new TimeStats());
+								break;
+				
+				default:        ctx=null;
+								break;
+			}
+
+			//Se obtiene la lista de soluciones base
+			ArrayList<Solution> solutions = null;
+			switch (filter) {
+				case "career":  solutions = findByCareer(id);
+								break;
+				case "section": //solutions = findBySection(id);
+								break;
+				default:        solutions = null;
+								break;
+			}
+
+			if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
+
+			String out = ctx.getStats(solutions);
+
+			return out;
+	}
+
+
 	
 	
 }
