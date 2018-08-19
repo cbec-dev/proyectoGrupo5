@@ -201,10 +201,7 @@ public class SolutionController {
 
 			if (solutions==null) return "ERROR: no se han encontrado soluciones.";
 
-
-			
-		
-			String out="";
+			String out = ctx.getStats(solutions);
 
 			return out;
 	}
