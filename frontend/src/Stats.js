@@ -15,7 +15,7 @@ class Stats extends Component {
     componentDidMount() {
         this.setState({isLoading: true});
 
-        this.statsdata = {filter: "", method: "", id: 1}
+        this.statsdata = {filter: "career", method: "time", id: 1}
 
         
 
@@ -27,7 +27,7 @@ class Stats extends Component {
                 data: qs.stringify(this.statsdata),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Origin": "http://localhost:5050",
                     "Access-Control-Allow-Methods": "POST",
             },
              }).then(response => this.setState({stats: response.data}));   
