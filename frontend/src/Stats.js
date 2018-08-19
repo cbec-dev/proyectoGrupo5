@@ -20,11 +20,11 @@ class Stats extends Component {
         bodyFormData.set('method', 'time');
         bodyFormData.set('id', 1);
 
-        console.log("DATOS MANDADOS EN CHECK SOLUTIONS: ")
+        console.log("DATOS MANDADOS: ")
         console.log(bodyFormData)
             axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkSolutions',
+                url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
                 data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
