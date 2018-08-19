@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import qs from 'qs';
+import axios from 'axios';
 
 
 
@@ -45,6 +47,6 @@ class Stats extends Component {
     }
 }
 
-export default CodeRunner;
+export default Stats;
 
 
