@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 import com.mingeso.grupo5.proyecto.entities.Solution;
 
-public class SolutionSorterContext {
-    private SolutionSorterStrategy strategy;
+public class SolutionStatsContext {
+    private SolutionStatsStrategy strategy;
 
     //Este método setea la estrategia a utilizar
-    public void setSolutionSorterStrategy(SolutionSorterStrategy strategy) {
+    public void setStatsStrategy(SolutionStatsStrategy strategy) {
       this.strategy = strategy;
     }
 
 
     //Este método utiliza el algoritmo de la estrategia seteada
-    public void createArchive(ArrayList<Solution> solutions) {
-    strategy.sortSolutions(solutions);
+    public void executeStrategy(ArrayList<Solution> solutions) {
+    strategy.getStats(solutions);
     }
 }

@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 import com.mingeso.grupo5.proyecto.entities.Solution;
 
-public interface SolutionSorterStrategy {
-    public ArrayList<Solution> sortSolutions(ArrayList<Solution> solutions);
+public interface SolutionStatsStrategy {
+    public ArrayList<Solution> getStats(ArrayList<Solution> solutions);
  }
