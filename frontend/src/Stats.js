@@ -15,22 +15,21 @@ class Stats extends Component {
     componentDidMount() {
         this.setState({isLoading: true});
 
-        var bodyFormData = new FormData();
-        bodyFormData.set('filter', 'career');
-        bodyFormData.set('method', 'time');
-        bodyFormData.set('id', 1);
+        this.statsdata = {filter: "", method: "", id: 1}
+
+        
 
         console.log("DATOS MANDADOS: ")
-        console.log(bodyFormData)
+        console.log(this,this.statsdata)
             axios({
                 method: 'post',
                 url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
-                data: bodyFormData,
+                data: qs.stringify(this.statsdata),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
-                },
+            },
              }).then(response => this.setState({stats: response.data}));   
         }
 
