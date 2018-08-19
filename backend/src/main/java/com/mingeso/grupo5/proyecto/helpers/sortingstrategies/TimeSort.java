@@ -9,4 +9,9 @@ public class TimeSort implements SolutionSorterStrategy {
     public void compressFiles(ArrayList<Solution> solutios) {
       
     }
+
+	@Override
+	public void sortSolutions(ArrayList<Solution> solutions) {
+		
+	}
   }
