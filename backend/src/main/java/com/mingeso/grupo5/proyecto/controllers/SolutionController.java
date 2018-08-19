@@ -174,6 +174,7 @@ public class SolutionController {
 		return retorno;
 	}
 
+	@CrossOrigin(origins = "http://209.97.152.30:5050")
 	@RequestMapping(path="/getStats", method = RequestMethod.POST)
     @ResponseBody String checkCode(
 		@RequestParam String filter,

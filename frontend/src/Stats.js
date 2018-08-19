@@ -27,7 +27,7 @@ class Stats extends Component {
                 data: qs.stringify(this.statsdata),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:5050",
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                     "Access-Control-Allow-Methods": "POST",
             },
              }).then(response => this.setState({stats: response.data}));   
