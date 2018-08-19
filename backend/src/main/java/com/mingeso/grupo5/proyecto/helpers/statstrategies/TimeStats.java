@@ -25,8 +25,8 @@ public class TimeStats implements SolutionStatsStrategy {
 		promTime = (float) totalTime/size;
 
 
-		total = total + Integer.toString(totalTime) + "segundos";
-		prom = prom + Float.toString(promTime) + "segundos";
+		total = total + Integer.toString(totalTime) + "segundos.";
+		prom = prom + Float.toString(promTime) + "segundos.";
 
 		timeStats = header + "\n" + total + "\n" + prom + "\n";
 
