@@ -7,8 +7,13 @@ import com.mingeso.grupo5.proyecto.helpers.SolutionSorterStrategy;
 
 public class TimeSort implements SolutionSorterStrategy {
 
-	@Override
-	public void sortSolutions(ArrayList<Solution> solutions) {
-		
-	}
+  @Override
+  public ArrayList<Solution> sortSolutions(ArrayList<Solution> solutions) {
+
+
+
+
+    return solutions;
+    
   }
+}
