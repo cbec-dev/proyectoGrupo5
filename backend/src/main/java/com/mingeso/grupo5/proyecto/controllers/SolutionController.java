@@ -180,6 +180,7 @@ public class SolutionController {
 		@RequestParam String method,
         @RequestParam int id) throws IOException {
 
+			//Se crea contexto y se elige método a utilizar
 			SolutionStatsContext ctx = new SolutionStatsContext();
 			switch (method) {
 				case "time":	ctx.setStatsStrategy(new TimeStats());
@@ -189,6 +190,7 @@ public class SolutionController {
 								break;
 			}
 
+			//Se obtiene la lista de soluciones base
 			ArrayList<Solution> solutions = null;
 			switch (filter) {
 				case "career":  solutions = findByCareer(id);
