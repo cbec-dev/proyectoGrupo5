@@ -14,7 +14,7 @@ const createReactClass = require('create-react-class');
 
 require('codemirror/lib/codemirror.css');
 require('codemirror/mode/python/python');
-require('codemirror/mode/c/C-like');
+require('codemirror/mode/clike/clike');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
     C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
@@ -228,7 +228,7 @@ class Solucion extends Component {
             if(e.target.value==="c"){
                 console.log("IF C");
                 this.setState({
-                mode: mode,
+                mode: "clike",
                 name: e.target.value,
                 c1: "#include <stdio.h>\n",
                 c2: "\nint main(){\nfuncion(entradas);\nreturn 0;\n}",
@@ -246,7 +246,7 @@ class Solucion extends Component {
             else{
                 console.log("IF JAVA");
                 this.setState({
-                mode: mode,
+                mode: "clike",
                 name: e.target.value,
                 c1: "public class MyClass {\n",
                 c2: "\npublic static void main(String args[]) { \nfuncion(entradas);}}",
