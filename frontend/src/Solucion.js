@@ -249,7 +249,7 @@ class Solucion extends Component {
                 mode: "text/x-java",
                 name: e.target.value,
                 c1: "public class MyClass {\n",
-                c2: "\npublic static void main(String args[]) { \nfuncion(entradas);\n}\n}",
+                c2: "\npublic static void main(String args[]) { \n\tfuncion(entradas);\n\t}\n}",
             });
             }
             
@@ -381,6 +381,7 @@ class Solucion extends Component {
                    <body className="body"> 
                     <form className="form">
                     <div className="div1">
+                    <span className="glyphicon glyphicon-time"> </span>
                     <p>La tarea fue comenzada hace <b>{this.state.secondsElapsed} </b> segundos.</p>
                     <label classname="labels"> Enunciado: </label>
                     </div>
@@ -418,7 +419,7 @@ class Solucion extends Component {
             </div>
                     <div className="div1">
                       <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</Button>
-                      <Button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</Button>
+                      <Button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }><span className="glyphicon glyphicon-play"></span>Ejecutar Solucion</Button>
                       <Button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
 
                     </div>
