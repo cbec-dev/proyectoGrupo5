@@ -14,7 +14,7 @@ const createReactClass = require('create-react-class');
 
 require('codemirror/lib/codemirror.css');
 require('codemirror/mode/python/python');
-require('codemirror/mode/xml/xml');
+require('codemirror/mode/c/C-like');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
     C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
@@ -248,8 +248,8 @@ class Solucion extends Component {
                 this.setState({
                 mode: mode,
                 name: e.target.value,
-                c1: "//entradas OwO\n",
-                c2: "\njava c: XOXOXOXOXO\n",
+                c1: "public class MyClass {\n",
+                c2: "\npublic static void main(String args[]) { \nfuncion(entradas);}}",
             });
             }
             
