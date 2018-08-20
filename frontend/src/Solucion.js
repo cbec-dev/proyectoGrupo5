@@ -216,8 +216,8 @@ class Solucion extends Component {
                 this.setState({
                 mode: mode,
                 name: e.target.value,
-                c1: "#include <stdio.h>\n"
-                c2: "\nint main(){\nfuncion(entradas);\nreturn 0;\n}"
+                c1: "#include <stdio.h>\n",
+                c2: "\nint main(){\nfuncion(entradas);\nreturn 0;\n}",
             });
             }
             else if(e.target.value==="python"){
@@ -225,8 +225,8 @@ class Solucion extends Component {
                 this.setState({
                 mode: mode,
                 name: e.target.value,
-                c1:"#python\n"
-                c2: "\nfuncion(entradas)"
+                c1:"#python\n",
+                c2: "\nfuncion(entradas)",
             });
             }
             else{
@@ -234,8 +234,8 @@ class Solucion extends Component {
                 this.setState({
                 mode: mode,
                 name: e.target.value,
-                c1: "//entradas OwO\n"
-                c2: "\njava c: XOXOXOXOXO\n"
+                c1: "//entradas OwO\n",
+                c2: "\njava c: XOXOXOXOXO\n",
             });
             }
             
