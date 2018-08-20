@@ -52,7 +52,11 @@ class Solucion extends Component {
             start: "",
             nTest: "",
             sTest: "",
-            bool: true
+            bool: true,
+            import: "#include <stdio.h>\n",
+            mainC: "int main(){\nfuncion(entradas);\n}",
+            mainJava: "funcion(entradas)",
+            mainPython: "\nfuncion(entradas)",
 
         };
     }
@@ -208,11 +212,32 @@ class Solucion extends Component {
             });
         }
         changeMode (e) {
+
             var mode = e.target.value;
-            this.setState({
-                mode: mode,
-                name: e.target.value,
-            });
+            if(e.target.value==="c"){
+                var string = this.state.import +this.props.statement.header +this.state.code + this.state.mainC;
+                this.setState({
+                    mode: mode,
+                    name: e.target.value,
+                    code: string,
+                });
+            }
+            else if(e.target.value==="python"){
+                var string = this.props.statement.header +this.state.code + this.state.mainPython
+                this.setState({
+                    mode: mode,
+                    name: e.target.value,
+                    code: string,
+                });
+            }
+            else{
+                this.setState({
+                    mode: mode,
+                    name: e.target.value,
+                    code: string,
+                });
+            }
+            
             console.log(this.state.name)
         }
         toggleReadOnly () {
