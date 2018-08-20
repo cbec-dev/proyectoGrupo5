@@ -316,7 +316,8 @@ class Solucion extends Component {
             this.render();
     }
     componentDidUpdate(){
-            //this.cm.codeMirror.setValue(this.props.statement.header)
+            this.cm2.codeMirror.setValue(this.state.c1)
+            this.cm3.codeMirror.setValue(this.state.c2)
     }
     checkSolutions(e){
         this.mostrarFeedback(e)
@@ -400,9 +401,9 @@ class Solucion extends Component {
                     </div>
                    
                     <div className="div3">
-                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.c1} options={options} autoFocus={true} onChange={this.updateCode2} readOnly={true}/>
+                <CodeMirror className="codemirror" ref={el => this.cm2 = el} value={this.state.c1} options={options} autoFocus={true} onChange={this.updateCode2} readOnly={true}/>
                 <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
-                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
+                <CodeMirror className="codemirror" ref={el => this.cm3 = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
                 <div style={{ marginTop: 10 }} className="div4">
                 <div className="div1">
                     <label className="labels"> Lenguaje de la Solución:  </label>
