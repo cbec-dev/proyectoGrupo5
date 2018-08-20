@@ -27,6 +27,8 @@ class Solucion extends Component {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.updateCode = this.updateCode.bind(this); 
+        this.updateCode2 = this.updateCode2.bind(this); 
+        this.updateCode3 = this.updateCode3.bind(this); 
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
@@ -204,6 +206,18 @@ class Solucion extends Component {
             };
         }
         updateCode (newCode) {
+            console.log("CODE CODEMIRROR: " + newCode)
+            this.setState({
+                code: newCode
+            });
+        }
+        updateCode2 (newCode) {
+            console.log("CODE CODEMIRROR: " + newCode)
+            this.setState({
+                code: newCode
+            });
+        }
+        updateCode3 (newCode) {
             console.log("CODE CODEMIRROR: " + newCode)
             this.setState({
                 code: newCode
