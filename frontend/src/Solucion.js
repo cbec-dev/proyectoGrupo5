@@ -52,11 +52,7 @@ class Solucion extends Component {
             start: "",
             nTest: "",
             sTest: "",
-            bool: true,
-            import: "#include <stdio.h>\n",
-            mainC: "int main(){\nfuncion(entradas);\n}",
-            mainJava: "funcion(entradas)",
-            mainPython: "\nfuncion(entradas)",
+            bool: true
 
         };
     }
@@ -212,40 +208,11 @@ class Solucion extends Component {
             });
         }
         changeMode (e) {
-            console.log("UWU change mode antes de bloque if")
-            console.log(e)
-            console.log(e.target.value)
-            console.log(e.target.name)
-            console.log("UWUWUWUWUWUWUW")
             var mode = e.target.value;
-            if(e.target.value==="c"){
-                var string = this.state.import +this.props.statement.header +this.state.code + this.state.mainC;
-                console.log(string)
-                this.setState({
-                    mode: mode,
-                    name: e.target.value,
-                    code: string,
-                });
-            }
-            else if(e.target.value==="python"){
-                console.log(string)
-                var string = this.props.statement.header +this.state.code + this.state.mainPython
-                this.setState({
-                    mode: mode,
-                    name: e.target.value,
-                    code: string,
-                });
-            }
-            else{
-                var string = "//JAVA uwu\n"
-                console.log(string)
-                this.setState({
-                    mode: mode,
-                    name: e.target.value,
-                    code: string,
-                });
-            }
-            console.log("change mode")
+            this.setState({
+                mode: mode,
+                name: e.target.value,
+            });
             console.log(this.state.name)
         }
         toggleReadOnly () {
