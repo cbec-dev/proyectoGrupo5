@@ -212,7 +212,8 @@ class Solucion extends Component {
             });
         }
         changeMode (e) {
-
+            console.log("UWU change mode antes de bloque if")
+            console.log(e)
             var mode = e.target.value;
             if(e.target.value==="c"){
                 var string = this.state.import +this.props.statement.header +this.state.code + this.state.mainC;
@@ -241,7 +242,7 @@ class Solucion extends Component {
                     code: string,
                 });
             }
-            
+            console.log("change mode")
             console.log(this.state.name)
         }
         toggleReadOnly () {
