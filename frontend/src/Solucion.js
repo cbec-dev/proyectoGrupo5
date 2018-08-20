@@ -216,6 +216,7 @@ class Solucion extends Component {
             var mode = e.target.value;
             if(e.target.value==="c"){
                 var string = this.state.import +this.props.statement.header +this.state.code + this.state.mainC;
+                console.log(string)
                 this.setState({
                     mode: mode,
                     name: e.target.value,
@@ -223,6 +224,7 @@ class Solucion extends Component {
                 });
             }
             else if(e.target.value==="python"){
+                console.log(string)
                 var string = this.props.statement.header +this.state.code + this.state.mainPython
                 this.setState({
                     mode: mode,
@@ -231,6 +233,8 @@ class Solucion extends Component {
                 });
             }
             else{
+                var string = "//JAVA uwu\n"
+                console.log(string)
                 this.setState({
                     mode: mode,
                     name: e.target.value,
