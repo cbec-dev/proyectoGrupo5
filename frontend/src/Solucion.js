@@ -52,7 +52,9 @@ class Solucion extends Component {
             start: "",
             nTest: "",
             sTest: "",
-            bool: true
+            bool: true,
+            c1: "#python",
+            c2: "funcion(entradas)",
 
         };
     }
@@ -209,10 +211,34 @@ class Solucion extends Component {
         }
         changeMode (e) {
             var mode = e.target.value;
-            this.setState({
+            if(e.target.value==="c"){
+                console.log("IF C");
+                this.setState({
                 mode: mode,
                 name: e.target.value,
+                c1: "#include <stdio.h>\n"
+                c2: "\nint main(){\nfuncion(entradas);\nreturn 0;\n}"
             });
+            }
+            else if(e.target.value==="python"){
+                console.log("IF PYTHON");
+                this.setState({
+                mode: mode,
+                name: e.target.value,
+                c1:"#python\n"
+                c2: "\nfuncion(entradas)"
+            });
+            }
+            else{
+                console.log("IF JAVA");
+                this.setState({
+                mode: mode,
+                name: e.target.value,
+                c1: "//entradas OwO\n"
+                c2: "\njava c: XOXOXOXOXO\n"
+            });
+            }
+            
             console.log(this.state.name)
         }
         toggleReadOnly () {
@@ -360,7 +386,9 @@ class Solucion extends Component {
                     </div>
                    
                     <div className="div3">
+                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.c1} options={options} autoFocus={true} onChange={this.updateCode2} readOnly={true}/>
                 <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
+                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
                 <div style={{ marginTop: 10 }} className="div4">
                 <div className="div1">
                     <label className="labels"> Lenguaje de la Solución:  </label>

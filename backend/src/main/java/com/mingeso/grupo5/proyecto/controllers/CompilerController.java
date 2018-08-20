@@ -34,7 +34,15 @@ public class CompilerController {
     public @ResponseBody String runCode(
             @RequestParam String code,
             @RequestParam String lang) throws IOException {
-        
+            /*if(lang=="c"){
+                uwu.split(" ")[1].split("\\(")[0]    
+            }
+            else if(lang=="python"){
+
+            }
+            else{
+                //java
+            }*/
             Compiler compiler = new Compiler();
             String out = compiler.run(code, lang); 
     
