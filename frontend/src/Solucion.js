@@ -68,7 +68,7 @@ class Solucion extends Component {
         this.checkSolutions(e);
 
         
-        this.solution.code = e.code;
+        this.solution.code = this.state.c1+e.code+this.state.c2;
         this.solution.lang = e.name;
         var algo = {code: "", lang: ""}
         algo.code = "print(33)";
@@ -156,7 +156,7 @@ class Solucion extends Component {
         alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
         var solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCases: ""}
         solution.solutionName = e.nameSolution;
-        solution.solutionText = e.code;
+        solution.solutionText = this.state.c1+e.code+this.state.c2;
         solution.time = this.state.secondsElapsed;
         solution.idUser = this.props.activeUser.idUser;
         solution.idStatement = this.props.statement.idStatement;
@@ -228,7 +228,7 @@ class Solucion extends Component {
             if(e.target.value==="c"){
                 console.log("IF C");
                 this.setState({
-                mode: "clike",
+                mode: "text/x-csrc",
                 name: e.target.value,
                 c1: "#include <stdio.h>\n",
                 c2: "\nint main(){\nfuncion(entradas);\nreturn 0;\n}",
@@ -249,7 +249,7 @@ class Solucion extends Component {
                 mode: "clike",
                 name: e.target.value,
                 c1: "public class MyClass {\n",
-                c2: "\npublic static void main(String args[]) { \nfuncion(entradas);}}",
+                c2: "\npublic static void main(String args[]) { \nfuncion(entradas);\n}\n}",
             });
             }
             
@@ -339,7 +339,7 @@ class Solucion extends Component {
         this.solution.expectedSolution = expected;
         this.solution.testCases = test_cases;
         var bodyFormData = new FormData();
-        bodyFormData.set('code', e.code);
+        bodyFormData.set('code', this.state.c1+e.code+this.state.c2);
         bodyFormData.set('lang', e.name);
         var i = 0;
         for(i = 0; i<expected.length;i++){
