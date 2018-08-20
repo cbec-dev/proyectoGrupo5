@@ -214,6 +214,9 @@ class Solucion extends Component {
         changeMode (e) {
             console.log("UWU change mode antes de bloque if")
             console.log(e)
+            console.log(e.target.value)
+            console.log(e.target.name)
+            console.log("UWUWUWUWUWUWUW")
             var mode = e.target.value;
             if(e.target.value==="c"){
                 var string = this.state.import +this.props.statement.header +this.state.code + this.state.mainC;
