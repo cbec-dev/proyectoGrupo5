@@ -392,7 +392,7 @@ class Solucion extends Component {
             const header = this.props.statement.header;
             const typeUser = this.props.typeUser;
             const boolError = this.state.boolError;
-            const boolFailed = this.sate.boolFailed;
+            const boolFailed = this.state.boolFailed;
             const boolSuccess = this.state.boolSuccess;
             if(header === undefined || this.props.statement ===undefined){
                 return(<div> {this.props.history.push("/ListarEnunciado")} </div>); 
