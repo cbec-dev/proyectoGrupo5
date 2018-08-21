@@ -63,7 +63,7 @@ class ListarSoluciones extends React.Component {
                 .then(data => this.setState({statements: data})))
                 .then(fetch('http://209.97.152.30:8080/backendGrupo5/solutions/all')
                 .then(response => response.json())
-                .then(data => this.setState({allSolutions: data}))))
+                .then(data => this.setState({allSolutions: data})))
             }
             else if(this.props.activeUser.typeUser===3){
                 fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
