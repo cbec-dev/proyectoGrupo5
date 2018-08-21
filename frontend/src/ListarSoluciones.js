@@ -90,6 +90,7 @@ class ListarSoluciones extends React.Component {
         if(this.props.typeUser===2){
             return(
                 <div>
+                <Grid>
                 <Row>  
                 <Grid className="container" fluid="true"> 
                   {allSolutions.map(solution=> 
@@ -101,6 +102,7 @@ class ListarSoluciones extends React.Component {
                 </Grid>
 
                 </Row>
+                </Grid>
             </div>
             );
         }
@@ -221,7 +223,7 @@ class ListarSoluciones extends React.Component {
             console.log(solutions)
             return (
                 <div>
-               
+               <Grid>
                 <Row>  
                 <Grid className="container" fluid="true"> 
                   {solutions.map(solution=> 
@@ -232,6 +234,7 @@ class ListarSoluciones extends React.Component {
                   
                 </Grid>
                 </Row>
+                </Grid>
             </div>
             
                 

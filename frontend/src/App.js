@@ -25,7 +25,7 @@ import ListarSoluciones from './ListarSoluciones';
 import VerSolucion from './verSolucion';
 import MostrarSolucion from './MostrarSolucion';
 import {BrowserRouter} from "react-router-dom";
-import MostrarEnunciado from "MostrarEnunciado";
+import MostrarEnunciado from "./MostrarEnunciado";
 
 
 
