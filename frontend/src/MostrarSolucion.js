@@ -98,7 +98,7 @@ class MostrarSolucion extends Component {
         //this.cm.codeMirror.setValue(this.props.statement.header)
      }
      componentDidUpdate(){
-            this.cm.codeMirror.setValue(this.props.solution.solutionText)
+            this.cm.codeMirror.setValue(this.props.location.state.solution.solutionText)
             this.cm2.codeMirror.setValue(this.state.c1)
             this.cm3.codeMirror.setValue(this.state.c2)
     }
