@@ -46,7 +46,8 @@ constructTooltip(e){
         </LinkContainer>
         </OverlayTrigger>
         <h3>{statement.statementName}</h3>
-        <p>{statement.initialDate} - {statement.finalDate}</p>
+        <p>Fecha Inicial: {statement.initialDate} </p> 
+        <p>Fecha Final: {statement.finalDate}</p>
         <p>{statement.section.profesor.userName}</p>
         <p>{statement.section.sectionName}</p>
         <p>

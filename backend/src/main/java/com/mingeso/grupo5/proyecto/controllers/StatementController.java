@@ -173,9 +173,10 @@ public class StatementController {
 		
 		
 	}
-	@GetMapping(path="/search/seccion/{section}")
-	public @ResponseBody Iterable<Statement> findBySection(@PathVariable("section") Section section) {
-		Iterable<Statement> statement = statementRepository.findBysection(section);
+	@GetMapping(path="/search/seccion/{idSection}")
+	public @ResponseBody Iterable<Statement> findBySection(@PathVariable("idSection") Integer idSection) {
+		Section s = sectionRepository.findById(idSection).get();
+		Iterable<Statement> statement = statementRepository.findBysection(s);
 		if (statement != null) {
 			return statement;
 		}
