@@ -57,6 +57,12 @@ class Solucion extends Component {
             bool: true,
             c1: "#python",
             c2: "funcion(entradas)",
+            boolFailed: false,
+            boolSuccess: false,
+            textFailed: "",
+            textSuccess: "",
+            textAlert: "",
+            boolError: ""
 
         };
     }
@@ -186,7 +192,7 @@ class Solucion extends Component {
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => alert(response.data));
+             }).then(response => this.setState({textAlert: response.data}));
             //fetch('http://localhost:8081/api/add?code='+this.solution.code+'&nombre='+this.solution.nameSolution)
             //.then(response => console.log("Solucion Agregado"+response)) 
             //alert('Su solucion fue enviada: ');
@@ -279,6 +285,18 @@ class Solucion extends Component {
         }
     componentDidMount() {
             this.interval = setInterval(this.tick, 1000);
+            if(this.state.textAlert==="Ya existe una solucion para este usuario y enunciado"){
+                this.setState({boolFailed: true, boolSuccess: false, boolError: false})
+            }
+            else if(this.state.textAlert==="Solucion guardada"){
+                this.setState({boolFailed: false, boolSuccess: true, boolError: false})
+            }
+            else if(this.setState.textAlert===" "){
+                this.setState({boolFailed: false, boolSuccess: false, boolError: false})
+            }
+            else{
+                this.setState({boolFailed: false, boolSuccess: false, boolError: true})
+            }
             this.setState({
                 isLoading: false,
                 nameSolution:"",
@@ -373,6 +391,9 @@ class Solucion extends Component {
             };
             const header = this.props.statement.header;
             const typeUser = this.props.typeUser;
+            const boolError = this.state.boolError;
+            const boolFailed = this.sate.boolFailed;
+            const boolSuccess = this.state.boolSuccess;
             if(header === undefined || this.props.statement ===undefined){
                 return(<div> {this.props.history.push("/ListarEnunciado")} </div>); 
             }
@@ -419,12 +440,28 @@ class Solucion extends Component {
             </div>
                     <div className="div1">
                       <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</Button>
-                      <Button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }><span className="glyphicon glyphicon-play"></span>Ejecutar Solucion</Button>
-                      <Button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                      <Button type="button" bsStyle="info" onClick={(e) => this.ejecutarSolucion(this.state) }><span className="glyphicon glyphicon-play"></span>Ejecutar Solucion</Button>
+                      <Button type="button" bsStyle="warning" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
 
                     </div>
                   </form>
-
+                  <div>
+                    { boolSuccess
+                      ? <Alert bsStyle="success">
+                          <strong>{this.state.textAlert}</strong> 
+                        </Alert>;
+                      : ( boolError
+                        ? <Alert bsStyle="warning">
+                          <strong>{this.state.textAlert}</strong> 
+                        </Alert>;
+                        : ( boolFailed
+                          ? <Alert bsStyle="danger">
+                              <strong>Error</strong> 
+                            </Alert>;
+                        )
+                      )
+                    }
+                  </div>
                 <div className="div1">
                     <label classname="labels"> Salida del código: </label>
                 </div>  
