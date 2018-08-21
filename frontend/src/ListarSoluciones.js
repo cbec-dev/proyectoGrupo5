@@ -1,4 +1,4 @@
-import { NavItem, ButtonGroup, Button, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { NavItem, ButtonGroup, Button, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup, Container } from "react-bootstrap";
 import { Grid, Row, Col } from 'react-bootstrap';
 import * as React from 'react';
 import './css/ListarSoluciones.css';
@@ -90,6 +90,7 @@ class ListarSoluciones extends React.Component {
         if(this.props.typeUser===2){
             return(
                 <div>
+                <Container>
                 <Row>  
                 <Grid className="container" fluid="true"> 
                   {allSolutions.map(solution=> 
@@ -99,7 +100,9 @@ class ListarSoluciones extends React.Component {
                     )}
                   
                 </Grid>
+
                 </Row>
+                </Container>
             </div>
             );
         }
@@ -221,7 +224,7 @@ class ListarSoluciones extends React.Component {
             return (
                 <div>
                
-
+                <Container>
                 <Row>  
                 <Grid className="container" fluid="true"> 
                   {solutions.map(solution=> 
@@ -232,6 +235,7 @@ class ListarSoluciones extends React.Component {
                   
                 </Grid>
                 </Row>
+                </Container>
             </div>
             
                 
