@@ -243,7 +243,7 @@ class MostrarSolucion extends Component {
             const solution = this.props.location.state.solution;
             const statement = this.props.location.state.statement;
             //const header = this.props.statement.header.split("\"");
-      
+            console.log(solution)
             var options = {
                 lineNumbers: true,
                 readOnly: true,
