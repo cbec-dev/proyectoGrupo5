@@ -23,6 +23,7 @@ import {firebaseAuth} from "./firebase/constants";
 import axios from 'axios';
 import ListarSoluciones from './ListarSoluciones';
 import VerSolucion from './verSolucion';
+import MostrarSolucion from './MostrarSolucion';
 import {BrowserRouter} from "react-router-dom";
 
 
@@ -119,6 +120,7 @@ class App extends Component {
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user} callBackFromParentStatement= {this.myCallBackStatement}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/VerSolucion" component={()=><verSolucion typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
+        <Route path="/MostrarSolucion" component={()=><MostrarSolucion typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
 
 
       </Switch>
@@ -151,6 +153,7 @@ class App extends Component {
         <Route path="/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/MostrarSolucion" component={()=><MostrarSolucion history={customHistory} activeUser={this.state.user}/>}/>
 
       
 
