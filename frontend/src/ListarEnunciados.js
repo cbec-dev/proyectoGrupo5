@@ -110,7 +110,7 @@ class ListarEnunciados extends React.Component {
                 
             );
         }
-        else if(typeUser===3&&sections!==null){
+        else if(typeUser===3){
             return (
                 <div>
                <Grid>
