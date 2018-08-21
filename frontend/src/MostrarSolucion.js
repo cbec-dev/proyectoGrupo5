@@ -195,9 +195,9 @@ class MostrarSolucion extends Component {
         this.mostrarFeedback(e)
         var expected = [];
         var test_cases = [];
-        this.props.statement.testCases.map((test) =>
+        this.props.location.state.statement.testCases.map((test) =>
              test_cases.push(test.testCase)   )
-        this.props.statement.expectedSolution.map((test) =>
+        this.props.location.state.statement.expectedSolution.map((test) =>
              expected.push(test.expectedSolution)   )
         console.log("DENTRO CHECK SOLUTIONS c:")
         console.log(expected)
@@ -205,13 +205,13 @@ class MostrarSolucion extends Component {
 
         this.solution = {code: "", lang: "", expectedSolution: [], testCases: []}
         var lang = "python";
-        this.solution.code = this.props.solution.solutionText;
+        this.solution.code = this.props.location.state.solution.solutionText;
         this.solution.lang = e.name;
         this.solution.expectedSolution = expected;
         this.solution.testCases = test_cases;
         var bodyFormData = new FormData();
-        bodyFormData.set('code', this.props.solution.solutionText);
-        console.log(this.props.solution.solutionText)
+        bodyFormData.set('code', this.state.c1+"\n"+e.code+"\n"+this.state.c2);
+        console.log(this.props.location.state.solution.solutionText)
         bodyFormData.set('lang', e.name);
         var i = 0;
         for(i = 0; i<expected.length;i++){
