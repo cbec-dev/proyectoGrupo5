@@ -162,7 +162,7 @@ class Solucion extends Component {
         alert("Se demoró: "+ this.state.secondsElapsed +" segundos")
         var solution = {solutionName: "", solutionText: "", user: "", idStatement: "", time: "", testCasesSuccess: "", testCases: ""}
         solution.solutionName = e.nameSolution;
-        solution.solutionText = this.state.c1+"\n"+e.code+"\n"+this.state.c2;
+        solution.solutionText = e.code;
         solution.time = this.state.secondsElapsed;
         solution.idUser = this.props.activeUser.idUser;
         solution.idStatement = this.props.statement.idStatement;
@@ -279,7 +279,7 @@ class Solucion extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, nameSolution:"", code:this.props.statement.header, codeMirrorRender: false});
+            this.setState({isLoading: false, nameSolution:"", codeMirrorRender: false});
             this.render();
             CodeMirror;
 
