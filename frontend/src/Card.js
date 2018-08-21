@@ -3,7 +3,6 @@ import axios from 'axios';
 import React from 'react';
 import { Redirect} from "react-router-dom";
 import { Thumbnail, Panel, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import url from '../../global.js';
 import { LinkContainer } from "react-router-bootstrap";
 import { NavItem } from "react-bootstrap";
 
