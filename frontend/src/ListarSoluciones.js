@@ -87,7 +87,8 @@ class ListarSoluciones extends React.Component {
         const solutions = this.state.solutions;
         const allSolutions = this.state.allSolutions;
         if(this.props.typeUser===2){
-            <div>
+            return(
+                <div>
                 <Row>  
                 <Grid className="container" fluid="true"> 
                   {solutions.map(solution=> 
@@ -98,7 +99,8 @@ class ListarSoluciones extends React.Component {
                   
                 </Grid>
                 </Row>
-    </div>
+            </div>
+            );
         }
         else if(this.props.typeUser===3 ){
             return (
