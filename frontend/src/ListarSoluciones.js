@@ -86,12 +86,13 @@ class ListarSoluciones extends React.Component {
         const statements = this.state.statements;
         const solutions = this.state.solutions;
         const allSolutions = this.state.allSolutions;
+        console.log(allSolutions)
         if(this.props.typeUser===2){
             return(
                 <div>
                 <Row>  
                 <Grid className="container" fluid="true"> 
-                  {solutions.map(solution=> 
+                  {allSolutions.map(solution=> 
                     <Col xs={6} md={4}>
                   <Card link={imgUrls[1]} solution={solution}/>
                   </Col>
