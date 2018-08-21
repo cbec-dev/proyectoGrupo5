@@ -7,7 +7,7 @@ import Header from './Header';
 import Home from './Home';
 import axios from 'axios';
 import qs from 'qs';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
+import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav, Button} from "react-bootstrap"
 var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
 
@@ -362,8 +362,8 @@ class Enunciado extends Component {
 			</div>
 
                     <div className="div3">
-                      <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</button>
-                      <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</Button>
+                      <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
                     </div>
                   </form>
                 </body>
@@ -433,8 +433,8 @@ class Enunciado extends Component {
                 </div>
     
                         <div className="div3">
-                          <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</button>
-                          <button type="button" onClick={(e) => this.limpiarValores(2)}>Limpiar Casillas</button>
+                          <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</Button>
+                          <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(2)}>Limpiar Casillas</Button>
                         </div>
                       </form>
                     </body>

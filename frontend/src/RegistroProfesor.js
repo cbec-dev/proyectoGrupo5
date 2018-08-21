@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/RegistroProfesor.css';
+import {Button} from "react-bootstrap";
 
 class RegistroProfesor extends Component {
     constructor(props) {
@@ -143,8 +144,8 @@ class RegistroProfesor extends Component {
                          </select>
                     </div>
                     <div className="div7">
-                      <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</button>
-                      <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</Button>
+                      <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
                     </div>
                   </form>
                     </body>
