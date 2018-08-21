@@ -446,20 +446,21 @@ class Solucion extends Component {
                     </div>
                   </form>
                   <div>
-                    { boolSuccess
-                      ? <Alert bsStyle="success">
-                          <strong>{this.state.textAlert}</strong> 
-                        </Alert>;
-                      : ( boolError
-                        ? <Alert bsStyle="warning">
-                          <strong>{this.state.textAlert}</strong> 
-                        </Alert>;
-                        : ( boolFailed
-                          ? <Alert bsStyle="danger">
-                              <strong>Error</strong> 
-                            </Alert>;
-                        )
-                      )
+                    {boolSuccess ?
+                    <Alert bsStyle="success"><strong>{this.state.textAlert}</strong> </Alert>:
+                    null
+                    }
+                  </div>
+                  <div>
+                    {boolFailed ?
+                    <Alert bsStyle="warning"><strong>{this.state.textAlert}</strong> </Alert>:
+                    null
+                    }
+                  </div>
+                  <div>
+                    {boolError ?
+                    <Alert bsStyle="danger"><strong>Error</strong> </Alert>:
+                    null
                     }
                   </div>
                 <div className="div1">
