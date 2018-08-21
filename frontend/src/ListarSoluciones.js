@@ -94,7 +94,7 @@ class ListarSoluciones extends React.Component {
                 <Grid className="container" fluid="true"> 
                   {allSolutions.map(solution=> 
                     <Col xs={6} md={4}>
-                  <Card link={imgUrls[1]} solution={solution}/>
+                  <Card link={imgUrls[Math.floor((Math.random() * 10) + 1)]} solution={solution}/>
                   </Col>
                     )}
                   
@@ -223,9 +223,9 @@ class ListarSoluciones extends React.Component {
                  <div>
                 <Row>  
                 <Grid className="container" fluid="true"> 
-                  {allSolutions.map(solution=> 
+                  {solutions.map(solution=> 
                     <Col xs={6} md={4}>
-                  <Card link={imgUrls[1]} solution={solution}/>
+                  <Card link={imgUrls[Math.floor((Math.random() * 10) + 1)]} solution={solution}/>
                   </Col>
                     )}
                   
