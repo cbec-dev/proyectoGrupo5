@@ -32,7 +32,7 @@ constructTooltip(e){
       
       <Panel className="grid" alt= "50x50">
       <OverlayTrigger placement="top" overlay={this.constructTooltip(statement)}>
-      <LinkContainer to={{ pathname: '/MostrarEnunciado', state: { statement: statement, typeUser: this.props.typeUser, activeUser: this.props.activeUser} }}>
+      <LinkContainer to={{ pathname: '/MostrarEnunciado', state: { statement: statement} }}>
          <Thumbnail src={this.props.link} alt="50x50" className="thumbnail" onMouseEnter={this.handleMouseHover}
           onMouseLeave={this.handleMouseHover}>
         
@@ -47,7 +47,7 @@ constructTooltip(e){
         <p>
         
           <div className="container-button">
-            <LinkContainer to={{ pathname: '/MostrarEnunciado', state: { statement: statement, typeUser: this.props.typeUser, activeUser: this.props.activeUser} }}>
+            <LinkContainer to={{ pathname: '/MostrarEnunciado', state: { statement: statement} }}>
             <Button className="button1" eventKey={3.6} href="#">
                 Ver Enunciado
             </Button>
