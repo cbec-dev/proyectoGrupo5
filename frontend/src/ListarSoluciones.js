@@ -1,4 +1,5 @@
 import { NavItem, ButtonGroup, Button, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { Grid, Row, Col } from 'react-bootstrap';
 import * as React from 'react';
 import './css/ListarSoluciones.css';
 import VerSolucion from './verSolucion';
