@@ -121,7 +121,7 @@ class ListarEnunciados extends React.Component {
                                         <th>{sections.idSection}</th>
                                         <th>{sections.sectionName}</th>
                                         <th>{sections.profesor.userName}</th>
-                                        <th> <Button bsStyle="primary" onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</Buttonutton></th>
+                                        <th> <Button bsStyle="primary" onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</Button></th>
                                     </tr> 
                                 
                             
