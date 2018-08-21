@@ -221,6 +221,11 @@ class ListarSoluciones extends React.Component {
         }
         else if(this.props.typeUser===1){
             console.log(solutions)
+            if(solutions.length===0){
+                return(
+                    <p>No posee soluciones</p>
+                    );
+            }
             return (
                 <div>
                <Grid>

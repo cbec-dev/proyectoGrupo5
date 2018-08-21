@@ -15,11 +15,37 @@ const tooltip = (
 class CardEnunciados extends React.Component {
   constructor(props) {
     super(props);
+    this.solucionEnunciado = this.solucionEnunciado.bind(this)
     this.state = {
       isHovering: false,
+      isSelectedSolution:false,
+
+
     };
  
   }
+  solucionEnunciado(e){
+        this.setState({isSelectedSolution: true, statement: e})
+        //return <Redirect to="/Solucion" render={()=><Solucion statement = {e} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>
+
+        //return <Link to={{
+  //pathname: '/Solucion',
+  //state: { statement: e }
+//}}/>
+
+        /*return this.props.history.push({
+            pathname:"/Solucion",
+            state:{
+                statement:this.state.statement,
+                typeUser: this.props.typeUser,
+                idUser: this.props.activeUser.idUser,
+                history: this.props.history,
+                activeUser: this.props.activeUser,
+
+              }
+            });*/
+        //return <Link to={'/Solucion'+e }>Create Idea</Link>
+    }
   componentDidMount(){
 
   }
@@ -34,7 +60,7 @@ constructTooltip(e){
     
    
     return (
-      
+      <div>
       <Panel className="grid" alt= "50x50">
       <OverlayTrigger placement="top" overlay={this.constructTooltip(statement)}>
       <LinkContainer to={{ pathname: '/MostrarEnunciado', state: { statement: statement} }}>
@@ -59,15 +85,20 @@ constructTooltip(e){
             </Button>
              </LinkContainer>
           
-          <LinkContainer to={{ pathname: '/MostrarEnunciado', state: { statement: statement} }}>
-            <Button className="button1" eventKey={3.6} href="#">
+            <Button className="button1" onClick={(e) => this.solucionEnunciado(statement)} eventKey={3.6} href="#">
                 Subir Solucion
             </Button>
-             </LinkContainer>
+      
           </div>
         </p>
       </Panel>
-      
+      <div>
+        {this.state.isSelectedSolution ?
+        <Redirect push to="/Solucion" render={()=><Solucion statement = {this.props.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
+        null
+                    }
+        </div>
+      </div>
     );
   }
 }

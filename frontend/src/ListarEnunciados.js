@@ -60,7 +60,10 @@ class ListarEnunciados extends React.Component {
                 .catch(err => {
                     console.log("fetch error" + err);
                     this.setState({sections:null, isLoading: false})
-                });
+                })
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ this.state.sections.idSection)
+                .then(response => response.json())
+                .then(data => this.setState({statements: data, isLoading: false})))
             }
             else{
                 this.setState({section: null, sections: null, isLoading: false});
@@ -94,7 +97,7 @@ class ListarEnunciados extends React.Component {
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
-                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement}/>
+                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
                   </Col>
                     )}
                   
@@ -110,36 +113,19 @@ class ListarEnunciados extends React.Component {
         else if(typeUser===3&&sections!==null){
             return (
                 <div>
-                            
-                <table id="t02">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Profesor Encargado</th>
-                    <th>Accion</th>
-                    
-                
-                    </tr>
-                            
-                                   <tr key={sections.idSection}>
-                                        <th>{sections.idSection}</th>
-                                        <th>{sections.sectionName}</th>
-                                        <th>{sections.profesor.userName}</th>
-                                        <th> <Button bsStyle="primary" onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</Button></th>
-                                    </tr> 
-                                
-                            
-                              
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelected ?
-                    <Enunciado statements = {this.state.statements} callBackFromParentStatement= {this.props.callBackFromParentStatement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
-                    null
-                     }
-                </div>
-                    
+               <Grid>
+                <Row>  
+                <Grid className="container" fluid="true"> 
+                  {statements.map(statement=> 
+                    <Col xs={6} md={4}>
+                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
+                  </Col>
+                    )}
+                  
+                </Grid>
+
+                </Row>
+                </Grid>
             </div>
             
                 
@@ -153,7 +139,7 @@ class ListarEnunciados extends React.Component {
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
-                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement}/>
+                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
                   </Col>
                     )}
                   
