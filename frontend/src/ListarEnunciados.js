@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import { NavItem, ButtonGroup, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup, Container } from "react-bootstrap";
+import { NavItem, ButtonGroup, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import { Grid, Row, Col } from 'react-bootstrap';
 import * as React from 'react';
 import './css/ListarEnunciados.css';
@@ -84,7 +84,7 @@ class ListarEnunciados extends React.Component {
         if(typeUser===2 && sections!==null){
             return (
                <div>
-                <Container>
+               <Grid>
                 <Row>  
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
@@ -96,7 +96,7 @@ class ListarEnunciados extends React.Component {
                 </Grid>
 
                 </Row>
-                </Container>
+                </Grid>
             </div>
             
                 

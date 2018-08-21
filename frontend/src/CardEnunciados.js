@@ -53,7 +53,11 @@ constructTooltip(e){
             </Button>
              </LinkContainer>
           
-          <Button className="button" bsStyle="default">Button</Button>
+          <LinkContainer to={{ pathname: '/MostrarEnunciado', state: { statement: statement} }}>
+            <Button className="button1" eventKey={3.6} href="#">
+                Subir Solucion
+            </Button>
+             </LinkContainer>
           </div>
         </p>
       </Panel>
