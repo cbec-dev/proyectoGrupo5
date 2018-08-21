@@ -25,6 +25,7 @@ import ListarSoluciones from './ListarSoluciones';
 import VerSolucion from './verSolucion';
 import MostrarSolucion from './MostrarSolucion';
 import {BrowserRouter} from "react-router-dom";
+import MostrarEnunciado from "MostrarEnunciado";
 
 
 
@@ -121,6 +122,7 @@ class App extends Component {
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/VerSolucion" component={()=><verSolucion typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
         <Route path="/MostrarSolucion" component={MostrarSolucion}/>
+        <Route path="/MostrarEnunciado" component={MostrarEnunciado}/>
 
 
       </Switch>
@@ -154,6 +156,7 @@ class App extends Component {
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/MostrarSolucion" component={()=><MostrarSolucion history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/MostrarEnunciado" component={MostrarEnunciado}/>
 
       
 

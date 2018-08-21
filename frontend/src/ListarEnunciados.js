@@ -1,8 +1,10 @@
 import { Button } from 'react-bootstrap';
+import { NavItem, ButtonGroup, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup, Container } from "react-bootstrap";
+import { Grid, Row, Col } from 'react-bootstrap';
 import * as React from 'react';
 import './css/ListarEnunciados.css';
 import Enunciado from './verEnunciado';
-
+import CardEnunciados from './CardEnunciados';
 class ListarEnunciados extends React.Component {
 
     constructor(props) {
@@ -39,7 +41,10 @@ class ListarEnunciados extends React.Component {
                 //coordinador
                 fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
-                .then(data => this.setState({sections: data, isLoading: false}));                
+                .then(data => this.setState({sections: data, isLoading: false}))
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
+                .then(response => response.json())
+                .then(data => this.setState({statements: data, isLoading: false})))                
 
             }
             else if(this.props.typeUser===3){
@@ -70,6 +75,7 @@ class ListarEnunciados extends React.Component {
         const typeUser = this.props.typeUser;
         const activeUser = this.props.activeUser;
         const isLoading = this.state.isLoading;
+        const statements = this.state.statements;
        
         if (isLoading) {
             return <p>Cargando...</p>;
@@ -77,39 +83,20 @@ class ListarEnunciados extends React.Component {
 
         if(typeUser===2 && sections!==null){
             return (
-                <div>
-                            
-                <table id="t02">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Profesor Encargado</th>
-                    <th>Accion</th>
-                    
-                
-                    </tr>
-                            {sections.map((section) =>
-                            {
-                                if(section.profesor!==null){
-                                   return <tr key={section.idSection}>
-                                        <th>{section.idSection}</th>
-                                        <th>{section.sectionName}</th>
-                                        <th>{section.profesor.userName}</th>
-                                        <th> <button onClick={(e) => this.verEnunciados(section.idSection)}>Ver Enunciados</button></th>
-                                    </tr> 
-                                }
-                            }
-                              )}
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelected ?
-                    <Enunciado statements = {this.state.statements} callBackFromParentStatement= {this.props.callBackFromParentStatement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser} history = {this.props.history}/>:
-                    null
-                     }
-                </div>
-                    
+               <div>
+                <Container>
+                <Row>  
+                <Grid className="container" fluid="true"> 
+                  {statements.map(statement=> 
+                    <Col xs={6} md={4}>
+                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement}/>
+                  </Col>
+                    )}
+                  
+                </Grid>
+
+                </Row>
+                </Container>
             </div>
             
                 
@@ -134,7 +121,7 @@ class ListarEnunciados extends React.Component {
                                         <th>{sections.idSection}</th>
                                         <th>{sections.sectionName}</th>
                                         <th>{sections.profesor.userName}</th>
-                                        <th> <button onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</button></th>
+                                        <th> <Button bsStyle="primary" onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</Buttonutton></th>
                                     </tr> 
                                 
                             
@@ -172,7 +159,7 @@ class ListarEnunciados extends React.Component {
                                         <th>{sections.idSection}</th>
                                         <th>{sections.sectionName}</th>
                                         <th>{sections.profesor.userName}</th>
-                                        <th> <button onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</button></th>
+                                        <th> <Button bsStyle="primary" onClick={(e) => this.verEnunciados(sections.idSection)}>Ver Enunciados</Button></th>
                                     </tr> 
                                 
                             
