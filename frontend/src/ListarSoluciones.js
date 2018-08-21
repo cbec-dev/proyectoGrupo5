@@ -220,38 +220,18 @@ class ListarSoluciones extends React.Component {
             return (
                 <div>
                 <p> Mis Soluciones: </p>
-                <table id="t03">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Nombre Enunciado</th>
-                    <th>Accion</th>
-                    
-                    
-                
-                    </tr>
-                            {solutions.map((solution) =>
-                            
-                                
-                                   <tr key={solution.idSolution}>
-                                        <th>{solution.idSolution}</th>
-                                        <th>{solution.solutionName}</th>
-                                        <th>{solution.statement.statementName}</th>
-                                        <th> <button onClick={(object, type) => this.mostrarSolucion(solution, "alumno")}>Ver Solucion</button></th>
-
-                                    </tr> 
-                                
-                            
-                              )}
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelectedSolutionStatement ?
-                    <MostrarSolucion  statement = {this.state.solution.statement} solution={this.state.solution} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
-                    null
-                    }
-                    </div>
+                 <div>
+                <Row>  
+                <Grid className="container" fluid="true"> 
+                  {allSolutions.map(solution=> 
+                    <Col xs={6} md={4}>
+                  <Card link={imgUrls[1]} solution={solution}/>
+                  </Col>
+                    )}
+                  
+                </Grid>
+                </Row>
+            </div>
             </div>
             
                 
