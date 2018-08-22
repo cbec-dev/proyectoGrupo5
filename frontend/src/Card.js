@@ -48,7 +48,7 @@ constructTooltip(e){
         <h3>{solution.solutionName}</h3>
         <p>{solution.statement.statementName}</p>
         <p>{solution.user.userName}</p>
-        <p>{solution.user.section.sectionName}</p>
+        <p>{solution.statement.section.sectionName}</p>
         <p>
         
           <div className="container-button">

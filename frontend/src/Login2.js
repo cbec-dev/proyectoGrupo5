@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const firebaseAuthKey = "firebaseAuthInProgress";
 const appTokenKey = "appToken";
-const getUser = async (correo) =>{
+/*const getUser = async (correo) =>{
     let axiosConfig = {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
@@ -40,7 +40,7 @@ const getUser = async (correo) =>{
      catch (err) {
          console.error(err);
      }
-};
+};*/
 
 export default class Login extends React.Component {
 
@@ -92,11 +92,11 @@ export default class Login extends React.Component {
 
 
     }
-    stateSet(email){
-         const user = getUser(email);
-         alert(user)
-         return user;
-    }
+    //stateSet(email){
+    //     const user = getUser(email);
+    //     alert(user)
+    //     return user;
+   // }
     componentWillMount() {
         /*         firebaseAuth().getRedirectResult().then(function(result) {
          if (result.user) {
@@ -175,9 +175,28 @@ export default class Login extends React.Component {
                     // store the token
                     localStorage.setItem("userLogged", JSON.stringify(userLogged));
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
-                    getUser(correo[1])
-                    .then(res => this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), res));
-                    return this.props.history.push("/Home");
+                    //getUser(correo[1])
+                    fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
+                    .then(response => {
+                        if(response.data===undefined||response.data===""||response.data===null){
+                            alert("No se encuentra registrado, sera regresado a login");
+                            localStorage.removeItem(appTokenKey);
+                            localStorage.removeItem("user");
+                            localStorage.removeItem(firebaseAuthKey);
+                            this.setState({userLogged: false, firebaseUser: ""});
+                            //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
+                            localStorage.clear();
+                            window.localStorage.clear();
+                            return this.props.history.push("/Login2");           
+                        }
+                        else{
+                            this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), response.data)
+                            return this.props.history.push("/Home")
+                        }
+
+                    })
+                    //.then(res => this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), res));
+                    //return this.props.history.push("/Home");
                 }
                
             }
