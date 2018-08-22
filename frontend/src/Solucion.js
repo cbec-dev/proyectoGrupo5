@@ -333,8 +333,10 @@ class Solucion extends Component {
             this.render();
     }
     componentDidUpdate(){
+        if(this.props.typeUser!==3){
             this.cm2.codeMirror.setValue(this.state.c1)
             this.cm3.codeMirror.setValue(this.state.c2)
+        }
     }
     checkSolutions(e){
         this.mostrarFeedback(e)
