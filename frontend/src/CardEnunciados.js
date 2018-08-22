@@ -5,6 +5,7 @@ import { Redirect} from "react-router-dom";
 import { Thumbnail, Panel, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
 import { NavItem } from "react-bootstrap";
+import Solucion from "./Solucion";
 
 const tooltip = (
   <Tooltip id="tooltip">
