@@ -185,7 +185,7 @@ export default class Login extends React.Component {
                         console.log(response.json())
                         console.log(response.json().data)
                         console.log("UWU")
-                        if(response.data===undefined||response.data===""||response.data===null){
+                        if(response.json()===undefined||response.json()===""||response.json()===null){
                             alert("No se encuentra registrado, sera regresado a login");
                             localStorage.removeItem(appTokenKey);
                             localStorage.removeItem("user");
@@ -197,7 +197,7 @@ export default class Login extends React.Component {
                             return this.props.history.push("/Login2");           
                         }
                         else{
-                            this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), response.data)
+                            this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), response.json())
                             return this.props.history.push("/Home")
                         }
 
