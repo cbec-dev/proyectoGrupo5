@@ -100,7 +100,7 @@ class ListarEnunciados extends React.Component {
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
-                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
+                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} history={this.props.history} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
                   </Col>
                     )}
                   
@@ -121,7 +121,7 @@ class ListarEnunciados extends React.Component {
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
-                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
+                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} history={this.props.history} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
                   </Col>
                     )}
                   
@@ -142,7 +142,7 @@ class ListarEnunciados extends React.Component {
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
-                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
+                  <CardEnunciados link={imgUrls[Math.floor((Math.random() * 10) + 1)]} history={this.props.history} statement={statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>
                   </Col>
                     )}
                   

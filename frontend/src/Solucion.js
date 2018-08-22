@@ -164,8 +164,8 @@ class Solucion extends Component {
         solution.solutionName = e.nameSolution;
         solution.solutionText = e.code;
         solution.time = this.state.secondsElapsed;
-        solution.idUser = this.props.activeUser.idUser;
-        solution.idStatement = this.props.statement.idStatement;
+        solution.idUser = this.props.location.state.activeUser.idUser;
+        solution.idStatement = this.props.location.state.statement.idStatement;
         this.checkSolutions(e)
         solution.testCasesSuccess = this.state.sTest
         solution.testCases = this.state.nTest
@@ -215,7 +215,7 @@ class Solucion extends Component {
     
         getInitialState () {
             return {
-                code: this.props.statement.header,
+                code: this.props.location.state.statement.header,
                 readOnly: false,
                 mode: {name: "python",
                version: 3,
@@ -300,7 +300,7 @@ class Solucion extends Component {
             this.setState({
                 isLoading: false,
                 nameSolution:"",
-                code: this.props.statement.header,
+                code: this.props.location.state.statement.header,
                 readOnly: false,
                 start: new Date(),
                 mode: {name: "python",
@@ -323,7 +323,7 @@ class Solucion extends Component {
           this.setState({
                 isLoading: false,
                 nameSolution:"",
-                code: this.props.statement.header,
+                code: this.props.location.state.statement.header,
                 readOnly: false,
                 mode: {name: "python",
                    version: 3,
@@ -334,7 +334,7 @@ class Solucion extends Component {
             this.render();
     }
     componentDidUpdate(){
-        if(this.props.typeUser!==3){
+        if(this.props.location.state.typeUser!==3){
             this.cm2.codeMirror.setValue(this.state.c1)
             this.cm3.codeMirror.setValue(this.state.c2)
         }
@@ -343,9 +343,9 @@ class Solucion extends Component {
         this.mostrarFeedback(e)
         var expected = [];
         var test_cases = [];
-        this.props.statement.testCases.map((test) =>
+        this.props.location.state.statement.testCases.map((test) =>
              test_cases.push(test.testCase)   )
-        this.props.statement.expectedSolution.map((test) =>
+        this.props.location.state.statement.expectedSolution.map((test) =>
              expected.push(test.expectedSolution)   )
         console.log("DENTRO CHECK SOLUTIONS c:")
         console.log(expected)
@@ -391,13 +391,13 @@ class Solucion extends Component {
                 readOnly: this.state.readOnly,
                 mode: this.state.mode
             };
-            const header = this.props.statement.header;
-            const typeUser = this.props.typeUser;
+            const header = this.props.location.state.statement.header;
+            const typeUser = this.props.location.state.typeUser;
             const boolError = this.state.boolError;
             const boolFailed = this.state.boolFailed;
             const boolSuccess = this.state.boolSuccess;
-            if(header === undefined || this.props.statement ===undefined){
-                return(<div> {this.props.history.push("/ListarEnunciado")} </div>); 
+            if(header === undefined || this.props.location.state.statement ===undefined){
+                return(<div> {this.props.location.state.history.push("/ListarEnunciado")} </div>); 
             }
             if(typeUser===1 || typeUser===2){
                 return (
@@ -410,7 +410,7 @@ class Solucion extends Component {
                     </div>
                     <div className="div2">
                         
-                        <textarea className="text" name= "text" type = "text" value={this.props.statement.statementText} 
+                        <textarea className="text" name= "text" type = "text" value={this.props.location.state.statement.statementText} 
                         disabled = "true"/>
                     </div>
                     <div className="div1">
@@ -426,7 +426,7 @@ class Solucion extends Component {
                    
                     <div className="div3">
                 <CodeMirror className="codemirror" ref={el => this.cm2 = el} value={this.state.c1} options={options} autoFocus={true} onChange={this.updateCode2} readOnly={true}/>
-                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
+                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.location.state.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
                 <CodeMirror className="codemirror" ref={el => this.cm3 = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
                 <div style={{ marginTop: 10 }} className="div4">
                 <div className="div1">
@@ -510,7 +510,7 @@ class Solucion extends Component {
             else{
                  alert("No tiene permisos para acceder a esta vista")
                 return(
-                    <div> {this.props.history.push("/")} </div>
+                    <div> {this.props.location.state.history.push("/")} </div>
                 );
             }
             }
