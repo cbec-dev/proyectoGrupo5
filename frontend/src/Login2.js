@@ -177,15 +177,16 @@ export default class Login extends React.Component {
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
                     //getUser(correo[1])
                     fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
-                    .then(response => {
+                    .then(response => response.json())
+                    .then(data => {
                         console.log("fetch en login c:")
-                        console.log(response)
-                        console.log(response.data)
+                        console.log(data)
+                        console.log(data)
                         console.log("response json y response json data")
-                        console.log(response.json())
-                        console.log(response.json().data)
+                        console.log(data)
+                        console.log(data)
                         console.log("UWU")
-                        if(response.json()===undefined||response.json()===""||response.json()===null){
+                        if(data===undefined||data===""||data===null){
                             alert("No se encuentra registrado, sera regresado a login");
                             localStorage.removeItem(appTokenKey);
                             localStorage.removeItem("user");
@@ -197,7 +198,7 @@ export default class Login extends React.Component {
                             return this.props.history.push("/Login2");           
                         }
                         else{
-                            this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), response.json())
+                            this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), data)
                             return this.props.history.push("/Home")
                         }
 
