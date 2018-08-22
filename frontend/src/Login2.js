@@ -32,20 +32,9 @@ const getUser = async (correo) =>{
          if(res.status == 200){
              // test for status you want, etc
              console.log(res.status)
+             console.log(res.data)
          }    
          // Don't forget to return something   
-         if(res.data===null||res.data===undefined){
-            alert("No se encuentra registrado");
-            localStorage.removeItem(firebaseAuthKey);
-            localStorage.removeItem(appTokenKey);
-            localStorage.removeItem("user");
-            this.setState({userLogged: false, firebaseUser: ""});
-            //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
-            localStorage.clear();
-            window.localStorage.clear();
-            this.props.history.push("/");
-            return this.handleLogout();
-         }
          return res.data
      }
      catch (err) {
