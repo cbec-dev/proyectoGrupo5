@@ -181,6 +181,10 @@ export default class Login extends React.Component {
                         console.log("fetch en login c:")
                         console.log(response)
                         console.log(response.data)
+                        console.log("response json y response json data")
+                        console.log(response.json())
+                        console.log(response.json().data)
+                        console.log("UWU")
                         if(response.data===undefined||response.data===""||response.data===null){
                             alert("No se encuentra registrado, sera regresado a login");
                             localStorage.removeItem(appTokenKey);

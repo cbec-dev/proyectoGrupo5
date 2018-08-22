@@ -94,9 +94,9 @@ class ListarEnunciados extends React.Component {
 
         if(typeUser===2 && sections!==null){
             return (
-               <div>
-               <Grid>
-                <Row>  
+               <div className="container">
+               <Grid className="container">
+                <Row className="show-grid">  
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
@@ -115,9 +115,9 @@ class ListarEnunciados extends React.Component {
         }
         else if(typeUser===3){
             return (
-                <div>
-               <Grid>
-                <Row>  
+                <div className="container">
+               <Grid className="container">
+                <Row className="show-grid">  
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
@@ -136,9 +136,9 @@ class ListarEnunciados extends React.Component {
         }
         else if(typeUser===1){
             return (
-                <div>
-               <Grid>
-                <Row>  
+                <div className="container">
+               <Grid className="container">
+                <Row className="show-grid">  
                 <Grid className="container" fluid="true"> 
                   {statements.map(statement=> 
                     <Col xs={6} md={4}>
