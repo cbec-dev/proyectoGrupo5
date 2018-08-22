@@ -103,6 +103,7 @@ constructTooltip(e){
         );
     }
     else{
+      return(
         <div>
           <Panel className="grid" alt= "50x50">
           <OverlayTrigger placement="top" overlay={this.constructTooltip(statement)}>
@@ -132,6 +133,7 @@ constructTooltip(e){
           </Panel>
           
           </div>
+          );
         }
   }
 }
