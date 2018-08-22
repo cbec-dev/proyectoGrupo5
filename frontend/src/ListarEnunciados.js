@@ -56,14 +56,17 @@ class ListarEnunciados extends React.Component {
                 //profesor
                 fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
                 .then(response =>  response.json())
-                .then(data => this.setState({sections: data, isLoading: false}))
+                .then(data => fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ data)
+                .then(response => response.json())
+                .then(data => this.setState({statements: data, isLoading: false})))
+                /*.then(data => this.setState({sections: data, isLoading: false}))
                 .catch(err => {
                     console.log("fetch error" + err);
                     this.setState({sections:null, isLoading: false})
                 })
                 .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ this.state.sections.idSection)
                 .then(response => response.json())
-                .then(data => this.setState({statements: data, isLoading: false})))
+                .then(data => this.setState({statements: data, isLoading: false})))*/
             }
             else{
                 this.setState({section: null, sections: null, isLoading: false});
