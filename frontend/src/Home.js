@@ -110,7 +110,7 @@ export default class Home extends React.Component {
                 </body>
             );
         }
-        else if(bool===false){
+        else if(bool!==true){
             alert("No se encuentra registrado, sera regresado al login");
 
             return(

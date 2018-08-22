@@ -28,6 +28,7 @@ class CardEnunciados extends React.Component {
   solucionEnunciado(e){
         this.setState({isSelectedSolution: true, statement: e})
         console.log("solucion enunciado")
+        return (<Redirect push to="/Solucion" render={()=><Solucion statement = {this.props.statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>);
         //return <Redirect to="/Solucion" render={()=><Solucion statement = {e} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>
 
         //return <Link to={{
@@ -94,12 +95,7 @@ constructTooltip(e){
           </div>
         </p>
       </Panel>
-      <div>
-        {this.state.isSelectedSolution ?
-        <Redirect push to="/Solucion" render={()=><Solucion statement = {statement} typeUser = {this.props.typeUser} idUser = {this.props.activeUser.idUser} history = {this.props.history} activeUser = {this.props.activeUser}/>}/>:
-        null
-        }
-        </div>
+      
       </div>
     );
   }

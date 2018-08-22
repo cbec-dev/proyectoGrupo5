@@ -58,6 +58,9 @@ class App extends Component {
 
     }
     myCallbackLogin = (dataFromLogin1, dataFromLogin2, dataFromLogin3) => {
+      console.log("Callback login:")
+      console.log("USUARIO: ")
+      console.log(dataFromLogin3)
       if(dataFromLogin3===undefined||dataFromLogin3===null||dataFromLogin3===""){
         this.setState({ userLogged: false, firebaseUser:dataFromLogin2, user: dataFromLogin3});
         localStorage.setItem('state', JSON.stringify(this.state));

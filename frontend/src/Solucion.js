@@ -295,6 +295,7 @@ class Solucion extends Component {
         console.log(name, value, target);
         }
     componentDidMount() {
+            console.log("Solucion uwu")
             this.interval = setInterval(this.tick, 1000);
             this.setState({
                 isLoading: false,
