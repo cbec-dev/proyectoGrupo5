@@ -62,7 +62,7 @@ export default class Login extends React.Component {
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-        this.stateSet = this.stateSet.bind(this);
+        //this.stateSet = this.stateSet.bind(this);
 
 
     }
