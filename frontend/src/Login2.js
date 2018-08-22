@@ -178,6 +178,9 @@ export default class Login extends React.Component {
                     //getUser(correo[1])
                     fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
                     .then(response => {
+                        console.log("fetch en login c:")
+                        console.log(response)
+                        console.log(response.data)
                         if(response.data===undefined||response.data===""||response.data===null){
                             alert("No se encuentra registrado, sera regresado a login");
                             localStorage.removeItem(appTokenKey);
