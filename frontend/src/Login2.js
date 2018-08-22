@@ -171,13 +171,12 @@ export default class Login extends React.Component {
                     return this.props.history.push("/Login2");
                 }
                 else{
-
                     // store the token
                     localStorage.setItem("userLogged", JSON.stringify(userLogged));
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
                     //getUser(correo[1])
-                    fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
-                    .then(response => response.json())
+                    fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail2/'+correo[1])
+                    .then(response => response.data)
                     .then(data => {
                         console.log("fetch en login c:")
                         console.log(data)
@@ -186,7 +185,7 @@ export default class Login extends React.Component {
                         console.log(data)
                         console.log(data)
                         console.log("UWU")
-                        if(data===undefined||data===""||data===null){
+                        if(data==="false"){
                             alert("No se encuentra registrado, sera regresado a login");
                             localStorage.removeItem(appTokenKey);
                             localStorage.removeItem("user");
@@ -198,15 +197,20 @@ export default class Login extends React.Component {
                             return this.props.history.push("/Login2");           
                         }
                         else{
-                            this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), data)
-                            return this.props.history.push("/Home")
-                        }
+                            console.log("else, usuario existe")
+                            fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
+                            .then(response => response.json())
+                            .then(data =>{
+                                console.log("usuario: ")
+                                console.log(data)                                
+                                this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), data)
+                                return this.props.history.push("/Home")
+                                    })
+                            }
 
-                    })
-                    //.then(res => this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), res));
-                    //return this.props.history.push("/Home");
-                }
-               
+                        })
+                    
+               }
             }
         });
     }
