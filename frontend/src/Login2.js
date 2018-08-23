@@ -185,7 +185,7 @@ export default class Login extends React.Component {
                         console.log(data)
                         console.log(data)
                         console.log("UWU")
-                        if(data==="false"){
+                        if(data==="false"||data===false){
                             alert("No se encuentra registrado, sera regresado a login");
                             localStorage.removeItem(appTokenKey);
                             localStorage.removeItem("user");
