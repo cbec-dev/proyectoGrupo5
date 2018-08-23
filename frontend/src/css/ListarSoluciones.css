@@ -25,7 +25,3 @@ table#t05 {
     padding-left: 2px;
     padding-right: 2px;
  }
-.show-grid{
-    resize: vertical;
-    overflow: auto;    
-}
