@@ -2,3 +2,8 @@ table#t02 {
     width: 100%; 
     background-color: #eba3a3;
 }
+
+.show-grid{
+    resize: vertical;
+    overflow: auto;    
+}
