@@ -35,7 +35,7 @@ constructTooltip(e){
    
     return (
       
-      <Panel className="grid" alt= "50x50">
+      <Panel className="panel" alt= "50x50">
       <OverlayTrigger placement="top" overlay={this.constructTooltip(solution)}>
       <LinkContainer to={{ pathname: '/MostrarSolucion', state: { solution: solution, statement: solution.statement, typeUser: this.props.typeUser, activeUser: this.props.activeUser} }}>
          <Thumbnail src={this.props.link} alt="50x50" className="thumbnail" onMouseEnter={this.handleMouseHover}
