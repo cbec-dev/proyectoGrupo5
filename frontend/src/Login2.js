@@ -176,7 +176,7 @@ export default class Login extends React.Component {
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
                     //getUser(correo[1])
                     fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail2/'+correo[1])
-                    .then(response => response.data)
+                    .then(response => response.json())
                     .then(data => {
                         console.log("fetch en login c:")
                         console.log(data)
