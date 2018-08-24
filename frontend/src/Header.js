@@ -133,7 +133,7 @@ class Header extends Component {
             </NavItem>
              </LinkContainer>
              <LinkContainer to="/Progreso">
-            <NavItem className="menuItem" eventKey={3.5} href="#">
+            <NavItem className="menuItem" eventKey={3.8} href="#">
                 Ver progreso
             </NavItem>
              </LinkContainer>
@@ -184,7 +184,7 @@ class Header extends Component {
             </NavItem>
              </LinkContainer>
              <LinkContainer to="/Progreso">
-            <NavItem className="menuItem" eventKey={3.5} href="#">
+            <NavItem className="menuItem" eventKey={3.8} href="#">
                 Ver progreso
             </NavItem>
              </LinkContainer>
