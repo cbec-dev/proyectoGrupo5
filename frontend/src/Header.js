@@ -132,6 +132,11 @@ class Header extends Component {
                 Ver Soluciones
             </NavItem>
              </LinkContainer>
+             <LinkContainer to="/Progreso">
+            <NavItem className="menuItem" eventKey={3.5} href="#">
+                Ver progreso
+            </NavItem>
+             </LinkContainer>
             </NavDropdown>
             <div className="image-cropper">
             <img className="image" src={photoURL} />
@@ -176,6 +181,11 @@ class Header extends Component {
              <LinkContainer to="/ListarSoluciones">
             <NavItem className="menuItem" eventKey={3.5} href="#">
                 Ver Soluciones
+            </NavItem>
+             </LinkContainer>
+             <LinkContainer to="/Progreso">
+            <NavItem className="menuItem" eventKey={3.5} href="#">
+                Ver progreso
             </NavItem>
              </LinkContainer>
             </NavDropdown>
