@@ -17,36 +17,73 @@ class Progreso extends Component {
         
         this.state = {
             career: "",
-            seccion: "",
+            filter: "",
             opcion: ""
 
         };
     }
 
+    changeMode (e) {
+        var mode = e.target.value;
+        this.setState({
+            mode: mode,
+            name: e.target.value,
+        });
+        console.log(this.state.name)
+    }
+
+    buscar(e) {
+        
+        this.progreso = {filter: "", mode: ""}
+        
+        
+        this.progreso.filter = e.filter;
+        this.progreso.mode = e.mode;
+        var algo = {filter: "", mode: ""}
+        algo.filter = "print(33)";
+        algo.mode = "python";
+        var filter = e.filter;
+        var bodyFormData = new FormData();
+        bodyFormData.set('filter', e.filter);
+        bodyFormData.set('mode',e.mode);
+     
+
+           
+            axios({
+                method: 'post',
+                url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
+                data: qs.stringify(this.progreso),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             }).then(response => this.setState({salida: response.data.stdout}));
+             
+        
+    }
 
         render() {
         
             
            
                 return (
-                   <body className="body"> 
+
+                    <body className="body"> 
                     <form className="form">
-                   <div>
-                    <label className="labels"> Escoger de quién desea ver el progreso  </label>
-                    <select onChange={this.changeMode} value={this.state.name}>
+                    <div>    
+                        <label className="labels"> Escoger de quién desea ver el progreso  </label>
+                        <select onChange={this.changeMode} value={this.state.filter}>
                             <option value="seccion">Seccion</option>
                             <option value="carrera">Carrera</option>
                         </select>
                     </div>
-                       <div>
-
-                        </div>
+                       
                     <div>
                     <label className="labels"> Escoger las estadísticas que desea ver  </label>
-                    
-                    <select onChange={this.changeMode} value={this.state.name}>
+                    <select onChange={this.changeMode} value={this.state.mode}>
                         <option value="Tiempo empleado en resolver problemas">Tiempo empleado en resolver problemas</option>
-                        <option value="soluciones correctas">SOluciones correctas</option>
+                        <option value="soluciones correctas">Soluciones correctas</option>
                     </select>
                     </div>
          
