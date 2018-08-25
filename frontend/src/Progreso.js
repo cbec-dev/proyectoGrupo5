@@ -18,8 +18,8 @@ class Progreso extends Component {
         this.changeMode1 = this.changeMode1.bind(this);
         this.state = {
             career: "",
-            filter: "",
-            method: ""
+            filter: "section",
+            method: "time"
 
         };
     }
@@ -34,7 +34,7 @@ class Progreso extends Component {
     }
 
     changeMode1 (e) {
-        var mode = e.target.value;
+        var method = e.target.value;
         this.setState({
             
             method: e.target.value
@@ -47,23 +47,23 @@ class Progreso extends Component {
         
         
         this.progreso.filter = e.filter;
-        this.progreso.method = e.mode;
+        this.progreso.method = e.method;
+        console.log("el filtroes:" + this.progreso.filter);
+        console.log("el method es:" + this.progreso.method);
         var algo = {filter: "", method: ""}
         algo.filter = "seccion";
         algo.method = "tiempo";
         var filter = e.filter;
         var bodyFormData = new FormData();
         bodyFormData.set('filter', e.filter);
-        bodyFormData.set('method',e.mode);
-
-        console.log("Datos enviados en el request: ")
-        console.log(bodyFormData)
-
-        fetch('http://209.97.152.30:8080/backendGrupo5/solutions/getStats?filter='+"career"+"&method=" + "time")
-        //.then(response => response.json())
-        .then(data => this.setState({salida: response.data}));
-     
-
+        bodyFormData.set('method', e.method);
+        console.log(bodyFormData);
+        //console.log("Datos enviados en el request: ") 
+        //console.log(bodyFormData) 
+ 
+        //fetch('http://209.97.152.30:8080/backendGrupo5/solutions/getStats?filter='+"career"+"&method=" + "time") 
+        //.then(response => response.json()) 
+        //.then(data => this.setState({salida: response.data})); 
            
             axios({
                 method: 'post',
@@ -90,16 +90,16 @@ class Progreso extends Component {
                     <div className="div1">    
                         <label className="labels"> Escoger de quién desea ver el progreso     </label>
                         <select onChange={this.changeMode} value={this.state.filter}>
-                            <option value="section">Secciones</option>
-                            <option value="career">Carreras</option>    
+                        <option value="section">Secciones</option> 
+                            <option value="career">Carreras</option>      
                         </select>
                     </div>
                        
                     <div className="div1">
                     <label className="labels"> Escoger las estadísticas que desea ver     </label>
-                    <select onChange={this.changeMode1} value={this.state.mode}>
+                    <select onChange={this.changeMode1} value={this.state.method}>
                         <option value="time">Tiempo empleado en resolver problemas</option>
-                        <option value="correctSolutions">Soluciones correctas</option>
+                        <option value="correctSolutions">Soluciones correctas</option> 
                     </select>
                     </div>
          
