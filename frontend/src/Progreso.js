@@ -34,18 +34,18 @@ class Progreso extends Component {
 
     buscar(e) {
         
-        this.progreso = {filter: "", mode: ""}
+        this.progreso = {filter: "", method: ""}
         
         
         this.progreso.filter = e.filter;
-        this.progreso.mode = e.mode;
-        var algo = {filter: "", mode: ""}
-        algo.filter = "print(33)";
-        algo.mode = "python";
+        this.progreso.method = e.mode;
+        var algo = {filter: "", method: ""}
+        algo.filter = "seccion";
+        algo.method = "tiempo";
         var filter = e.filter;
         var bodyFormData = new FormData();
         bodyFormData.set('filter', e.filter);
-        bodyFormData.set('mode',e.mode);
+        bodyFormData.set('method',e.mode);
      
 
            
