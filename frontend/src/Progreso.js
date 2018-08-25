@@ -59,7 +59,7 @@ class Progreso extends Component {
         axios({
             method: 'post',
             url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
-            data: bodyFormData,
+            data: qs.stringify(this.progreso),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
