@@ -17,8 +17,8 @@ class Progreso extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.changeMode1 = this.changeMode1.bind(this);
         this.state = {
-            filter: "",
-            method: "",
+            filter: "career",
+            method: "time",
             salida: ""
 
         };
@@ -52,15 +52,21 @@ class Progreso extends Component {
         algo.filter = "seccion";
         algo.method = "tiempo";
         var filter = e.filter;
+
+
         var bodyFormData = new FormData();
-        bodyFormData.set('filter', e.filter);
-        bodyFormData.set('method',e.mode);
-
-        console.log("Datos enviados en el request: ")
-        console.log(bodyFormData)
-
-        fetch('http://209.97.152.30:8080/backendGrupo5/solutions/getStats?filter='+"career"+"&method=" + "time")
-        .then(response => this.setState({salida: response.data}));
+        bodyFormData.set('filter', e.code);
+        bodyFormData.set('method', e.name);
+        axios({
+            method: 'post',
+            url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
+            data: bodyFormData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+                "Access-Control-Allow-Methods": "POST",
+            },
+         }).then(response => this.setState({salida: response.data})); 
      
 
            

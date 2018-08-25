@@ -30,7 +30,7 @@ import com.mingeso.grupo5.proyecto.repositories.StatementRepository;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller   
-@CrossOrigin(origins = {"http://209.97.152.30:5050", "http://localhost:5050"})
+@CrossOrigin(origins = {"http://209.97.152.30:5050"})
 @RequestMapping(path="/solutions") 
 public class SolutionController {
 	@Autowired 
@@ -172,8 +172,8 @@ public class SolutionController {
 		return retorno;
 	}
 
-	@GetMapping(path="/getStats/{method}{filter}")
-	public @ResponseBody String getStats(@PathVariable("method") String method, @PathVariable("method") String filter) {
+	@GetMapping(path="/getStatsOLD/{method}{filter}")
+	public @ResponseBody String getStatsOLD(@PathVariable("method") String method, @PathVariable("method") String filter) {
 
 		//Se crea contexto y se elige método a utilizar
 		SolutionStatsContext ctx = new SolutionStatsContext();
@@ -205,8 +205,8 @@ public class SolutionController {
 
 	}
 
-	@RequestMapping(value="/getStatsOLD", method = RequestMethod.GET)
-    @ResponseBody String getStatsOLD(
+	@RequestMapping(value="/getStats", method = RequestMethod.GET)
+    @ResponseBody String getStats(
 		@RequestParam String filter,
 		@RequestParam String method) throws IOException {
 
