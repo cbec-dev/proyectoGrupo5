@@ -172,41 +172,8 @@ public class SolutionController {
 		return retorno;
 	}
 
-	@GetMapping(path="/getStats/{method}{filter}")
-	public @ResponseBody String getStats(@PathVariable("method") String method, @PathVariable("method") String filter) {
-
-		//Se crea contexto y se elige método a utilizar
-		SolutionStatsContext ctx = new SolutionStatsContext();
-		switch (method) {
-			case "time":	ctx.setStatsStrategy(new TimeStats());
-							break;
-			
-			default:        ctx=null;
-							break;
-		}
-
-		//Se obtiene la lista de soluciones base
-		ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
-		switch (filter) {
-			case "career":  
-							break;
-			case "section": //solutions = findBySection(id);
-							break;
-			default:        solutions = null;
-							break;
-		}
-
-		if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
-
-		String out = ctx.getStats(solutions);
-
-		return out;
-		
-
-	}
-
-	@RequestMapping(value="/getStatsOLD", method = RequestMethod.GET)
-    @ResponseBody String getStatsOLD(
+	@RequestMapping(value="/getStats", method = RequestMethod.GET)
+    @ResponseBody String getStats(
 		@RequestParam String filter,
 		@RequestParam String method) throws IOException {
 
@@ -237,8 +204,5 @@ public class SolutionController {
 
 			return out;
 	}
-
-
-	
 	
 }
