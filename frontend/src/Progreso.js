@@ -47,12 +47,12 @@ class Progreso extends Component {
         
         
         this.progreso.filter = e.filter;
-        this.progreso.method = e.mode;
+        this.progreso.method = e.method;
 
 
         var bodyFormData = new FormData();
-        bodyFormData.set('filter', e.code);
-        bodyFormData.set('method', e.name);
+        bodyFormData.set('filter', e.filter);
+        bodyFormData.set('method', e.method);
 
         console.log(bodyFormData)
         console.log(this.progreso)
