@@ -19,7 +19,9 @@ public class TimeStats implements SolutionStatsStrategy {
 		float promTime = 0;	//Tiempo promedio
 		int size = solutions.size(); //Cantidad total de soluciones
 		for(Solution sol : solutions){
-			totalTime += sol.getTime();
+			if(sol.getTime()!=null) {
+				totalTime += sol.getTime();
+			}
 		}
 
 		promTime = (float) totalTime/size;

@@ -174,8 +174,8 @@ public class CompilerController {
     
                 // if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
     
-                // //String out = ctx.getStats(solutions);
-                String out = method + " - " + filter;
+                String out = ctx.getStats(solutions);
+                String out2 = method + " - " + filter;
     
                 return out;
         }
