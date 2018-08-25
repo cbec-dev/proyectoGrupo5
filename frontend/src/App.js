@@ -26,6 +26,7 @@ import VerSolucion from './verSolucion';
 import MostrarSolucion from './MostrarSolucion';
 import {BrowserRouter} from "react-router-dom";
 import MostrarEnunciado from "./MostrarEnunciado";
+import Progreso from './Progreso';
 
 
 
@@ -127,6 +128,8 @@ class App extends Component {
         <Route path="/MostrarSolucion" component={MostrarSolucion}/>
         <Route path="/MostrarEnunciado" component={MostrarEnunciado}/>
         <Route path="/Solucion" component={Solucion}/>
+        <Route path="/Progreso" component={()=><Progreso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+
 
 
 
@@ -162,6 +165,8 @@ class App extends Component {
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/MostrarSolucion" component={()=><MostrarSolucion history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/MostrarEnunciado" component={MostrarEnunciado}/>
+        <Route path="/Progreso" component={()=><Progreso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+
 
       
 
