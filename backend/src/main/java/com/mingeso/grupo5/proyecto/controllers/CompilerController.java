@@ -11,10 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.mingeso.grupo5.proyecto.entities.TestCase;
 import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
+import com.mingeso.grupo5.proyecto.entities.Solution;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
+import com.mingeso.grupo5.proyecto.helpers.SolutionStatsContext;
+import com.mingeso.grupo5.proyecto.helpers.statstrategies.TimeStats;
+import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
+import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
 
 @Controller
 @CrossOrigin(origins = "http://209.97.152.30:5050")
@@ -22,6 +28,10 @@ import com.mingeso.grupo5.proyecto.helpers.Compiler;
 
 public class CompilerController {
     @Autowired 
+    private SolutionRepository solutionRepository;
+	@Autowired
+	private CareerRepository careerRepository;
+    
     @GetMapping(path="/languages")
 	public @ResponseBody String getAll() throws IOException {
 
@@ -133,6 +143,39 @@ public class CompilerController {
             retorno.add(""+casos_exitosos);
             return retorno;
 
+        }
+
+        @RequestMapping(value="/getStats", method = RequestMethod.POST)
+        @ResponseBody String getStats(
+            @RequestParam String filter,
+            @RequestParam String method) throws IOException {
+    
+                //Se crea contexto y se elige método a utilizar
+                SolutionStatsContext ctx = new SolutionStatsContext();
+                switch (method) {
+                    case "time":	ctx.setStatsStrategy(new TimeStats());
+                                    break;
+                    
+                    default:        ctx=null;
+                                    break;
+                }
+    
+                //Se obtiene la lista de soluciones base
+                ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
+                switch (filter) {
+                    case "career":  
+                                    break;
+                    case "section": //solutions = findBySection(id);
+                                    break;
+                    default:        solutions = null;
+                                    break;
+                }
+    
+                if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
+    
+                String out = ctx.getStats(solutions);
+    
+                return "EL REQUEST FUNCIONO CORRECTAMENTE";
         }
     
 }

@@ -59,7 +59,7 @@ class Progreso extends Component {
         bodyFormData.set('method', e.name);
         axios({
             method: 'post',
-            url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
+            url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
             data: bodyFormData,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
