@@ -88,10 +88,10 @@ class MostrarEnunciado extends Component {
 
      getInitialState () {
             return {
-                code: this.props.statement.header,
-                nameStatement: this.props.statement.nameStatement,
-                text: this.props.statement.statementText,
-                sectionName: this.props.statement.section.sectionName,
+                code: this.props.location.state.statement.header,
+                nameStatement: this.props.location.state.statement.nameStatement,
+                text: this.props.location.state.statement.statementText,
+                sectionName: this.props.location.state.statement.section.sectionName,
                 readOnly: true,
                 mode: {name: "python",
                version: 3,
@@ -107,7 +107,7 @@ class MostrarEnunciado extends Component {
 
 
         render() {
-            const statement = this.props.statement;
+            const statement = this.props.location.state.statement;
             //const header = this.props.statement.header.split("\"");
          
             const initialDate = statement.initialDate.split("T"); 

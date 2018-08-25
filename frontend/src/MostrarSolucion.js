@@ -15,6 +15,7 @@ require('codemirror/lib/codemirror.css');
 require('codemirror/mode/python/python');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/clike/clike');
 var defaults = {
 	C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
 	python: '#Python 2.7'
@@ -23,7 +24,8 @@ var defaults = {
 class MostrarSolucion extends Component {
     constructor(props) {
         super(props);
-
+        this.updateCode2 = this.updateCode2.bind(this); 
+        this.updateCode3 = this.updateCode3.bind(this);
         this.changeMode = this.changeMode.bind(this);
         this.state = {
             isLoading: false,
@@ -52,6 +54,8 @@ class MostrarSolucion extends Component {
             start: "",
             nTest: "",
             sTest: "",
+            c1: "#python",
+            c2: "funcion(entradas)",
 
         };
     }
@@ -94,7 +98,9 @@ class MostrarSolucion extends Component {
         //this.cm.codeMirror.setValue(this.props.statement.header)
      }
      componentDidUpdate(){
-            this.cm.codeMirror.setValue(this.props.solution.solutionText)
+            this.cm.codeMirror.setValue(this.props.location.state.solution.solutionText)
+            this.cm2.codeMirror.setValue(this.state.c1)
+            this.cm3.codeMirror.setValue(this.state.c2)
     }
     componentDidMount() {
             
@@ -118,12 +124,48 @@ class MostrarSolucion extends Component {
 
 
         }
-    changeMode (e) {
-            var mode = e.target.value;
+        updateCode2 (newCode) {
+            console.log("CODE CODEMIRROR: " + newCode)
             this.setState({
+                code: newCode
+            });
+        }
+        updateCode3 (newCode) {
+            console.log("CODE CODEMIRROR: " + newCode)
+            this.setState({
+                code: newCode
+            });
+        }
+        changeMode (e) {
+            var mode = e.target.value;
+            if(e.target.value==="c"){
+                console.log("IF C");
+                this.setState({
+                mode: "text/x-csrc",
+                name: e.target.value,
+                c1: "#include <stdio.h>\n",
+                c2: "\nint main(){\nfuncion(entradas);\nreturn 0;\n}",
+            });
+            }
+            else if(e.target.value==="python"){
+                console.log("IF PYTHON");
+                this.setState({
                 mode: mode,
                 name: e.target.value,
+                c1:"#python\n",
+                c2: "\nfuncion(entradas)",
             });
+            }
+            else{
+                console.log("IF JAVA");
+                this.setState({
+                mode: "text/x-java",
+                name: e.target.value,
+                c1: "public class MyClass {\n",
+                c2: "\npublic static void main(String args[]) { \n\tfuncion(entradas);\n\t}\n}",
+            });
+            }
+            
             console.log(this.state.name)
         }
     mostrarFeedback(e)
@@ -153,9 +195,9 @@ class MostrarSolucion extends Component {
         this.mostrarFeedback(e)
         var expected = [];
         var test_cases = [];
-        this.props.statement.testCases.map((test) =>
+        this.props.location.state.statement.testCases.map((test) =>
              test_cases.push(test.testCase)   )
-        this.props.statement.expectedSolution.map((test) =>
+        this.props.location.state.statement.expectedSolution.map((test) =>
              expected.push(test.expectedSolution)   )
         console.log("DENTRO CHECK SOLUTIONS c:")
         console.log(expected)
@@ -163,13 +205,13 @@ class MostrarSolucion extends Component {
 
         this.solution = {code: "", lang: "", expectedSolution: [], testCases: []}
         var lang = "python";
-        this.solution.code = this.props.solution.solutionText;
+        this.solution.code = this.props.location.state.solution.solutionText;
         this.solution.lang = e.name;
         this.solution.expectedSolution = expected;
         this.solution.testCases = test_cases;
         var bodyFormData = new FormData();
-        bodyFormData.set('code', this.props.solution.solutionText);
-        console.log(this.props.solution.solutionText)
+        bodyFormData.set('code', this.state.c1+"\n"+e.code+"\n"+this.state.c2);
+        console.log(this.props.location.state.solution.solutionText)
         bodyFormData.set('lang', e.name);
         var i = 0;
         for(i = 0; i<expected.length;i++){
@@ -198,10 +240,10 @@ class MostrarSolucion extends Component {
 
 
         render() {
-            const solution = this.props.solution;
-            const statement = this.props.statement;
+            const solution = this.props.location.state.solution;
+            const statement = this.props.location.state.statement;
             //const header = this.props.statement.header.split("\"");
-      
+            console.log(solution)
             var options = {
                 lineNumbers: true,
                 readOnly: true,
@@ -259,7 +301,9 @@ class MostrarSolucion extends Component {
                     </div>
                    
                     <div className="div3">
+                <CodeMirror className="codemirror" ref={el => this.cm2 = el} value={this.state.c1} options={options} autoFocus={true} onChange={this.updateCode2} readOnly={true}/>
 				<CodeMirror className="codemirror" ref={el => this.cm = el} value={solution.solutionText} options={options} autoFocus={true} />
+                <CodeMirror className="codemirror" ref={el => this.cm3 = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
 		          <div style={{ marginTop: 10 }} className="div4">
                 <div className="div1">
                     <label className="labels"> Lenguaje de la Solución:  </label>

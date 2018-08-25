@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const firebaseAuthKey = "firebaseAuthInProgress";
 const appTokenKey = "appToken";
-const getUser = async (correo) =>{
+/*const getUser = async (correo) =>{
     let axiosConfig = {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
@@ -32,6 +32,7 @@ const getUser = async (correo) =>{
          if(res.status == 200){
              // test for status you want, etc
              console.log(res.status)
+             console.log(res.data)
          }    
          // Don't forget to return something   
          return res.data
@@ -39,7 +40,7 @@ const getUser = async (correo) =>{
      catch (err) {
          console.error(err);
      }
-};
+};*/
 
 export default class Login extends React.Component {
 
@@ -61,7 +62,7 @@ export default class Login extends React.Component {
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-        this.stateSet = this.stateSet.bind(this);
+        //this.stateSet = this.stateSet.bind(this);
 
 
     }
@@ -91,11 +92,11 @@ export default class Login extends React.Component {
 
 
     }
-    stateSet(email){
-         const user = getUser(email);
-         alert(user)
-         return user;
-    }
+    //stateSet(email){
+    //     const user = getUser(email);
+    //     alert(user)
+    //     return user;
+   // }
     componentWillMount() {
         /*         firebaseAuth().getRedirectResult().then(function(result) {
          if (result.user) {
@@ -170,15 +171,46 @@ export default class Login extends React.Component {
                     return this.props.history.push("/Login2");
                 }
                 else{
-
                     // store the token
                     localStorage.setItem("userLogged", JSON.stringify(userLogged));
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
-                    getUser(correo[1])
-                    .then(res => this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), res));
-                    return this.props.history.push("/Home");
-                }
-               
+                    //getUser(correo[1])
+                    fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail2/'+correo[1])
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("fetch en login c:")
+                        console.log(data)
+                        console.log(data)
+                        console.log("response json y response json data")
+                        console.log(data)
+                        console.log(data)
+                        console.log("UWU")
+                        if(data==="false"||data===false){
+                            alert("No se encuentra registrado, sera regresado a login");
+                            localStorage.removeItem(appTokenKey);
+                            localStorage.removeItem("user");
+                            localStorage.removeItem(firebaseAuthKey);
+                            this.setState({userLogged: false, firebaseUser: ""});
+                            //this.props.callbackFromParentLogin(this.state.userLogged, this.state.firebaseUser);
+                            localStorage.clear();
+                            window.localStorage.clear();
+                            return this.props.history.push("/Login2");           
+                        }
+                        else{
+                            console.log("else, usuario existe")
+                            fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
+                            .then(response => response.json())
+                            .then(data =>{
+                                console.log("usuario: ")
+                                console.log(data)                                
+                                this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), data)
+                                return this.props.history.push("/Home")
+                                    })
+                            }
+
+                        })
+                    
+               }
             }
         });
     }

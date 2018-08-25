@@ -51,7 +51,7 @@ export default class Home extends React.Component {
             localStorage.removeItem("activeUserObject");
             this.props.callbackFromParentHome(this.state.userLogged);
             this.setState({userLogged: false, firebaseUser: ""});
-            this.props.history.push("/Login2");
+            this.props.history.push("/");
             localStorage.clear();
             window.localStorage.clear(); 
 

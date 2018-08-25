@@ -1,0 +1,27 @@
+.panel{
+	border-width: 4px;
+	border-style: solid;
+	text-align: center;
+	height: 420px;
+
+}
+.thumbnail{
+	border-width: 2px;
+	border-style: solid;
+	text-align: center;
+}
+.button{
+	align-self: center;
+
+}
+.button1{
+	align-self: center;
+	background-color: orange;
+}
+.container-button{
+	align-self: center;
+	align-items: center;
+	align-content: center;
+	text-align: center;
+
+}

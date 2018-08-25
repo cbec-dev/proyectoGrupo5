@@ -9,7 +9,6 @@ import Enunciado from './Enunciado';
 import Solucion from './Solucion';
 import CodeMirror from './codemirror/CodeMirror';
 import Prueba from './Prueba';
-//import Stats from './Stats';
 import Login2 from './Login2';
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import createBrowserHistory from "history/createBrowserHistory";
@@ -24,8 +23,10 @@ import {firebaseAuth} from "./firebase/constants";
 import axios from 'axios';
 import ListarSoluciones from './ListarSoluciones';
 import VerSolucion from './verSolucion';
-import Progreso from './Progreso';
+import MostrarSolucion from './MostrarSolucion';
 import {BrowserRouter} from "react-router-dom";
+import MostrarEnunciado from "./MostrarEnunciado";
+import Progreso from './Progreso';
 
 
 
@@ -58,7 +59,10 @@ class App extends Component {
 
     }
     myCallbackLogin = (dataFromLogin1, dataFromLogin2, dataFromLogin3) => {
-      if(dataFromLogin3===undefined){
+      console.log("Callback login:")
+      console.log("USUARIO: ")
+      console.log(dataFromLogin3)
+      if(dataFromLogin3===undefined||dataFromLogin3===null||dataFromLogin3===""){
         this.setState({ userLogged: false, firebaseUser:dataFromLogin2, user: dataFromLogin3});
         localStorage.setItem('state', JSON.stringify(this.state));
         localStorage.setItem('activeUserObject', JSON.stringify(dataFromLogin3));
@@ -112,7 +116,6 @@ class App extends Component {
         <Route path="/RegistroProfesor" component={()=> <RegistroProfesor typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/Prueba" component={()=> <Prueba typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
         <Route path="/Enunciado" component={()=> <Enunciado typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
-        <Route path="/Solucion" component={()=> <Solucion statement={statement} callBackFromParentStatement= {this.myCallbackStatement} location={this.props.location} typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}  />
         <Route path="/Code" component={()=> <CodeMirror typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>} />
     <Route path= "/Login2" component={()=> <Login2 typeUser={this.state.user.userType} callbackFromParentLogin ={this.myCallbackLogin} history={customHistory}/>}/>
         <Route path="/Home" component={()=> <Home typeUser={this.state.user.userType} callbackFromParentHome ={this.myCallbackHome} history={customHistory} callbackFromParentHomeUser ={this.myCallbackHomeUser}/>} />
@@ -122,6 +125,12 @@ class App extends Component {
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/Progreso" component={()=><Progreso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/VerSolucion" component={()=><verSolucion typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
+        <Route path="/MostrarSolucion" component={MostrarSolucion}/>
+        <Route path="/MostrarEnunciado" component={MostrarEnunciado}/>
+        <Route path="/Solucion" component={Solucion}/>
+        <Route path="/Progreso" component={()=><Progreso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+
+
 
 
       </Switch>
@@ -154,8 +163,11 @@ class App extends Component {
         <Route path="/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/MostrarSolucion" component={()=><MostrarSolucion history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/MostrarEnunciado" component={MostrarEnunciado}/>
         <Route path="/Progreso" component={()=><Progreso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
-        
+
+
       
 
       </Switch>

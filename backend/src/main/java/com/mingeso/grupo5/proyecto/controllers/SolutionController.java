@@ -174,11 +174,10 @@ public class SolutionController {
 		return retorno;
 	}
 
-	@RequestMapping(path="/getStats", method = RequestMethod.POST)
-    @ResponseBody String checkCode(
+	@RequestMapping(path="/getStats", method = RequestMethod.GET)
+    @ResponseBody String getStats(
 		@RequestParam String filter,
-		@RequestParam String method,
-        @RequestParam int id) throws IOException {
+		@RequestParam String method) throws IOException {
 
 			//Se crea contexto y se elige método a utilizar
 			SolutionStatsContext ctx = new SolutionStatsContext();
@@ -191,9 +190,9 @@ public class SolutionController {
 			}
 
 			//Se obtiene la lista de soluciones base
-			ArrayList<Solution> solutions = null;
+			ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
 			switch (filter) {
-				case "career":  solutions = findByCareer(id);
+				case "career":  
 								break;
 				case "section": //solutions = findBySection(id);
 								break;

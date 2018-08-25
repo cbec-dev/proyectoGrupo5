@@ -145,10 +145,13 @@ public class UserController {
 		return retorno;
 	}
 
-	@RequestMapping(value = "/searchby/{email}", method = RequestMethod.GET)
+	@RequestMapping(value = "/searchbyEmail2/{email}", method = RequestMethod.GET)
 	@ResponseBody
-	public  User findByE(@PathVariable("email") String email) {
-		return userRepository.findBycorreo(email);
+	public  String findByEmail(@PathVariable("email") String email) {
+		if(userRepository.findBycorreo(email)==null){
+			return "false";
+		}
+		return "true";
 	}
 
 	

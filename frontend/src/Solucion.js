@@ -7,14 +7,14 @@ import axios from 'axios';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
-import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
+import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav, Alert} from "react-bootstrap"
 var ReactDOM = require('react-dom');
 var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
 
 require('codemirror/lib/codemirror.css');
 require('codemirror/mode/python/python');
-require('codemirror/mode/xml/xml');
+require('codemirror/mode/clike/clike');
 require('codemirror/mode/markdown/markdown');
 var defaults = {
     C: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
@@ -27,6 +27,8 @@ class Solucion extends Component {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.updateCode = this.updateCode.bind(this); 
+        this.updateCode2 = this.updateCode2.bind(this); 
+        this.updateCode3 = this.updateCode3.bind(this); 
         this.changeMode = this.changeMode.bind(this);
         this.limpiarValores = this.limpiarValores.bind(this);
         this.toggleReadOnly = this.toggleReadOnly.bind(this);
@@ -52,7 +54,15 @@ class Solucion extends Component {
             start: "",
             nTest: "",
             sTest: "",
-            bool: true
+            bool: true,
+            c1: "#python",
+            c2: "funcion(entradas)",
+            boolFailed: false,
+            boolSuccess: false,
+            boolError: false,
+            textFailed: "",
+            textSuccess: "",
+            textAlert: "",
 
         };
     }
@@ -64,7 +74,7 @@ class Solucion extends Component {
         this.checkSolutions(e);
 
         
-        this.solution.code = e.code;
+        this.solution.code = this.state.c1+"\n"+e.code+"\n"+this.state.c2;
         this.solution.lang = e.name;
         var algo = {code: "", lang: ""}
         algo.code = "print(33)";
@@ -154,8 +164,8 @@ class Solucion extends Component {
         solution.solutionName = e.nameSolution;
         solution.solutionText = e.code;
         solution.time = this.state.secondsElapsed;
-        solution.idUser = this.props.activeUser.idUser;
-        solution.idStatement = this.props.statement.idStatement;
+        solution.idUser = this.props.location.state.activeUser.idUser;
+        solution.idStatement = this.props.location.state.statement.idStatement;
         this.checkSolutions(e)
         solution.testCasesSuccess = this.state.sTest
         solution.testCases = this.state.nTest
@@ -182,7 +192,18 @@ class Solucion extends Component {
                     "Access-Control-Allow-Origin": "http://localhost:3000",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => alert(response.data));
+             }).then(response => {
+                if(response.data==="Ya existe una solucion para este usuario y enunciado"){
+                    this.setState({boolFailed: true, boolSuccess: false, boolError: false, textAlert: response.data})
+                }
+                else if(response.data==="Solucion guardada"){
+                    this.setState({boolFailed: false, boolSuccess: true, boolError: false, textAlert: response.data})
+                }
+                else{
+                    this.setState({boolFailed: false, boolSuccess: false, boolError: true})
+                }
+
+                });
             //fetch('http://localhost:8081/api/add?code='+this.solution.code+'&nombre='+this.solution.nameSolution)
             //.then(response => console.log("Solucion Agregado"+response)) 
             //alert('Su solucion fue enviada: ');
@@ -194,7 +215,7 @@ class Solucion extends Component {
     
         getInitialState () {
             return {
-                code: this.props.statement.header,
+                code: this.props.location.state.statement.header,
                 readOnly: false,
                 mode: {name: "python",
                version: 3,
@@ -207,12 +228,48 @@ class Solucion extends Component {
                 code: newCode
             });
         }
+        updateCode2 (newCode) {
+            console.log("CODE CODEMIRROR: " + newCode)
+            this.setState({
+                code: newCode
+            });
+        }
+        updateCode3 (newCode) {
+            console.log("CODE CODEMIRROR: " + newCode)
+            this.setState({
+                code: newCode
+            });
+        }
         changeMode (e) {
             var mode = e.target.value;
-            this.setState({
+            if(e.target.value==="c"){
+                console.log("IF C");
+                this.setState({
+                mode: "text/x-csrc",
+                name: e.target.value,
+                c1: "#include <stdio.h>\n",
+                c2: "\nint main(){\nfuncion(entradas);\nreturn 0;\n}",
+            });
+            }
+            else if(e.target.value==="python"){
+                console.log("IF PYTHON");
+                this.setState({
                 mode: mode,
                 name: e.target.value,
+                c1:"#python\n",
+                c2: "\nfuncion(entradas)",
             });
+            }
+            else{
+                console.log("IF JAVA");
+                this.setState({
+                mode: "text/x-java",
+                name: e.target.value,
+                c1: "public class MyClass {\n",
+                c2: "\npublic static void main(String args[]) { \n\tfuncion(entradas);\n\t}\n}",
+            });
+            }
+            
             console.log(this.state.name)
         }
         toggleReadOnly () {
@@ -222,7 +279,7 @@ class Solucion extends Component {
         }
     limpiarValores(i){
         if(i===1){
-            this.setState({isLoading: false, nameSolution:"", code:this.props.statement.header, codeMirrorRender: false});
+            this.setState({isLoading: false, nameSolution:"", codeMirrorRender: false});
             this.render();
             CodeMirror;
 
@@ -238,11 +295,12 @@ class Solucion extends Component {
         console.log(name, value, target);
         }
     componentDidMount() {
+            console.log("Solucion uwu")
             this.interval = setInterval(this.tick, 1000);
             this.setState({
                 isLoading: false,
                 nameSolution:"",
-                code: this.props.statement.header,
+                code: this.props.location.state.statement.header,
                 readOnly: false,
                 start: new Date(),
                 mode: {name: "python",
@@ -265,7 +323,7 @@ class Solucion extends Component {
           this.setState({
                 isLoading: false,
                 nameSolution:"",
-                code: this.props.statement.header,
+                code: this.props.location.state.statement.header,
                 readOnly: false,
                 mode: {name: "python",
                    version: 3,
@@ -276,15 +334,18 @@ class Solucion extends Component {
             this.render();
     }
     componentDidUpdate(){
-            //this.cm.codeMirror.setValue(this.props.statement.header)
+        if(this.props.location.state.typeUser!==3){
+            this.cm2.codeMirror.setValue(this.state.c1)
+            this.cm3.codeMirror.setValue(this.state.c2)
+        }
     }
     checkSolutions(e){
         this.mostrarFeedback(e)
         var expected = [];
         var test_cases = [];
-        this.props.statement.testCases.map((test) =>
+        this.props.location.state.statement.testCases.map((test) =>
              test_cases.push(test.testCase)   )
-        this.props.statement.expectedSolution.map((test) =>
+        this.props.location.state.statement.expectedSolution.map((test) =>
              expected.push(test.expectedSolution)   )
         console.log("DENTRO CHECK SOLUTIONS c:")
         console.log(expected)
@@ -298,7 +359,7 @@ class Solucion extends Component {
         this.solution.expectedSolution = expected;
         this.solution.testCases = test_cases;
         var bodyFormData = new FormData();
-        bodyFormData.set('code', e.code);
+        bodyFormData.set('code', this.state.c1+"\n"+e.code+"\n"+this.state.c2);
         bodyFormData.set('lang', e.name);
         var i = 0;
         for(i = 0; i<expected.length;i++){
@@ -330,22 +391,26 @@ class Solucion extends Component {
                 readOnly: this.state.readOnly,
                 mode: this.state.mode
             };
-            const header = this.props.statement.header;
-            const typeUser = this.props.typeUser;
-            if(header === undefined || this.props.statement ===undefined){
-                return(<div> {this.props.history.push("/ListarEnunciado")} </div>); 
+            const header = this.props.location.state.statement.header;
+            const typeUser = this.props.location.state.typeUser;
+            const boolError = this.state.boolError;
+            const boolFailed = this.state.boolFailed;
+            const boolSuccess = this.state.boolSuccess;
+            if(header === undefined || this.props.location.state.statement ===undefined){
+                return(<div> {this.props.location.state.history.push("/ListarEnunciado")} </div>); 
             }
             if(typeUser===1 || typeUser===2){
                 return (
                    <body className="body"> 
                     <form className="form">
                     <div className="div1">
+                    <span className="glyphicon glyphicon-time"> </span>
                     <p>La tarea fue comenzada hace <b>{this.state.secondsElapsed} </b> segundos.</p>
                     <label classname="labels"> Enunciado: </label>
                     </div>
                     <div className="div2">
                         
-                        <textarea className="text" name= "text" type = "text" value={this.props.statement.statementText} 
+                        <textarea className="text" name= "text" type = "text" value={this.props.location.state.statement.statementText} 
                         disabled = "true"/>
                     </div>
                     <div className="div1">
@@ -360,7 +425,9 @@ class Solucion extends Component {
                     </div>
                    
                     <div className="div3">
-                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
+                <CodeMirror className="codemirror" ref={el => this.cm2 = el} value={this.state.c1} options={options} autoFocus={true} onChange={this.updateCode2} readOnly={true}/>
+                <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.location.state.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
+                <CodeMirror className="codemirror" ref={el => this.cm3 = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
                 <div style={{ marginTop: 10 }} className="div4">
                 <div className="div1">
                     <label className="labels"> Lenguaje de la Solución:  </label>
@@ -375,12 +442,29 @@ class Solucion extends Component {
             </div>
                     <div className="div1">
                       <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</Button>
-                      <Button type="button" onClick={(e) => this.ejecutarSolucion(this.state) }>Ejecutar Solucion</Button>
-                      <Button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                      <Button type="button" bsStyle="info" onClick={(e) => this.ejecutarSolucion(this.state) }><span className="glyphicon glyphicon-play"></span>Ejecutar Solucion</Button>
+                      <Button type="button" bsStyle="warning" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
 
                     </div>
                   </form>
-
+                  <div>
+                    {boolSuccess ?
+                    <Alert bsStyle="success"><strong>{this.state.textAlert}</strong> </Alert>:
+                    null
+                    }
+                  </div>
+                  <div>
+                    {boolFailed ?
+                    <Alert bsStyle="warning"><strong>{this.state.textAlert}</strong> </Alert>:
+                    null
+                    }
+                  </div>
+                  <div>
+                    {boolError ?
+                    <Alert bsStyle="danger"><strong>Error</strong> </Alert>:
+                    null
+                    }
+                  </div>
                 <div className="div1">
                     <label classname="labels"> Salida del código: </label>
                 </div>  
@@ -426,7 +510,7 @@ class Solucion extends Component {
             else{
                  alert("No tiene permisos para acceder a esta vista")
                 return(
-                    <div> {this.props.history.push("/")} </div>
+                    <div> {this.props.location.state.history.push("/")} </div>
                 );
             }
             }

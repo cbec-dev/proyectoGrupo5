@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/Registro.css';
 import axios from 'axios';
+import {Button} from 'react-bootstrap';
 
 
 class Registro extends Component {
@@ -141,8 +142,8 @@ class Registro extends Component {
                          </select>
                     </div>
                     <div className="div7">
-                      <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</button>
-                      <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</Button>
+                      <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
                     </div>
                   </form>
                     </body>

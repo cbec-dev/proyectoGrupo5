@@ -1,9 +1,12 @@
-import { Button } from 'react-bootstrap';
+import { NavItem, ButtonGroup, Button, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { Grid, Row, Col } from 'react-bootstrap';
 import * as React from 'react';
 import './css/ListarSoluciones.css';
 import VerSolucion from './verSolucion';
 import MostrarSolucion from './MostrarSolucion';
-
+import Card from './Card';
+const imgUrls = ['https://source.unsplash.com/PC_lbSSxCZE/800x600','https://source.unsplash.com/lVmR1YaBGG4/800x600','https://source.unsplash.com/5KvPQc1Uklk/800x600','https://source.unsplash.com/GtYFwFrFbMA/800x600','https://source.unsplash.com/Igct8iZucFI/800x600','https://source.unsplash.com/M01DfkOqz7I/800x600','https://source.unsplash.com/MoI_cHNcSK8/800x600','https://source.unsplash.com/M0WbGFRTXqU/800x600','https://source.unsplash.com/s48nn4NtlZ4/800x600','https://source.unsplash.com/E4944K_4SvI/800x600','https://source.unsplash.com/F5Dxy9i8bxc/800x600','https://source.unsplash.com/iPum7Ket2jo/800x600'
+];
 class ListarSoluciones extends React.Component {
 
     constructor(props) {
@@ -59,6 +62,9 @@ class ListarSoluciones extends React.Component {
                 .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
                 .then(response => response.json())
                 .then(data => this.setState({statements: data})))
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/solutions/all')
+                .then(response => response.json())
+                .then(data => this.setState({allSolutions: data})))
             }
             else if(this.props.activeUser.typeUser===3){
                 fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
@@ -79,8 +85,28 @@ class ListarSoluciones extends React.Component {
         const sections = this.state.sections;
         const statements = this.state.statements;
         const solutions = this.state.solutions;
-      
-        if(this.props.typeUser===2 || this.props.typeUser===3 ){
+        const allSolutions = this.state.allSolutions;
+        console.log(allSolutions)
+        if(this.props.typeUser===2){
+            return(
+                <div className="container">
+                <Grid className="container">
+                <Row className="show-grid">  
+                <Grid className="container" fluid="true"> 
+                  {allSolutions.map(solution=> 
+                    <Col xs={6} md={4}>
+                  <Card link={imgUrls[Math.floor((Math.random() * 10) + 1)]} solution={solution}/>
+                  </Col>
+                    )}
+                  
+                </Grid>
+
+                </Row>
+                </Grid>
+            </div>
+            );
+        }
+        else if(this.props.typeUser===3 ){
             return (
                 <body>
                 <div>
@@ -194,41 +220,26 @@ class ListarSoluciones extends React.Component {
         
         }
         else if(this.props.typeUser===1){
+            console.log(solutions)
+            if(solutions.length===0){
+                return(
+                    <p>No posee soluciones</p>
+                    );
+            }
             return (
-                <div>
-                <p> Mis Soluciones: </p>
-                <table id="t03">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Nombre Enunciado</th>
-                    <th>Accion</th>
-                    
-                    
-                
-                    </tr>
-                            {solutions.map((solution) =>
-                            
-                                
-                                   <tr key={solution.idSolution}>
-                                        <th>{solution.idSolution}</th>
-                                        <th>{solution.solutionName}</th>
-                                        <th>{solution.statement.statementName}</th>
-                                        <th> <button onClick={(object, type) => this.mostrarSolucion(solution, "alumno")}>Ver Solucion</button></th>
-
-                                    </tr> 
-                                
-                            
-                              )}
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelectedSolutionStatement ?
-                    <MostrarSolucion  statement = {this.state.solution.statement} solution={this.state.solution} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
-                    null
-                    }
-                    </div>
+                <div className="container">
+               <Grid className="container">
+                <Row className="show-grid">  
+                <Grid className="container" fluid="true"> 
+                  {solutions.map(solution=> 
+                    <Col xs={6} md={4}>
+                  <Card link={imgUrls[Math.floor((Math.random() * 10) + 1)]} solution={solution}/>
+                  </Col>
+                    )}
+                  
+                </Grid>
+                </Row>
+                </Grid>
             </div>
             
                 
