@@ -149,19 +149,20 @@ public class CompilerController {
         @ResponseBody String getStats(
             @RequestParam String filter,
             @RequestParam String method) throws IOException {
+
+                //Se obtiene la lista de soluciones base
+                ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
     
-                // //Se crea contexto y se elige método a utilizar
-                // SolutionStatsContext ctx = new SolutionStatsContext();
-                // switch (method) {
-                //     case "time":	ctx.setStatsStrategy(new TimeStats());
-                //                     break;
+                //Se crea contexto y se elige método a utilizar
+                SolutionStatsContext ctx = new SolutionStatsContext();
+                switch (method) {
+                    case "time":	ctx.setStatsStrategy(new TimeStats());
+                                    break;
                     
-                //     default:        ctx=null;
-                //                     break;
-                // }
+                    default:        ctx=null;
+                                    break;
+                }
     
-                // //Se obtiene la lista de soluciones base
-                // ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
                 // switch (filter) {
                 //     case "career":  
                 //                     break;
@@ -171,11 +172,9 @@ public class CompilerController {
                 //                     break;
                 // }
     
-                // if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
+                if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
     
-                // String out = ctx.getStats(solutions);
-
-                String out = filter + method;
+                String out = ctx.getStats(solutions);
     
                 return out;
         }
