@@ -35,7 +35,7 @@ class Progreso extends Component {
     }
 
     changeMode1 (e) {
-        var method = e.target.value;
+        var mode = e.target.value;
         this.setState({
             
             method: e.target.value
@@ -44,7 +44,7 @@ class Progreso extends Component {
     }
     buscar(e) {
         
-        this.progreso = {filter: "", method: ""}
+        this.progreso = {filter: "career", method: "time"}
         
         
         this.progreso.filter = e.filter;
@@ -60,7 +60,7 @@ class Progreso extends Component {
         axios({
             method: 'post',
             url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
-            data: qs.stringify(this.solution),
+            data: qs.stringify(this.progreso),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
@@ -95,16 +95,16 @@ class Progreso extends Component {
                     <div className="div1">    
                         <label className="labels"> Escoger de quién desea ver el progreso     </label>
                         <select onChange={this.changeMode} value={this.state.filter}>
-                        <option value="section">Secciones</option> 
-                            <option value="career">Carreras</option>      
+                            <option value="section">Secciones</option>
+                            <option value="career">Carreras</option>    
                         </select>
                     </div>
                        
                     <div className="div1">
                     <label className="labels"> Escoger las estadísticas que desea ver     </label>
-                    <select onChange={this.changeMode1} value={this.state.method}>
+                    <select onChange={this.changeMode1} value={this.state.mode}>
                         <option value="time">Tiempo empleado en resolver problemas</option>
-                        <option value="correctSolutions">Soluciones correctas</option> 
+                        <option value="correctSolutions">Soluciones correctas</option>
                     </select>
                     </div>
          
