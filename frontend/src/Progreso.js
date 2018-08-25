@@ -65,16 +65,16 @@ class Progreso extends Component {
         //.then(response => response.json()) 
         //.then(data => this.setState({salida: response.data})); 
            
-            // axios({
-            //     method: 'post',
-            //     url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
-            //     data: qs.stringify(this.progreso),
-            //     headers: {
-            //         'Content-Type': 'application/x-www-form-urlencoded',
-            //         "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
-            //         "Access-Control-Allow-Methods": "POST",
-            //     },
-            //  }).then(response => this.setState({salida: response.data}));
+            axios({
+                method: 'post',
+                url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
+                data: qs.stringify(this.progreso),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+                    "Access-Control-Allow-Methods": "POST",
+                },
+             }).then(response => this.setState({salida: response.data}));
              
         
     }
