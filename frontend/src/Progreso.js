@@ -58,6 +58,10 @@ class Progreso extends Component {
 
         console.log("Datos enviados en el request: ")
         console.log(bodyFormData)
+
+        fetch('http://209.97.152.30:8080/backendGrupo5/solutions/getStats?filter='+"career"+"&method=" + "time")
+        //.then(response => response.json())
+        .then(data => this.setState({salida: response.data}));
      
 
            
