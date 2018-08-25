@@ -9,7 +9,7 @@ import Enunciado from './Enunciado';
 import Solucion from './Solucion';
 import CodeMirror from './codemirror/CodeMirror';
 import Prueba from './Prueba';
-import Stats from './Stats';
+//import Stats from './Stats';
 import Login2 from './Login2';
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import createBrowserHistory from "history/createBrowserHistory";
@@ -24,6 +24,7 @@ import {firebaseAuth} from "./firebase/constants";
 import axios from 'axios';
 import ListarSoluciones from './ListarSoluciones';
 import VerSolucion from './verSolucion';
+import Progreso from './Progreso';
 import {BrowserRouter} from "react-router-dom";
 
 
@@ -119,6 +120,7 @@ class App extends Component {
         <Route path="/verEnunciado" component={()=><verEnunciado typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user} callBackFromParentStatement= {this.myCallBackStatement}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        <Route path="/Progreso" component={()=><Progreso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/VerSolucion" component={()=><verSolucion typeUser={this.state.user.userType} history={customHistory} callBackFromParentStatement= {this.myCallBackStatement} activeUser={this.state.user}/>}/>
 
 
@@ -152,7 +154,8 @@ class App extends Component {
         <Route path="/verEnunciado" component={()=><verEnunciado history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarEnunciados" component={()=><ListarEnunciados history={customHistory} activeUser={this.state.user}/>}/>
         <Route path="/ListarSoluciones" component={()=><ListarSoluciones history={customHistory} activeUser={this.state.user}/>}/>
-
+        <Route path="/Progreso" component={()=><Progreso typeUser={this.state.user.userType} history={customHistory} activeUser={this.state.user}/>}/>
+        
       
 
       </Switch>
