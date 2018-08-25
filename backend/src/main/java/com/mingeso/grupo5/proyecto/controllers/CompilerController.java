@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.mingeso.grupo5.proyecto.entities.TestCase;
+import com.mingeso.grupo5.proyecto.entities.Career;
 import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
+import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.Solution;
 
 import java.io.IOException;
@@ -20,6 +22,7 @@ import com.mingeso.grupo5.proyecto.helpers.Compiler;
 import com.mingeso.grupo5.proyecto.helpers.SolutionStatsContext;
 import com.mingeso.grupo5.proyecto.helpers.statstrategies.TimeStats;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
+import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
 
 @Controller
@@ -30,7 +33,9 @@ public class CompilerController {
     @Autowired 
     private SolutionRepository solutionRepository;
 	@Autowired
-	private CareerRepository careerRepository;
+    private CareerRepository careerRepository;
+    @Autowired
+	private SectionRepository sectionRepository;
     
     @GetMapping(path="/languages")
 	public @ResponseBody String getAll() throws IOException {
@@ -152,6 +157,11 @@ public class CompilerController {
 
                 //Se obtiene la lista de soluciones base
                 ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
+                ArrayList<Career> careers = (ArrayList<Career>) careerRepository.findAll();
+                ArrayList<Section> sections = (ArrayList<Section>) sectionRepository.findAll();
+
+                ArrayList<String> x = new ArrayList<String>();
+                ArrayList<Float> y = new ArrayList<Float>();
     
                 //Se crea contexto y se elige método a utilizar
                 SolutionStatsContext ctx = new SolutionStatsContext();
@@ -163,21 +173,22 @@ public class CompilerController {
                                     break;
                 }
     
-                // // switch (filter) {
-                // //     case "career":  
-                // //                     break;
-                // //     case "section": //solutions = findBySection(id);
-                // //                     break;
-                // //     default:        solutions = null;
-                // //                     break;
-                // // }
+                if(filter=="career")
+                {
+                    for(Career car : careers){
+
+                        x.add(car.getCareerName());
+
+                    }
+                }
     
                 // if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
     
-                String out = ctx.getStats(solutions);
+                String out = ctx.getStats(solutions).toString();
                 String out2 = method + " - " + filter;
+                String out3 = x.toString();
     
-                return out;
+                return out3;
         }
     
 }
