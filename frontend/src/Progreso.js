@@ -43,7 +43,7 @@ class Progreso extends Component {
     }
     buscar(e) {
         
-        this.progreso = {filter: "career", method: "time"}
+        this.progreso = {filter: "", method: ""}
         
         
         this.progreso.filter = e.filter;
@@ -59,7 +59,7 @@ class Progreso extends Component {
         axios({
             method: 'post',
             url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
-            data: qs.stringify(this.progreso),
+            data: qs.stringify(this.solution),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
