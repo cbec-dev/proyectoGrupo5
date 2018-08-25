@@ -174,7 +174,7 @@ public class SolutionController {
 		return retorno;
 	}
 
-	@RequestMapping(path="/getStats", method = RequestMethod.POST)
+	@RequestMapping(path="/getStats", method = RequestMethod.GET)
     @ResponseBody String getStats(
 		@RequestParam String filter,
 		@RequestParam String method) throws IOException {
