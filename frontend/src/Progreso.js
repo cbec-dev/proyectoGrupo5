@@ -17,9 +17,9 @@ class Progreso extends Component {
         this.changeMode = this.changeMode.bind(this);
         this.changeMode1 = this.changeMode1.bind(this);
         this.state = {
-            career: "",
-            filter: "section",
-            method: "time"
+            filter: "career",
+            method: "time",
+            salida: ""
 
         };
     }
@@ -48,22 +48,26 @@ class Progreso extends Component {
         
         this.progreso.filter = e.filter;
         this.progreso.method = e.method;
-        console.log("el filtroes:" + this.progreso.filter);
-        console.log("el method es:" + this.progreso.method);
-        var algo = {filter: "", method: ""}
-        algo.filter = "seccion";
-        algo.method = "tiempo";
-        var filter = e.filter;
+
+
         var bodyFormData = new FormData();
         bodyFormData.set('filter', e.filter);
         bodyFormData.set('method', e.method);
-        console.log(bodyFormData);
-        //console.log("Datos enviados en el request: ") 
-        //console.log(bodyFormData) 
- 
-        //fetch('http://209.97.152.30:8080/backendGrupo5/solutions/getStats?filter='+"career"+"&method=" + "time") 
-        //.then(response => response.json()) 
-        //.then(data => this.setState({salida: response.data})); 
+
+        console.log(bodyFormData)
+        console.log(this.progreso)
+        axios({
+            method: 'post',
+            url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
+            data: qs.stringify(this.solution),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+                "Access-Control-Allow-Methods": "POST",
+            },
+         }).then(response => this.setState({salida: response.data}));
+     
+
            
             // axios({
             //     method: 'post',
