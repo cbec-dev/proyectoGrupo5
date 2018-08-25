@@ -55,6 +55,9 @@ class Progreso extends Component {
         var bodyFormData = new FormData();
         bodyFormData.set('filter', e.filter);
         bodyFormData.set('method',e.mode);
+
+        console.log("Datos enviados en el request: ")
+        console.log(bodyFormData)
      
 
            
@@ -83,16 +86,16 @@ class Progreso extends Component {
                     <div className="div1">    
                         <label className="labels"> Escoger de quién desea ver el progreso     </label>
                         <select onChange={this.changeMode} value={this.state.filter}>
-                            <option value="seccion">Seccion</option>
-                            <option value="carrera">Carrera</option>    
+                            <option value="section">Secciones</option>
+                            <option value="career">Carreras</option>    
                         </select>
                     </div>
                        
                     <div className="div1">
                     <label className="labels"> Escoger las estadísticas que desea ver     </label>
                     <select onChange={this.changeMode1} value={this.state.mode}>
-                        <option value="Tiempo empleado en resolver problemas">Tiempo empleado en resolver problemas</option>
-                        <option value="soluciones correctas">Soluciones correctas</option>
+                        <option value="time">Tiempo empleado en resolver problemas</option>
+                        <option value="correctSolutions">Soluciones correctas</option>
                     </select>
                     </div>
          
