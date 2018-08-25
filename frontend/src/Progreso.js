@@ -55,10 +55,10 @@ class Progreso extends Component {
                 data: qs.stringify(this.progreso),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                     "Access-Control-Allow-Methods": "POST",
                 },
-             }).then(response => this.setState({salida: response.data.stdout}));
+             }).then(response => this.setState({salida: response.data}));
              
         
     }
