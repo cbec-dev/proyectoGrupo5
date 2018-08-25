@@ -43,20 +43,19 @@ class Progreso extends Component {
     }
     buscar(e) {
         
-        this.progreso = {filter: "", method: ""}
+        this.progreso = {filter: "career", method: "time"}
         
         
         this.progreso.filter = e.filter;
         this.progreso.method = e.mode;
-        var algo = {filter: "", method: ""}
-        algo.filter = "seccion";
-        algo.method = "tiempo";
-        var filter = e.filter;
 
 
         var bodyFormData = new FormData();
         bodyFormData.set('filter', e.code);
         bodyFormData.set('method', e.name);
+
+        console.log(bodyFormData)
+        console.log(this.progreso)
         axios({
             method: 'post',
             url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
@@ -66,7 +65,7 @@ class Progreso extends Component {
                 "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                 "Access-Control-Allow-Methods": "POST",
             },
-         }).then(response => this.setState({salida: response.data})); 
+         }).then(response => this.setState({salida: response.data}));
      
 
            
