@@ -11,6 +11,7 @@ var ReactDOM = require('react-dom');
 const createReactClass = require('create-react-class');
 
 
+
 class Progreso extends Component {
     constructor(props) {
         super(props);
