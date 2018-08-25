@@ -14,24 +14,33 @@ const createReactClass = require('create-react-class');
 class Progreso extends Component {
     constructor(props) {
         super(props);
-        
+        this.changeMode = this.changeMode.bind(this);
+        this.changeMode1 = this.changeMode1.bind(this);
         this.state = {
             career: "",
             filter: "",
-            opcion: ""
+            method: ""
 
         };
     }
 
     changeMode (e) {
-        var mode = e.target.value;
+        var filter = e.target.value;
         this.setState({
-            mode: mode,
-            name: e.target.value,
+            
+            filter: e.target.value
         });
-        console.log(this.state.name)
+        console.log(this.state.filter)
     }
 
+    changeMode1 (e) {
+        var mode = e.target.value;
+        this.setState({
+            
+            method: e.target.value
+        });
+        console.log(this.state.method)
+    }
     buscar(e) {
         
         this.progreso = {filter: "", method: ""}
@@ -71,17 +80,17 @@ class Progreso extends Component {
 
                     <body className="body"> 
                     <form className="form">
-                    <div>    
-                        <label className="labels"> Escoger de quién desea ver el progreso  </label>
+                    <div className="div1">    
+                        <label className="labels"> Escoger de quién desea ver el progreso     </label>
                         <select onChange={this.changeMode} value={this.state.filter}>
                             <option value="seccion">Seccion</option>
-                            <option value="carrera">Carrera</option>
+                            <option value="carrera">Carrera</option>    
                         </select>
                     </div>
                        
-                    <div>
-                    <label className="labels"> Escoger las estadísticas que desea ver  </label>
-                    <select onChange={this.changeMode} value={this.state.mode}>
+                    <div className="div1">
+                    <label className="labels"> Escoger las estadísticas que desea ver     </label>
+                    <select onChange={this.changeMode1} value={this.state.mode}>
                         <option value="Tiempo empleado en resolver problemas">Tiempo empleado en resolver problemas</option>
                         <option value="soluciones correctas">Soluciones correctas</option>
                     </select>
