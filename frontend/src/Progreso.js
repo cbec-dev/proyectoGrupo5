@@ -9,7 +9,9 @@ import './css/Progreso.css';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav} from "react-bootstrap"
 var ReactDOM = require('react-dom');
 const createReactClass = require('create-react-class');
-
+var CanvasJSReact = require('./canvasjs.react');
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 class Progreso extends Component {
@@ -86,7 +88,29 @@ class Progreso extends Component {
 
         render() {
         
-            
+            var options = {
+                animationEnabled: true,
+                exportEnabled: true,
+                theme: "light2", //"light1", "dark1", "dark2"
+                title:{
+                text: "Simple Column Chart with Index Labels"
+            },
+            data: [{
+                type: "column", //change type to bar, line, area, pie, etc
+                //indexLabel: "{y}", //Shows y value on all Data Points
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "outside",
+                dataPoints: [
+                    { x: 10, y: 71 },
+                    { x: 20, y: 55 },
+                    { x: 30, y: 50 },
+                    { x: 40, y: 65 },
+                    { x: 50, y: 38 },
+                    { x: 60, y: 92, indexLabel: "Highest" },
+                  
+                ]
+            }]
+        }
            
                 return (
 
@@ -122,6 +146,15 @@ class Progreso extends Component {
                 {this.state.salida}
   
                 </pre>
+            </div>
+            
+            <div className="div1">
+            <CanvasJSChart options = {options} 
+                /* onRef={ref => this.chart = ref} */
+            />
+            {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+        
+            );
             </div>
             
             </body>
