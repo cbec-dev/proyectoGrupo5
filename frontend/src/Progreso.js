@@ -22,6 +22,8 @@ class Progreso extends Component {
         this.state = {
             filter: "career",
             method: "time",
+            headerx: "",
+            headery: "",
             stats: [],
             options: {
                 animationEnabled: true,
@@ -67,6 +69,7 @@ class Progreso extends Component {
         this.progreso.method = e.method;
 
 
+
         var bodyFormData = new FormData();
         bodyFormData.set('filter', e.filter);
         bodyFormData.set('method', e.method);
@@ -82,7 +85,8 @@ class Progreso extends Component {
                 "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                 "Access-Control-Allow-Methods": "POST",
             },
-         }).then(response => this.setState({stats: response.data}));
+         }).then(response => this.setState({stats: response.data, headerx: this.progreso.filter, headery: this.progreso.method}));
+         
          
          this.state.options.data.dataPoints =this.state.stats;
 
@@ -111,7 +115,7 @@ class Progreso extends Component {
                     <body className="body"> 
                     <form className="form">
                     <div className="div1">    
-                        <label className="labels">Filtrar por: </label>
+                        <label className="labels">Filtrar por:  </label>
                         <select onChange={this.changeMode} value={this.state.filter}>
                             <option value="section">Secciones</option>
                             <option value="career">Carreras</option>    
@@ -119,7 +123,7 @@ class Progreso extends Component {
                     </div>
                        
                     <div className="div1">
-                    <label className="labels">Estadísticas de: </label>
+                    <label className="labels">Estadísticas de:  </label>
                     <select onChange={this.changeMode1} value={this.state.mode}>
                         <option value="time">Tiempo promedio</option>
                         <option value="correctSolutions">Porcentaje de éxito</option>
@@ -140,8 +144,8 @@ class Progreso extends Component {
                 <table id="t03">
                 <tbody>
                     <tr>
-                    <th>x</th>
-                    <th>y</th>
+                    <th>{headerx}</th>
+                    <th>{headery}</th>
                     </tr>
                             {stats.map((stat) =>
                             
