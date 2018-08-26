@@ -68,6 +68,20 @@ class Progreso extends Component {
         this.progreso.filter = e.filter;
         this.progreso.method = e.method;
 
+        if(this.progreso.filter==="career"){
+            this.state.headerx = "Carrera";
+        }
+        if(this.progreso.filter==="section"){
+            this.state.headerx = "Sección";
+        }
+        if(this.progreso.method==="time"){
+            this.state.headery = "Tiempo promedio (s)";
+        }
+        if(this.progreso.method==="correctSolutions"){
+            this.state.headery = "Éxito (%)";
+        }
+        
+
 
 
         var bodyFormData = new FormData();
@@ -107,6 +121,8 @@ class Progreso extends Component {
 
         render() {
             const stats = this.state.stats;
+            const headerx = this.state.headerx;
+            const headery = this.state.headery;
             const options = this.state.options;
             
            
@@ -144,8 +160,8 @@ class Progreso extends Component {
                 <table id="t03">
                 <tbody>
                     <tr>
-                    <th>filtro</th>
-                    <th>valores</th>
+                    <th>{headerx}</th>
+                    <th>{headery}</th>
                     </tr>
                             {stats.map((stat) =>
                             
