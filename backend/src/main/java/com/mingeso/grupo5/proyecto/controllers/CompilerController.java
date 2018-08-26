@@ -30,6 +30,8 @@ import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
 @CrossOrigin(origins = "http://209.97.152.30:5050")
 @RequestMapping(path="/api/compiler")
 
+
+
 public class CompilerController {
     @Autowired 
     private SolutionRepository solutionRepository;
@@ -182,8 +184,8 @@ public class CompilerController {
                         ArrayList<Solution> sols = (ArrayList<Solution>) solutionRepository.findByCareer(car);
 
                         GraphValues currentValue = new GraphValues();
-                        currentValue.group = car.getCareerName();
-                        currentValue.value = ctx.getStats(sols);
+                        currentValue.setGroup(car.getCareerName());
+                        currentValue.setValue(ctx.getStats(sols));
 
                         values.add(currentValue);
 
