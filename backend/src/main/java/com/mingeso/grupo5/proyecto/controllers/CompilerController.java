@@ -30,7 +30,7 @@ import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller
-@CrossOrigin(origins = "http://209.97.152.30:5050")
+@CrossOrigin(origins = "http://142.93.191.219:5050")
 @RequestMapping(path="/api/compiler")
 
 
@@ -199,7 +199,7 @@ public class CompilerController {
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(car.getCareerName());
-                        currentValue.setValue(ctx.getStats(sols));
+                        currentValue.setValue(ctx.execStrat(sols));
 
                         values.add(currentValue);
 
@@ -220,7 +220,7 @@ public class CompilerController {
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(sec.getSectionName());
-                        currentValue.setValue(ctx.getStats(sols));
+                        currentValue.setValue(ctx.execStrat(sols));
 
                         values.add(currentValue);
 
