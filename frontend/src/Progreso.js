@@ -141,15 +141,28 @@ class Progreso extends Component {
 
                 <div className="div1">
                     <label classname="labels"> Salida del progreso: </label>
-                </div>  
-                <div class="divTxt">
-                <pre class="gb wf" id="preOutput">
-                {stats.map(stat=> 
-                  stat={stat}
-                    )}
-  
-                </pre>
-            </div>
+                </div>
+
+                <div className="div1">
+                <table id="t03">
+                <tbody>
+                    <tr>
+                    <th>x</th>
+                    <th>y</th>
+                    </tr>
+                            {stats.map((stat) =>
+                            
+                                
+                                   <tr key={stat.group}>
+                                        <th>{stat.group}</th>
+                                        <th>{stat.value}</th>
+                                    </tr> 
+                                
+                            
+                              )}
+                </tbody>
+                </table>
+                </div>
             
             <div className="div1">
             <CanvasJSChart options = {options} 
