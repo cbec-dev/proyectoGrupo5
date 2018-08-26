@@ -158,7 +158,7 @@ public class CompilerController {
         }
 
         @RequestMapping(value="/getStats", method = RequestMethod.POST)
-        @ResponseBody String getStats(
+        @ResponseBody Iterable<GraphValues> getStats(
             @RequestParam String filter,
             @RequestParam String method) throws IOException {
                 String out = "";
@@ -208,9 +208,11 @@ public class CompilerController {
     
                 //String out = ctx.getStats(solutions).toString();
                 String out2 = method + " - " + filter;
-                Integer out3 = values.size();
 
-                return values.toString();
+
+
+
+                return values;
         }
     
 }
