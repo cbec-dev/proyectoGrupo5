@@ -143,8 +143,7 @@ class Progreso extends Component {
                 </div>  
                 <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
-                {this.state.salida[0].group}
-                {this.state.salida[0].value}
+                {this.state.salida.length}
                 )}
   
                 </pre>
