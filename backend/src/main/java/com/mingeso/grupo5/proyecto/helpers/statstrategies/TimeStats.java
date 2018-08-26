@@ -17,8 +17,12 @@ public class TimeStats implements SolutionStatsStrategy {
 				totalTime += sol.getTime();
 			}
 		}
-
-		promTime = (float) totalTime/size;
+		if (totalTime==0) {
+			promTime = (float) 0;
+		}
+		else {
+			promTime = (float) totalTime/size;
+		}
 
 		return promTime;
 	}
