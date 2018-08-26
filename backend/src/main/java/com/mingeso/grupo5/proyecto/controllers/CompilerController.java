@@ -188,14 +188,14 @@ public class CompilerController {
                         Iterable<User> users = userRepository.findByCareer(car);
                         ArrayList<Solution> sols = null;
 
-                        // for(User user : users){
-                        //     Iterable<Solution> solsAux = solutionRepository.findByUser(user);
+                        for(User user : users){
+                            Iterable<Solution> solsAux = solutionRepository.findByUser(user);
                         //     for(Solution solAux : solsAux){
                         //         if (solAux!=null) {
                         //             sols.add(solAux);
                         //         }
                         //     }
-                        // }
+                        }
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(car.getCareerName());
