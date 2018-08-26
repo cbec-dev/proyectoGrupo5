@@ -69,16 +69,16 @@ class Progreso extends Component {
         this.progreso.method = e.method;
 
         if(this.progreso.filter==="career"){
-            this.state.headerx = "Carrera";
+            e.headerx = "Carrera";
         }
         if(this.progreso.filter==="section"){
-            this.state.headerx = "Sección";
+            e.headerx = "Sección";
         }
         if(this.progreso.method==="time"){
-            this.state.headery = "Tiempo promedio (s)";
+            e.headery = "Tiempo promedio (s)";
         }
         if(this.progreso.method==="correctSolutions"){
-            this.state.headery = "Éxito (%)";
+            e.headery = "Éxito (%)";
         }
         
 
