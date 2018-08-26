@@ -196,7 +196,7 @@ public class CompilerController {
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(car.getCareerName());
-                        currentValue.setValue(ctx.getStats(sols));
+                        currentValue.setValue(ctx.execStrat(sols));
 
                         values.add(currentValue);
 
@@ -217,7 +217,7 @@ public class CompilerController {
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(sec.getSectionName());
-                        currentValue.setValue(ctx.getStats(sols));
+                        currentValue.setValue(ctx.execStrat(sols));
 
                         values.add(currentValue);
 
