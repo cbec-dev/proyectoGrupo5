@@ -13,7 +13,7 @@ public class SuccessStats implements SolutionStatsStrategy {
 		float promSuccess = 0;	//Exito promedio
 		int size = solutions.size(); //Cantidad total de soluciones
 		for(Solution sol : solutions){
-			if(sol.getTime()!=null) {
+			if(sol.getpSuccess()!=null) {
 				totalSuccess += sol.getpSuccess();
 			}
 		}
