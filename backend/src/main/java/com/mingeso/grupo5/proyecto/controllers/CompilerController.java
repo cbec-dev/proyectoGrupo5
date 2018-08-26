@@ -185,21 +185,21 @@ public class CompilerController {
                 {
                     out = out + "inside the if statement";
                     for(Career car : careers){
-                        //Iterable<User> users = userRepository.findByCareer(car);
+                        Iterable<User> users = userRepository.findByCareer(car);
                         ArrayList<Solution> sols = null;
 
-                        //for(User user : users){
-                            //Iterable<Solution> solsAux = solutionRepository.findByUser(user);
-                            // for(Solution solAux : solsAux){
-                            //     if (solAux!=null) {
-                            //         sols.add(solAux);
-                            //     }
-                            // }
-                        //}
+                        for(User user : users){
+                            Iterable<Solution> solsAux = solutionRepository.findByUser(user);
+                            for(Solution solAux : solsAux){
+                                if (solAux!=null) {
+                                    sols.add(solAux);
+                                }
+                            }
+                        }
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(car.getCareerName());
-                        currentValue.setValue(ctx.getStats(sols));
+                        //currentValue.setValue(ctx.getStats(sols));
 
                         values.add(currentValue);
 
