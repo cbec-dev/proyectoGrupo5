@@ -154,6 +154,7 @@ public class CompilerController {
         @ResponseBody String getStats(
             @RequestParam String filter,
             @RequestParam String method) throws IOException {
+                String out = "";
 
                 //Se obtiene la lista de soluciones base
                 ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
@@ -175,6 +176,7 @@ public class CompilerController {
     
                 if(filter=="career")
                 {
+                    out = out + "inside the if statement";
                     for(Career car : careers){
 
                         x.add(car.getCareerName());
@@ -184,11 +186,11 @@ public class CompilerController {
     
                 // if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
     
-                String out = ctx.getStats(solutions).toString();
+                //String out = ctx.getStats(solutions).toString();
                 String out2 = method + " - " + filter;
                 Integer out3 = x.size();
     
-                return out3.toString();
+                return out;
         }
     
 }
