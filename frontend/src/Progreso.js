@@ -143,13 +143,8 @@ class Progreso extends Component {
                 </div>  
                 <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
-
-
-                {this.state.salida.map((stat) =>
-                <tr key={stat.group}>
-                <th>{stat.group}</th>
-                <th>{stat.value}</th>
-                </tr> 
+                {this.state.salida[0].group}
+                {this.state.salida[0].value}
                 )}
   
                 </pre>
