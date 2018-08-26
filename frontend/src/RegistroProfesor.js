@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/RegistroProfesor.css';
-import {Button} from "react-bootstrap";
+import {Button,ButtonGroup} from "react-bootstrap";
 
 class RegistroProfesor extends Component {
     constructor(props) {
@@ -110,43 +110,55 @@ class RegistroProfesor extends Component {
             const typeUser = this.props.typeUser;
             if(typeUser===2){
                 return (
-                    <body className="body">
-                    <h1 className="header1">
-                    <span className="texto"> Registrar Profesor </span>
+                    <body>
+                    <div className="columna2">&nbsp;</div>
+                    <h1 className="columna2">
+                        <span className="texto">Registrar Profesor</span>
                     </h1>
                     <form className="formulario">
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna"><label className="label1">Nombre:</label> </div>
                    
-                    <div className="div3"><label className="label1"> Nombre:  </label> </div>
-                    <div>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <input name= "userName" type = "text" value={this.state.userName}
                         onChange = {this.handleInputChange} />
                     </div>
-                    <div className="div4"><label className="label2"> Email:  </label> </div>
-
-                    <div className="div5">
+                    <div className="columna">&nbsp;</div>
+                    
+                    <div className="columna"><label className="label2">Email:</label> </div>
+                    <div className="columna">&nbsp;</div>
+                    
+                    <div className="columna">
                         <input name= "email" type = "text" value={this.state.email} 
-                        onChange = {this.handleInputChange} /><label> @usach.cl  </label>
+                        onChange = {this.handleInputChange} /><label>@usach.cl</label>
                     </div>
-                    <div className="div6"> <label className="label3"> Seccion:  </label></div>
-
-                    <div className="div6">
+                    <div className="columna">&nbsp;</div>
+                   
+                    <div className="columna"> <label className="label3">Seccion:</label></div>
+                    <div className="columna">&nbsp;</div>
+                   
+                    <div className="columna">
                         <select name="sectionName" component="select" onChange = {this.handleInputChange}>
-                        <option > </option>
-                        {sections.map((section =>
-                        {
-                            
-                                return <option key={section.idSection} value={section.idSection}>{section.sectionName}</option>
-
-                        
-                        }
-                        ))}
-                           
+                            <option > </option>
+                            {sections.map((section =>
+                            {
+                                    return <option key={section.idSection} value={section.idSection}>{section.sectionName}</option>
+                            }
+                            ))}
                          </select>
                     </div>
-                    <div className="div7">
-                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</Button>
-                      <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">&nbsp;</div>
+                    
+                    <div className="columna">
+                        <ButtonGroup>
+                            <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</Button>
+                            <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                        </ButtonGroup>
                     </div>
+                    <div className="columna">&nbsp;</div>
                   </form>
                     </body>
                     
