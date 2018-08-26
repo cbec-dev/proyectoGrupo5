@@ -87,7 +87,8 @@ class Progreso extends Component {
     }
 
         render() {
-        
+            const stats = this.state.stats;
+
             var options = {
                 animationEnabled: true,
                 exportEnabled: true,
@@ -143,8 +144,9 @@ class Progreso extends Component {
                 </div>  
                 <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
-                {this.state.stats}
-                )}
+                {stats.map(stat=> 
+                  stat={stat}
+                    )}
   
                 </pre>
             </div>
