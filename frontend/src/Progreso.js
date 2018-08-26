@@ -22,7 +22,7 @@ class Progreso extends Component {
         this.state = {
             filter: "career",
             method: "time",
-            salida: ""
+            stats: []
 
         };
     }
@@ -68,7 +68,7 @@ class Progreso extends Component {
                 "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                 "Access-Control-Allow-Methods": "POST",
             },
-         }).then(response => this.setState({salida: response.data}));
+         }).then(response => this.setState({stats: response.data}));
      
 
            
@@ -143,7 +143,7 @@ class Progreso extends Component {
                 </div>  
                 <div class="divTxt">
                 <pre class="gb wf" id="preOutput">
-                {this.state.salida.length}
+                {this.state.stats}
                 )}
   
                 </pre>
