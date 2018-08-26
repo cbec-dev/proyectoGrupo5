@@ -174,7 +174,7 @@ public class CompilerController {
                                     break;
                 }
     
-                if(filter=="career")
+                if(filter.equals("career"))
                 {
                     out = out + "inside the if statement";
                     for(Career car : careers){
@@ -188,9 +188,9 @@ public class CompilerController {
     
                 //String out = ctx.getStats(solutions).toString();
                 String out2 = method + " - " + filter;
-                Integer out3 = x.size();
+                String out3 = x.toString();
     
-                return out;
+                return out3;
         }
     
 }
