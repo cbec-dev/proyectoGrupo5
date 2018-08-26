@@ -103,7 +103,7 @@ class Progreso extends Component {
 
         render() {
             const stats = this.state.stats;
-            var options = this.state.options;
+            const options = this.state.options;
             
            
                 return (
