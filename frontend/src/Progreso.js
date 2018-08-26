@@ -28,22 +28,13 @@ class Progreso extends Component {
                 exportEnabled: true,
                 theme: "light2", //"light1", "dark1", "dark2"
                 title:{
-                text: "Simple Column Chart with Index Labels"
-            },
+                text: "Simple Column Chart with Index Labels"},
             data: [{
                 type: "column", //change type to bar, line, area, pie, etc
                 //indexLabel: "{y}", //Shows y value on all Data Points
                 indexLabelFontColor: "#5A5757",
                 indexLabelPlacement: "outside",
-                dataPoints: [
-                    { x: 10, y: 71 },
-                    { x: 20, y: 55 },
-                    { x: 30, y: 50 },
-                    { x: 40, y: 65 },
-                    { x: 50, y: 38 },
-                    { x: 60, y: 92, indexLabel: "Highest" },
-                  
-                ]
+                dataPoints: []
             }]
         }
 
@@ -93,7 +84,7 @@ class Progreso extends Component {
             },
          }).then(response => this.setState({stats: response.data}));
          
-         this.props.data.dataPoints.push(this.state.stats);
+         this.state.options.data.dataPoints.push(this.state.stats);
 
            
             // axios({
