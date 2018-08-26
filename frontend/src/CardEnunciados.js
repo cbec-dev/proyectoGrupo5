@@ -62,6 +62,8 @@ constructTooltip(e){
     const statement  = this.props.statement;
     
    if(this.props.typeUser===1||this.props.typeUser===2){
+        var initialDate = new Date(statement.initialDate);
+        var finalDate = new Date(statement.finalDate);
         return (
 
           <div>
@@ -76,8 +78,8 @@ constructTooltip(e){
             </LinkContainer>
             </OverlayTrigger>
             <h3>{statement.statementName}</h3>
-            <p>Fecha Inicial: {statement.initialDate.toDateString()} </p> 
-            <p>Fecha Final: {statement.finalDate.toDateString()}</p>
+            <p>Fecha Inicial: {initialDate.toString()} </p> 
+            <p>Fecha Final: {finalDate.toString()}</p>
             <p>{statement.section.profesor.userName}</p>
             <p>{statement.section.sectionName}</p>
             <p>
