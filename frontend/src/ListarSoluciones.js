@@ -121,7 +121,7 @@ class ListarSoluciones extends React.Component {
             }
                 );
         console.log("arreglo")
-        console.log(sol)
+        console.log(sol_)
             //var eq = Object.toJSON(user1) == Object.toJSON(user2);
             //prof_ = prof_.filter(profesor => profesor !== undefined)
             //var i = 0
