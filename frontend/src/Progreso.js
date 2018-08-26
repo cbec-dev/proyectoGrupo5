@@ -63,22 +63,23 @@ class Progreso extends Component {
     buscar(e) {
         
         this.progreso = {filter: "career", method: "time"}
+        this.headers = {x: "", y: ""}
         
         
         this.progreso.filter = e.filter;
         this.progreso.method = e.method;
 
         if(this.progreso.filter==="career"){
-            e.headerx = "Carrera";
+            this.headers.x = "Carrera";
         }
         if(this.progreso.filter==="section"){
-            e.headerx = "Sección";
+            this.headers.x = "Sección";
         }
         if(this.progreso.method==="time"){
-            e.headery = "Tiempo promedio (s)";
+            this.headers.y = "Tiempo promedio (s)";
         }
         if(this.progreso.method==="correctSolutions"){
-            e.headery = "Éxito (%)";
+            this.headers.y = "Éxito (%)";
         }
         
 
@@ -99,7 +100,7 @@ class Progreso extends Component {
                 "Access-Control-Allow-Origin": "http://142.93.191.219:5050",
                 "Access-Control-Allow-Methods": "POST",
             },
-         }).then(response => this.setState({stats: response.data, headerx: this.progreso.filter, headery: this.progreso.method}));
+         }).then(response => this.setState({stats: response.data, headerx: this.headers.x, headery: this.headers.y}));
          
          
          this.state.options.data.dataPoints =this.state.stats;
