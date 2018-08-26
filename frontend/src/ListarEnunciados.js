@@ -88,6 +88,7 @@ class ListarEnunciados extends React.Component {
         const isLoading = this.state.isLoading;
         const statements = this.state.statements;
        
+       
         if (isLoading) {
             return <p>Cargando...</p>;
         }

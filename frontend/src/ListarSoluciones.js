@@ -28,7 +28,8 @@ class ListarSoluciones extends React.Component {
             allSolutions: [],
             solutionsByStatement: [],
             users: [],
-            solution: ""
+            solution: "",
+            prof_section: "",
         };
         this.mostrarSolucion = this.mostrarSolucion.bind(this)
         }
@@ -67,15 +68,12 @@ class ListarSoluciones extends React.Component {
                 .then(data => this.setState({allSolutions: data})))
             }
             else if(this.props.activeUser.typeUser===3){
-                fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
+                fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
                 .then(response => response.json())
-                .then(data => this.setState({users: data}))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                .then(data => this.setState({prof_section: data}))
+                .then(fetch('http://209.97.152.30:8080/backendGrupo5/solutions/all')
                 .then(response => response.json())
-                .then(data => this.setState({sections: data})))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
-                .then(response => response.json())
-                .then(data => this.setState({statements: data})))
+                .then(data => this.setState({allSolutions: data})))
             }
         }   
 
@@ -86,6 +84,7 @@ class ListarSoluciones extends React.Component {
         const statements = this.state.statements;
         const solutions = this.state.solutions;
         const allSolutions = this.state.allSolutions;
+        const pSection = this.state.prof_section;
         console.log(allSolutions)
         if(this.props.typeUser===2){
             return(
@@ -107,115 +106,40 @@ class ListarSoluciones extends React.Component {
             );
         }
         else if(this.props.typeUser===3 ){
+        var sol_ = allSolutions.map(solution=> 
+            {
+                if(solution.statement.section.idSection===pSection.idSection){
+                    return solution
+                }
+            }
+                );
+            //var eq = Object.toJSON(user1) == Object.toJSON(user2);
+            //prof_ = prof_.filter(profesor => profesor !== undefined)
+            //var i = 0
+            //var array = []
+            //var largo = profesores.length
+            //for(i=0; i<largo;i++){
+            //    if(this.verificar(prof_, profesores[i])===true){
+            //        array.push(profesores[i])
+
+            //    }
+            //}
             return (
-                <body>
-                <div>
-                <label> Usuarios </label>
-                <table id="t03">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Seccion</th>
-                    <th>Accion</th>
-                    <th> Accion </th>
-                    
-                
-                    </tr>
-                            {users.map((user) =>
-                            
-                                
-                                   <tr key={user.idUser}>
-                                        <th>{user.idStatement}</th>
-                                        <th>{user.userName}</th>
-                                        <th>{user.section.sectionName}</th>
-                                        <th> </th>
+                <div className="container">
+                <Grid className="container">
+                <Row className="show-grid">  
+                <Grid className="container" fluid="true"> 
+                  {sol_.map(solution=> 
+                    <Col xs={6} md={4}>
+                  <Card link={imgUrls[Math.floor((Math.random() * 10) + 1)]} solution={solution}/>
+                  </Col>
+                    )}
+                  
+                </Grid>
 
-                                    </tr> 
-                                
-                            
-                              )}
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelected ?
-                    <VerSolucion  statement={this.state.statement} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
-                    null
-                    }
-                    </div>
+                </Row>
+                </Grid>
             </div>
-            
-            <div>
-                <label> Secciones </label>
-                <table id="t04">
-                <tbody>
-                    <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Profesor</th>
-                    <th>Accion</th>
-                    <th> Accion </th>
-                    
-                
-                    </tr>
-                            {sections.map((section) =>
-                            
-                                
-                                   <tr key={section.idSection}>
-                                        <th>{section.idSection}</th>
-                                        <th>{section.sectionName}</th>
-                                        <th>{section.profesor.userName}</th>
-                                        <th> </th>
-
-                                    </tr> 
-                                
-                            
-                              )}
-                </tbody>
-                </table>
-                <div>
-                    {this.state.isSelected ?
-                    <VerSolucion  solutions={this.state.solutions} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
-                    null
-                    }
-                    </div>
-            </div>
-
-<div>
-<label> Enunciados </label>
-<table id="t05">
-<tbody>
-    <tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Seccion</th>
-    <th>Accion</th>
-    <th> Accion </th>
-    
-
-    </tr>
-            {statements.map((statement) =>
-            
-                
-                   <tr key={statement.idStatement}>
-                        <th>{statement.idStatement}</th>
-                        <th>{statement.statementName}</th>
-                        <th>{statement.section.idSection}</th>
-                        <th> <button onClick={(object, type) => this.mostrarSolucion(statement, "enunciado")}>Mostrar Soluciones</button></th>
-                    </tr> 
-                
-            
-              )}
-</tbody>
-</table>
-<div>
-    {this.state.isSelectedSolutionStatement ?
-    <VerSolucion  solutions={this.state.solutions} typeUser = {this.props.typeUser} activeUser = {this.props.activeUser}/>:
-    null
-    }
-    </div>
-</div>
-                </body>
             );
         
         }
