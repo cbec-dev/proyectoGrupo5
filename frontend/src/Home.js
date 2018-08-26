@@ -58,10 +58,13 @@ export default class Home extends React.Component {
         }.bind(this));
     }
     componentDidMount(){
+        console.log("home")
         if(this.state.firebaseUser!==null){
+            console.log("usuario logueado")
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
         }
         else{
+            console.log("ningun usuario")
            return this.props.history.push("/Login2")
         }
         let axiosConfig = {
@@ -88,6 +91,9 @@ export default class Home extends React.Component {
        
         const userEmail = this.state.state.correo;
         const bool = this.state.bool;
+        console.log("render home")
+        console.log(this.state.bool)
+        console.log(this.state.firebaseUser)
         if(bool===true){
             return (
                 <body className="body">
