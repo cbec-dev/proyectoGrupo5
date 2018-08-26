@@ -208,8 +208,9 @@ public class CompilerController {
     
                 //String out = ctx.getStats(solutions).toString();
                 String out2 = method + " - " + filter;
+                Integer out3 = values.size();
 
-                return values.toString();
+                return out3.toString();
         }
     
 }
