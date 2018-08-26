@@ -23,6 +23,7 @@ import com.mingeso.grupo5.proyecto.helpers.Compiler;
 import com.mingeso.grupo5.proyecto.helpers.GraphValues;
 import com.mingeso.grupo5.proyecto.helpers.SolutionStatsContext;
 import com.mingeso.grupo5.proyecto.helpers.statstrategies.TimeStats;
+import com.mingeso.grupo5.proyecto.helpers.statstrategies.SuccessStats;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
@@ -176,6 +177,8 @@ public class CompilerController {
                 switch (method) {
                     case "time":	ctx.setStatsStrategy(new TimeStats());
                                     break;
+                    case "correctSolutions":	ctx.setStatsStrategy(new SuccessStats());
+                    break;
                     
                     default:        ctx=null;
                                     break;
