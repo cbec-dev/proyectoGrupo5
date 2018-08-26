@@ -105,6 +105,8 @@ constructTooltip(e){
         );
     }
     else{
+      var initialDate = new Date(statement.initialDate);
+      var finalDate = new Date(statement.finalDate);
       return(
         <div>
           <Panel className="grid" alt= "50x50">
@@ -118,8 +120,8 @@ constructTooltip(e){
             </LinkContainer>
             </OverlayTrigger>
             <h3>{statement.statementName}</h3>
-            <p>Fecha Inicial: {statement.initialDate} </p> 
-            <p>Fecha Final: {statement.finalDate}</p>
+            <p>Fecha Inicial: {initialDate.toString()} </p> 
+            <p>Fecha Final: {finalDate.toString()}</p>
             <p>{statement.section.profesor.userName}</p>
             <p>{statement.section.sectionName}</p>
             <p>
