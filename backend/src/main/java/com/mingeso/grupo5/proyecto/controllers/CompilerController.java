@@ -113,10 +113,10 @@ public class CompilerController {
         @RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution,
         @RequestParam(value = "testCases", required = false) List<String> testCases) throws IOException {
 
-            String salidas_string = "Salidas: ";
+            String salidas_string = "Salidas: \n";
             String test_cases = "Casos de prueba totales: ";
-            String test_cases_string = "Casos de prueba: ";
-            String expected = "Soluciones Esperadas: ";
+            String test_cases_string = "Casos de prueba: \n";
+            String expected = "Soluciones Esperadas: \n";
             int casos_exitosos = 0;
             test_cases = test_cases + testCases.size();
             List<String> salidas = new ArrayList<String>();
