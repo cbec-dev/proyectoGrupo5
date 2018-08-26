@@ -25,20 +25,20 @@ class Progreso extends Component {
             headerx: "",
             headery: "",
             stats: [],
-            options: {
-                animationEnabled: true,
-                exportEnabled: true,
-                theme: "light2", //"light1", "dark1", "dark2"
-                title:{
-                text: "Simple Column Chart with Index Labels"},
-            data: [{
-                type: "column", //change type to bar, line, area, pie, etc
-                //indexLabel: "{y}", //Shows y value on all Data Points
-                indexLabelFontColor: "#5A5757",
-                indexLabelPlacement: "outside",
-                dataPoints: []
-            }]
-        }
+            // options: {
+            //     animationEnabled: true,
+            //     exportEnabled: true,
+            //     theme: "light2", //"light1", "dark1", "dark2"
+            //     title:{
+            //     text: ""},
+            //     data: [{
+            //         type: "column", //change type to bar, line, area, pie, etc
+            //         //indexLabel: "{y}", //Shows y value on all Data Points
+            //         indexLabelFontColor: "#5A5757",
+            //         indexLabelPlacement: "outside",
+            //         dataPoints: []
+            //     }]
+            // }
 
         };
     }
@@ -177,16 +177,6 @@ class Progreso extends Component {
                 </tbody>
                 </table>
                 </div>
-            
-            <div className="div1">
-            <CanvasJSChart options = {this.state.options} 
-                /* onRef={ref => this.chart = ref} */
-            />
-            {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-        
-            );
-            </div>
-            
             </body>
                     
                 );
