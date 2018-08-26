@@ -22,7 +22,7 @@ class Progreso extends Component {
         this.state = {
             filter: "career",
             method: "time",
-            salida: ""
+            stats: []
 
         };
     }
@@ -68,7 +68,7 @@ class Progreso extends Component {
                 "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
                 "Access-Control-Allow-Methods": "POST",
             },
-         }).then(response => this.setState({salida: response.data}));
+         }).then(response => this.setState({stats: response.data}));
      
 
            
@@ -87,7 +87,8 @@ class Progreso extends Component {
     }
 
         render() {
-        
+            const stats = this.state.stats;
+
             var options = {
                 animationEnabled: true,
                 exportEnabled: true,
@@ -140,13 +141,28 @@ class Progreso extends Component {
 
                 <div className="div1">
                     <label classname="labels"> Salida del progreso: </label>
-                </div>  
-                <div class="divTxt">
-                <pre class="gb wf" id="preOutput">
-                {this.state.salida}
-  
-                </pre>
-            </div>
+                </div>
+
+                <div className="div1">
+                <table id="t03">
+                <tbody>
+                    <tr>
+                    <th>x</th>
+                    <th>y</th>
+                    </tr>
+                            {stats.map((stat) =>
+                            
+                                
+                                   <tr key={stat.group}>
+                                        <th>{stat.group}</th>
+                                        <th>{stat.value}</th>
+                                    </tr> 
+                                
+                            
+                              )}
+                </tbody>
+                </table>
+                </div>
             
             <div className="div1">
             <CanvasJSChart options = {options} 
