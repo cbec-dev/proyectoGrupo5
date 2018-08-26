@@ -7,7 +7,7 @@ import Header from './Header';
 import Home from './Home';
 import axios from 'axios';
 import qs from 'qs';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav, Button} from "react-bootstrap"
+import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav, Button,ButtonGroup} from "react-bootstrap"
 var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
 
@@ -60,7 +60,8 @@ class Enunciado extends Component {
             <div key={i}>
             <p> Solucion Esperada: {i}</p>
                <input type="text" value={el||''} onChange={this.handleChange.bind(this, i)} />
-               <input type='button' value='Remover' onClick={this.removeClick.bind(this, i)}/>
+               <Button bsStyle="danger"  onClick={this.removeClick.bind(this, i)}><span className="glyphicon glyphicon-trash"></span></Button>
+              
             </div>          
         )
      }
@@ -296,44 +297,53 @@ class Enunciado extends Component {
             }
             if(typeUser==2){
                 return (
-                <body className="body">
-                    <form className="form1">
-                    <div className="div1">
+                <body>
+                    <form>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                     <label className="label1"> Nombre Enunciado:  </label>
                     </div>
-                    <div className="div1">
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <input className="input" name= "nameStatement" type = "text" value={this.state.nameStatement}
                         onChange = {this.handleInputChange} />
                     </div>
 
-
-                    <div className="div1">
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <label className="label1"> Fecha Inicial:  </label>
                         </div>
-                        <div className="div1">
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                             <input className="input" name= "initialDate" type = "date" value={this.state.initialDate}
                             onChange = {this.handleInputChange} />
                         </div>
 
-
-                    <div className="div1">
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <label className="label1"> Fecha Final:  </label>
                         </div>
-                        <div className="div1">
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                             <input className="input" name= "finalDate" type = "date" value={this.state.finalDate}
                             onChange = {this.handleInputChange} />
                         </div>
 
 
-                    
-                    <div>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                     <label className="label1"> Soluciones esperadas y casos de prueba:  </label>
                     {this.createUI()}        
                     {this.createUI2()}
                     </div>
-          <input type='button' value='Agregar solución esperada y caso de prueba' onClick={this.addClick.bind(this)}/>
-                    <div className="div1">
-                    <label className="label2"> Enunciado:  </label>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
+                    <Button bsStyle="success" onClick={this.addClick.bind(this)}><span className="glyphicon glyphicon-plus"></span> Solucion esperada y Casos de prueba</Button>
+                    
+                    </div>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
+                    <label> Enunciado:  </label>
                     </div>
                     
                     <div className="div2">
@@ -341,9 +351,10 @@ class Enunciado extends Component {
                         <textarea className="text" name= "text" type = "text" value={this.state.text} 
                         onChange = {this.handleInputChange} />
                     </div>
-                    <div className="div6"> <label className="label3"> Seccion:  </label></div>
-
-                    <div className="div6">
+                  
+                    <div className="div2"> <label className="label3"> Seccion:  </label></div>
+                 
+                    <div className="div2">
                         <select name="sectionName" component="select" onChange = {this.handleInputChange}>
                         <option > </option>
                         {sections.map((section) =>
@@ -352,18 +363,23 @@ class Enunciado extends Component {
                         
                         </select>
                     </div>
-
-                    <div className="div2">
+                    <div>&nbsp;</div>
+                    <div>
                     <label className="labels"> Cabecera Propuesta:  </label>
                     </div>
                    
-                    <div className="div3">
-				<CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
+                    <div>
+                    <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
 			</div>
-
-                    <div className="div3">
-                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</Button>
-                      <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+            <div className="columna">&nbsp;</div>   
+            <div className="columna">&nbsp;</div>   
+            
+            <div className="columna">&nbsp;</div>     
+                    <div className="columna">
+                        <ButtonGroup>
+                            <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</Button>
+                            <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                        </ButtonGroup>
                     </div>
                   </form>
                 </body>
@@ -374,40 +390,52 @@ class Enunciado extends Component {
 
                 return (
                     <body className="body">
-                        <form className="form1">
-                        <div className="div1">
+                        <form>
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                         <label className="label1"> Nombre Enunciado:  </label>
                         </div>
-                        <div className="div1">
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                             <input className="input" name= "nameStatement" type = "text" value={this.state.nameStatement}
                             onChange = {this.handleInputChange} />
                         </div>
 
 
-                        <div className="div1">
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                         <label className="label1"> Fecha Inicial:  </label>
                         </div>
-                        <div className="div1">
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                             <input className="input" name= "initialDate" type = "date" value={this.state.initialDate}
                             onChange = {this.handleInputChange} />
                         </div>
 
-                        <div className="div1">
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                         <label className="label1"> Fecha Final:  </label>
                         </div>
-                        <div className="div1">
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                             <input className="input" name= "finalDate" type = "date" value={this.state.finalDate}
                             onChange = {this.handleInputChange} />
                         </div>
 
                     <div>
+                    <div className="columna">&nbsp;</div></div>
+                    <div className="columna">
                     <label className="label1"> Soluciones esperadas y casos de prueba:  </label>
                     {this.createUI()}        
                     {this.createUI2()}
                     </div>       
-              <input type='button' value='Agregar solución esperada' onClick={this.addClick.bind(this)}/>
-                        
-                          <div className="div1">
+              <div className="columna">&nbsp;</div>
+                    <div className="columna">
+                    <Button bsStyle="success" onClick={this.addClick.bind(this)}><span className="glyphicon glyphicon-plus"></span> Solucion esperada</Button>
+                    
+                    </div>
+                        <div className="columna">&nbsp;</div>
+                        <div className="columna">
                         <label className="label2"> Enunciado:  </label>
                         </div>
                         <div className="div2">
@@ -415,26 +443,33 @@ class Enunciado extends Component {
                             <textarea className="text" name= "text" type = "text" value={this.state.text} 
                             onChange = {this.handleInputChange} />
                         </div>
-                        <div className="div6"> <label className="label3"> Seccion:  </label></div>
-    
-                        <div className="div6">
+                        <div className="div2"> <label className="label3"> Seccion:  </label></div>
+                 
+                    <div className="div2">
                             <input name="sectionName" type= "number" value={this.state.sections.idSection} disabled = "true" hidden="true" onChange = {this.handleInputChange}/>      
                        
                         </div>
-                        <div className="div6">
+                        <div className="div2">
                         <input name= "placeholder" value={this.state.sections.sectionName} disabled = "true" />
                         </div>
-                        <div className="div2">
+                        <div>&nbsp;</div>
+                        <div>
                         <label className="labels"> Cabecera Propuesta:  </label>
                         </div>
                        
-                        <div className="div3">
+                        <div>
                     <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.state.code} onChange={this.updateCode} options={options} autoFocus={true} />
                 </div>
     
-                        <div className="div3">
+                    <div className="columna">&nbsp;</div>   
+                    <div className="columna">&nbsp;</div>   
+                    
+                    <div className="columna">&nbsp;</div>     
+                    <div className="columna">
+                        <ButtonGroup>
                           <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Subir Enunciado</Button>
                           <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(2)}>Limpiar Casillas</Button>
+                        </ButtonGroup>
                         </div>
                       </form>
                     </body>
