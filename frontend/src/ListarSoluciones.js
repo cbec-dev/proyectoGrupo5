@@ -106,13 +106,22 @@ class ListarSoluciones extends React.Component {
             );
         }
         else if(this.props.typeUser===3 ){
+        console.log("mostrando soluciones profesor")
+        console.log(allSolutions)
+        console.log("seccion profesor")
+        console.log(pSection)
         var sol_ = allSolutions.map(solution=> 
             {
+                console.log(solution)
                 if(solution.statement.section.idSection===pSection.idSection){
+                    console.log("retorno: ")
+                    console.log(solution)
                     return solution
                 }
             }
                 );
+        console.log("arreglo")
+        console.log(sol)
             //var eq = Object.toJSON(user1) == Object.toJSON(user2);
             //prof_ = prof_.filter(profesor => profesor !== undefined)
             //var i = 0

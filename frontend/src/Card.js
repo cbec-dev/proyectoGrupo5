@@ -1,4 +1,4 @@
-import './css/Card.css';
+import './css/CardSolucion.css';
 import axios from 'axios';
 import React from 'react';
 import { Redirect} from "react-router-dom";
@@ -58,7 +58,6 @@ constructTooltip(e){
             </Button>
              </LinkContainer>
           
-          <Button className="button" bsStyle="default">Button</Button>
           </div>
         </p>
       </Panel>
