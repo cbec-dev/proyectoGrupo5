@@ -154,7 +154,7 @@ class RegistroProfesor extends Component {
                     
                     <div className="columna">
                         <ButtonGroup>
-                            <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</Button>
+                            <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrar</Button>
                             <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
                         </ButtonGroup>
                     </div>
