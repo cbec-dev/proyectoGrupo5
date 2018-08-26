@@ -190,11 +190,11 @@ public class CompilerController {
 
                         for(User user : users){
                             Iterable<Solution> solsAux = solutionRepository.findByUser(user);
-                            if(solsAux!=null) {
-                                for(Solution solAux : solsAux){
-                                    sols.add(solAux);
-                                }
-                            }
+                            // if(solsAux.equals(null)) {
+                            //     for(Solution solAux : solsAux){
+                            //         sols.add(solAux);
+                            //     }
+                            // }
                         }
 
                         GraphValues currentValue = new GraphValues();
