@@ -153,9 +153,9 @@ class Progreso extends Component {
                     </div>
                   </form>
 
-                <div className="div1">
+                {/* <div className="div1">
                     <label classname="labels">Estadísticas: </label>
-                </div>
+                </div> */}
 
                 <div className="div1">
                 <table id="t03">
