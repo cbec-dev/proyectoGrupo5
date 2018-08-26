@@ -53,7 +53,7 @@ class ListarSoluciones extends React.Component {
                 .then(data => this.setState({solutions: data}))
 
             }
-            else if(this.props.activeUser.userType===2 || this.props.activeUser.userType===3){
+            else if(this.props.activeUser.userType===2){
                 fetch('http://142.93.191.219:8080/backendGrupo5/users/searchtype/'+"1")
                 .then(response => response.json())
                 .then(data => this.setState({users: data}))
@@ -138,7 +138,8 @@ class ListarSoluciones extends React.Component {
                 <Grid className="container">
                 <Row className="show-grid">  
                 <Grid className="container" fluid="true"> 
-                  {sol_.map(solution=> 
+                  {sol_.map(solution=>
+                   
                     <Col xs={6} md={4}>
                   <Card link={imgUrls[Math.floor((Math.random() * 10) + 1)]} solution={solution}/>
                   </Col>
