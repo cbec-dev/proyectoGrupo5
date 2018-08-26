@@ -111,7 +111,7 @@ class Progreso extends Component {
                     <body className="body"> 
                     <form className="form">
                     <div className="div1">    
-                        <label className="labels"> Escoger de quién desea ver el progreso     </label>
+                        <label className="labels">Filtrar por: </label>
                         <select onChange={this.changeMode} value={this.state.filter}>
                             <option value="section">Secciones</option>
                             <option value="career">Carreras</option>    
@@ -119,21 +119,21 @@ class Progreso extends Component {
                     </div>
                        
                     <div className="div1">
-                    <label className="labels"> Escoger las estadísticas que desea ver     </label>
+                    <label className="labels">Estadísticas de: </label>
                     <select onChange={this.changeMode1} value={this.state.mode}>
-                        <option value="time">Tiempo empleado en resolver problemas</option>
-                        <option value="correctSolutions">Soluciones correctas</option>
+                        <option value="time">Tiempo promedio</option>
+                        <option value="correctSolutions">Porcentaje de éxito</option>
                     </select>
                     </div>
          
                     <div className="div1">
-                      <Button bsStyle="primary" type="button" onClick={(e) => this.buscar(this.state)} disabled={this.state.bool}>Buscar progreso</Button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.buscar(this.state)} disabled={this.state.bool}>Obtener Estadísticas</Button>
 
                     </div>
                   </form>
 
                 <div className="div1">
-                    <label classname="labels"> Salida del progreso: </label>
+                    <label classname="labels">Estadísticas: </label>
                 </div>
 
                 <div className="div1">
