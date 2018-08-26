@@ -29,7 +29,7 @@ import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
 import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller
-@CrossOrigin(origins = "http://209.97.152.30:5050")
+@CrossOrigin(origins = "http://142.93.191.219:5050")
 @RequestMapping(path="/api/compiler")
 
 

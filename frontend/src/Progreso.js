@@ -92,11 +92,11 @@ class Progreso extends Component {
         console.log(this.progreso)
         axios({
             method: 'post',
-            url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
+            url: 'http://142.93.191.219:8080/backendGrupo5/api/compiler/getStats',
             data: qs.stringify(this.progreso),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+                "Access-Control-Allow-Origin": "http://142.93.191.219:5050",
                 "Access-Control-Allow-Methods": "POST",
             },
          }).then(response => this.setState({stats: response.data, headerx: this.progreso.filter, headery: this.progreso.method}));
@@ -107,11 +107,11 @@ class Progreso extends Component {
            
             // axios({
             //     method: 'post',
-            //     url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
+            //     url: 'http://142.93.191.219:8080/backendGrupo5/solutions/getStats',
             //     data: qs.stringify(this.progreso),
             //     headers: {
             //         'Content-Type': 'application/x-www-form-urlencoded',
-            //         "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+            //         "Access-Control-Allow-Origin": "http://142.93.191.219:5050",
             //         "Access-Control-Allow-Methods": "POST",
             //     },
             //  }).then(response => this.setState({salida: response.data}));

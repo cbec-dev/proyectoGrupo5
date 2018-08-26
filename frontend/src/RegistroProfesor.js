@@ -51,7 +51,7 @@ class RegistroProfesor extends Component {
                         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
                     }
                   };
-                fetch('http://209.97.152.30:8080/backendGrupo5/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
+                fetch('http://142.93.191.219:8080/backendGrupo5/users/add/profesor?correo='+user.email+'&userName='+user.userName+'&userType='+user.userType)
                 .then(response=> response.text())
                 .then(data =>
                     {
@@ -67,8 +67,8 @@ class RegistroProfesor extends Component {
                         }
                     })
                 //fetch('http://localhost:8081/users/add/'+user.userName+'/'+user.userType+'/'+user.email)
-                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/update/'+user.email+'/'+user.section)
-                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                .then(response => fetch('http://142.93.191.219:8080/backendGrupo5/sections/update/'+user.email+'/'+user.section)
+                .then(response => fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: true}))))
                 //axios.post('http://localhost:8081/users/add', user)
@@ -97,7 +97,7 @@ class RegistroProfesor extends Component {
         }
         componentDidMount(){
             
-            fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+            fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: true}))          
             }

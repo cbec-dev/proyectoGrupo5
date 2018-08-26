@@ -34,7 +34,7 @@ class ListarSoluciones extends React.Component {
         }
     mostrarSolucion(object, type){
         if(type==="enunciado"){
-            fetch('http://209.97.152.30:8080/backendGrupo5/solutions/searchbyStatement/' + object.idStatement)
+            fetch('http://142.93.191.219:8080/backendGrupo5/solutions/searchbyStatement/' + object.idStatement)
             .then(response => response.json())
             .then(data => this.setState({solutions: data, isSelectedSolutionStatement: true}))
         }
@@ -47,33 +47,33 @@ class ListarSoluciones extends React.Component {
     componentDidMount(){
         if(this.props.activeUser!==null){
             if(this.props.activeUser.userType===1){
-                fetch('http://209.97.152.30:8080/backendGrupo5/solutions/searchbyUser/' + this.props.activeUser.idUser)
+                fetch('http://142.93.191.219:8080/backendGrupo5/solutions/searchbyUser/' + this.props.activeUser.idUser)
                 .then(response => response.json())
                 .then(data => this.setState({solutions: data}))
 
             }
             else if(this.props.activeUser.userType===2 || this.props.activeUser.userType===3){
-                fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
+                fetch('http://142.93.191.219:8080/backendGrupo5/users/searchtype/'+"1")
                 .then(response => response.json())
                 .then(data => this.setState({users: data}))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data})))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/api/statements/all')
                 .then(response => response.json())
                 .then(data => this.setState({statements: data})))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/solutions/all')
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/solutions/all')
                 .then(response => response.json())
                 .then(data => this.setState({allSolutions: data})))
             }
             else if(this.props.activeUser.typeUser===3){
-                fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+"1")
+                fetch('http://142.93.191.219:8080/backendGrupo5/users/searchtype/'+"1")
                 .then(response => response.json())
                 .then(data => this.setState({users: data}))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data})))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/api/statements/all')
                 .then(response => response.json())
                 .then(data => this.setState({statements: data})))
             }

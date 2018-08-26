@@ -24,7 +24,7 @@ class ListarEnunciados extends React.Component {
         this.verEnunciados = this.verEnunciados.bind(this)
         }
     verEnunciados(e){
-        fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ e)
+        fetch('http://142.93.191.219:8080/backendGrupo5/api/statements/search/seccion/'+ e)
         .then(response => response.json())
         .then(data => this.setState({statements: data, isSelected: true}))
         
@@ -35,28 +35,28 @@ class ListarEnunciados extends React.Component {
         if(usuarioActivo!==null &&this.props.typeUser!==null){
             if(this.props.typeUser===1&&this.props.activeUser.section!==null){
                 //alumno
-                fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/'+ this.props.activeUser.section.idSection)
+                fetch('http://142.93.191.219:8080/backendGrupo5/sections/search/'+ this.props.activeUser.section.idSection)
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false}))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ this.props.activeUser.section.idSection)
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/api/statements/search/seccion/'+ this.props.activeUser.section.idSection)
                 .then(response => response.json())
                 .then(data => this.setState({statements: data, isLoading: false})))
             }
             else if(this.props.typeUser===2){
                 //coordinador
-                fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+                fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false}))
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/all')
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/api/statements/all')
                 .then(response => response.json())
                 .then(data => this.setState({statements: data, isLoading: false})))                
 
             }
             else if(this.props.typeUser===3){
                 //profesor
-                fetch('http://209.97.152.30:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
+                fetch('http://142.93.191.219:8080/backendGrupo5/sections/search/profesor/'+this.props.activeUser.idUser)
                 .then(response =>  response.json())
-                .then(data => fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ data.idSection)
+                .then(data => fetch('http://142.93.191.219:8080/backendGrupo5/api/statements/search/seccion/'+ data.idSection)
                 .then(response => response.json())
                 .then(data => this.setState({statements: data, isLoading: false})))
                 /*.then(data => this.setState({sections: data, isLoading: false}))
@@ -64,7 +64,7 @@ class ListarEnunciados extends React.Component {
                     console.log("fetch error" + err);
                     this.setState({sections:null, isLoading: false})
                 })
-                .then(fetch('http://209.97.152.30:8080/backendGrupo5/api/statements/search/seccion/'+ this.state.sections.idSection)
+                .then(fetch('http://142.93.191.219:8080/backendGrupo5/api/statements/search/seccion/'+ this.state.sections.idSection)
                 .then(response => response.json())
                 .then(data => this.setState({statements: data, isLoading: false})))*/
             }

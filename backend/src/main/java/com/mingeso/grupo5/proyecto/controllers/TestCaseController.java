@@ -13,7 +13,7 @@ import com.mingeso.grupo5.proyecto.entities.Statement;
 import com.mingeso.grupo5.proyecto.repositories.TestCaseRepository;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://142.93.191.219:3000")
 @RequestMapping(path="/api/testcase")
 
 public class TestCaseController {
