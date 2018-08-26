@@ -183,7 +183,6 @@ public class CompilerController {
     
                 if(filter.equals("career"))
                 {
-                    out = out + "inside the if statement";
                     for(Career car : careers){
                         Iterable<User> users = userRepository.findByCareer(car);
                         ArrayList<Solution> sols = new ArrayList<Solution>();
@@ -197,6 +196,27 @@ public class CompilerController {
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(car.getCareerName());
+                        currentValue.setValue(ctx.getStats(sols));
+
+                        values.add(currentValue);
+
+                    }
+                }
+                if(filter.equals("section"))
+                {
+                    for(Section sec : sections){
+                        Iterable<User> users = userRepository.findBySection(sec);
+                        ArrayList<Solution> sols = new ArrayList<Solution>();
+
+                        for(User user : users){
+                            Iterable<Solution> solsAux = solutionRepository.findByUser(user);
+                            for(Solution solAux : solsAux){
+                                sols.add(solAux);
+                             }
+                        }
+
+                        GraphValues currentValue = new GraphValues();
+                        currentValue.setGroup(sec.getSectionName());
                         currentValue.setValue(ctx.getStats(sols));
 
                         values.add(currentValue);
