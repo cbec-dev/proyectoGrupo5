@@ -93,7 +93,7 @@ class Progreso extends Component {
             },
          }).then(response => this.setState({stats: response.data}));
          
-         //this.props.options.dataPoints.push(this.state.stats);
+         this.state.options.dataPoints.push(this.state.stats);
 
            
             // axios({
@@ -167,7 +167,7 @@ class Progreso extends Component {
                 </div>
             
             <div className="div1">
-            <CanvasJSChart options = {this.props.options} 
+            <CanvasJSChart options = {this.state.options} 
                 /* onRef={ref => this.chart = ref} */
             />
             {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
