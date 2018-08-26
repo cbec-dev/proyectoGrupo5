@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { NavItem, ButtonGroup, DropdownButton, MenuItem, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, ProgressBar} from 'react-bootstrap';
 import * as React from 'react';
 import './css/ListarEnunciados.css';
 import Enunciado from './verEnunciado';
@@ -89,7 +89,7 @@ class ListarEnunciados extends React.Component {
         const statements = this.state.statements;
        
         if (isLoading) {
-            return <p>Cargando...</p>;
+            return <p className="p1">< ProgressBar  active now={100} /></p>;
         }
 
         if(typeUser===2 && sections!==null){

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/CrearCurso.css';
 import axios from 'axios';
+import {ProgressBar} from "react-bootstrap";
 
 
 class CrearCurso extends Component {
@@ -135,7 +136,7 @@ class CrearCurso extends Component {
                 //})
           
             if(isLoading===true){
-                return(<p> Cargando...</p>)
+                return(<p className="p1">< ProgressBar  active now={100} /></p>)
             }
             if(this.props.typeUser ==2){
                 return (
