@@ -185,8 +185,8 @@ public class CompilerController {
                 {
                     out = out + "inside the if statement";
                     for(Career car : careers){
-                        // Iterable<User> users = userRepository.findByCareer(car);
-                        // ArrayList<Solution> sols = null;
+                        Iterable<User> users = userRepository.findByCareer(car);
+                        ArrayList<Solution> sols = null;
 
                         // for(User user : users){
                         //     Iterable<Solution> solsAux = solutionRepository.findByUser(user);
