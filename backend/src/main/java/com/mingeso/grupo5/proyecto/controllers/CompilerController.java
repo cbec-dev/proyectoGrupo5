@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
+import com.mingeso.grupo5.proyecto.helpers.GraphValues;
 import com.mingeso.grupo5.proyecto.helpers.SolutionStatsContext;
 import com.mingeso.grupo5.proyecto.helpers.statstrategies.TimeStats;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
@@ -157,12 +158,12 @@ public class CompilerController {
                 String out = "";
 
                 //Se obtiene la lista de soluciones base
-                ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
                 ArrayList<Career> careers = (ArrayList<Career>) careerRepository.findAll();
                 ArrayList<Section> sections = (ArrayList<Section>) sectionRepository.findAll();
 
                 ArrayList<String> x = new ArrayList<String>();
                 ArrayList<Float> y = new ArrayList<Float>();
+                ArrayList<GraphValues> values = new ArrayList<GraphValues>();
     
                 //Se crea contexto y se elige método a utilizar
                 SolutionStatsContext ctx = new SolutionStatsContext();
@@ -178,8 +179,13 @@ public class CompilerController {
                 {
                     out = out + "inside the if statement";
                     for(Career car : careers){
+                        ArrayList<Solution> sols = (ArrayList<Solution>) solutionRepository.findByCareer(car);
 
-                        x.add(car.getCareerName());
+                        GraphValues currentValue = new GraphValues();
+                        currentValue.group = car.getCareerName();
+                        currentValue.value = ctx.getStats(sols);
+
+                        values.add(currentValue);
 
                     }
                 }
@@ -188,9 +194,8 @@ public class CompilerController {
     
                 //String out = ctx.getStats(solutions).toString();
                 String out2 = method + " - " + filter;
-                String out3 = x.toString();
-    
-                return out3;
+
+                return values.toString();
         }
     
 }
