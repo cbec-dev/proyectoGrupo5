@@ -33,13 +33,13 @@ class Header extends Component {
           <Navbar.Header>
           <Navbar.Brand>
             <a href="/">     
-            <span className="navItem">Inicio</span>
+            <span className="navItem"><span className="glyphicon glyphicon-home"></span></span>
             </a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
         <NavItem eventKey={1} href="/Login2">
-          <span className="navItem">Login</span>
+          <span className="navItem">Log In</span>
         </NavItem>
           </Nav>
           </Navbar>
@@ -56,7 +56,7 @@ class Header extends Component {
             <Navbar.Header>
             <Navbar.Brand>
               <a href="/">     
-               <span className="navItem">Inicio</span>
+               <span className="navItem"><span className="glyphicon glyphicon-home"></span></span>
                </a>
             </Navbar.Brand>
           </Navbar.Header>
@@ -91,7 +91,7 @@ class Header extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/">     
-               <span className="navItem">Inicio</span>
+               <span className="navItem"><span className="glyphicon glyphicon-home"></span></span>
                </a>
             </Navbar.Brand>
           </Navbar.Header>
@@ -153,7 +153,7 @@ class Header extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/">     
-               <span className="navItem">Inicio</span>
+               <span className="navItem"><span className="glyphicon glyphicon-home"></span></span>
                </a>
             </Navbar.Brand>
           </Navbar.Header>
