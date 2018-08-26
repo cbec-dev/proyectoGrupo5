@@ -210,7 +210,7 @@ public class CompilerController {
                 String out2 = method + " - " + filter;
                 Integer out3 = values.size();
 
-                return out3.toString();
+                return values.toString();
         }
     
 }
