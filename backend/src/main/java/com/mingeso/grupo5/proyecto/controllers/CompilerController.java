@@ -186,7 +186,7 @@ public class CompilerController {
     
                 String out = ctx.getStats(solutions).toString();
                 String out2 = method + " - " + filter;
-                String out3 = x.toString();
+                String out3 = x.get(0);
     
                 return out3;
         }
