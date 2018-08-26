@@ -94,7 +94,7 @@ export default class Home extends React.Component {
         console.log("render home")
         console.log(this.state.bool)
         console.log(this.state.firebaseUser)
-        if(bool===true){
+        if(bool===true||this.props.bool===true){
             return (
                 <body className="body">
                     <div className = "div1">
