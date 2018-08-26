@@ -22,7 +22,30 @@ class Progreso extends Component {
         this.state = {
             filter: "career",
             method: "time",
-            stats: []
+            stats: [],
+            options: {
+                animationEnabled: true,
+                exportEnabled: true,
+                theme: "light2", //"light1", "dark1", "dark2"
+                title:{
+                text: "Simple Column Chart with Index Labels"
+            },
+            data: [{
+                type: "column", //change type to bar, line, area, pie, etc
+                //indexLabel: "{y}", //Shows y value on all Data Points
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "outside",
+                dataPoints: [
+                    { x: 10, y: 71 },
+                    { x: 20, y: 55 },
+                    { x: 30, y: 50 },
+                    { x: 40, y: 65 },
+                    { x: 50, y: 38 },
+                    { x: 60, y: 92, indexLabel: "Highest" },
+                  
+                ]
+            }]
+        }
 
         };
     }
@@ -69,7 +92,8 @@ class Progreso extends Component {
                 "Access-Control-Allow-Methods": "POST",
             },
          }).then(response => this.setState({stats: response.data}));
-     
+         
+         this.props.options.dataPoints.push(this.state.stats);
 
            
             // axios({
@@ -88,30 +112,8 @@ class Progreso extends Component {
 
         render() {
             const stats = this.state.stats;
-
-            var options = {
-                animationEnabled: true,
-                exportEnabled: true,
-                theme: "light2", //"light1", "dark1", "dark2"
-                title:{
-                text: "Simple Column Chart with Index Labels"
-            },
-            data: [{
-                type: "column", //change type to bar, line, area, pie, etc
-                //indexLabel: "{y}", //Shows y value on all Data Points
-                indexLabelFontColor: "#5A5757",
-                indexLabelPlacement: "outside",
-                dataPoints: [
-                    { x: 10, y: 71 },
-                    { x: 20, y: 55 },
-                    { x: 30, y: 50 },
-                    { x: 40, y: 65 },
-                    { x: 50, y: 38 },
-                    { x: 60, y: 92, indexLabel: "Highest" },
-                  
-                ]
-            }]
-        }
+            var options = this.state.options;
+            
            
                 return (
 
