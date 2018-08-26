@@ -190,8 +190,8 @@ public class CompilerController {
 
                         for(User user : users){
                             Iterable<Solution> solsAux = solutionRepository.findByUser(user);
-                            for(Solution solAux : solsAux){
-                                if (solAux!=null) {
+                            if(solsAux!=null) {
+                                for(Solution solAux : solsAux){
                                     sols.add(solAux);
                                 }
                             }
