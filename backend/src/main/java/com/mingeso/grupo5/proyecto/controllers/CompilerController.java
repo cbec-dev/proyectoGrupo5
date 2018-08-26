@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.mingeso.grupo5.proyecto.entities.TestCase;
+import com.mingeso.grupo5.proyecto.entities.User;
 import com.mingeso.grupo5.proyecto.entities.Career;
 import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
 import com.mingeso.grupo5.proyecto.entities.Section;
@@ -25,6 +26,7 @@ import com.mingeso.grupo5.proyecto.helpers.statstrategies.TimeStats;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
 import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
+import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller
 @CrossOrigin(origins = "http://209.97.152.30:5050")
@@ -38,7 +40,9 @@ public class CompilerController {
 	@Autowired
     private CareerRepository careerRepository;
     @Autowired
-	private SectionRepository sectionRepository;
+    private SectionRepository sectionRepository;
+    @Autowired
+	private UserRepository userRepository;
     
     @GetMapping(path="/languages")
 	public @ResponseBody String getAll() throws IOException {
@@ -181,7 +185,15 @@ public class CompilerController {
                 {
                     out = out + "inside the if statement";
                     for(Career car : careers){
-                        ArrayList<Solution> sols = (ArrayList<Solution>) solutionRepository.findByCareer(car);
+                        Iterable<User> users = userRepository.findByCareer(car);
+                        ArrayList<Solution> sols = null;
+
+                        for(User user : users){
+                            Iterable<Solution> solsAux = solutionRepository.findByUser(user);
+                            for(Solution solAux : solsAux){
+                                sols.add(solAux);
+                            }
+                        }
 
                         GraphValues currentValue = new GraphValues();
                         currentValue.setGroup(car.getCareerName());
