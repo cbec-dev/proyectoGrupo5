@@ -166,10 +166,10 @@ class Progreso extends Component {
                     </tr>
                             {stats.map((stat) =>
                             
-                                
+                            
                                    <tr key={stat.group}>
-                                        <th>{stat.group}</th>
-                                        <th>{stat.value}</th>
+                                        <th><td>{stat.group}</td></th>
+                                        <th><td>{stat.value}</td></th>
                                     </tr> 
                                 
                             
