@@ -127,10 +127,7 @@ class MostrarEnunciado extends Component {
                         <input className="input" name= "nameStatement" type = "text" value={statement.statementName}
                         disabled = "true"/>
                     </div>
-                    <div className="div1">
-                    <label className="label2"> Enunciado:  </label>
-                    </div>
-
+                    
                      <div className="div1">
                         <label className="label1"> Fecha Inicial:  </label>
                         </div>
@@ -148,6 +145,10 @@ class MostrarEnunciado extends Component {
                             onChange = {this.handleInputChange} disabled = "true"/>
                         </div>
                     
+                    <div className="div1">
+                    <label className="label2"> Enunciado:  </label>
+                    </div>
+
                     <div className="div2">
                         
                         <textarea className="text" name= "text" type = "text" value={statement.statementText} 

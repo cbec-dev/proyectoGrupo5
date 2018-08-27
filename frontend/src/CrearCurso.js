@@ -210,7 +210,8 @@ class CrearCurso extends Component {
                         <input name= "sectionName" type = "text" value={this.state.sectionName}
                         onChange = {this.handleInputChange} />
                     </div>
-                
+                    
+                    <div className="div7">&nbsp;</div>
                     <div className="div7">
                     <ButtonGroup>
                       <Button bsStyle="primary" onClick={(e) => this.subirFormulario(this.state)}>Agregar Seccion</Button>

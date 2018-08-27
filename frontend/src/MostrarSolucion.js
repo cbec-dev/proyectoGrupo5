@@ -259,10 +259,7 @@ class MostrarSolucion extends Component {
                         <input className="input" name= "solutionName" type = "text" value={solution.solutionName}
                         disabled = "true"/>
                     </div>
-                    <div className="div1">
-                    <label className="label2"> Solucion:  </label>
-                    </div>
-                    
+                   
                     <div className="div1">
                     <label className="label2"> Nombre Enunciado:  </label>
                     </div>
@@ -295,10 +292,11 @@ class MostrarSolucion extends Component {
                         <input className="seccion" name= "nameStatement" type = "text" value={statement.section.sectionName}
                          disabled = "true"/>
                     </div>
-
-                    <div className="div2">
-                    <label className="labels"> Cabecera Propuesta:  </label>
+                    <div className="div1">&nbsp;</div>
+                    <div className="div1">
+                    <label className="label2"> Solucion:  </label>
                     </div>
+                    
                    
                     <div className="div3">
                 <CodeMirror className="codemirror" ref={el => this.cm2 = el} value={this.state.c1} options={options} autoFocus={true} onChange={this.updateCode2} readOnly={true}/>
@@ -306,7 +304,7 @@ class MostrarSolucion extends Component {
                 <CodeMirror className="codemirror" ref={el => this.cm3 = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
 		          <div style={{ marginTop: 10 }} className="div4">
                 <div className="div1">
-                    <label className="labels"> Lenguaje de la Solución:  </label>
+                    <label className="labels"> Lenguaje </label>
                     
                         <select onChange={this.changeMode} value={this.state.name}>
                             <option value="python">Python</option>
@@ -317,8 +315,9 @@ class MostrarSolucion extends Component {
                 </div>
 			</div>
                   </form>
-                  <div>
-                  <Button type="button" bsStyle="info" onClick={(e) => this.checkSolutions(this.state) }>Ejecutar Solucion</Button>
+                  <div className="div1">&nbsp;</div>
+                  <div className="div1">
+                  <Button type="button" bsStyle="success" onClick={(e) => this.checkSolutions(this.state) }><span className="glyphicon glyphicon-play"></span> Ejecutar</Button>
                   </div>
                   <div className="div1">
                 <label classname="labels"> Feedback de la solución propuesta: </label>

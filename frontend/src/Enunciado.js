@@ -338,7 +338,7 @@ class Enunciado extends Component {
                     </div>
                     <div className="columna">&nbsp;</div>
                     <div className="columna">
-                    <Button bsStyle="success" onClick={this.addClick.bind(this)}><span className="glyphicon glyphicon-plus"></span> Solucion esperada y Casos de prueba</Button>
+                    <Button bsStyle="success" onClick={this.addClick.bind(this)}><span className="glyphicon glyphicon-plus"></span>Agregar</Button>
                     
                     </div>
                     <div className="columna">&nbsp;</div>
@@ -431,7 +431,7 @@ class Enunciado extends Component {
                     </div>       
               <div className="columna">&nbsp;</div>
                     <div className="columna">
-                    <Button bsStyle="success" onClick={this.addClick.bind(this)}><span className="glyphicon glyphicon-plus"></span> Solucion esperada</Button>
+                    <Button bsStyle="success" onClick={this.addClick.bind(this)}><span className="glyphicon glyphicon-plus"></span>Agregar</Button>
                     
                     </div>
                         <div className="columna">&nbsp;</div>
