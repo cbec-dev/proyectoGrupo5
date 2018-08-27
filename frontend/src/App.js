@@ -27,6 +27,8 @@ import MostrarSolucion from './MostrarSolucion';
 import {BrowserRouter} from "react-router-dom";
 import MostrarEnunciado from "./MostrarEnunciado";
 import Progreso from './Progreso';
+import { browserHistory } from 'react-router';
+
 
 
 

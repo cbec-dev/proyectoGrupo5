@@ -5,6 +5,7 @@ import {firebaseAuth} from "./firebase/constants";
 import './css/Login.css';
 import Header from './Header';
 import axios from 'axios';
+import { Redirect } from 'react-router'
 
 
 
@@ -58,6 +59,7 @@ export default class Login extends React.Component {
             activeUser: [],
             state: "",
             user:"",
+            redirect: false,
         };
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
@@ -204,7 +206,8 @@ export default class Login extends React.Component {
                                 console.log("usuario: ")
                                 console.log(data)                                
                                 this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), data)
-                                return this.props.history.push("/Home")
+                                this.setState({redirect: true})
+                                //return this.props.history.push("/Home")
                                     })
                             }
 
@@ -256,7 +259,9 @@ export default class Login extends React.Component {
 }
 
     render() {
-        
+        if(this.state.redirect===true){
+            return <Redirect to='/'/>;
+        }
         if (localStorage.getItem(firebaseAuthKey) === "1") return <SplashScreen />;
         return <LoginPage handleGoogleLogin={this.handleGoogleLogin}/>;
     }
