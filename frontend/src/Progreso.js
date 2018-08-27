@@ -103,7 +103,7 @@ class Progreso extends Component {
          }).then(response => this.setState({stats: response.data, headerx: this.headers.x, headery: this.headers.y}));
          
          
-         this.state.options.data.dataPoints =this.state.stats;
+         //this.state.options.data.dataPoints =this.state.stats;
 
            
             // axios({
