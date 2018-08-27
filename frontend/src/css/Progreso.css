@@ -8,3 +8,13 @@
     background: rgb(255, 255, 255);
     text-align: center;
 }
+
+.div2 {
+    background: rgb(247, 233, 233);
+    text-align: center;
+}
+
+table#t03 {
+    width: 100%; 
+    background-color: #eba3a3;
+}

@@ -157,7 +157,7 @@ class Progreso extends Component {
                     <label classname="labels">Estadísticas: </label>
                 </div> */}
 
-                <div className="div1">
+                <div className="div2">
                 <table id="t03">
                 <tbody>
                     <tr>
