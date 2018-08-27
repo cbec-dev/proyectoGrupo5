@@ -161,15 +161,15 @@ class Progreso extends Component {
                 <table id="t03">
                 <tbody>
                     <tr>
-                    <th>{headerx}</th>
-                    <th>{headery}</th>
+                    <th><td>{headerx}</td></th>
+                    <th><td>{headery}</td></th>
                     </tr>
                             {stats.map((stat) =>
                             
                             
                                    <tr key={stat.group}>
-                                        <th><td>{stat.group}</td></th>
-                                        <th><td>{stat.value}</td></th>
+                                        <th>{stat.group}</th>
+                                        <th>{stat.value}</th>
                                     </tr> 
                                 
                             
