@@ -7,7 +7,7 @@ import axios from 'axios';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
-import {Button, FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav, Alert} from "react-bootstrap"
+import {Button,ButtonGroup ,FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, NavItem, MenuItem, NavDropdown, Nav, Alert} from "react-bootstrap"
 var ReactDOM = require('react-dom');
 var CodeMirror = require('../src/codemirror/CodeMirror.js');
 const createReactClass = require('create-react-class');
@@ -405,7 +405,7 @@ class Solucion extends Component {
                     <form className="form">
                     <div className="div1">
                     <span className="glyphicon glyphicon-time"> </span>
-                    <p>La tarea fue comenzada hace <b>{this.state.secondsElapsed} </b> segundos.</p>
+                    <p>Tiempo transcurrido <b>{this.state.secondsElapsed} </b> segundos.</p>
                     <label classname="labels"> Enunciado: </label>
                     </div>
                     <div className="div2">
@@ -413,6 +413,7 @@ class Solucion extends Component {
                         <textarea className="text" name= "text" type = "text" value={this.props.location.state.statement.statementText} 
                         disabled = "true"/>
                     </div>
+                    <div className="div1">&nbsp;</div>
                     <div className="div1">
                     <label className="labels"> Nombre Solución:  </label>
                     </div>
@@ -420,6 +421,7 @@ class Solucion extends Component {
                         <input name= "nameSolution" type = "text" value={this.state.nameSolution}
                         onChange = {this.handleInputChange} />
                     </div>
+                    <div className="div1">&nbsp;</div>
                     <div className="div2">
                     <label className="labels"> Solución:  </label>
                     </div>
@@ -429,8 +431,9 @@ class Solucion extends Component {
                 <CodeMirror className="codemirror" ref={el => this.cm = el} value={this.props.location.state.statement.header} onChange={this.updateCode} options={options} autoFocus={true} />
                 <CodeMirror className="codemirror" ref={el => this.cm3 = el} value={this.state.c2} options={options} autoFocus={true} onChange={this.updateCode3} readOnly={true}/>
                 <div style={{ marginTop: 10 }} className="div4">
+                <div className="div1">&nbsp;</div>
                 <div className="div1">
-                    <label className="labels"> Lenguaje de la Solución:  </label>
+                    <label className="labels"> Lenguaje</label>
                     
                         <select onChange={this.changeMode} value={this.state.name}>
                             <option value="python">Python</option>
@@ -440,11 +443,13 @@ class Solucion extends Component {
                     </div>
                 </div>
             </div>
+            <div className="div1">&nbsp;</div>
                     <div className="div1">
-                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}>Subir Solucion</Button>
-                      <Button type="button" bsStyle="info" onClick={(e) => this.ejecutarSolucion(this.state) }><span className="glyphicon glyphicon-play"></span>Ejecutar Solucion</Button>
+                    <ButtonGroup>
+                      <Button type="button" bsStyle="success" onClick={(e) => this.ejecutarSolucion(this.state) }><span className="glyphicon glyphicon-play"></span>Ejecutar</Button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)} disabled={this.state.bool}><span className="glyphicon glyphicon-open-file"></span>Enviar</Button>
                       <Button type="button" bsStyle="warning" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
-
+                    </ButtonGroup>
                     </div>
                   </form>
                   <div>
@@ -465,6 +470,7 @@ class Solucion extends Component {
                     null
                     }
                   </div>
+                  <div className="div1">&nbsp;</div>
                 <div className="div1">
                     <label classname="labels"> Salida del código: </label>
                 </div>  

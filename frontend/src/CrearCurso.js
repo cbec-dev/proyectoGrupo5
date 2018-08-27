@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/CrearCurso.css';
 import axios from 'axios';
+import {ProgressBar,Button,ButtonGroup,Table} from "react-bootstrap";
 
 
 class CrearCurso extends Component {
@@ -135,25 +136,27 @@ class CrearCurso extends Component {
                 //})
           
             if(isLoading===true){
-                return(<p> Cargando...</p>)
+                return(<p className="p1">< ProgressBar  active now={100} /></p>)
             }
             if(this.props.typeUser ==2){
                 return (
                     <body className="body">
                     <h1 className="header1">
-                    <span className="texto"> Registrar Curso: </span>
+                    <span className="texto"> Registrar Seccion</span>
                     </h1>
                             
-                <table id="t02">
-                <tbody>
+                <Table responsive="true">
+                <thead>
                     <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Profesor Encargado</th>
-                    <th> Accion</th>
-                    <th> Accion </th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Profesor Encargado</th>
+                        <th>Profesores Disponibles</th>
+                        <th> Accion </th>
                 
                     </tr>
+                </thead>
+                <tbody>
                             {sections.map((section) =>
                             {
                                 if(section.profesor!==null){
@@ -161,8 +164,9 @@ class CrearCurso extends Component {
                                         <th>{section.idSection}</th>
                                         <th>{section.sectionName}</th>
                                         <th>{section.profesor.userName}</th>
-                                        <th><button type="button" onClick={(e) => this.removeProfesor(section)}>Remover Profesor</button> </th>
-                                        <th> Accion no valida</th>
+                                        <th><span className=" glyphicon glyphicon-minus "></span></th>
+                                        <th><Button  bsStyle="danger" onClick={(e) => this.removeProfesor(section)}><span className="glyphicon glyphicon-trash"></span><span className="glyphicon glyphicon-user"></span></Button> </th>
+                                        
                                         
                                         
                                     </tr> 
@@ -171,7 +175,7 @@ class CrearCurso extends Component {
                                     return <tr key={section.idSection}>
                                         <th>{section.idSection}</th>
                                         <th>{section.sectionName}</th>
-                                        <th>sin asignar</th>
+                                        <th><span className=" glyphicon glyphicon-minus "></span></th>
                                         <th> 
                                         <div className="div6">
                                             <select name="prof" component="select" onChange = {this.handleInputChange}>
@@ -189,7 +193,7 @@ class CrearCurso extends Component {
                                         </div>
 
                                         </th>
-                                        <th><button type="button" onClick={(e,d) => this.agregarProfesor(this.state.prof, section)}>Agregar Profesor</button> </th>
+                                        <th><Button bsStyle="success" onClick={(e,d) => this.agregarProfesor(this.state.prof, section)}><span className="glyphicon glyphicon-plus"></span><span className="glyphicon glyphicon-user"></span></Button></th>
 
                                     </tr>
 
@@ -197,19 +201,22 @@ class CrearCurso extends Component {
                             }
                               )}
                 </tbody>
-                </table>
+                </Table>
 
                     <form className="formulario">
                    
-                    <div className="div3"><label className="label1"> Nombre Seccion:  </label> </div>
+                    <div className="div3"><label className="label1"> Nombre Seccion</label> </div>
                     <div>
                         <input name= "sectionName" type = "text" value={this.state.sectionName}
                         onChange = {this.handleInputChange} />
                     </div>
-                
+                    
+                    <div className="div7">&nbsp;</div>
                     <div className="div7">
-                      <button type="button" onClick={(e) => this.subirFormulario(this.state)}>Agregar Curso</button>
-                      <button type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</button>
+                    <ButtonGroup>
+                      <Button bsStyle="primary" onClick={(e) => this.subirFormulario(this.state)}>Agregar Seccion</Button>
+                      <Button bsStyle="warning" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                    </ButtonGroup>
                     </div>
                   </form>
                     </body>

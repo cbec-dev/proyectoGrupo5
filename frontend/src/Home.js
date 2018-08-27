@@ -15,6 +15,7 @@ import Solucion from './Solucion';
 import App from './App';
 import { PropTypes } from 'react';
 import axios from 'axios';
+import {ProgressBar} from "react-bootstrap"
 
 const muiTheme = getMuiTheme({
   appBar: {
@@ -119,7 +120,7 @@ export default class Home extends React.Component {
         }
         else{
             return(
-                <p> loading... </p>
+                <p className="p1"> < ProgressBar  active now={100} /></p>
                 );
         }
        

@@ -5,6 +5,7 @@ import {firebaseAuth} from "./firebase/constants";
 import './css/Login.css';
 import Header from './Header';
 import axios from 'axios';
+import {ProgressBar} from "react-bootstrap"
 
 
 
@@ -282,4 +283,4 @@ const LoginPage = ({handleGoogleLogin}) => (
         </div>
     </body>
 );
-const SplashScreen = () => (<p>Loading...</p>)
+const SplashScreen = () => (<p className="p1">< ProgressBar  active now={100} /></p>)

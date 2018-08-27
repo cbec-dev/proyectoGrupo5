@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/Registro.css';
 import axios from 'axios';
-import {Button} from 'react-bootstrap';
+import {Button,ButtonGroup} from 'react-bootstrap';
 
 
 class Registro extends Component {
@@ -103,13 +103,17 @@ class Registro extends Component {
 
             }
                 return (
-                    <body className="body">
-                    <h1 className="header1">
-                    <span className="texto"> Registrar Alumno </span>
+                    <body>
+                    <div className="columna2">&nbsp;</div>
+                    <h1 className="columna2">
+                    <span className="texto">Registrar Alumno </span>
                     </h1>
                     <form className="formulario">
-                        <div className="div1"> <label className="label4"> Carrera:  </label></div>
-                    <div className="div2">
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna"> <label className="label4"> Carrera:  </label></div>
+
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <select name="idCareer" component="select" onChange = {this.handleInputChange}>
                         <option > </option>
 
@@ -119,20 +123,29 @@ class Registro extends Component {
                            
                          </select>
                     </div>
-                    <div className="div3"><label className="label1"> Nombre:  </label> </div>
-                    <div>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna"><label className="label1"> Nombre:  </label> </div>
+
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <input name= "userName" type = "text" value={this.state.userName}
                         onChange = {this.handleInputChange} />
                     </div>
-                    <div className="div4"><label className="label2"> Email:  </label> </div>
 
-                    <div className="div5">
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna"><label className="label2"> Email:  </label> </div>
+                    
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <input name= "email" type = "text" value={this.state.email} 
                         onChange = {this.handleInputChange} /><label> @usach.cl  </label>
                     </div>
-                    <div className="div6"> <label className="label3"> Seccion:  </label></div>
 
-                    <div className="div6">
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna"> <label className="label3"> Seccion:  </label></div>
+                    
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">
                         <select name="sectionName" component="select" onChange = {this.handleInputChange}>
                         <option > </option>
                         {sections.map((section) =>
@@ -141,9 +154,15 @@ class Registro extends Component {
                            
                          </select>
                     </div>
-                    <div className="div7">
-                      <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrarme</Button>
-                      <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">&nbsp;</div>
+                    <div className="columna">&nbsp;</div>
+
+                    <div className="columna">
+                        <ButtonGroup>
+                            <Button bsStyle="primary" type="button" onClick={(e) => this.subirFormulario(this.state)}>Registrar</Button>
+                            <Button bsStyle="warning" type="button" onClick={(e) => this.limpiarValores(1)}>Limpiar Casillas</Button>
+                        </ButtonGroup>
                     </div>
                   </form>
                     </body>

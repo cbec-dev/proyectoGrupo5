@@ -18,3 +18,12 @@
     height: 300px;
     width: 700px;
   }
+
+  .columna{
+    width: 40%;
+    float: left;
+  }
+  .columna2{
+    width: 0%;
+    float: left;
+  }

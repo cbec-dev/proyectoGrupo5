@@ -61,3 +61,12 @@
     align-self: center;
 
 }
+
+.columna{
+    width: 40%;
+    float: left;
+}
+.columna2{
+    width: 40%;
+    float: left;
+}
