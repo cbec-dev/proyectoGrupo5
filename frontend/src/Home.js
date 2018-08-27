@@ -53,7 +53,7 @@ export default class Home extends React.Component {
             this.setState({userLogged: false, firebaseUser: ""});
             localStorage.clear();
             window.localStorage.clear(); 
-            this.props.history.push("/Login2");
+            //this.props.history.push("/Login2");
 
         }.bind(this));
     }
@@ -94,6 +94,9 @@ export default class Home extends React.Component {
         console.log("render home")
         console.log(this.state.bool)
         console.log(this.state.firebaseUser)
+        if(this.props.bool===false){
+            return <Redirect to='/Login2'/>;
+        }
         if(bool===true||this.props.bool===true){
             return (
                 <body className="body">
