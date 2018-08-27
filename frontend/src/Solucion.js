@@ -265,7 +265,7 @@ class Solucion extends Component {
                 this.setState({
                 mode: "text/x-java",
                 name: e.target.value,
-                c1: "public class MyClass {\n",
+                c1: "public class Main {\n",
                 c2: "\npublic static void main(String args[]) { \n\tfuncion(entradas);\n\t}\n}",
             });
             }
