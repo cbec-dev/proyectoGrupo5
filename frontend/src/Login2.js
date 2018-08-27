@@ -259,8 +259,11 @@ export default class Login extends React.Component {
 }
 
     render() {
+        console.log("render login")
+        console.log(this.state.redirect)
+        console.log("$$$$$$$$$$$$")
         if(this.state.redirect===true){
-            return <Redirect to='/'/>;
+            return <Redirect to='/Home'/>;
         }
         if (localStorage.getItem(firebaseAuthKey) === "1") return <SplashScreen />;
         return <LoginPage handleGoogleLogin={this.handleGoogleLogin}/>;
