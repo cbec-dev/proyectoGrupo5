@@ -168,8 +168,8 @@ class Progreso extends Component {
                             
                             
                                    <tr key={stat.group}>
-                                        <th><td>{stat.group}</td></th>
-                                        <th><td>{stat.value}</td></th>
+                                        <th>{stat.group}</th>
+                                        <th>{stat.value}</th>
                                     </tr> 
                                 
                             
