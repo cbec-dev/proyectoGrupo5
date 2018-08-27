@@ -1,4 +1,4 @@
-import './css/Card.css';
+import './css/CardSolucion.css';
 import axios from 'axios';
 import React from 'react';
 import { Redirect} from "react-router-dom";
@@ -35,7 +35,7 @@ constructTooltip(e){
    
     return (
       
-      <Panel className="panel" alt= "50x50">
+      <Panel className="panelSolucion" alt= "50x50">
       <OverlayTrigger placement="top" overlay={this.constructTooltip(solution)}>
       <LinkContainer to={{ pathname: '/MostrarSolucion', state: { solution: solution, statement: solution.statement, typeUser: this.props.typeUser, activeUser: this.props.activeUser} }}>
          <Thumbnail src={this.props.link} alt="50x50" className="thumbnail" onMouseEnter={this.handleMouseHover}
@@ -58,7 +58,6 @@ constructTooltip(e){
             </Button>
              </LinkContainer>
           
-          <Button className="button" bsStyle="default">Button</Button>
           </div>
         </p>
       </Panel>

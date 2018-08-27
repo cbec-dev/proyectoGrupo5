@@ -10,27 +10,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.mingeso.grupo5.proyecto.entities.TestCase;
+import com.mingeso.grupo5.proyecto.entities.User;
+import com.mingeso.grupo5.proyecto.entities.Career;
 import com.mingeso.grupo5.proyecto.entities.ExpectedSolution;
+import com.mingeso.grupo5.proyecto.entities.Section;
 import com.mingeso.grupo5.proyecto.entities.Solution;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import com.mingeso.grupo5.proyecto.helpers.Compiler;
+import com.mingeso.grupo5.proyecto.helpers.GraphValues;
 import com.mingeso.grupo5.proyecto.helpers.SolutionStatsContext;
 import com.mingeso.grupo5.proyecto.helpers.statstrategies.TimeStats;
+import com.mingeso.grupo5.proyecto.helpers.statstrategies.SuccessStats;
 import com.mingeso.grupo5.proyecto.repositories.CareerRepository;
+import com.mingeso.grupo5.proyecto.repositories.SectionRepository;
 import com.mingeso.grupo5.proyecto.repositories.SolutionRepository;
+import com.mingeso.grupo5.proyecto.repositories.UserRepository;
 
 @Controller
-@CrossOrigin(origins = "http://209.97.152.30:5050")
+@CrossOrigin(origins = "http://142.93.191.219:5050")
 @RequestMapping(path="/api/compiler")
+
+
 
 public class CompilerController {
     @Autowired 
     private SolutionRepository solutionRepository;
 	@Autowired
-	private CareerRepository careerRepository;
+    private CareerRepository careerRepository;
+    @Autowired
+    private SectionRepository sectionRepository;
+    @Autowired
+	private UserRepository userRepository;
     
     @GetMapping(path="/languages")
 	public @ResponseBody String getAll() throws IOException {
@@ -100,10 +113,10 @@ public class CompilerController {
         @RequestParam(value = "expectedSolution", required = false) List<String> expectedSolution,
         @RequestParam(value = "testCases", required = false) List<String> testCases) throws IOException {
 
-            String salidas_string = "Salidas: ";
+            String salidas_string = "Salidas: \n";
             String test_cases = "Casos de prueba totales: ";
-            String test_cases_string = "Casos de prueba: ";
-            String expected = "Soluciones Esperadas: ";
+            String test_cases_string = "Casos de prueba: \n";
+            String expected = "Soluciones Esperadas: \n";
             int casos_exitosos = 0;
             test_cases = test_cases + testCases.size();
             List<String> salidas = new ArrayList<String>();
@@ -146,38 +159,82 @@ public class CompilerController {
         }
 
         @RequestMapping(value="/getStats", method = RequestMethod.POST)
-        @ResponseBody String getStats(
+        @ResponseBody Iterable<GraphValues> getStats(
             @RequestParam String filter,
             @RequestParam String method) throws IOException {
+                String out = "";
 
-                // //Se obtiene la lista de soluciones base
-                // ArrayList<Solution> solutions = (ArrayList<Solution>) solutionRepository.findAll();
+                //Se obtiene la lista de soluciones base
+                ArrayList<Career> careers = (ArrayList<Career>) careerRepository.findAll();
+                ArrayList<Section> sections = (ArrayList<Section>) sectionRepository.findAll();
+
+                ArrayList<String> x = new ArrayList<String>();
+                ArrayList<Float> y = new ArrayList<Float>();
+                ArrayList<GraphValues> values = new ArrayList<GraphValues>();
     
-                // //Se crea contexto y se elige método a utilizar
-                // SolutionStatsContext ctx = new SolutionStatsContext();
-                // switch (method) {
-                //     case "time":	ctx.setStatsStrategy(new TimeStats());
-                //                     break;
+                //Se crea contexto y se elige método a utilizar
+                SolutionStatsContext ctx = new SolutionStatsContext();
+                switch (method) {
+                    case "time":	ctx.setStatsStrategy(new TimeStats());
+                                    break;
+                    case "correctSolutions":	ctx.setStatsStrategy(new SuccessStats());
+                    break;
                     
-                //     default:        ctx=null;
-                //                     break;
-                // }
+                    default:        ctx=null;
+                                    break;
+                }
     
-                // // switch (filter) {
-                // //     case "career":  
-                // //                     break;
-                // //     case "section": //solutions = findBySection(id);
-                // //                     break;
-                // //     default:        solutions = null;
-                // //                     break;
-                // // }
+                if(filter.equals("career"))
+                {
+                    for(Career car : careers){
+                        Iterable<User> users = userRepository.findByCareer(car);
+                        ArrayList<Solution> sols = new ArrayList<Solution>();
+
+                        for(User user : users){
+                            Iterable<Solution> solsAux = solutionRepository.findByUser(user);
+                            for(Solution solAux : solsAux){
+                                sols.add(solAux);
+                             }
+                        }
+
+                        GraphValues currentValue = new GraphValues();
+                        currentValue.setGroup(car.getCareerName());
+                        currentValue.setValue(ctx.execStrat(sols));
+
+                        values.add(currentValue);
+
+                    }
+                }
+                if(filter.equals("section"))
+                {
+                    for(Section sec : sections){
+                        Iterable<User> users = userRepository.findBySection(sec);
+                        ArrayList<Solution> sols = new ArrayList<Solution>();
+
+                        for(User user : users){
+                            Iterable<Solution> solsAux = solutionRepository.findByUser(user);
+                            for(Solution solAux : solsAux){
+                                sols.add(solAux);
+                             }
+                        }
+
+                        GraphValues currentValue = new GraphValues();
+                        currentValue.setGroup(sec.getSectionName());
+                        currentValue.setValue(ctx.execStrat(sols));
+
+                        values.add(currentValue);
+
+                    }
+                }
     
                 // if (solutions.size()==0) return "ERROR: no se han encontrado soluciones.";
     
-                // //String out = ctx.getStats(solutions);
-                String out = method + " - " + filter;
-    
-                return out;
+                //String out = ctx.getStats(solutions).toString();
+
+
+
+
+                return values;
         }
     
 }

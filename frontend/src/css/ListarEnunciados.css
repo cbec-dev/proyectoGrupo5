@@ -5,3 +5,13 @@ table#t02 {
 .p1 {
     margin-top: -20px;
 }
+.grid{
+
+    border-width: 1px;
+    border-style: solid;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: center;
+ }

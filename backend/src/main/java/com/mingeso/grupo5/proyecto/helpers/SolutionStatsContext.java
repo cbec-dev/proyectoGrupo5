@@ -14,7 +14,7 @@ public class SolutionStatsContext {
 
 
     //Este método utiliza el algoritmo de la estrategia seteada
-    public String getStats(ArrayList<Solution> solutions) {
+    public Float execStrat(ArrayList<Solution> solutions) {
       return strategy.getStats(solutions);
     }
 }

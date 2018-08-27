@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import com.mingeso.grupo5.proyecto.entities.Solution;
 import com.mingeso.grupo5.proyecto.helpers.SolutionStatsStrategy;
 
-public class TimeStats implements SolutionStatsStrategy {
+public class SuccessStats implements SolutionStatsStrategy {
 
 	@Override
 	public Float getStats(ArrayList<Solution> solutions) {
-		int totalTime = 0;	//Tiempo total
-		float promTime = 0;	//Tiempo promedio
+		double totalSuccess = 0;	//Exito total
+		float promSuccess = 0;	//Exito promedio
 		int size = solutions.size(); //Cantidad total de soluciones
 		for(Solution sol : solutions){
-			if(sol.getTime()!=null) {
-				totalTime += sol.getTime();
+			if(sol.getpSuccess()!=null) {
+				totalSuccess += sol.getpSuccess();
 			}
 		}
-		if (totalTime==0) {
-			promTime = (float) 0;
+		if (totalSuccess==0) {
+			promSuccess = (float) 0;
 		}
 		else {
-			promTime = (float) totalTime/size;
+			promSuccess = (float) totalSuccess/size;
 		}
 
-		return promTime;
+		return promSuccess;
 	}
 }

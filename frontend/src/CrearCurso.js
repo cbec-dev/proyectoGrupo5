@@ -28,8 +28,8 @@ class CrearCurso extends Component {
         console.log(section)
         this.limpiarValores(1)
         if(profesor!==null && section !==null && profesor !== undefined && section !== undefined && profesor!== ""){
-        fetch('http://209.97.152.30:8080/backendGrupo5/sections/update/'+profesor+'/'+section.idSection)
-                .then(response => fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+        fetch('http://142.93.191.219:8080/backendGrupo5/sections/update/'+profesor+'/'+section.idSection)
+                .then(response => fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
                 .then(response => response.json())
                 .then(data => this.setState({sections: data, isLoading: false})))
         }
@@ -41,10 +41,10 @@ class CrearCurso extends Component {
         var section = e;
         console.log("REMOVER PROFESOR: " + e + "-" + section)
         this.setState({isLoading: true})
-        fetch('http://209.97.152.30:8080/backendGrupo5/sections/removeP/'+section.idSection)
+        fetch('http://142.93.191.219:8080/backendGrupo5/sections/removeP/'+section.idSection)
             .then(response => this.setState({response: response, isLoading: true}))
             .then(alert("Profesor removido correctamente"))
-            .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+            .then(fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}))) 
 
@@ -59,10 +59,10 @@ class CrearCurso extends Component {
         }
         else{
             this.limpiarValores(1);
-            fetch('http://209.97.152.30:8080/backendGrupo5/sections/addSection?sectionName='+this.section.sectionName)
+            fetch('http://142.93.191.219:8080/backendGrupo5/sections/addSection?sectionName='+this.section.sectionName)
             .then(response => console.log("Seccion Agregada"+response))
             .then(this.setState({isLoading: true}))
-            .then(fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+            .then(fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data, isLoading: false}))) 
             }
@@ -99,10 +99,10 @@ class CrearCurso extends Component {
         }
 
     componentDidMount(){
-        fetch('http://209.97.152.30:8080/backendGrupo5/sections/allSection')
+        fetch('http://142.93.191.219:8080/backendGrupo5/sections/allSection')
             .then(response => response.json())
             .then(data => this.setState({sections: data}))
-            .then(fetch('http://209.97.152.30:8080/backendGrupo5/users/searchtype/'+3)
+            .then(fetch('http://142.93.191.219:8080/backendGrupo5/users/searchtype/'+3)
             .then(response => response.json())
             .then(data => this.setState({profesores: data, isLoading: false})))
 

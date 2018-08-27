@@ -117,7 +117,7 @@ class Solucion extends Component {
              }).then(response => console.log(response.data));*/
             axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/runCode',
+                url: 'http://142.93.191.219:8080/backendGrupo5/api/compiler/runCode',
                 data: qs.stringify(this.solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -143,7 +143,7 @@ class Solucion extends Component {
             bodyFormData.set('lang',e.name);
             axios({
                     method: 'post',
-                    url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkCode',
+                    url: 'http://142.93.191.219:8080/backendGrupo5/api/compiler/checkCode',
                     data: qs.stringify(this.solution),
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -185,7 +185,7 @@ class Solucion extends Component {
             console.log("Datos: "+ solution.solutionText);
             axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/backendGrupo5/solutions/add',
+                url: 'http://142.93.191.219:8080/backendGrupo5/solutions/add',
                 data: qs.stringify(solution),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -373,11 +373,11 @@ class Solucion extends Component {
         console.log(bodyFormData)
             axios({
                 method: 'post',
-                url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/checkSolutions',
+                url: 'http://142.93.191.219:8080/backendGrupo5/api/compiler/checkSolutions',
                 data: bodyFormData,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+                    "Access-Control-Allow-Origin": "http://142.93.191.219:5050",
                     "Access-Control-Allow-Methods": "POST",
                 },
              }).then(response => this.setState({salida4: response.data[0], nTest:response.data[1], sTest: response.data[2], bool: false}));    

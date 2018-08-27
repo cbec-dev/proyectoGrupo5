@@ -52,17 +52,20 @@ export default class Home extends React.Component {
             localStorage.removeItem("activeUserObject");
             this.props.callbackFromParentHome(this.state.userLogged);
             this.setState({userLogged: false, firebaseUser: ""});
-            this.props.history.push("/");
             localStorage.clear();
             window.localStorage.clear(); 
+            this.props.history.push("/");
 
         }.bind(this));
     }
     componentDidMount(){
+        console.log("home")
         if(this.state.firebaseUser!==null){
+            console.log("usuario logueado")
             this.setState({userLogged: true, name: this.state.firebaseUser.displayName})
         }
         else{
+            console.log("ningun usuario")
            return this.props.history.push("/Login2")
         }
         let axiosConfig = {
@@ -74,7 +77,7 @@ export default class Home extends React.Component {
           };
           var email = this.state.firebaseUser.email;
           var self = this;
-          axios.get('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+email, axiosConfig)
+          axios.get('http://142.93.191.219:8080/backendGrupo5/users/searchbyEmail/'+email, axiosConfig)
           .then((response) => {
             this.setState({state: response.data, bool: true});
           }).catch((error) => {
@@ -89,7 +92,10 @@ export default class Home extends React.Component {
        
         const userEmail = this.state.state.correo;
         const bool = this.state.bool;
-        if(bool===true){
+        console.log("render home")
+        console.log(this.state.bool)
+        console.log(this.state.firebaseUser)
+        if(bool===true||this.props.bool===true){
             return (
                 <body className="body">
                     <div className = "div1">

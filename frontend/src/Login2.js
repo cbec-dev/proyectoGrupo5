@@ -6,6 +6,7 @@ import './css/Login.css';
 import Header from './Header';
 import axios from 'axios';
 import {ProgressBar} from "react-bootstrap"
+import { Redirect } from 'react-router'
 
 
 
@@ -23,7 +24,7 @@ const appTokenKey = "appToken";
       var self = this;
       try {
         let res = await axios({
-             url: 'http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo,
+             url: 'http://142.93.191.219:8080/backendGrupo5/users/searchbyEmail/'+correo,
              method: 'get',
              timeout: 8000,
              headers: {
@@ -59,6 +60,7 @@ export default class Login extends React.Component {
             activeUser: [],
             state: "",
             user:"",
+            redirect: false,
         };
 
         this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
@@ -149,7 +151,7 @@ export default class Login extends React.Component {
                 var correo = email.split("\"");
                 this.setState({userEmail: correo[1]});
                 
-                /*fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
+                /*fetch('http://142.93.191.219:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
                 .then(response => response.json())
                 .then(console.log('algo' + this.state.a)
                 .then(data => this.setState({a: data})));
@@ -176,7 +178,7 @@ export default class Login extends React.Component {
                     localStorage.setItem("userLogged", JSON.stringify(userLogged));
                     this.setState({userLogged: true, firebaseUser: JSON.parse(localStorage.getItem('user'))});
                     //getUser(correo[1])
-                    fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail2/'+correo[1])
+                    fetch('http://142.93.191.219:8080/backendGrupo5/users/searchbyEmail2/'+correo[1])
                     .then(response => response.json())
                     .then(data => {
                         console.log("fetch en login c:")
@@ -199,13 +201,14 @@ export default class Login extends React.Component {
                         }
                         else{
                             console.log("else, usuario existe")
-                            fetch('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
+                            fetch('http://142.93.191.219:8080/backendGrupo5/users/searchbyEmail/'+correo[1])
                             .then(response => response.json())
                             .then(data =>{
                                 console.log("usuario: ")
                                 console.log(data)                                
                                 this.props.callbackFromParentLogin(true, JSON.parse(localStorage.getItem('user')), data)
-                                return this.props.history.push("/Home")
+                                this.setState({redirect: true})
+                                //return this.props.history.push("/Home")
                                     })
                             }
 
@@ -244,7 +247,7 @@ export default class Login extends React.Component {
                   };
                 
                   var self = this;
-                  axios.get('http://209.97.152.30:8080/backendGrupo5/users/searchbyEmail/'+correo[1], axiosConfig)
+                  axios.get('http://142.93.191.219:8080/backendGrupo5/users/searchbyEmail/'+correo[1], axiosConfig)
                    .then(function (response) {
                      console.log(response);
                      self.setState({activeUser: response.data})
@@ -257,7 +260,13 @@ export default class Login extends React.Component {
 }
 
     render() {
-        
+        console.log("render login")
+        console.log(this.state.redirect)
+        console.log("$$$$$$$$$$$$")
+        if(this.state.redirect===true||this.props.bool===true){
+            console.log("redirigiendo...")
+            return <Redirect to='/Home'/>;
+        }
         if (localStorage.getItem(firebaseAuthKey) === "1") return <SplashScreen />;
         return <LoginPage handleGoogleLogin={this.handleGoogleLogin}/>;
     }

@@ -5,7 +5,7 @@
 
 	<groupId>com.mingeso.grupo5</groupId>
 	<artifactId>proyecto</artifactId>
-	<version>0.7.0</version>
+	<version>1.0.1</version>
 	<packaging>war</packaging>
 
 	<name>proyecto</name>

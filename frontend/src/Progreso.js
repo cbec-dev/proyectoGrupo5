@@ -22,7 +22,23 @@ class Progreso extends Component {
         this.state = {
             filter: "career",
             method: "time",
-            salida: ""
+            headerx: "",
+            headery: "",
+            stats: [],
+            // options: {
+            //     animationEnabled: true,
+            //     exportEnabled: true,
+            //     theme: "light2", //"light1", "dark1", "dark2"
+            //     title:{
+            //     text: ""},
+            //     data: [{
+            //         type: "column", //change type to bar, line, area, pie, etc
+            //         //indexLabel: "{y}", //Shows y value on all Data Points
+            //         indexLabelFontColor: "#5A5757",
+            //         indexLabelPlacement: "outside",
+            //         dataPoints: []
+            //     }]
+            // }
 
         };
     }
@@ -47,10 +63,26 @@ class Progreso extends Component {
     buscar(e) {
         
         this.progreso = {filter: "career", method: "time"}
+        this.headers = {x: "", y: ""}
         
         
         this.progreso.filter = e.filter;
         this.progreso.method = e.method;
+
+        if(this.progreso.filter==="career"){
+            this.headers.x = "Carrera";
+        }
+        if(this.progreso.filter==="section"){
+            this.headers.x = "Sección";
+        }
+        if(this.progreso.method==="time"){
+            this.headers.y = "Tiempo promedio (s)";
+        }
+        if(this.progreso.method==="correctSolutions"){
+            this.headers.y = "Éxito (%)";
+        }
+        
+
 
 
         var bodyFormData = new FormData();
@@ -61,24 +93,26 @@ class Progreso extends Component {
         console.log(this.progreso)
         axios({
             method: 'post',
-            url: 'http://209.97.152.30:8080/backendGrupo5/api/compiler/getStats',
+            url: 'http://142.93.191.219:8080/backendGrupo5/api/compiler/getStats',
             data: qs.stringify(this.progreso),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+                "Access-Control-Allow-Origin": "http://142.93.191.219:5050",
                 "Access-Control-Allow-Methods": "POST",
             },
-         }).then(response => this.setState({salida: response.data}));
-     
+         }).then(response => this.setState({stats: response.data, headerx: this.headers.x, headery: this.headers.y}));
+         
+         
+         //this.state.options.data.dataPoints =this.state.stats;
 
            
             // axios({
             //     method: 'post',
-            //     url: 'http://209.97.152.30:8080/backendGrupo5/solutions/getStats',
+            //     url: 'http://142.93.191.219:8080/backendGrupo5/solutions/getStats',
             //     data: qs.stringify(this.progreso),
             //     headers: {
             //         'Content-Type': 'application/x-www-form-urlencoded',
-            //         "Access-Control-Allow-Origin": "http://209.97.152.30:5050",
+            //         "Access-Control-Allow-Origin": "http://142.93.191.219:5050",
             //         "Access-Control-Allow-Methods": "POST",
             //     },
             //  }).then(response => this.setState({salida: response.data}));
@@ -87,37 +121,18 @@ class Progreso extends Component {
     }
 
         render() {
-        
-            var options = {
-                animationEnabled: true,
-                exportEnabled: true,
-                theme: "light2", //"light1", "dark1", "dark2"
-                title:{
-                text: "Simple Column Chart with Index Labels"
-            },
-            data: [{
-                type: "column", //change type to bar, line, area, pie, etc
-                //indexLabel: "{y}", //Shows y value on all Data Points
-                indexLabelFontColor: "#5A5757",
-                indexLabelPlacement: "outside",
-                dataPoints: [
-                    { x: 10, y: 71 },
-                    { x: 20, y: 55 },
-                    { x: 30, y: 50 },
-                    { x: 40, y: 65 },
-                    { x: 50, y: 38 },
-                    { x: 60, y: 92, indexLabel: "Highest" },
-                  
-                ]
-            }]
-        }
+            const stats = this.state.stats;
+            const headerx = this.state.headerx;
+            const headery = this.state.headery;
+            const options = this.state.options;
+            
            
                 return (
 
                     <body className="body"> 
                     <form className="form">
                     <div className="div1">    
-                        <label className="labels"> Escoger de quién desea ver el progreso     </label>
+                        <label className="labels">Filtrar por:  </label>
                         <select onChange={this.changeMode} value={this.state.filter}>
                             <option value="section">Secciones</option>
                             <option value="career">Carreras</option>    
@@ -125,38 +140,43 @@ class Progreso extends Component {
                     </div>
                        
                     <div className="div1">
-                    <label className="labels"> Escoger las estadísticas que desea ver     </label>
+                    <label className="labels">Estadísticas de:  </label>
                     <select onChange={this.changeMode1} value={this.state.mode}>
-                        <option value="time">Tiempo empleado en resolver problemas</option>
-                        <option value="correctSolutions">Soluciones correctas</option>
+                        <option value="time">Tiempo promedio</option>
+                        <option value="correctSolutions">Porcentaje de éxito</option>
                     </select>
                     </div>
          
                     <div className="div1">
-                      <Button bsStyle="primary" type="button" onClick={(e) => this.buscar(this.state)} disabled={this.state.bool}>Buscar progreso</Button>
+                      <Button bsStyle="primary" type="button" onClick={(e) => this.buscar(this.state)} disabled={this.state.bool}>Obtener Estadísticas</Button>
 
                     </div>
                   </form>
 
-                <div className="div1">
-                    <label classname="labels"> Salida del progreso: </label>
-                </div>  
-                <div class="divTxt">
-                <pre class="gb wf" id="preOutput">
-                {this.state.salida}
-  
-                </pre>
-            </div>
-            
-            <div className="div1">
-            <CanvasJSChart options = {options} 
-                /* onRef={ref => this.chart = ref} */
-            />
-            {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-        
-            );
-            </div>
-            
+                {/* <div className="div1">
+                    <label classname="labels">Estadísticas: </label>
+                </div> */}
+
+                <div className="div2">
+                <table id="t03">
+                <tbody>
+                    <tr>
+                    <th>{headerx}</th>
+                    <th>{headery}</th>
+                    </tr>
+                            {stats.map((stat) =>
+                            
+                            
+                                   <tr key={stat.group}>
+                                        <th>{stat.group}</th>
+                                        <th>{stat.value}</th>
+                                    </tr> 
+                                
+                            
+                              )}
+                </tbody>
+                </table>
+                </div>
             </body>
                     
                 );
