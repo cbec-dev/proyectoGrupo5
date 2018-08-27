@@ -171,7 +171,7 @@ class MostrarSolucion extends Component {
     mostrarFeedback(e)
         {
             this.solution = {code: "", lang: ""}   
-            this.solution.code = e.code;
+            this.solution.code = this.props.location.state.solution.solutionText;
             this.solution.lang = e.name;
             var algo = {code: "", lang: ""}
             algo.code = "print(33)";
@@ -210,7 +210,7 @@ class MostrarSolucion extends Component {
         this.solution.expectedSolution = expected;
         this.solution.testCases = test_cases;
         var bodyFormData = new FormData();
-        bodyFormData.set('code', this.state.c1+"\n"+e.code+"\n"+this.state.c2);
+        bodyFormData.set('code', this.state.c1+"\n"+this.props.location.state.solution.solutionText+"\n"+this.state.c2);
         console.log(this.props.location.state.solution.solutionText)
         bodyFormData.set('lang', e.name);
         var i = 0;
