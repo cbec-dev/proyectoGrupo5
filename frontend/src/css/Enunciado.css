@@ -1,0 +1,20 @@
+.FormControl{
+    background-color: yellowgreen;
+  }
+  .body{
+    align-content: center;
+    align-items: center;
+
+  }
+  .form1{
+
+    align-content: center;
+    align-items: center;
+  }
+  .label{
+    align-self: center;
+  }
+  .text{
+    height: 300px;
+    width: 700px;
+  }

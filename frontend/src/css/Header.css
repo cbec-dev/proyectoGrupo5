@@ -1,0 +1,102 @@
+.navbar {
+    background-color: rgb(0, 0, 0);
+
+}
+.navItem {
+    color: white;
+  }
+
+.dropdown{
+  -webkit-text-fill-color: white;
+}
+.menuItem{
+  color: white;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+
+.menuItem:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem1:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem2:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem3:hover{
+  background-color: rgb(11,11,11);
+}
+.menuItem4:hover{
+  background-color: rgb(11,11,11);
+}
+
+.menuItem1{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+.menuItem2{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+
+}
+.menuItem3{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+.menuItem4{
+  color: white !important;
+  -webkit-text-fill-color: white;
+  -moz-text-decoration-color: white;
+  text-decoration-color: white;
+  background-color: rgb(24, 24, 43);
+
+
+}
+
+.dropdown-menu  > li > a {
+  color: #fff !important;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  background-color: #bf4242;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  background-color: #bf4242;
+}
+
+.image-cropper {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+
+
+}
+
+.image {
+
+  display: block;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+
+}

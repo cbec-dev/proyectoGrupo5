@@ -1,0 +1,30 @@
+.body {
+    background: rgb(255, 255, 255);
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+.div1 {
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.div2 {
+    background: rgb(237, 211, 245);
+    text-align: center;
+}
+
+table#t03 {
+    border: 1px solid rgb(189, 248, 177);
+    width: 100%; 
+    background-color: #d8bdbd;
+    text-align: "center";
+    table-layout: fixed;
+    
+}
+td{
+    border: 1px solid rgb(130, 130, 252);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
